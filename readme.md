@@ -1,5 +1,15 @@
 # Game Nanu Project for Java WS2022
 
+## Convention:
+
+naming will be **camelCase**
+
+_variable_ start with low character. Ex: `player1`, `playerController`
+
+_function_ start with Capital letter. Ex: `DrawCard()`, `StartGame()`
+
+_class_ always start with Capital letter. Ex: `Controller`, `Card`
+
 ## Note:
 
 Currently maven is not neccessary yet, if you want to find out you can check it
@@ -23,10 +33,10 @@ The _build file_ will be in the _target folder_
 
 `java -cp target/classes ws2022.client.controller.Controller`
 
-Controller file live in _target/class_ folder
+Controller file live in **_target/class_ folder**
 
-Controller has package _ws2022.client.controller_ (the package that you write on the first line of filecode)
+Controller has package **_ws2022.client.controller_** (the package that you write on the first line of filecode)
 
 **java** is command to run java
 
--cp specify the #classpath
+**-cp** specify the #classpath
