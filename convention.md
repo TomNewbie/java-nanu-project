@@ -40,3 +40,12 @@ Controller has package **_ws2022.client.controller_** (the package that you writ
 **java** is command to run java
 
 **-cp** specify the #classpath
+
+## Cover color code
+
+- Dice.color = 0 `#FF0000`
+- Dice.color = 1 `#00FF00`
+- Dice.color = 2 `#0000FF`
+- Dice.color = 3 `#FFC0CB`
+- Dice.color = 4 `#000000`
+- Dice.color = 5 => joker
