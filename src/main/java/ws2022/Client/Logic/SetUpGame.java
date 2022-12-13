@@ -12,9 +12,9 @@ import javafx.stage.Stage;
 
 public class SetUpGame extends Application {
     public void start(Stage stage) throws IOException {
-        URL url = new File("../ViewFx/boardgame.fxml")
-                .toURI().toURL();
-        Parent root = FXMLLoader.load(url);
+        // URL url = new File("/ws2022/Client/ViewFx/boardgame.fxml")
+        // .toURI().toURL();
+        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/boardgame.fxml"));
         stage.setTitle("Nanu");
         stage.setScene(new Scene(root));
 
