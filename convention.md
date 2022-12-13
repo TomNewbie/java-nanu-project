@@ -43,9 +43,13 @@ Controller has package **_ws2022.client.controller_** (the package that you writ
 
 ## Cover color code
 
-- Dice.color = 0 `#FF0000`
-- Dice.color = 1 `#00FF00`
-- Dice.color = 2 `#0000FF`
-- Dice.color = 3 `#FFC0CB`
-- Dice.color = 4 `#000000`
+- Dice.color = 0 `#FF0000` (red)
+- Dice.color = 1 `#00FF00` (green)
+- Dice.color = 2 `#0000FF` (blue)
+- Dice.color = 3 `#FFFF00` (yellow)
+- Dice.color = 4 `#FFA500` (orange)
 - Dice.color = 5 => joker
+
+## Resolution
+
+Scene Resolution will be **1200 \* 775**
