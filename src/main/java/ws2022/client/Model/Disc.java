@@ -5,7 +5,7 @@ public class Disc {
     private String value;
 
     public String getValue(Disc disc) {
-        return disc.cardImage;
+        return disc.value;
     };
 
     public Disc(String cardImage, String value) {
