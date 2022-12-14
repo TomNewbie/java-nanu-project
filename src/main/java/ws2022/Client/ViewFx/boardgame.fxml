@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="775.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.BoardGameController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.BoardGameController">
    <children>
       <Button fx:id="myButton" layoutX="405.0" layoutY="651.0" mnemonicParsing="false" onAction="#changeImage" prefHeight="50.0" prefWidth="200.0" text="Remember All" />
       <GridPane fx:id="boardgame" alignment="CENTER" gridLinesVisible="true" layoutX="155.0" layoutY="119.0" prefHeight="500.0" prefWidth="700.0">
