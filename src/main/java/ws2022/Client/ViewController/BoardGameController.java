@@ -7,6 +7,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import ws2022.Client.Model.Disc;
 
 import java.io.FileNotFoundException;
@@ -42,9 +44,12 @@ public class BoardGameController {
                         this.getClass()
                                 .getResourceAsStream(
                                         selectedImage));
+                Circle clip = new Circle(60, 60, 50);
                 ImageView imageView = new ImageView(image);
+
                 imageView.setFitWidth(120);
                 imageView.setFitHeight(120);
+                imageView.setClip(clip);
                 imageView.setUserData(disc1); // change
                 imageView.setOnMouseClicked(event -> showDisc(event));
                 boardgame.add(imageView, i, j);
