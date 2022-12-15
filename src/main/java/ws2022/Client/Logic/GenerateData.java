@@ -14,4 +14,8 @@ public class GenerateData {
 
     }
 
+    // Run test o day
+    public static void main(String[] args) {
+
+    }
 }
