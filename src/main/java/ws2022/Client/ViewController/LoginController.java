@@ -1,15 +1,17 @@
-package application.Nanu.Login;
+package ws2022.Client.ViewController;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
 public class LoginController {
     // @FXML
     private TextField usernameField;
-    //@FXML
+    // @FXML
     private PasswordField passwordField;
-    //@FXML
+
+    // @FXML
     private void loginAction(ActionEvent event) {
         String username = usernameField.getText().trim();
         String password = passwordField.getText();
@@ -26,6 +28,7 @@ public class LoginController {
         showAlertMessage(Alert.AlertType.INFORMATION, "Details sent to database!",
                 "Username and password have been sent to database for validation");
     }
+
     public static void showAlertMessage(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

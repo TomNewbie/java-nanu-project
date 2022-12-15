@@ -1,4 +1,4 @@
-package application.Nanu.SignUp;
+package ws2022.Client.Logic;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,14 +8,14 @@ import javafx.stage.Stage;
 
 public class SignUp extends Application {
 
-    //@Override
+    // @Override
     public void start(Stage primaryStage) throws Exception {
-    	Parent root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
-    	primaryStage.setTitle("Sign up");
-    	primaryStage.setScene(new Scene(root, 600, 320));
+        Parent root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
+        primaryStage.setTitle("Sign up");
+        primaryStage.setScene(new Scene(root, 600, 320));
         primaryStage.show();
     }
-    
+
     public static void main(String[] args) {
         launch(args);
     }
