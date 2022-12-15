@@ -52,10 +52,8 @@ Controller has package **_ws2022.client.controller_** (the package that you writ
 
 ## Resolution
 
-<<<<<<< Updated upstream
-Scene Resolution will be **1200 \* 600**
-=======
 Scene Resolution will be **1200\*600**
->>>>>>> Stashed changes
 
-## To be continue...
+## Load JavaFX file
+
+getLClass().getResource("/ws2022/Client/ViewFx/yourname.fxml"));
