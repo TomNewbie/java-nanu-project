@@ -1,4 +1,4 @@
-package ws2022.Client.Logic;
+package ws2022.Client.RunScreen;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
