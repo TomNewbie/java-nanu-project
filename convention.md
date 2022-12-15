@@ -52,6 +52,10 @@ Controller has package **_ws2022.client.controller_** (the package that you writ
 
 ## Resolution
 
+<<<<<<< Updated upstream
 Scene Resolution will be **1200 \* 600**
+=======
+Scene Resolution will be **1200\*600**
+>>>>>>> Stashed changes
 
 ## To be continue...
