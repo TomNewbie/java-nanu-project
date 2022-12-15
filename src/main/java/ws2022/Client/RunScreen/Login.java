@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public class Login extends Application {
     // @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/Runscreen/Login.fxml"));
         primaryStage.setTitle("Login");
         primaryStage.setScene(new Scene(root, 1200, 600));
         primaryStage.show();
