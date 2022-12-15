@@ -57,3 +57,7 @@ Scene Resolution will be **1200\*600**
 ## Load JavaFX file
 
 getLClass().getResource("/ws2022/Client/ViewFx/yourname.fxml"));
+
+## LaTeX Documentation
+
+https://www.overleaf.com/project/63987faa99a81f2e3331b633
