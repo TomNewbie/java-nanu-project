@@ -10,9 +10,9 @@ public class SignUp extends Application {
 
     // @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/SignUp.fxml"));
         primaryStage.setTitle("Sign up");
-        primaryStage.setScene(new Scene(root, 600, 320));
+        primaryStage.setScene(new Scene(root, 1200, 600));
         primaryStage.show();
     }
 
