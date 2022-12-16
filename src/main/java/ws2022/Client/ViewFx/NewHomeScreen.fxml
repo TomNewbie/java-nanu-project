@@ -12,8 +12,8 @@
             <Font size="53.0" />
          </font>
       </Label>
-      <Button fx:id="playbtn" layoutX="439.0" layoutY="97.0" mnemonicParsing="false" onAction="#enterprofile" prefHeight="77.0" prefWidth="323.0" text="Play" />
-      <Button fx:id="highscorebtn" layoutX="433.0" layoutY="251.0" mnemonicParsing="false" onAction="#highscore" prefHeight="67.0" prefWidth="335.0" text="Online" />
+      <Button fx:id="playbtn" layoutX="439.0" layoutY="97.0" mnemonicParsing="false" onAction="#enterprofile" prefHeight="77.0" prefWidth="323.0" text="Play Offline" />
+      <Button fx:id="highscorebtn" layoutX="433.0" layoutY="251.0" mnemonicParsing="false" onAction="#highscore" prefHeight="67.0" prefWidth="335.0" text="Play Online" />
       <Button fx:id="logoutbtn" layoutX="433.0" layoutY="418.0" mnemonicParsing="false" onAction="#closethewindow" prefHeight="67.0" prefWidth="335.0" text="Quit" />
    </children>
 </Pane>
