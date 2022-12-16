@@ -52,7 +52,7 @@ Controller has package **_ws2022.client.controller_** (the package that you writ
 
 ## Resolution
 
-Scene Resolution will be **1200\*600**
+Scene Resolution will be **1000\*600**
 
 ## Load JavaFX file
 

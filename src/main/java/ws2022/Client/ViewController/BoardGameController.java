@@ -7,10 +7,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import ws2022.Client.Model.Disc;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,12 +38,14 @@ public class BoardGameController {
         int index = 0;
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 4; j++) {
-
                 String selectedImage = "/ws2022/Client/assets/FootballTheme/" + myList.get(index) + ".png";
-                Image image = new Image(
-                        this.getClass()
-                                .getResourceAsStream(
-                                        selectedImage));
+                // Image image = new Image(
+                // this.getClass()
+                // .getResourceAsStream(
+                // selectedImage));
+                Image image = new Image(this.getClass()
+                        .getResource(selectedImage)
+                        .toExternalForm());
                 Circle clip = new Circle(60, 60, 50);
                 ImageView imageView = new ImageView(image);
 
