@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<Pane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.BoardGameController">
+<Pane fx:id="pane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.BoardGameController">
    <children>
-      <Button fx:id="myButton" layoutX="327.0" layoutY="520.0" mnemonicParsing="false" onAction="#changeImage" prefHeight="50.0" prefWidth="200.0" text="Remember All" />
-      <GridPane fx:id="boardgame" alignment="CENTER" gridLinesVisible="true" layoutX="121.0" layoutY="60.0" prefHeight="411.0" prefWidth="610.0">
+      <Button fx:id="myButton" layoutX="327.0" layoutY="520.0" mnemonicParsing="false" onAction="#clickRememberAll" prefHeight="50.0" prefWidth="200.0" text="Remember All" />
+      <GridPane fx:id="boardgame" alignment="CENTER" layoutX="88.0" layoutY="62.0" prefHeight="411.0" prefWidth="625.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -25,5 +26,6 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
+      <ImageView fx:id="dice" fitHeight="150.0" fitWidth="200.0" layoutX="800.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>
