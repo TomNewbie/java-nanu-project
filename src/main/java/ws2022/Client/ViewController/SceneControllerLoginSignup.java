@@ -19,7 +19,7 @@ public class SceneController {
     public void switchToLogin(ActionEvent event) throws IOException {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/Login.fxml"));
-            //stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -33,7 +33,7 @@ public class SceneController {
     public void switchToSignUp(ActionEvent event) throws IOException {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/SignUp.fxml"));
-            //stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
