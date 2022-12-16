@@ -8,9 +8,9 @@ public class Dice {
     public Dice() {
     };
 
-    public String getDiceValues() {
+    static public String getDiceValues(int number) {
         String color;
-        switch (this.color) {
+        switch (number) {
             case 0:
                 color = "red";
                 break;

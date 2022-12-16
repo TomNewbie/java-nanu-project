@@ -4,6 +4,8 @@ public class Disc {
     private String cardImage;
     private String value;
     private String anotherImage;
+    private int coorX;
+    private int coorY;
 
     public String getValue() {
         return value;
@@ -15,6 +17,11 @@ public class Disc {
         } else {
             return anotherImage;
         }
+    }
+
+    public void setCoordinate(int coorX, int coorY) {
+        this.coorX = coorX;
+        this.coorY = coorY;
     }
 
     public Disc(String cardImage, String value) {

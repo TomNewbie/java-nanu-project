@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import ws2022.Client.Logic.GenerateData;
 import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.Disc;
 
@@ -16,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Random;
 
 public class BoardGameController {
     @FXML
@@ -28,20 +30,21 @@ public class BoardGameController {
 
     @FXML
     public void initialize() throws FileNotFoundException {
-        String[] arrFlag = { "Argentina", "Australia", "Belgium", "Brazil",
-                "Cameroon", "Canada", "CostaRica",
-                "Croatia", "Denmark", "Ecuador", "England", "France", "Germany", "Ghana",
-                "Iran", "Japan", "Korea",
-                "Mexico", "Netherland", "Poland", "Portugal", "Qatar", "SaudiArabia",
-                "Senegal", "Serbia", "Spain",
-                "Switzerland", "Tunisia", "Uruguay", "USA", "Wales" };
+        // String[] arrFlag = { "Argentina", "Australia", "Belgium", "Brazil",
+        // "Cameroon", "Canada", "CostaRica",
+        // "Croatia", "Denmark", "Ecuador", "England", "France", "Germany", "Ghana",
+        // "Iran", "Japan", "Korea",
+        // "Mexico", "Netherland", "Poland", "Portugal", "Qatar", "SaudiArabia",
+        // "Senegal", "Serbia", "Spain",
+        // "Switzerland", "Tunisia", "Uruguay", "USA", "Wales" };
 
-        ArrayList<String> myList = new ArrayList<>(Arrays.asList(arrFlag));
+        ArrayList<Disc> myList = new ArrayList<>();
+        GenerateData.generateDisc(myList);
         Collections.shuffle(myList);
         int index = 0;
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 4; j++) {
-                String selectedImage = "/ws2022/Client/assets/FootballTheme/" + myList.get(index) + ".png";
+                String selectedImage = "/ws2022/Client/assets/FootballTheme/" + myList.get(index).getImage();
                 // Image image = new Image(
                 // this.getClass()
                 // .getResourceAsStream(
@@ -56,28 +59,33 @@ public class BoardGameController {
                 imageView.setFitWidth(100);
                 imageView.setFitHeight(100);
                 imageView.setClip(clip);
-                imageView.setUserData("sample"); // change
+                imageView.setUserData(myList.get(index)); // change
+                myList.get(index).setCoordinate(i, j);
                 imageView.setOnMouseClicked(event -> showDisc(event));
                 boardgame.add(imageView, i, j);
                 index++;
 
-                // image of dice
-                Image diceImage = new Image(this.getClass()
-                        .getResource("/ws2022/Client/assets/Dice/dice.png")
-                        .toExternalForm());
-                dice.setImage(diceImage);
-                dice.setFitWidth(100);
-                dice.setFitHeight(100);
-
             }
         }
+        // image of dice
+        Image diceImage = new Image(this.getClass()
+                .getResource("/ws2022/Client/assets/Dice/dice.png")
+                .toExternalForm());
+        dice.setImage(diceImage);
+        dice.setFitWidth(100);
+        dice.setFitHeight(100);
+    }
+
+    // random cover
+    public void putCover() {
+        ArrayList<String> colors = GenerateData.generateDice();
 
     }
-    // random cover
 
-    // change first image to USA when click remeber all
+    // click remeber all
     @FXML
     public void clickRememberAll() {
+
         pane.getChildren().remove(myButton);
         rollDice.setPrefWidth(100);
         rollDice.setPrefHeight(50);
