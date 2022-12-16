@@ -7,10 +7,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import ws2022.Client.Model.Disc;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +20,8 @@ public class BoardGameController {
     @FXML
     public GridPane boardgame;
     public Button myButton;
+    public ImageView dice;
+    public Pane pane;
 
     @FXML
     public void initialize() throws FileNotFoundException {
@@ -30,8 +32,6 @@ public class BoardGameController {
                 "Mexico", "Netherland", "Poland", "Portugal", "Qatar", "SaudiArabia",
                 "Senegal", "Serbia", "Spain",
                 "Switzerland", "Tunisia", "Uruguay", "USA", "Wales" };
-        Disc disc1 = new Disc("Argentina.png", "Argentina");
-        Disc disc2 = new Disc("Australia.png", "Australia");
 
         ArrayList<String> myList = new ArrayList<>(Arrays.asList(arrFlag));
         Collections.shuffle(myList);
@@ -46,16 +46,26 @@ public class BoardGameController {
                 Image image = new Image(this.getClass()
                         .getResource(selectedImage)
                         .toExternalForm());
-                Circle clip = new Circle(60, 60, 50);
+                Circle clip = new Circle(50, 50, 45);
                 ImageView imageView = new ImageView(image);
 
-                imageView.setFitWidth(120);
-                imageView.setFitHeight(120);
+                // populate matrix
+                imageView.setFitWidth(100);
+                imageView.setFitHeight(100);
                 imageView.setClip(clip);
-                imageView.setUserData(disc1); // change
+                imageView.setUserData("sample"); // change
                 imageView.setOnMouseClicked(event -> showDisc(event));
                 boardgame.add(imageView, i, j);
                 index++;
+
+                // image of dice
+                Image diceImage = new Image(this.getClass()
+                        .getResource("/ws2022/Client/assets/Dice/dice.png")
+                        .toExternalForm());
+                dice.setImage(diceImage);
+                dice.setFitWidth(100);
+                dice.setFitHeight(100);
+
             }
         }
 
@@ -64,14 +74,20 @@ public class BoardGameController {
 
     // change first image to USA when click remeber all
     @FXML
-    public void changeImage() {
-        Image image = new Image(
-                this.getClass()
-                        .getResourceAsStream("/ws2022/Client/assets/FootballTheme/USA.png"));
-        ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(120);
-        imageView.setFitHeight(120);
-        boardgame.add(imageView, 0, 0);
+    public void clickRememberAll() {
+        pane.getChildren().remove(myButton);
+        Button rollDice = new Button("Roll Dice");
+        rollDice.setPrefWidth(100);
+        rollDice.setPrefHeight(50);
+        rollDice.setLayoutX(800);
+        rollDice.setLayoutY(342);
+        rollDice.setOnAction(event -> clickRollDice());
+        pane.getChildren().add(rollDice);
+    }
+
+    public void clickRollDice() {
+        Button e = new Button("test");
+        pane.getChildren().addAll(e);
     }
 
     // show disc value when click on disc
