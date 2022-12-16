@@ -45,5 +45,15 @@ public class mycontroller {
 		mystage=(Stage) scenepane.getScene().getWindow();
 		mystage.close();
 	}
-
+@FXML
+	    private ListView<String> MyList;
+	 private ListView<String> List;
+	    String names[]= {"blue","red","yellow","green","orange"};
+	    String pictures[]= {"doll","cherry","bike","frog","elephant","Fish","ballon","teddy","present","shoes","boat","ball","cow","cup","parrot","snake","apple","plane","kite","skaters","tree","cat","drum"};
+		@Override
+		public void initialize(URL arg0, ResourceBundle arg1) {
+			// TODO Auto-generated method stub
+			MyList.getItems().addAll(names);
+			List.getItems().addAll(pictures);
+		}
 }
