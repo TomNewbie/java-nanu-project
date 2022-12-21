@@ -82,9 +82,11 @@ public class BoardGameController {
         int count = 0;
         while (count < 5) {
             Random random = new Random();
-            int x = random.nextInt(7);
-            int y = random.nextInt(5);
+            int x = random.nextInt(6);
+            int y = random.nextInt(4);
             int index = y * 6 + x;
+            if (myList.get(index).checkCover())
+                continue;
             myList.get(index).setAnotherImage(colorImage[count]);
             count++;
 
@@ -100,7 +102,6 @@ public class BoardGameController {
             imageView.setFitHeight(100);
             imageView.setClip(clip);
             boardgame.add(imageView, x, y);
-            index++;
         }
 
     }
