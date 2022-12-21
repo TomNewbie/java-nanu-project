@@ -8,8 +8,10 @@ public class Dice {
     public Dice() {
     };
 
-    static public String getDiceValues(int number) {
+    static public String rollDice() {
         String color;
+        Random rand = new Random();
+        int number = rand.nextInt(6);
         switch (number) {
             case 0:
                 color = "red";
@@ -35,11 +37,5 @@ public class Dice {
 
         }
         return color;
-    }
-
-    public void rollDice() {
-        Random rand = new Random();
-        int newColor = rand.nextInt(6);
-        this.color = newColor;
     }
 }

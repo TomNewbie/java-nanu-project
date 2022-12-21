@@ -33,13 +33,6 @@ public class GenerateData {
         }
     }
 
-    public static ArrayList<String> generateDice() {
-        String[] dices = { "red", "green", "blue", "yellow", "orange", "joker" };
-        ArrayList<String> dicesArrList = new ArrayList<>(Arrays.asList(dices));
-        Collections.shuffle(dicesArrList);
-        return dicesArrList;
-    }
-
     // Run test o day
     public static void main(String[] args) {
         ArrayList<Disc> discArray = new ArrayList<>();
