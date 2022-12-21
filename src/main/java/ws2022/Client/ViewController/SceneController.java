@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class SceneController {
@@ -37,10 +38,10 @@ public class SceneController {
 
     Stage mystage;
     @FXML
-    private AnchorPane scenepane;
+    private Pane pane;
 
     public void closethewindow(ActionEvent event) throws IOException {
-        mystage = (Stage) scenepane.getScene().getWindow();
+        mystage = (Stage) pane.getScene().getWindow();
         mystage.close();
     }
 
