@@ -7,12 +7,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Login extends Application {
+public class ForgotPassword extends Application {
     // @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFX/Login.fxml"));
-        primaryStage.setTitle("Login");
-        primaryStage.setScene(new Scene(root, 1000, 600));
+        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFX/ForgotPassword.fxml"));
+        primaryStage.setTitle("Forgot Password");
+        primaryStage.setScene(new Scene(root, 1000,600);
         primaryStage.show();
     }
 
