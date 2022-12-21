@@ -8,31 +8,46 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class SceneController {
     private Stage stage;
     private Scene scene;
-    // private Parent root;
+    private Parent root;
 
+    public void homeScreen(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/HomeScreen.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    String name;
+
+    public void enterProfile(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/enterprofile.fxml"));
+        // name=
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    Stage mystage;
     @FXML
-    public void switchToPrimary(ActionEvent event) throws IOException {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/primary.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private AnchorPane scenepane;
 
+    public void closethewindow(ActionEvent event) throws IOException {
+        mystage = (Stage) scenepane.getScene().getWindow();
+        mystage.close();
     }
 
     @FXML
-    public void switchToSecondary(ActionEvent event) throws IOException {
+    public void switchToLogin(ActionEvent event) throws IOException {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/secondary.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/Login.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
