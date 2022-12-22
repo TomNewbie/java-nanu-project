@@ -25,10 +25,10 @@ public class EnterProfileController {
     }
 
     public void enterProfile1(ActionEvent event) throws IOException {
-        sceneController.enterProfile(event);
+        sceneController.enterProfile1(event);
     }
 
-    public void sendData(ActionEvent event) throws IOException {
+    public void goToProfile2(ActionEvent event) throws IOException {
         String name = nameTF.getText();
         LocalDate birthday = birthdayDP.getValue();
         if (name.isEmpty()) {

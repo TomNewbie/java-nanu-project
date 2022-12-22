@@ -27,7 +27,7 @@ public class SceneController {
 
     String name;
 
-    public void enterProfile(ActionEvent event) throws IOException {
+    public void enterProfile1(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/EnterProfile.fxml"));
         // name=
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
