@@ -11,8 +11,8 @@ public class SignUp extends Application {
     // @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFX/SignUp.fxml"));
-        primaryStage.setTitle("Sign up");
-        primaryStage.setScene(new Scene(root, 1200, 600));
+        primaryStage.setTitle("Sign Up");
+        primaryStage.setScene(new Scene(root, 1000, 600));
         primaryStage.show();
     }
 
