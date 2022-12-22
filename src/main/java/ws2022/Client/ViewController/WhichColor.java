@@ -7,9 +7,7 @@ public class WhichColor {
 
     @FXML
     public ListView<String> List;
-    String pictures[] = { "doll", "cherry", "bike", "frog", "elephant", "Fish", "ballon", "teddy", "present", "shoes",
-            "boat", "ball", "cow", "cup", "parrot", "snake", "apple", "plane", "kite", "skaters", "tree", "cat",
-            "drum" };
+    String pictures[] = { "yellow","green","blue","orange","red","joker"};
 
     @FXML
     public void initialize() {
