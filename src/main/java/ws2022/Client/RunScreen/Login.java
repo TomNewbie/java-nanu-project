@@ -12,7 +12,7 @@ public class Login extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFX/Login.fxml"));
         primaryStage.setTitle("Login");
-        primaryStage.setScene(new Scene(root, 1000, 600));
+        primaryStage.setScene(new Scene(root, 1200, 600));
         primaryStage.show();
     }
 

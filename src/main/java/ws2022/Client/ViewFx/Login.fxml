@@ -13,7 +13,7 @@
 
 <VBox fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.LoginController">
    <children>
-      <Label alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="63.0" prefWidth="582.0" text="Login">
+      <Label alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="63.0" prefWidth="551.0" text="Login">
          <font>
             <Font size="35.0" />
          </font>
@@ -21,7 +21,7 @@
             <Insets bottom="10.0" top="10.0" />
          </VBox.margin>
       </Label>
-      <GridPane prefHeight="185.0" prefWidth="543.0">
+      <GridPane prefHeight="185.0" prefWidth="580.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="283.0" minWidth="10.0" prefWidth="162.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="418.0" minWidth="10.0" prefWidth="418.0" />
@@ -54,8 +54,8 @@
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="312.0" text="Don't have an account?" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Hyperlink alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="303.0" text="Sign up now" textOverrun="CENTER_ELLIPSIS" underline="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField GridPane.columnIndex="1" />
-            <TextField prefHeight="25.0" prefWidth="391.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="401.0" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="391.0" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
