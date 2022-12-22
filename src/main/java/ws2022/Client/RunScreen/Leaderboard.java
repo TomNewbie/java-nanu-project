@@ -1,4 +1,4 @@
-package ws2022.Client.Logic;
+package ws2022.Client.RunScreen;
 
 import java.io.IOException;
 
@@ -8,9 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class BoardGame extends Application {
+public class Leaderboard  extends Application {
+
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/boardgame.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/leaderboard.fxml"));
         stage.setTitle("Nanu");
         stage.setScene(new Scene(root));
 
