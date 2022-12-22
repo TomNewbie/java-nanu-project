@@ -10,7 +10,7 @@ public class WhichColor extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/Color.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/WhichColor.fxml"));
 			Scene scene = new Scene(root);
 			// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
