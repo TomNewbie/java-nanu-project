@@ -28,7 +28,25 @@ public class SceneController {
     String name;
 
     public void enterProfile(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/enterprofile.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/EnterProfile.fxml"));
+        // name=
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void enterProfile2(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/EnterProfile2.fxml"));
+        // name=
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void enterGame(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/boardgame.fxml"));
         // name=
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -40,7 +58,7 @@ public class SceneController {
     @FXML
     private Pane pane;
 
-    public void closethewindow(ActionEvent event) throws IOException {
+    public void closeWindow() throws IOException {
         mystage = (Stage) pane.getScene().getWindow();
         mystage.close();
     }
