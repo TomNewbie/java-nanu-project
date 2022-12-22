@@ -12,7 +12,7 @@ public class ForgotPassword extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFX/ForgotPassword.fxml"));
         primaryStage.setTitle("Forgot Password");
-        primaryStage.setScene(new Scene(root, 1000,600);
+        primaryStage.setScene(new Scene(root, 1000, 600));
         primaryStage.show();
     }
 
