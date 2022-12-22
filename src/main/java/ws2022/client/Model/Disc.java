@@ -6,17 +6,21 @@ public class Disc {
     private String anotherImage;
     private int coorX;
     private int coorY;
+    private boolean hasCover = false;
 
     public String getValue() {
         return value;
     };
 
+    public boolean checkCover() {
+        return hasCover;
+    }
+
     public String getImage() {
         if (anotherImage == null) {
             return cardImage;
-        } else {
-            return anotherImage;
         }
+        return anotherImage;
     }
 
     public void setCoordinate(int coorX, int coorY) {
@@ -30,6 +34,7 @@ public class Disc {
     }
 
     public void setAnotherImage(String anotherImage) {
+        hasCover = true;
         this.anotherImage = anotherImage;
     }
 
