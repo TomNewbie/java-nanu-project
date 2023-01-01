@@ -1,5 +1,7 @@
 package ws2022.Client.Model;
 
+import java.util.ArrayList;
+
 // public class GameManager {
 //     // Singleton pattern
 //     private static GameManager gameManager;
@@ -30,7 +32,8 @@ package ws2022.Client.Model;
 
 // }
 public class GameManager {
+    // public static
     public static Player PLAYER1;
     public static Player PLAYER2;
-
+    public static ArrayList<Disc> myList;
 }

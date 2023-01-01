@@ -29,7 +29,6 @@ public class BoardGameController {
     public Pane pane;
     Button rollDice = new Button("Roll Dice");
     Button guessPicture = new Button("Guess Picture");
-    ArrayList<Disc> myList = new ArrayList<>();
     @FXML
     private Text player1;
     @FXML
@@ -37,12 +36,13 @@ public class BoardGameController {
 
     @FXML
     public void initialize() throws FileNotFoundException {
-        GenerateData.generateDisc(myList);
-        Collections.shuffle(myList);
+        GenerateData.generateDisc(GameManager.myList);
+        Collections.shuffle(GameManager.myList);
         int index = 0;
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 4; j++) {
-                String selectedImage = "/ws2022/Client/assets/FootballTheme/" + myList.get(index).getImage();
+                String selectedImage = "/ws2022/Client/assets/FootballTheme/"
+                        + GameManager.myList.get(index).getImage();
                 Image image = new Image(this.getClass()
                         .getResource(selectedImage)
                         .toExternalForm());
@@ -53,8 +53,8 @@ public class BoardGameController {
                 imageView.setFitWidth(100);
                 imageView.setFitHeight(100);
                 imageView.setClip(clip);
-                imageView.setUserData(myList.get(index)); // change
-                myList.get(index).setCoordinate(i, j);
+                imageView.setUserData(GameManager.myList.get(index)); // change
+                GameManager.myList.get(index).setCoordinate(i, j);
                 imageView.setOnMouseClicked(event -> showDisc(event));
                 boardgame.add(imageView, i, j);
                 index++;
@@ -81,12 +81,12 @@ public class BoardGameController {
             int x = random.nextInt(6);
             int y = random.nextInt(4);
             int index = y * 6 + x;
-            if (myList.get(index).checkCover())
+            if (GameManager.myList.get(index).checkCover())
                 continue;
-            myList.get(index).setAnotherImage(colorImage[count]);
+            GameManager.myList.get(index).setAnotherImage(colorImage[count]);
             count++;
 
-            String selectedImage = "/ws2022/Client/assets/Covers/" + myList.get(index).getImage();
+            String selectedImage = "/ws2022/Client/assets/Covers/" + GameManager.myList.get(index).getImage();
             Image image = new Image(this.getClass()
                     .getResource(selectedImage)
                     .toExternalForm());
@@ -141,7 +141,6 @@ public class BoardGameController {
     }
 
     public void clickGuessPicture() {
-
     }
 
     // show disc value when click on disc
