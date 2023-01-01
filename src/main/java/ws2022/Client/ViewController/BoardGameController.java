@@ -9,9 +9,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import ws2022.Client.Logic.GenerateData;
 import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.Disc;
+import ws2022.Client.Model.GameManager;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -28,6 +30,10 @@ public class BoardGameController {
     Button rollDice = new Button("Roll Dice");
     Button guessPicture = new Button("Guess Picture");
     ArrayList<Disc> myList = new ArrayList<>();
+    @FXML
+    private Text player1;
+    @FXML
+    private Text player2;
 
     @FXML
     public void initialize() throws FileNotFoundException {
@@ -62,6 +68,8 @@ public class BoardGameController {
         dice.setImage(diceImage);
         dice.setFitWidth(100);
         dice.setFitHeight(100);
+        player1.setText(GameManager.PLAYER1.getName() + ": " + GameManager.PLAYER1.getScore());
+        player2.setText(GameManager.PLAYER2.getName() + ": " + GameManager.PLAYER2.getScore());
     }
 
     // random cover

@@ -13,6 +13,9 @@ public class Player {
     }
 
     public int getScore() {
+        if (this.discArray == null) {
+            return 0;
+        }
         return this.discArray.length;
     }
 
