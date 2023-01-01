@@ -1,7 +1,7 @@
 module ws2022 {
     requires transitive javafx.controls;
-    requires javafx.fxml;
     requires transitive javafx.graphics;
+    requires transitive javafx.fxml;
 
     opens ws2022;
     opens ws2022.Client.ViewController to javafx.fxml;

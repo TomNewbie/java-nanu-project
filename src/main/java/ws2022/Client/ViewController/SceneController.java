@@ -18,24 +18,33 @@ public class SceneController {
     private Scene scene;
     private Parent root;
 
-    public void homeScreen(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/HomeScreen.fxml"));
+    public void createScene(ActionEvent event, String name) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/" + name + ".fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
+    public void homeScreen(ActionEvent event) throws IOException {
+        createScene(event, "HomeScreen");
+    }
+
+    public FXMLLoader createLoader(ActionEvent event, String name) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/Client/ViewFx/" + name + ".fxml"));
+        return loader;
+    }
+
     String name;
 
     public void enterProfile1(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/Client/ViewFx/EnterProfile.fxml"));
+        FXMLLoader loader = createLoader(event, "EnterProfile");
         root = loader.load();
+
         if (GameManager.PLAYER1 != null) {
             EnterProfileController epc = loader.getController();
             epc.displayProfile(GameManager.PLAYER1.getName(), GameManager.PLAYER1.getAge());
         }
-
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -43,9 +52,13 @@ public class SceneController {
     }
 
     public void enterProfile2(ActionEvent event, String tho) throws IOException {
-        System.out.println(tho);
-        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/EnterProfile2.fxml"));
-        // name=
+        FXMLLoader loader = createLoader(event, "EnterProfile2");
+        root = loader.load();
+
+        if (GameManager.PLAYER2 != null) {
+            EnterProfileController epc = loader.getController();
+            epc.displayProfile(GameManager.PLAYER2.getName(), GameManager.PLAYER2.getAge());
+        }
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -53,12 +66,7 @@ public class SceneController {
     }
 
     public void enterGame(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/boardgame.fxml"));
-        // name=
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        createScene(event, "boardgame");
     }
 
     Stage mystage;
