@@ -1,21 +1,30 @@
 package ws2022.Client.ViewController;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import ws2022.Client.Logic.GenerateData;
 import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.Disc;
 import ws2022.Client.Model.GameManager;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -104,18 +113,25 @@ public class BoardGameController {
 
     // click remeber all
     @FXML
-    public void clickRememberAll() {
+    public void clickRememberAll() throws IOException {
         putCover();
         pane.getChildren().remove(myButton);
         rollDice.setPrefWidth(100);
         rollDice.setPrefHeight(50);
         rollDice.setLayoutX(800);
         rollDice.setLayoutY(342);
-        rollDice.setOnAction(event -> clickRollDice());
+        rollDice.setOnAction(event -> {
+            try {
+                clickRollDice();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        });
         pane.getChildren().add(rollDice);
     }
 
-    public void clickRollDice() {
+    public void clickRollDice() throws IOException {
         Dice diceObject = new Dice();
         String color = diceObject.rollDice();
 
@@ -136,11 +152,29 @@ public class BoardGameController {
         guessPicture.setPrefHeight(50);
         guessPicture.setLayoutX(800);
         guessPicture.setLayoutY(342);
-        guessPicture.setOnAction(event -> clickGuessPicture());
+        guessPicture.setOnAction(event -> {
+            try {
+                clickGuessPicture(event, color);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        });
         pane.getChildren().add(guessPicture);
     }
 
-    public void clickGuessPicture() {
+    public void clickGuessPicture(ActionEvent event, String color) throws IOException {
+        Stage popupwindow = new Stage();
+
+        popupwindow.initModality(Modality.APPLICATION_MODAL);
+        popupwindow.setTitle("This is a pop up window");
+
+        Parent popUp = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/" + "GuessPicture" + ".fxml"));
+        Scene scene = new Scene(popUp);
+
+        popupwindow.setScene(scene);
+
+        popupwindow.showAndWait();
     }
 
     // show disc value when click on disc
