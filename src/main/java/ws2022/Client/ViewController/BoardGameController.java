@@ -31,24 +31,12 @@ public class BoardGameController {
 
     @FXML
     public void initialize() throws FileNotFoundException {
-        // String[] arrFlag = { "Argentina", "Australia", "Belgium", "Brazil",
-        // "Cameroon", "Canada", "CostaRica",
-        // "Croatia", "Denmark", "Ecuador", "England", "France", "Germany", "Ghana",
-        // "Iran", "Japan", "Korea",
-        // "Mexico", "Netherland", "Poland", "Portugal", "Qatar", "SaudiArabia",
-        // "Senegal", "Serbia", "Spain",
-        // "Switzerland", "Tunisia", "Uruguay", "USA", "Wales" };
-
         GenerateData.generateDisc(myList);
         Collections.shuffle(myList);
         int index = 0;
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 4; j++) {
                 String selectedImage = "/ws2022/Client/assets/FootballTheme/" + myList.get(index).getImage();
-                // Image image = new Image(
-                // this.getClass()
-                // .getResourceAsStream(
-                // selectedImage));
                 Image image = new Image(this.getClass()
                         .getResource(selectedImage)
                         .toExternalForm());

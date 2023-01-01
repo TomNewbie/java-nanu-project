@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import ws2022.Client.Model.GameManager;
 
 public class SceneController {
     private Stage stage;
@@ -28,15 +29,21 @@ public class SceneController {
     String name;
 
     public void enterProfile1(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/EnterProfile.fxml"));
-        // name=
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/Client/ViewFx/EnterProfile.fxml"));
+        root = loader.load();
+        if (GameManager.PLAYER1 != null) {
+            EnterProfileController epc = loader.getController();
+            epc.displayProfile(GameManager.PLAYER1.getName(), GameManager.PLAYER1.getAge());
+        }
+
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-    public void enterProfile2(ActionEvent event) throws IOException {
+    public void enterProfile2(ActionEvent event, String tho) throws IOException {
+        System.out.println(tho);
         Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/EnterProfile2.fxml"));
         // name=
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

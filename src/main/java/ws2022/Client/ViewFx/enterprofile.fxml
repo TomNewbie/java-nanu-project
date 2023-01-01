@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,7 +15,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="146.0" layoutY="290.0" text="Birthday:">
+      <Label fx:id="age" layoutX="146.0" layoutY="290.0" text="Age">
          <font>
             <Font size="17.0" />
          </font>
@@ -32,6 +31,6 @@
          </font>
       </Label>
       <Button fx:id="returnButton" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#returnHome" text="Return" />
-      <DatePicker fx:id="birthdayDP" layoutX="237.0" layoutY="290.0" />
+      <TextField fx:id="ageTF" layoutX="238.0" layoutY="291.0" />
    </children>
 </AnchorPane>
