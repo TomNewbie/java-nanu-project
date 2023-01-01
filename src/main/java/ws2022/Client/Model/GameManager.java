@@ -35,5 +35,5 @@ public class GameManager {
     // public static
     public static Player PLAYER1;
     public static Player PLAYER2;
-    public static ArrayList<Disc> myList;
+    public static ArrayList<Disc> myList = new ArrayList<>();
 }
