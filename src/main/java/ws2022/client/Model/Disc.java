@@ -39,4 +39,7 @@ public class Disc {
         this.anotherImage = anotherImage;
     }
 
+    public boolean checkGuessed() {
+        return isGuessed;
+    }
 }

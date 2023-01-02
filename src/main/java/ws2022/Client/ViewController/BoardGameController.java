@@ -154,27 +154,26 @@ public class BoardGameController {
         guessPicture.setLayoutY(342);
         guessPicture.setOnAction(event -> {
             try {
-                clickGuessPicture(event, color);
+                Stage popupwindow = new Stage();
+                popupwindow.initModality(Modality.APPLICATION_MODAL);
+                popupwindow.setTitle("This is a pop up window");
+
+                FXMLLoader loader = new FXMLLoader(
+                        PopUpController.class.getResource("/ws2022/Client/ViewFx/guessPicture.fxml"));
+                Parent popUp = loader.load();
+                GuessPictureController gpc = loader.getController();
+                gpc.display(color);
+                Scene scene = new Scene(popUp);
+                popupwindow.setScene(scene);
+
+                popupwindow.showAndWait();
+
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         });
         pane.getChildren().add(guessPicture);
-    }
-
-    public void clickGuessPicture(ActionEvent event, String color) throws IOException {
-        Stage popupwindow = new Stage();
-
-        popupwindow.initModality(Modality.APPLICATION_MODAL);
-        popupwindow.setTitle("This is a pop up window");
-
-        Parent popUp = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/" + "GuessPicture" + ".fxml"));
-        Scene scene = new Scene(popUp);
-
-        popupwindow.setScene(scene);
-
-        popupwindow.showAndWait();
     }
 
     // show disc value when click on disc
