@@ -1,6 +1,7 @@
 package ws2022.Client.Model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 // public class GameManager {
 //     // Singleton pattern
@@ -36,4 +37,6 @@ public class GameManager {
     public static Player PLAYER1;
     public static Player PLAYER2;
     public static ArrayList<Disc> myList = new ArrayList<>();
+    public static HashMap<String, Integer> myHashMap = new HashMap<>();
+    public static String color;
 }

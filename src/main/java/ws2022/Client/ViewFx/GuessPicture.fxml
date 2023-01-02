@@ -8,7 +8,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.GuessPictureController">
    <children>
-      <Button layoutX="271.0" layoutY="325.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="100.0" text="Submit" />
+      <Button fx:id="submit" layoutX="271.0" layoutY="325.0" mnemonicParsing="false" onAction="#clickSubmit" prefHeight="36.0" prefWidth="100.0" text="Submit" />
       <Text layoutX="52.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What is the picture under " wrappingWidth="328.0">
          <font>
             <Font size="27.0" />
