@@ -61,3 +61,7 @@ getLClass().getResource("/ws2022/Client/ViewFx/yourname.fxml"));
 ## LaTeX Documentation
 
 https://www.overleaf.com/project/63987faa99a81f2e3331b633
+
+## Figma Design
+
+https://www.figma.com/file/iQLAIDtyQSxNdCKzSO8HGx/Nanu-game?node-id=0%3A1&t=2ZMhV3Kt0HN656eo-1
