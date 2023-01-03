@@ -38,18 +38,28 @@ public class GuessPictureController {
         }
 
         choicebox.getItems().addAll(answer);
-        // submit.setOnAction(event -> clickSubmit(event, color));
     }
 
     public void clickSubmit(ActionEvent event) throws IOException {
         String myChoice = choicebox.getValue();
         String answer = GameManager.myList.get(GameManager.myHashMap.get(GameManager.color)).getValue();
-        // System.out.println(answer);
-        // System.out.println(myChoice);
         if (myChoice.equals(answer)) {
+
             System.out.println("right");
         } else {
             System.out.println("wrong");
+            // SceneController sc = new SceneController();
+            // sc.createScene(event, "wrongAnswer");
+            Stage popupwindow = new Stage();
+            FXMLLoader loader = new FXMLLoader(
+                    this.getClass().getResource("/ws2022/Client/ViewFx/wrongAnswer.fxml"));
+            Parent wrong = loader.load();
+            WrongAnswerController gpc = loader.getController();
+            gpc.initialize();
+            Scene scene = new Scene(wrong);
+            popupwindow.setScene(scene);
+
+            popupwindow.show();
         }
     }
 

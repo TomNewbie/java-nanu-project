@@ -160,7 +160,7 @@ public class BoardGameController {
                 popupwindow.setTitle("This is a pop up window");
 
                 FXMLLoader loader = new FXMLLoader(
-                        PopUpController.class.getResource("/ws2022/Client/ViewFx/guessPicture.fxml"));
+                        this.getClass().getResource("/ws2022/Client/ViewFx/guessPicture.fxml"));
                 Parent popUp = loader.load();
                 GuessPictureController gpc = loader.getController();
                 gpc.display();
