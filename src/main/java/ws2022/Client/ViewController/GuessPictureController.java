@@ -55,3 +55,6 @@ public class GuessPictureController {
     }
 
 }
+
+// Need to do two more things: who is the next turn, how to close stage
+// @TomNewbie
