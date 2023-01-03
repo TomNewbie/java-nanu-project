@@ -12,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ws2022.Client.Model.Disc;
 import ws2022.Client.Model.GameManager;
@@ -46,20 +45,12 @@ public class GuessPictureController {
         if (myChoice.equals(answer)) {
 
             System.out.println("right");
+            SceneController sc = new SceneController();
+            sc.createScene(event, "rightAnswer");
         } else {
             System.out.println("wrong");
-            // SceneController sc = new SceneController();
-            // sc.createScene(event, "wrongAnswer");
-            Stage popupwindow = new Stage();
-            FXMLLoader loader = new FXMLLoader(
-                    this.getClass().getResource("/ws2022/Client/ViewFx/wrongAnswer.fxml"));
-            Parent wrong = loader.load();
-            WrongAnswerController gpc = loader.getController();
-            gpc.initialize();
-            Scene scene = new Scene(wrong);
-            popupwindow.setScene(scene);
-
-            popupwindow.show();
+            SceneController sc = new SceneController();
+            sc.createScene(event, "wrongAnswer");
         }
     }
 

@@ -24,6 +24,10 @@ public class Disc {
         return anotherImage;
     }
 
+    public String getCardImage() {
+        return cardImage;
+    }
+
     public void setCoordinate(int coorX, int coorY) {
         this.coorX = coorX;
         this.coorY = coorY;
