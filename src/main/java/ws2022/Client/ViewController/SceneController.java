@@ -18,12 +18,13 @@ public class SceneController {
     private Scene scene;
     private Parent root;
 
-    public void createScene(ActionEvent event, String name) throws IOException {
+    public Stage createScene(ActionEvent event, String name) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/" + name + ".fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        return stage;
     }
 
     public void homeScreen(ActionEvent event) throws IOException {

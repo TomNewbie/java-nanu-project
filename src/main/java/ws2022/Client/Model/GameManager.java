@@ -3,6 +3,8 @@ package ws2022.Client.Model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javafx.stage.Stage;
+
 // public class GameManager {
 //     // Singleton pattern
 //     private static GameManager gameManager;
@@ -38,5 +40,16 @@ public class GameManager {
     public static Player PLAYER2;
     public static ArrayList<Disc> myList = new ArrayList<>();
     public static HashMap<String, Integer> myHashMap = new HashMap<>();
-    public static String color;
+    public static String COLOR;
+
+    public static Stage currentPopUp;
+    public static boolean isCorrect;
+
+    public static String getCardImage() {
+        return GameManager.myList.get(GameManager.myHashMap.get(GameManager.COLOR)).getCardImage();
+    }
+
+    public static String getAnswer() {
+        return GameManager.myList.get(GameManager.myHashMap.get(GameManager.COLOR)).getValue();
+    }
 }

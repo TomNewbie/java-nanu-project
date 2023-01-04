@@ -1,16 +1,14 @@
 package ws2022.Client.ViewController;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 import ws2022.Client.Model.GameManager;
 
 public class WrongAnswerController {
@@ -22,21 +20,36 @@ public class WrongAnswerController {
     private ImageView coverImage;
     @FXML
     private Text valueText;
+    @FXML
+    private Label label;
 
     @FXML
     public void initialize() throws FileNotFoundException {
-        coverText.setText(GameManager.color);
-        coverText.setTextAlignment(TextAlignment.CENTER);
-        System.out.println(GameManager.myList.get(GameManager.myHashMap.get(GameManager.color)).getCardImage());
+        if (GameManager.isCorrect) {
+            label.setText("Congratulations! Your answer is right");
+        } else {
+
+            label.setText("Wrong!");
+        }
+        coverText.setText(GameManager.COLOR);
         String selectedImage = "/ws2022/Client/assets/FootballTheme/"
                 +
-                GameManager.myList.get(GameManager.myHashMap.get(GameManager.color)).getCardImage();
+                GameManager.getCardImage();
         Image image = new Image(this.getClass()
                 .getResource(selectedImage)
                 .toExternalForm());
         coverImage.setImage(image);
         coverImage.setFitWidth(200);
         coverImage.setFitHeight(200);
-        valueText.setText(GameManager.myList.get(GameManager.myHashMap.get(GameManager.color)).getValue());
+        valueText.setText(GameManager.getAnswer());
+    }
+
+    public void closePopUp() throws IOException {
+        if (GameManager.isCorrect) {
+            System.out.println("go to other screen");
+        } else {
+            GameManager.currentPopUp.close();
+
+        }
     }
 }
