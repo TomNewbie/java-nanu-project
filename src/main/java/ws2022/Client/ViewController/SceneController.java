@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ws2022.Client.Model.GameManager;
@@ -27,6 +26,15 @@ public class SceneController {
         return stage;
     }
 
+    // Create scene with loader
+    public void createScene(ActionEvent event, FXMLLoader loader) throws IOException {
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void homeScreen(ActionEvent event) throws IOException {
         createScene(event, "HomeScreen");
     }
@@ -40,34 +48,26 @@ public class SceneController {
 
     public void enterProfile1(ActionEvent event) throws IOException {
         FXMLLoader loader = createLoader(event, "EnterProfile");
-        root = loader.load();
-
         if (GameManager.PLAYER1 != null) {
             EnterProfileController epc = loader.getController();
             epc.displayProfile(GameManager.PLAYER1.getName(), GameManager.PLAYER1.getAge());
         }
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        createScene(event, loader);
     }
 
     public void enterProfile2(ActionEvent event, String tho) throws IOException {
         FXMLLoader loader = createLoader(event, "EnterProfile2");
-        root = loader.load();
 
         if (GameManager.PLAYER2 != null) {
             EnterProfileController epc = loader.getController();
             epc.displayProfile(GameManager.PLAYER2.getName(), GameManager.PLAYER2.getAge());
         }
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        createScene(event, loader);
     }
 
     public void enterGame(ActionEvent event) throws IOException {
-        createScene(event, "boardgame");
+        GameManager.gameLoader = createLoader(event, "boardgame");
+        createScene(event, GameManager.gameLoader);
     }
 
     Stage mystage;
@@ -92,5 +92,4 @@ public class SceneController {
         }
 
     }
-
 }

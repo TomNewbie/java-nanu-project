@@ -1,20 +1,13 @@
 package ws2022.Client.ViewController;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.Date;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import ws2022.Client.Logic.BoardGame;
 import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
-import ws2022.Client.utils.CalculateAge;
 
 public class EnterProfileController {
     @FXML

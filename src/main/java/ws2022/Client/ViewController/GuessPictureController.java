@@ -25,7 +25,7 @@ public class GuessPictureController {
 
     public void display() throws IOException {
         cover.setText(GameManager.COLOR + " cover ?");
-        ArrayList<String> answer = new ArrayList();
+        ArrayList<String> answer = new ArrayList<String>();
         for (Disc i : GameManager.myList) {
             if (!i.checkGuessed()) {
                 answer.add(i.getValue());
@@ -49,5 +49,5 @@ public class GuessPictureController {
 
 }
 
-// Need to do two more things: who is the next turn, how to close stage
+// Need to do two more things:
 // @TomNewbie

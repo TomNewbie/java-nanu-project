@@ -3,6 +3,7 @@ package ws2022.Client.Model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
 // public class GameManager {
@@ -45,6 +46,8 @@ public class GameManager {
     public static Stage currentPopUp;
     public static boolean isCorrect;
 
+    public static FXMLLoader gameLoader;
+
     public static String getCardImage() {
         return GameManager.myList.get(GameManager.myHashMap.get(GameManager.COLOR)).getCardImage();
     }
@@ -52,4 +55,5 @@ public class GameManager {
     public static String getAnswer() {
         return GameManager.myList.get(GameManager.myHashMap.get(GameManager.COLOR)).getValue();
     }
+    // public static Player
 }
