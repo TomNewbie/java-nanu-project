@@ -1,23 +1,24 @@
-package ws2022.Client.Logic;
+// package ws2022.Client.Logic;
 
-import java.io.IOException;
+// import java.io.IOException;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+// import javafx.application.Application;
+// import javafx.event.ActionEvent;
+// import javafx.fxml.FXMLLoader;
+// import javafx.scene.Parent;
+// import javafx.scene.Scene;
+// import javafx.stage.Stage;
+// import ws2022.Client.Model.GameManager;
+// import ws2022.Client.ViewController.SceneController;
 
-public class BoardGame extends Application {
-    public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/boardgame.fxml"));
-        stage.setTitle("Nanu");
-        stage.setScene(new Scene(root));
+// public class BoardGame {
+// private static SceneController sc = new SceneController();
 
-        stage.show();
-    }
+// public static void run(ActionEvent event) throws IOException {
+// // Total card in game
+// while (24 - GameManager.isAnswered.cardinality() >= 5) {
 
-    public static void main(String[] args) {
-        launch();
-    }
-}
+// }
+// sc.createScene(event, "leaderboard");
+// }
+// }

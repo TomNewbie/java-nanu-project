@@ -3,12 +3,14 @@ package ws2022.Client.ViewController;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import ws2022.Client.Logic.BoardGame;
 import ws2022.Client.Model.GameManager;
 
 public class WrongAnswerController {
@@ -25,12 +27,7 @@ public class WrongAnswerController {
 
     @FXML
     public void initialize() throws FileNotFoundException {
-        if (GameManager.isCorrect) {
-            label.setText("Congratulations! Your answer is right");
-        } else {
 
-            label.setText("Wrong!");
-        }
         coverText.setText(GameManager.COLOR);
         String selectedImage = "/ws2022/Client/assets/FootballTheme/"
                 +
@@ -44,12 +41,10 @@ public class WrongAnswerController {
         valueText.setText(GameManager.getAnswer());
     }
 
-    public void closePopUp() throws IOException {
-        if (GameManager.isCorrect) {
-            System.out.println("go to other screen");
-        } else {
-            GameManager.currentPopUp.close();
-
-        }
+    public void closePopUp(ActionEvent event) throws IOException {
+        GameManager.currentPopUp.close();
+        GameManager.changeTurn();
+        BoardGameController bgc = GameManager.gameLoader.getController();
+        bgc.setTurn(GameManager.isPlayer1Turn);
     }
 }

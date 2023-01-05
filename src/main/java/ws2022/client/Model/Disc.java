@@ -18,19 +18,11 @@ public class Disc {
     }
 
     public String getImage() {
-        if (anotherImage == null) {
-            return cardImage;
-        }
-        return anotherImage;
+        return cardImage;
     }
 
     public String getCardImage() {
         return cardImage;
-    }
-
-    public void setCoordinate(int coorX, int coorY) {
-        this.coorX = coorX;
-        this.coorY = coorY;
     }
 
     public Disc(String cardImage, String value) {
@@ -38,9 +30,8 @@ public class Disc {
         this.value = value;
     }
 
-    public void setAnotherImage(String anotherImage) {
+    public void setCover() {
         hasCover = true;
-        this.anotherImage = anotherImage;
     }
 
     public boolean checkGuessed() {

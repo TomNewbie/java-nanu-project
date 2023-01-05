@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Player {
     private String name;
     private Integer age;
-    private Integer[] discArray;
+    private int score = 0;
 
     public Player(String name, int age) {
         this.name = name;
@@ -13,10 +13,11 @@ public class Player {
     }
 
     public int getScore() {
-        if (this.discArray == null) {
-            return 0;
-        }
-        return this.discArray.length;
+        return score;
+    }
+
+    public void addScore() {
+        score++;
     }
 
     public String getName() {

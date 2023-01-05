@@ -27,6 +27,13 @@ public class GenerateData {
             "Senegal.png", "Serbia.png", "Spain.png",
             "Switzerland.png", "Tunisia.png", "Uruguay.png", "USA.png", "Wales.png" };
 
+    public static void getSortValue(ArrayList<String> value) {
+        for (String i : flagValue) {
+            value.add(i);
+        }
+        Collections.sort(value);
+    }
+
     public static void generateDisc(ArrayList<Disc> discArray) {
         for (int i = 0; i < flagValue.length; i++) {
             discArray.add(new Disc(flagFileName[i], flagValue[i]));

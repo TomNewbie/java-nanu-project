@@ -1,10 +1,13 @@
 package ws2022.Client.Model;
 
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.HashMap;
 
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import ws2022.Client.ViewController.BoardGameController;
+import ws2022.Client.utils.ConvertCoordinate;
 
 // public class GameManager {
 //     // Singleton pattern
@@ -40,9 +43,11 @@ public class GameManager {
     public static Player PLAYER1;
     public static Player PLAYER2;
     public static ArrayList<Disc> myList = new ArrayList<>();
+    public static ArrayList<String> value = new ArrayList<>();
     public static HashMap<String, Integer> myHashMap = new HashMap<>();
+    private static int totalDisc = 24;
     public static String COLOR;
-
+    public static boolean isChangeDisc = false;
     public static Stage currentPopUp;
     public static boolean isCorrect;
 
@@ -55,5 +60,42 @@ public class GameManager {
     public static String getAnswer() {
         return GameManager.myList.get(GameManager.myHashMap.get(GameManager.COLOR)).getValue();
     }
-    // public static Player
+
+    public static boolean isPlayer1Turn;
+
+    public static void getFirstTurn() {
+        if (GameManager.PLAYER1.getAge() > GameManager.PLAYER2.getAge()) {
+            GameManager.isPlayer1Turn = false;
+        }
+        GameManager.isPlayer1Turn = true;
+    }
+
+    public static void addScore() {
+        if (GameManager.isPlayer1Turn) {
+            GameManager.PLAYER1.addScore();
+            return;
+        }
+        GameManager.PLAYER2.addScore();
+
+    }
+
+    public static void changeTurn() {
+        isPlayer1Turn = !isPlayer1Turn; // flip turn
+    }
+
+    public static void updateGame() {
+        if (totalDisc > 4) {
+            totalDisc--;
+            BoardGameController bgc = GameManager.gameLoader.getController();
+            bgc.update();
+            bgc.removeGuessPictureBtn();
+            bgc.createRollDiceBtn();
+            return;
+        }
+        // create leaderboard here
+    }
+
+    public static Coordinate getCurrentColorCoord() {
+        return ConvertCoordinate.convertFromIndex(GameManager.myHashMap.get(GameManager.COLOR));
+    }
 }

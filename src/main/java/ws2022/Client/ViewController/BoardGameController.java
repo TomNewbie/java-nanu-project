@@ -1,5 +1,6 @@
 package ws2022.Client.ViewController;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,15 +20,19 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ws2022.Client.Logic.GenerateData;
+import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.Disc;
 import ws2022.Client.Model.GameManager;
+import ws2022.Client.utils.ConvertCoordinate;
 
+import java.io.Console;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Random;
 
 public class BoardGameController {
@@ -42,32 +47,41 @@ public class BoardGameController {
     private Text player1;
     @FXML
     private Text player2;
+    @FXML
+    private Text player1Score;
+    @FXML
+    private Text player2Score;
+    @FXML
+    private Text status;
+    @FXML
+    private ImageView imageView;
+
+    private HashMap<String, ImageView> HashMapImageView = new HashMap<>();
 
     @FXML
     public void initialize() throws FileNotFoundException {
+        GenerateData.getSortValue(GameManager.value);
         GenerateData.generateDisc(GameManager.myList);
         Collections.shuffle(GameManager.myList);
         int index = 0;
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 6; j++) {
+        for (int y = 0; y < 4; y++) {
+            for (int x = 0; x < 6; x++) {
                 String selectedImage = "/ws2022/Client/assets/FootballTheme/"
                         + GameManager.myList.get(index).getImage();
                 Image image = new Image(this.getClass()
                         .getResource(selectedImage)
                         .toExternalForm());
                 Circle clip = new Circle(50, 50, 45);
-                ImageView imageView = new ImageView(image);
+                imageView = new ImageView(image);
 
                 // populate matrix
                 imageView.setFitWidth(100);
                 imageView.setFitHeight(100);
                 imageView.setClip(clip);
-                imageView.setUserData(GameManager.myList.get(index)); // change
-                GameManager.myList.get(index).setCoordinate(i, j);
-                // imageView.setOnMouseClicked(event -> showDisc(event));
-                boardgame.add(imageView, j, i);
+                imageView.setOnMouseClicked(event -> changeDisc(event));
+                imageView.setUserData(new Coordinate(x, y)); // index data
+                boardgame.add(imageView, x, y);
                 index++;
-
             }
         }
         // image of dice
@@ -77,12 +91,23 @@ public class BoardGameController {
         dice.setImage(diceImage);
         dice.setFitWidth(100);
         dice.setFitHeight(100);
-        player1.setText(GameManager.PLAYER1.getName() + ": " + GameManager.PLAYER1.getScore());
-        player2.setText(GameManager.PLAYER2.getName() + ": " + GameManager.PLAYER2.getScore());
+        player1.setText(GameManager.PLAYER1.getName());
+        player1Score.setText("" + GameManager.PLAYER1.getScore());
+        player2.setText(GameManager.PLAYER2.getName());
+        player2Score.setText("" + GameManager.PLAYER1.getScore());
+    }
+
+    public void setTurn(boolean isPlayer1Turn) {
+        status.setVisible(true);
+        if (isPlayer1Turn) {
+            status.setText("Player " + GameManager.PLAYER1.getName() + " turn: ");
+            return;
+        }
+        status.setText("Player " + GameManager.PLAYER2.getName() + " turn: ");
     }
 
     // random cover
-    public void putCover() {
+    public void setUpCover() {
         String[] colorImage = { "blue", "green", "orange", "red", "yellow" };
         int count = 0;
         while (count < 5) {
@@ -90,33 +115,61 @@ public class BoardGameController {
             int x = random.nextInt(6);
             int y = random.nextInt(4);
             int index = y * 6 + x;
+            String selectedImage = "/ws2022/Client/assets/Covers/" + colorImage[count] + ".png";
+
             if (GameManager.myList.get(index).checkCover())
                 continue;
-            GameManager.myList.get(index).setAnotherImage(colorImage[count] + ".png");
-            GameManager.myHashMap.put(colorImage[count], index);
+            putCover(selectedImage, new Coordinate(x, y), colorImage[count]);
             count++;
-
-            String selectedImage = "/ws2022/Client/assets/Covers/" + GameManager.myList.get(index).getImage();
-            Image image = new Image(this.getClass()
-                    .getResource(selectedImage)
-                    .toExternalForm());
-            Circle clip = new Circle(50, 50, 45);
-            ImageView imageView = new ImageView(image);
-
-            // populate matrix
-            imageView.setFitWidth(100);
-            imageView.setFitHeight(100);
-            imageView.setClip(clip);
-            boardgame.add(imageView, x, y);
         }
+    }
 
+    public void putCover(String selectedImage, Coordinate coord, String color) {
+        Image image = new Image(this.getClass().getResource(selectedImage).toExternalForm());
+        Circle clip = new Circle(50, 50, 45);
+        ImageView imageView = new ImageView(image);
+
+        int x = coord.getColumn();
+        int y = coord.getRow();
+        int index = y * 6 + x;
+        GameManager.myList.get(index).setCover();
+        if (GameManager.myHashMap.get(color) == null) {
+            GameManager.myHashMap.put(color, index);
+        } else {
+            GameManager.myHashMap.replace(color, index);
+        }
+        imageView.setFitWidth(100);
+        imageView.setFitHeight(100);
+        imageView.setClip(clip);
+        HashMapImageView.put(color, imageView);
+        boardgame.add(imageView, x, y);
+    }
+
+    public void deleteCover(Coordinate coord) {
+        // deleteCover by coordinate
+        boardgame.getChildren().remove(HashMapImageView.get(GameManager.COLOR));
+        ObservableList<Node> childrens = boardgame.getChildren();
+        for (Node node : childrens) {
+            if (node instanceof ImageView && GridPane.getRowIndex(node) == coord.getRow()
+                    && GridPane.getColumnIndex(node) == coord.getColumn()) {
+                ImageView imageView = (ImageView) node; // use what you want to remove
+                boardgame.getChildren().remove(imageView);
+                break;
+            }
+        }
     }
 
     // click remeber all
     @FXML
     public void clickRememberAll() throws IOException {
-        putCover();
+        setUpCover();
         pane.getChildren().remove(myButton);
+        GameManager.getFirstTurn();
+        setTurn(GameManager.isPlayer1Turn);
+        createRollDiceBtn();
+    }
+
+    public void createRollDiceBtn() {
         rollDice.setPrefWidth(100);
         rollDice.setPrefHeight(50);
         rollDice.setLayoutX(800);
@@ -133,9 +186,11 @@ public class BoardGameController {
     }
 
     public void clickRollDice() throws IOException {
-        Dice diceObject = new Dice();
-        GameManager.COLOR = diceObject.rollDice();
-
+        GameManager.COLOR = Dice.rollDice();
+        if (GameManager.COLOR.equals("joker")) {
+            System.out.println("you get joker mathar facker");
+            return;
+        }
         // display cover has been generated by roll dice
         String coverImage = "/ws2022/Client/assets/Covers/" + GameManager.COLOR + ".png";
         Image cover = new Image(this.getClass()
@@ -177,12 +232,32 @@ public class BoardGameController {
         pane.getChildren().add(guessPicture);
     }
 
-    // show disc value when click on disc
-    @FXML
-    public void showDisc(MouseEvent event) {
-        Node sourceComponent = (Node) event.getSource();
-        Disc disc = (Disc) sourceComponent.getUserData();
-        System.out.println(disc.getValue() + " and " + disc.getImage());
+    public void update() {
+        if (GameManager.isPlayer1Turn) {
+            player1Score.setText("" + GameManager.PLAYER1.getScore());
+        } else {
+            player2Score.setText("" + GameManager.PLAYER2.getScore());
+        }
+        status.setText("Please choose picture to place " + GameManager.COLOR + " cover");
+        GameManager.isChangeDisc = true;
     }
 
+    public void removeGuessPictureBtn() {
+        pane.getChildren().remove(guessPicture);
+    }
+
+    // show disc value when click on disc
+    @FXML
+    public void changeDisc(MouseEvent event) {
+        if (!GameManager.isChangeDisc) {
+            return;
+        }
+        GameManager.isChangeDisc = false;
+        deleteCover(GameManager.getCurrentColorCoord());
+        Node sourceComponent = (Node) event.getSource();
+        Coordinate coord = (Coordinate) sourceComponent.getUserData();
+        String coverImage = "/ws2022/Client/assets/Covers/" + GameManager.COLOR + ".png";
+        putCover(coverImage, coord, GameManager.COLOR);
+        setTurn(GameManager.isPlayer1Turn);
+    }
 }

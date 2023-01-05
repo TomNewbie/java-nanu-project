@@ -25,28 +25,20 @@ public class GuessPictureController {
 
     public void display() throws IOException {
         cover.setText(GameManager.COLOR + " cover ?");
-        ArrayList<String> answer = new ArrayList<String>();
-        for (Disc i : GameManager.myList) {
-            if (!i.checkGuessed()) {
-                answer.add(i.getValue());
-            }
-        }
-
-        choicebox.getItems().addAll(answer);
+        choicebox.getItems().addAll(GameManager.value);
     }
 
     public void clickSubmit(ActionEvent event) throws IOException {
         String myChoice = choicebox.getValue();
         String answer = GameManager.getAnswer();
-        if (myChoice.equals(answer)) {
-            GameManager.isCorrect = true;
-        } else {
-            GameManager.isCorrect = false;
-        }
         SceneController sc = new SceneController();
-        GameManager.currentPopUp = sc.createScene(event, "answer");
-    }
+        if (myChoice.equals(answer)) {
+            GameManager.currentPopUp = sc.createScene(event, "rightAnswer");
+        } else {
+            GameManager.currentPopUp = sc.createScene(event, "wrongAnswer");
+        }
 
+    }
 }
 
 // Need to do two more things:
