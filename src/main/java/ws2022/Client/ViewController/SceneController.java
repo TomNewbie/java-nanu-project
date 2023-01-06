@@ -34,7 +34,18 @@ public class SceneController {
         stage.setScene(scene);
         stage.show();
     }
+    
+    @FXML
+    public void gotomanualpage(ActionEvent event) throws IOException {
+      
+            Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/ManualPage.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
 
+    }
+    
     public void homeScreen(ActionEvent event) throws IOException {
         createScene(event, "HomeScreen");
     }

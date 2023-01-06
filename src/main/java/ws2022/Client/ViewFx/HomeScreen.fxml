@@ -15,5 +15,6 @@
       <Button fx:id="playOffline" layoutX="439.0" layoutY="97.0" mnemonicParsing="false" onAction="#enterProfile1" prefHeight="77.0" prefWidth="323.0" text="Play Offline" />
       <Button fx:id="playOnline" layoutX="433.0" layoutY="251.0" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="67.0" prefWidth="335.0" text="Play Online" />
       <Button fx:id="logoutbtn" layoutX="433.0" layoutY="418.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="67.0" prefWidth="335.0" text="Quit" />
+      <Button fx:id="ManualPageButton" layoutX="26.0" layoutY="25.0" mnemonicParsing="false" onAction="#gotomanualpage" text="Manualpage" />
    </children>
 </Pane>
