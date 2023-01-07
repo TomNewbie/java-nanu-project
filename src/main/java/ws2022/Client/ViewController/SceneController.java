@@ -16,6 +16,11 @@ public class SceneController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    Stage mystage;
+    @FXML
+    private Pane pane;
+    String name;
+
     private static SceneController sc;
 
     private SceneController() {
@@ -59,15 +64,8 @@ public class SceneController {
         createScene(event, "HomeScreen");
     }
 
-    public FXMLLoader createLoader(ActionEvent event, String name) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/Client/ViewFx/" + name + ".fxml"));
-        return loader;
-    }
-
-    String name;
-
     public void enterProfile1(ActionEvent event) throws IOException {
-        FXMLLoader loader = createLoader(event, "EnterProfile");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/Client/ViewFx/EnterProfile.fxml"));
         if (GameManager.PLAYER1 != null) {
             EnterProfileController epc = loader.getController();
             epc.displayProfile(GameManager.PLAYER1.getName(), GameManager.PLAYER1.getAge());
@@ -76,8 +74,7 @@ public class SceneController {
     }
 
     public void enterProfile2(ActionEvent event, String tho) throws IOException {
-        FXMLLoader loader = createLoader(event, "EnterProfile2");
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/Client/ViewFx/EnterProfile2.fxml"));
         if (GameManager.PLAYER2 != null) {
             EnterProfileController epc = loader.getController();
             epc.displayProfile(GameManager.PLAYER2.getName(), GameManager.PLAYER2.getAge());
@@ -88,16 +85,8 @@ public class SceneController {
     public void enterGame(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/Client/ViewFx/boardgame.fxml"));
         loader.setController(BoardGameController.getInstance());
-        Parent root = loader.load();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        createScene(event, loader);
     }
-
-    Stage mystage;
-    @FXML
-    private Pane pane;
 
     public void closeWindow() throws IOException {
         mystage = (Stage) pane.getScene().getWindow();
