@@ -40,6 +40,3 @@ public class GuessPictureController {
 
     }
 }
-
-// Need to do two more things:
-// @TomNewbie

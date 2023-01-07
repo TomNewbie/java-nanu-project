@@ -50,6 +50,7 @@ public class GameManager {
     public static boolean isChangeDisc = false;
     public static Stage currentPopUp;
     public static boolean isCorrect;
+    public static boolean isPopUp = false;
 
     public static FXMLLoader gameLoader;
 
