@@ -26,6 +26,7 @@ public class EnterProfileController {
     }
 
     public void goToProfile2(ActionEvent event) throws IOException {
+        // In first enterprofile
         String name = nameTF.getText();
         String age = ageTF.getText();
         if (name.isEmpty()) {
@@ -48,6 +49,7 @@ public class EnterProfileController {
     }
 
     public void enterGame(ActionEvent event) throws IOException {
+        // in second enter profile (before go to game)
         String name = nameTF.getText();
         String age = ageTF.getText();
         if (name.isEmpty()) {
