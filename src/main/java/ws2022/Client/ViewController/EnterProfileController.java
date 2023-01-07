@@ -54,17 +54,22 @@ public class EnterProfileController {
         String age = ageTF.getText();
         if (name.isEmpty()) {
             showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
-                    "Please enter your name");
+                    "You do not enter your name. Please enter your name!");
             return;
         }
         if (age == null) {
             showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
-                    "Please enter your age");
+                    "You do not enter your age. Please enter your age!");
             return;
         }
         if (!age.matches("\\d+")) {
             showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
-                    "Please enter your age again!");
+                    "Your age is not a number. Please enter a number!");
+            return;
+        }
+        if (GameManager.PLAYER1.getName().equals(name)) {
+            showAlertMessage(Alert.AlertType.ERROR, "Same name!",
+                    "Zou have the same name as the player 1. Please enter another name!");
             return;
         }
         GameManager.PLAYER2 = new Player(name, Integer.parseInt(age));
