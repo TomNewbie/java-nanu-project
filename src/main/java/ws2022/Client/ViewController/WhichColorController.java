@@ -29,7 +29,7 @@ public class WhichColorController {
         String myChoice = choiceBox.getValue();
         GameManager.COLOR = myChoice;
         GameManager.currentPopUp.close();
-        BoardGameController bgc = GameManager.gameLoader.getController();
+        BoardGameController bgc = BoardGameController.getInstance();
         bgc.getNormalColor();
     }
 }

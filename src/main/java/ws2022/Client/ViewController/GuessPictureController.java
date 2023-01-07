@@ -31,7 +31,7 @@ public class GuessPictureController {
     public void clickSubmit(ActionEvent event) throws IOException {
         String myChoice = choicebox.getValue();
         String answer = GameManager.getAnswer();
-        SceneController sc = new SceneController();
+        SceneController sc = SceneController.getInstance();
         if (myChoice.equals(answer)) {
             GameManager.currentPopUp = sc.createScene(event, "rightAnswer");
         } else {

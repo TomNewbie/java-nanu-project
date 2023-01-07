@@ -16,6 +16,17 @@ public class SceneController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private static SceneController sc;
+
+    private SceneController() {
+    }
+
+    public static SceneController getInstance() {
+        if (SceneController.sc == null) {
+            sc = new SceneController();
+        }
+        return sc;
+    }
 
     public Stage createScene(ActionEvent event, String name) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/" + name + ".fxml"));
@@ -34,18 +45,16 @@ public class SceneController {
         stage.setScene(scene);
         stage.show();
     }
-    
+
     @FXML
     public void gotomanualpage(ActionEvent event) throws IOException {
-      
-            Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/ManualPage.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-
+        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/ManualPage.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
-    
+
     public void homeScreen(ActionEvent event) throws IOException {
         createScene(event, "HomeScreen");
     }
@@ -77,8 +86,13 @@ public class SceneController {
     }
 
     public void enterGame(ActionEvent event) throws IOException {
-        GameManager.gameLoader = createLoader(event, "boardgame");
-        createScene(event, GameManager.gameLoader);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/Client/ViewFx/boardgame.fxml"));
+        loader.setController(BoardGameController.getInstance());
+        Parent root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     Stage mystage;

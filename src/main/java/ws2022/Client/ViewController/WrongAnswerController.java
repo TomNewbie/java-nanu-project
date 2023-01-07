@@ -43,7 +43,7 @@ public class WrongAnswerController {
     public void closePopUp(ActionEvent event) throws IOException {
         GameManager.currentPopUp.close();
         GameManager.changeTurn();
-        BoardGameController bgc = GameManager.gameLoader.getController();
+        BoardGameController bgc = BoardGameController.getInstance();
         bgc.setTurn(GameManager.isPlayer1Turn);
     }
 }

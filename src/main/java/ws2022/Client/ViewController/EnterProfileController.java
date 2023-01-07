@@ -15,7 +15,7 @@ public class EnterProfileController {
     @FXML
     TextField ageTF;
 
-    SceneController sceneController = new SceneController();
+    SceneController sceneController = SceneController.getInstance();
 
     public void returnHome(ActionEvent event) throws IOException {
         sceneController.homeScreen(event);
