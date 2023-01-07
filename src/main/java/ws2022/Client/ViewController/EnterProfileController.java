@@ -69,7 +69,7 @@ public class EnterProfileController {
         }
         if (GameManager.PLAYER1.getName().equals(name)) {
             showAlertMessage(Alert.AlertType.ERROR, "Same name!",
-                    "Zou have the same name as the player 1. Please enter another name!");
+                    "You have the same name as the player 1. Please enter another name!");
             return;
         }
         GameManager.PLAYER2 = new Player(name, Integer.parseInt(age));
