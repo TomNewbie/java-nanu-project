@@ -27,7 +27,6 @@ public class WhichColorController {
 
     public void closePopUp() {
         String myChoice = choiceBox.getValue();
-        GameManager.isPopUp = false;
         GameManager.COLOR = myChoice;
         GameManager.currentPopUp.close();
         BoardGameController bgc = GameManager.gameLoader.getController();

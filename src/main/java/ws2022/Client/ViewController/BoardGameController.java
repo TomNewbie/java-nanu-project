@@ -191,12 +191,7 @@ public class BoardGameController {
         GameManager.COLOR = "joker";
         if (GameManager.COLOR.equals("joker")) {
             System.out.println("you get joker mathar facker");
-            GameManager.isPopUp = true;
             getJoker();
-            System.out.println("Tuan anh be de");
-            // if (GameManager.isPopUp) {
-            // getNormalColor();
-            // }
         } else {
             getNormalColor();
         }

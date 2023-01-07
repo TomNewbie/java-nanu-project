@@ -1,8 +1,6 @@
 package ws2022.Client.Logic;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 
 import ws2022.Client.Model.Disc;
