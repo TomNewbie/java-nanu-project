@@ -30,17 +30,17 @@ public class EnterProfileController {
         String name = nameTF.getText();
         String age = ageTF.getText();
         if (name.isEmpty()) {
-            showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
+            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
                     "Please enter your name");
             return;
         }
         if (age == null) {
-            showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
+            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
                     "Please enter your age");
             return;
         }
         if (!age.matches("\\d+")) {
-            showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
+            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
                     "Please enter your age again!");
             return;
         }
@@ -53,22 +53,22 @@ public class EnterProfileController {
         String name = nameTF.getText();
         String age = ageTF.getText();
         if (name.isEmpty()) {
-            showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
+            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
                     "You do not enter your name. Please enter your name!");
             return;
         }
         if (age == null) {
-            showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
+            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
                     "You do not enter your age. Please enter your age!");
             return;
         }
         if (!age.matches("\\d+")) {
-            showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
+            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
                     "Your age is not a number. Please enter a number!");
             return;
         }
         if (GameManager.PLAYER1.getName().equals(name)) {
-            showAlertMessage(Alert.AlertType.ERROR, "Same name!",
+            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Same name!",
                     "You have the same name as the player 1. Please enter another name!");
             return;
         }
@@ -81,12 +81,4 @@ public class EnterProfileController {
         ageTF.setText("" + age);
     }
 
-    @FXML
-    public static void showAlertMessage(Alert.AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.show();
-    }
 }

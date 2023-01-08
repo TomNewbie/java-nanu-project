@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -48,6 +49,7 @@ public class BoardGameController {
         return bgc;
     }
 
+    private SceneController sc = SceneController.getInstance();
     @FXML
     public GridPane boardgame;
     public Button myButton;
@@ -154,6 +156,7 @@ public class BoardGameController {
         imageView.setFitWidth(100);
         imageView.setFitHeight(100);
         imageView.setClip(clip);
+        imageView.setOnMouseClicked(event -> alertCover(event));
         HashMapImageView.put(color, imageView);
         boardgame.add(imageView, x, y);
     }
@@ -199,8 +202,8 @@ public class BoardGameController {
     }
 
     public void clickRollDice() throws IOException {
-        // GameManager.COLOR = Dice.rollDice();
-        GameManager.COLOR = "joker";
+        GameManager.COLOR = Dice.rollDice();
+
         if (GameManager.COLOR.equals("joker")) {
             System.out.println("you get joker mathar facker");
             getJoker();
@@ -309,7 +312,7 @@ public class BoardGameController {
     }
 
     // show disc value when click on disc
-    @FXML
+
     public void changeDisc(MouseEvent event) {
         if (!GameManager.isChangeDisc) {
             return;
@@ -321,5 +324,13 @@ public class BoardGameController {
         String coverImage = "/ws2022/Client/assets/Covers/" + GameManager.COLOR + ".png";
         putCover(coverImage, coord, GameManager.COLOR);
         setTurn(GameManager.isPlayer1Turn);
+    }
+
+    public void alertCover(MouseEvent event) {
+        if (!GameManager.isChangeDisc) {
+            return;
+        }
+        sc.showAlertMessage(AlertType.ERROR, "Error",
+                "You can not choose this picture. Choose another one without cover");
     }
 }
