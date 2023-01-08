@@ -1,12 +1,15 @@
 package ws2022.Client.Model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.HashMap;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import ws2022.Client.ViewController.BoardGameController;
+import ws2022.Client.ViewController.SceneController;
 import ws2022.Client.utils.ConvertCoordinate;
 
 // public class GameManager {
@@ -81,14 +84,17 @@ public class GameManager {
         isPlayer1Turn = !isPlayer1Turn; // flip turn
     }
 
-    public static void updateGame() {
+    public static void updateGame(ActionEvent event) throws IOException {
+        totalDisc--;
         if (totalDisc > 4) {
-            totalDisc--;
             BoardGameController bgc = BoardGameController.getInstance();
             bgc.update();
             bgc.removeGuessPictureBtn();
             bgc.createRollDiceBtn();
             return;
+        } else {
+            SceneController sc = SceneController.getInstance();
+            sc.createScene(event, "Leaderboard");
         }
         // create leaderboard here
     }

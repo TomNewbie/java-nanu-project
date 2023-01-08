@@ -14,7 +14,7 @@ public class RightAnswerController {
     public void closePopUp(ActionEvent event) throws IOException {
         GameManager.currentPopUp.close();
         GameManager.addScore();
-        GameManager.updateGame();
+        GameManager.updateGame(event);
 
     }
 }
