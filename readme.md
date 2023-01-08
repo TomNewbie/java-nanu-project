@@ -60,7 +60,7 @@ getLClass().getResource("/ws2022/Client/ViewFx/yourname.fxml"));
 
 ## LaTeX Documentation
 
-https://www.overleaf.com/project/63987faa99a81f2e3331b633
+https://www.overleaf.com/7329553797sryqvnqsmpzd
 
 ## Figma Design
 
