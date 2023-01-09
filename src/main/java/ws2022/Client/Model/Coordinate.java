@@ -17,4 +17,9 @@ public class Coordinate {
         return row;
     }
 
+    public static Coordinate convertFromIndex(int index) {
+        int x = index % 6;
+        int y = (index - x) / 6;
+        return new Coordinate(x, y);
+    }
 }

@@ -27,7 +27,7 @@
             <Label layoutX="152.0" layoutY="14.0" text="Points" textAlignment="CENTER" GridPane.columnIndex="2" />
          </children>
       </GridPane>
-      <Button layoutX="401.0" layoutY="425.0" mnemonicParsing="false" onAction="#print" onMouseClicked="#print" prefHeight="50.0" prefWidth="200.0" text="Play again" />
+      <Button layoutX="401.0" layoutY="425.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Play again" />
       <Label layoutX="450.0" layoutY="66.0" text="Result">
          <font>
             <Font size="40.0" />

@@ -1,14 +1,11 @@
 package ws2022.Client.ViewController;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
 import ws2022.Client.Model.GameManager;
 
 public class WhichColorController {
@@ -27,10 +24,9 @@ public class WhichColorController {
 
     public void closePopUp() {
         String myChoice = choiceBox.getValue();
-        GameManager.isPopUp = false;
         GameManager.COLOR = myChoice;
         GameManager.currentPopUp.close();
-        BoardGameController bgc = GameManager.gameLoader.getController();
+        BoardGameController bgc = BoardGameController.getInstance();
         bgc.getNormalColor();
     }
 }

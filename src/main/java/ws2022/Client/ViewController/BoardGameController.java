@@ -1,41 +1,47 @@
 package ws2022.Client.ViewController;
 
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import ws2022.Client.Logic.GenerateData;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
-import ws2022.Client.Model.Disc;
 import ws2022.Client.Model.GameManager;
-import ws2022.Client.utils.ConvertCoordinate;
+import ws2022.Client.utils.GenerateData;
 
-import java.io.Console;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
 
 public class BoardGameController {
+    private static BoardGameController bgc;
+
+    private BoardGameController() {
+    }
+
+    public static BoardGameController getInstance() {
+        if (BoardGameController.bgc == null) {
+            bgc = new BoardGameController();
+        }
+        return bgc;
+    }
+
+    private SceneController sc = SceneController.getInstance();
     @FXML
     public GridPane boardgame;
     public Button myButton;
@@ -45,19 +51,19 @@ public class BoardGameController {
     Button guessPicture = new Button("Guess Picture");
     Button chooseColor = new Button("Choose color");
     @FXML
-    private Text player1;
+    public Text player1;
     @FXML
-    private Text player2;
+    public Text player2;
     @FXML
-    private Text player1Score;
+    public Text player1Score;
     @FXML
-    private Text player2Score;
+    public Text player2Score;
     @FXML
-    private Text status;
+    public Text status;
     @FXML
-    private ImageView imageView;
+    public ImageView imageView;
 
-    private HashMap<String, ImageView> HashMapImageView = new HashMap<>();
+    private HashMap<String, ImageView> HashMapImageView = new HashMap<>();;
 
     @FXML
     public void initialize() throws FileNotFoundException {
@@ -142,6 +148,7 @@ public class BoardGameController {
         imageView.setFitWidth(100);
         imageView.setFitHeight(100);
         imageView.setClip(clip);
+        imageView.setOnMouseClicked(event -> alertCover(event));
         HashMapImageView.put(color, imageView);
         boardgame.add(imageView, x, y);
     }
@@ -187,16 +194,11 @@ public class BoardGameController {
     }
 
     public void clickRollDice() throws IOException {
-        // GameManager.COLOR = Dice.rollDice();
-        GameManager.COLOR = "joker";
+        GameManager.COLOR = Dice.rollDice();
+
         if (GameManager.COLOR.equals("joker")) {
             System.out.println("you get joker mathar facker");
-            GameManager.isPopUp = true;
             getJoker();
-            System.out.println("Tuan anh be de");
-            // if (GameManager.isPopUp) {
-            // getNormalColor();
-            // }
         } else {
             getNormalColor();
         }
@@ -243,7 +245,6 @@ public class BoardGameController {
             }
         });
         pane.getChildren().add(guessPicture);
-
     }
 
     public void getJoker() {
@@ -270,7 +271,6 @@ public class BoardGameController {
                 GameManager.currentPopUp = popupwindow;
                 popupwindow.initModality(Modality.APPLICATION_MODAL);
                 popupwindow.setTitle("This is a pop up window");
-
                 FXMLLoader loader = new FXMLLoader(
                         this.getClass().getResource("/ws2022/Client/ViewFx/WhichColor.fxml"));
                 Parent popUp = loader.load();
@@ -296,6 +296,7 @@ public class BoardGameController {
         }
         status.setText("Please choose picture to place " + GameManager.COLOR + " cover");
         GameManager.isChangeDisc = true;
+
     }
 
     public void removeGuessPictureBtn() {
@@ -303,7 +304,7 @@ public class BoardGameController {
     }
 
     // show disc value when click on disc
-    @FXML
+
     public void changeDisc(MouseEvent event) {
         if (!GameManager.isChangeDisc) {
             return;
@@ -315,5 +316,14 @@ public class BoardGameController {
         String coverImage = "/ws2022/Client/assets/Covers/" + GameManager.COLOR + ".png";
         putCover(coverImage, coord, GameManager.COLOR);
         setTurn(GameManager.isPlayer1Turn);
+        bgc.createRollDiceBtn();
+    }
+
+    public void alertCover(MouseEvent event) {
+        if (!GameManager.isChangeDisc) {
+            return;
+        }
+        sc.showAlertMessage(AlertType.ERROR, "Error",
+                "You can not choose this picture. Choose another one without cover");
     }
 }

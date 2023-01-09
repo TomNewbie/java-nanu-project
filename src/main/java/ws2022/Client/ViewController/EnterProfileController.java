@@ -15,7 +15,7 @@ public class EnterProfileController {
     @FXML
     TextField ageTF;
 
-    SceneController sceneController = new SceneController();
+    SceneController sceneController = SceneController.getInstance();
 
     public void returnHome(ActionEvent event) throws IOException {
         sceneController.homeScreen(event);
@@ -26,20 +26,21 @@ public class EnterProfileController {
     }
 
     public void goToProfile2(ActionEvent event) throws IOException {
+        // In first enterprofile
         String name = nameTF.getText();
         String age = ageTF.getText();
         if (name.isEmpty()) {
-            showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
+            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
                     "Please enter your name");
             return;
         }
         if (age == null) {
-            showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
+            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
                     "Please enter your age");
             return;
         }
         if (!age.matches("\\d+")) {
-            showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
+            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
                     "Please enter your age again!");
             return;
         }
@@ -48,21 +49,27 @@ public class EnterProfileController {
     }
 
     public void enterGame(ActionEvent event) throws IOException {
+        // in second enter profile (before go to game)
         String name = nameTF.getText();
         String age = ageTF.getText();
         if (name.isEmpty()) {
-            showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
-                    "Please enter your name");
+            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
+                    "You do not enter your name. Please enter your name!");
             return;
         }
         if (age == null) {
-            showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
-                    "Please enter your age");
+            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
+                    "You do not enter your age. Please enter your age!");
             return;
         }
         if (!age.matches("\\d+")) {
-            showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
-                    "Please enter your age again!");
+            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
+                    "Your age is not a number. Please enter a number!");
+            return;
+        }
+        if (GameManager.PLAYER1.getName().equals(name)) {
+            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Same name!",
+                    "You have the same name as the player 1. Please enter another name!");
             return;
         }
         GameManager.PLAYER2 = new Player(name, Integer.parseInt(age));
@@ -74,12 +81,4 @@ public class EnterProfileController {
         ageTF.setText("" + age);
     }
 
-    @FXML
-    public static void showAlertMessage(Alert.AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.show();
-    }
 }

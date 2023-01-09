@@ -1,7 +1,5 @@
 package ws2022.Client.Model;
 
-import java.time.LocalDate;
-
 public class Player {
     private String name;
     private Integer age;

@@ -2,14 +2,12 @@
 package ws2022.Client.ViewController;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.text.Text;
-import ws2022.Client.Model.Disc;
 import ws2022.Client.Model.GameManager;
 
 public class GuessPictureController {
@@ -31,7 +29,7 @@ public class GuessPictureController {
     public void clickSubmit(ActionEvent event) throws IOException {
         String myChoice = choicebox.getValue();
         String answer = GameManager.getAnswer();
-        SceneController sc = new SceneController();
+        SceneController sc = SceneController.getInstance();
         if (myChoice.equals(answer)) {
             GameManager.currentPopUp = sc.createScene(event, "rightAnswer");
         } else {

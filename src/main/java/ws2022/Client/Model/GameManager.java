@@ -1,13 +1,13 @@
 package ws2022.Client.Model;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.BitSet;
 import java.util.HashMap;
 
-import javafx.fxml.FXMLLoader;
+import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import ws2022.Client.ViewController.BoardGameController;
-import ws2022.Client.utils.ConvertCoordinate;
+import ws2022.Client.ViewController.SceneController;
 
 // public class GameManager {
 //     // Singleton pattern
@@ -50,9 +50,6 @@ public class GameManager {
     public static boolean isChangeDisc = false;
     public static Stage currentPopUp;
     public static boolean isCorrect;
-    public static boolean isPopUp = false;
-
-    public static FXMLLoader gameLoader;
 
     public static String getCardImage() {
         return GameManager.myList.get(GameManager.myHashMap.get(GameManager.COLOR)).getCardImage();
@@ -84,19 +81,21 @@ public class GameManager {
         isPlayer1Turn = !isPlayer1Turn; // flip turn
     }
 
-    public static void updateGame() {
+    public static void updateGame(ActionEvent event) throws IOException {
+        totalDisc--;
         if (totalDisc > 4) {
-            totalDisc--;
-            BoardGameController bgc = GameManager.gameLoader.getController();
-            bgc.update();
+            BoardGameController bgc = BoardGameController.getInstance();
             bgc.removeGuessPictureBtn();
-            bgc.createRollDiceBtn();
+            bgc.update();
             return;
+        } else {
+            SceneController sc = SceneController.getInstance();
+            sc.createScene(event, "Leaderboard");
         }
         // create leaderboard here
     }
 
     public static Coordinate getCurrentColorCoord() {
-        return ConvertCoordinate.convertFromIndex(GameManager.myHashMap.get(GameManager.COLOR));
+        return Coordinate.convertFromIndex(GameManager.myHashMap.get(GameManager.COLOR));
     }
 }

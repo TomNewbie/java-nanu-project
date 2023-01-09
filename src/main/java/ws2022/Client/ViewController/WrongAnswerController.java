@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import ws2022.Client.Logic.BoardGame;
 import ws2022.Client.Model.GameManager;
 
 public class WrongAnswerController {
@@ -44,7 +43,7 @@ public class WrongAnswerController {
     public void closePopUp(ActionEvent event) throws IOException {
         GameManager.currentPopUp.close();
         GameManager.changeTurn();
-        BoardGameController bgc = GameManager.gameLoader.getController();
+        BoardGameController bgc = BoardGameController.getInstance();
         bgc.setTurn(GameManager.isPlayer1Turn);
     }
 }

@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ws2022.Client.Model.GameManager;
@@ -16,6 +17,22 @@ public class SceneController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    Stage mystage;
+    @FXML
+    private Pane pane;
+    String name;
+
+    private static SceneController sc;
+
+    private SceneController() {
+    }
+
+    public static SceneController getInstance() {
+        if (SceneController.sc == null) {
+            sc = new SceneController();
+        }
+        return sc;
+    }
 
     public Stage createScene(ActionEvent event, String name) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/" + name + ".fxml"));
@@ -34,31 +51,22 @@ public class SceneController {
         stage.setScene(scene);
         stage.show();
     }
-    
+
     @FXML
     public void gotomanualpage(ActionEvent event) throws IOException {
-      
-            Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/ManualPage.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-
+        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/ManualPage.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
-    
+
     public void homeScreen(ActionEvent event) throws IOException {
         createScene(event, "HomeScreen");
     }
 
-    public FXMLLoader createLoader(ActionEvent event, String name) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/Client/ViewFx/" + name + ".fxml"));
-        return loader;
-    }
-
-    String name;
-
     public void enterProfile1(ActionEvent event) throws IOException {
-        FXMLLoader loader = createLoader(event, "EnterProfile");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/Client/ViewFx/EnterProfile.fxml"));
         if (GameManager.PLAYER1 != null) {
             EnterProfileController epc = loader.getController();
             epc.displayProfile(GameManager.PLAYER1.getName(), GameManager.PLAYER1.getAge());
@@ -67,8 +75,7 @@ public class SceneController {
     }
 
     public void enterProfile2(ActionEvent event, String tho) throws IOException {
-        FXMLLoader loader = createLoader(event, "EnterProfile2");
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/Client/ViewFx/EnterProfile2.fxml"));
         if (GameManager.PLAYER2 != null) {
             EnterProfileController epc = loader.getController();
             epc.displayProfile(GameManager.PLAYER2.getName(), GameManager.PLAYER2.getAge());
@@ -77,13 +84,10 @@ public class SceneController {
     }
 
     public void enterGame(ActionEvent event) throws IOException {
-        GameManager.gameLoader = createLoader(event, "boardgame");
-        createScene(event, GameManager.gameLoader);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/Client/ViewFx/boardgame.fxml"));
+        loader.setController(BoardGameController.getInstance());
+        createScene(event, loader);
     }
-
-    Stage mystage;
-    @FXML
-    private Pane pane;
 
     public void closeWindow() throws IOException {
         mystage = (Stage) pane.getScene().getWindow();
@@ -103,4 +107,14 @@ public class SceneController {
         }
 
     }
+
+    @FXML
+    public void showAlertMessage(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.show();
+    }
+
 }
