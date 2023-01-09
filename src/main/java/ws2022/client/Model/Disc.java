@@ -4,7 +4,6 @@ public class Disc {
     private String cardImage;
     private String value;
     private boolean hasCover = false;
-    private boolean isGuessed = false;
 
     public String getValue() {
         return value;
@@ -31,7 +30,4 @@ public class Disc {
         hasCover = true;
     }
 
-    public boolean checkGuessed() {
-        return isGuessed;
-    }
 }

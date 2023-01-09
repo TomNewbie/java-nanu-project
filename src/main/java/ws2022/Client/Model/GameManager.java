@@ -1,16 +1,11 @@
-package ws2022.Client.Logic;
+package ws2022.Client.Model;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.BitSet;
 import java.util.HashMap;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import ws2022.Client.Model.Coordinate;
-import ws2022.Client.Model.Disc;
-import ws2022.Client.Model.Player;
 import ws2022.Client.ViewController.BoardGameController;
 import ws2022.Client.ViewController.SceneController;
 
