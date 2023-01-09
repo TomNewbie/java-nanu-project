@@ -15,23 +15,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import ws2022.Client.Logic.GenerateData;
+import ws2022.Client.Logic.GameManager;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
-import ws2022.Client.Model.Disc;
-import ws2022.Client.Model.GameManager;
-import ws2022.Client.utils.ConvertCoordinate;
+import ws2022.Client.utils.GenerateData;
 
-import java.io.Console;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
@@ -253,7 +247,6 @@ public class BoardGameController {
             }
         });
         pane.getChildren().add(guessPicture);
-
     }
 
     public void getJoker() {
@@ -305,6 +298,7 @@ public class BoardGameController {
         }
         status.setText("Please choose picture to place " + GameManager.COLOR + " cover");
         GameManager.isChangeDisc = true;
+
     }
 
     public void removeGuessPictureBtn() {
@@ -324,6 +318,7 @@ public class BoardGameController {
         String coverImage = "/ws2022/Client/assets/Covers/" + GameManager.COLOR + ".png";
         putCover(coverImage, coord, GameManager.COLOR);
         setTurn(GameManager.isPlayer1Turn);
+        bgc.createRollDiceBtn();
     }
 
     public void alertCover(MouseEvent event) {

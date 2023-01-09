@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
-import ws2022.Client.Model.GameManager;
+import ws2022.Client.Logic.GameManager;
 
 public class WhichColorController {
 

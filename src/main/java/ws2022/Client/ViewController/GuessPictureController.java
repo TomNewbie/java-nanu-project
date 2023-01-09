@@ -9,8 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.text.Text;
+import ws2022.Client.Logic.GameManager;
 import ws2022.Client.Model.Disc;
-import ws2022.Client.Model.GameManager;
 
 public class GuessPictureController {
 

@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import ws2022.Client.Model.GameManager;
+import ws2022.Client.Logic.GameManager;
 import ws2022.Client.Model.Player;
 
 public class EnterProfileController {

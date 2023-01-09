@@ -1,4 +1,4 @@
-package ws2022.Client.Logic;
+package ws2022.Client.utils;
 
 import java.util.ArrayList;
 import java.util.Collections;

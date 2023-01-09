@@ -5,7 +5,7 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import ws2022.Client.Model.GameManager;
+import ws2022.Client.Logic.GameManager;
 
 public class RightAnswerController {
     @FXML

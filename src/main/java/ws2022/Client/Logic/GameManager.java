@@ -1,4 +1,4 @@
-package ws2022.Client.Model;
+package ws2022.Client.Logic;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,9 +8,11 @@ import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import ws2022.Client.Model.Coordinate;
+import ws2022.Client.Model.Disc;
+import ws2022.Client.Model.Player;
 import ws2022.Client.ViewController.BoardGameController;
 import ws2022.Client.ViewController.SceneController;
-import ws2022.Client.utils.ConvertCoordinate;
 
 // public class GameManager {
 //     // Singleton pattern
@@ -88,9 +90,8 @@ public class GameManager {
         totalDisc--;
         if (totalDisc > 4) {
             BoardGameController bgc = BoardGameController.getInstance();
-            bgc.update();
             bgc.removeGuessPictureBtn();
-            bgc.createRollDiceBtn();
+            bgc.update();
             return;
         } else {
             SceneController sc = SceneController.getInstance();
@@ -100,6 +101,6 @@ public class GameManager {
     }
 
     public static Coordinate getCurrentColorCoord() {
-        return ConvertCoordinate.convertFromIndex(GameManager.myHashMap.get(GameManager.COLOR));
+        return Coordinate.convertFromIndex(GameManager.myHashMap.get(GameManager.COLOR));
     }
 }
