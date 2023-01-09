@@ -45,5 +45,6 @@ public class WrongAnswerController {
         GameManager.changeTurn();
         BoardGameController bgc = BoardGameController.getInstance();
         bgc.setTurn(GameManager.isPlayer1Turn);
+        bgc.createRollDiceBtn();
     }
 }

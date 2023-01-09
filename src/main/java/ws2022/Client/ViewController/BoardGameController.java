@@ -178,6 +178,9 @@ public class BoardGameController {
     }
 
     public void createRollDiceBtn() {
+        if (guessPicture != null) {
+            pane.getChildren().remove(guessPicture);
+        }
         rollDice.setPrefWidth(100);
         rollDice.setPrefHeight(50);
         rollDice.setLayoutX(800);
