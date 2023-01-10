@@ -15,9 +15,9 @@
          </font>
       </Text>
       <Button fx:id="backbutton" layoutX="382.0" layoutY="547.0" mnemonicParsing="false" onAction="#gotohomescreen" prefHeight="25.0" prefWidth="60.0" text="Back" />
-      <ImageView fx:id="ImageOne" fitHeight="163.0" fitWidth="262.0" layoutX="15.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ImageOne" fitHeight="163.0" fitWidth="262.0" layoutX="15.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Dice/EnterPlayer1PNG.PNG" />
+            <Image url="@../assets/Dice/EnterPlayer1.PNG" />
          </image>
       </ImageView>
       <ImageView fx:id="ImageTwo" fitHeight="159.0" fitWidth="262.0" layoutX="300.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
@@ -30,22 +30,22 @@
             <Image url="@../assets/Dice/SelectPicture.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="ImageFive" fitHeight="167.0" fitWidth="262.0" layoutX="15.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ImageFour" fitHeight="167.0" fitWidth="262.0" layoutX="15.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Dice/ChooseAnswer.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="ImageSix" fitHeight="157.0" fitWidth="274.0" layoutX="300.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ImageFive" fitHeight="157.0" fitWidth="274.0" layoutX="300.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Dice/Wrong.PNG" />
          </image>
       </ImageView>
-      <ImageView fitHeight="157.0" fitWidth="287.0" layoutX="583.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ImageSix" fitHeight="157.0" fitWidth="287.0" layoutX="583.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Dice/Correct.PNG" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="312.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ImageSeven" fitHeight="150.0" fitWidth="200.0" layoutX="312.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Dice/LeatherBoard.PNG" />
          </image>
