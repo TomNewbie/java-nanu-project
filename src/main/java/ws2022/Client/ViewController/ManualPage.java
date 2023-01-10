@@ -17,6 +17,7 @@ public class ManualPage {
    public void gotohomescreen(ActionEvent event) throws IOException {
 	   Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/HomeScreen.fxml"));
 	   stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+	   
 	   scene = new Scene(root);
 	   stage.setScene(scene);
 	   stage.show();
