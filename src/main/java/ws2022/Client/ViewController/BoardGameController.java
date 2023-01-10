@@ -176,6 +176,9 @@ public class BoardGameController {
         dice.setImage(diceImage);
         dice.setFitWidth(100);
         dice.setFitHeight(100);
+        if (guessPicture != null) {
+            pane.getChildren().remove(guessPicture);
+        }
         rollDice.setPrefWidth(100);
         rollDice.setPrefHeight(50);
         rollDice.setLayoutX(800);
