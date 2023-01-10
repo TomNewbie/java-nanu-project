@@ -63,8 +63,6 @@ public class BoardGameController {
     @FXML
     public ImageView imageView;
 
-    private HashMap<String, ImageView> HashMapImageView = new HashMap<>();;
-
     @FXML
     public void initialize() throws FileNotFoundException {
         GenerateData.getSortValue(GameManager.value);
@@ -92,12 +90,6 @@ public class BoardGameController {
             }
         }
         // image of dice
-        Image diceImage = new Image(this.getClass()
-                .getResource("/ws2022/Client/assets/Dice/dice.png")
-                .toExternalForm());
-        dice.setImage(diceImage);
-        dice.setFitWidth(100);
-        dice.setFitHeight(100);
         player1.setText(GameManager.PLAYER1.getName());
         player1Score.setText("" + GameManager.PLAYER1.getScore());
         player2.setText(GameManager.PLAYER2.getName());
@@ -149,13 +141,13 @@ public class BoardGameController {
         imageView.setFitHeight(100);
         imageView.setClip(clip);
         imageView.setOnMouseClicked(event -> alertCover(event));
-        HashMapImageView.put(color, imageView);
+        // HashMapImageView.put(color, imageView);
         boardgame.add(imageView, x, y);
     }
 
     public void deleteCover(Coordinate coord) {
         // deleteCover by coordinate
-        boardgame.getChildren().remove(HashMapImageView.get(GameManager.COLOR));
+        // boardgame.getChildren().remove(HashMapImageView.get(GameManager.COLOR));
         ObservableList<Node> childrens = boardgame.getChildren();
         for (Node node : childrens) {
             if (node instanceof ImageView && GridPane.getRowIndex(node) == coord.getRow()
@@ -178,6 +170,12 @@ public class BoardGameController {
     }
 
     public void createRollDiceBtn() {
+        Image diceImage = new Image(this.getClass()
+                .getResource("/ws2022/Client/assets/Dice/dice.png")
+                .toExternalForm());
+        dice.setImage(diceImage);
+        dice.setFitWidth(100);
+        dice.setFitHeight(100);
         rollDice.setPrefWidth(100);
         rollDice.setPrefHeight(50);
         rollDice.setLayoutX(800);
