@@ -50,6 +50,7 @@ public class GameManager {
     public static boolean isChangeDisc = false;
     public static Stage currentPopUp;
     public static boolean isCorrect;
+    public static SceneController sc = SceneController.getInstance();
 
     public static String getCardImage() {
         return GameManager.myList.get(GameManager.myHashMap.get(GameManager.COLOR)).getCardImage();
@@ -90,10 +91,9 @@ public class GameManager {
             bgc.update();
             return;
         } else {
-            SceneController sc = SceneController.getInstance();
-            sc.createScene(event, "Leaderboard");
+            // create leaderboard here
+            sc.leaderboard(event);
         }
-        // create leaderboard here
     }
 
     public static Coordinate getCurrentColorCoord() {
