@@ -64,6 +64,7 @@ public class GameManager {
     public static void getFirstTurn() {
         if (GameManager.PLAYER1.getAge() > GameManager.PLAYER2.getAge()) {
             GameManager.isPlayer1Turn = false;
+            return;
         }
         GameManager.isPlayer1Turn = true;
     }
