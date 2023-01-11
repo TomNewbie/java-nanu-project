@@ -65,6 +65,13 @@ public class SceneController {
         createScene(event, "HomeScreen");
     }
 
+    public void leaderboard(Stage stage) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/Leaderboard.fxml"));
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void enterProfile1(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/Client/ViewFx/EnterProfile.fxml"));
         if (GameManager.PLAYER1 != null) {

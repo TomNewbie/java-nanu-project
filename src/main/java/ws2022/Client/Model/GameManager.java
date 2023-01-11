@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.stage.Stage;
 import ws2022.Client.ViewController.BoardGameController;
 import ws2022.Client.ViewController.SceneController;
@@ -48,8 +49,9 @@ public class GameManager {
     private static int totalDisc = 24;
     public static String COLOR;
     public static boolean isChangeDisc = false;
-    public static Stage currentPopUp;
+    public static Stage stage;
     public static boolean isCorrect;
+    public static SceneController sc = SceneController.getInstance();
 
     public static String getCardImage() {
         return GameManager.myList.get(GameManager.myHashMap.get(GameManager.COLOR)).getCardImage();
@@ -82,18 +84,17 @@ public class GameManager {
         isPlayer1Turn = !isPlayer1Turn; // flip turn
     }
 
-    public static void updateGame(ActionEvent event) throws IOException {
+    public static void updateGame(Stage stage) throws IOException {
         totalDisc--;
-        if (totalDisc > 4) {
+        if (totalDisc > 20) {
             BoardGameController bgc = BoardGameController.getInstance();
             bgc.removeGuessPictureBtn();
             bgc.update();
             return;
         } else {
-            SceneController sc = SceneController.getInstance();
-            sc.createScene(event, "Leaderboard");
+            // create leaderboard here
+            sc.leaderboard(stage);
         }
-        // create leaderboard here
     }
 
     public static Coordinate getCurrentColorCoord() {

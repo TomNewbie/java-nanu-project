@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.LeaderboardController">
    <children>
@@ -22,22 +23,61 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Rank" textAlignment="CENTER" />
-            <Label layoutX="10.0" layoutY="14.0" text="Name" textAlignment="CENTER" GridPane.columnIndex="1" />
-            <Label layoutX="152.0" layoutY="14.0" text="Points" textAlignment="CENTER" GridPane.columnIndex="2" />
+            <Label prefHeight="27.0" prefWidth="142.0" text="Rank" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label layoutX="10.0" layoutY="14.0" prefHeight="27.0" prefWidth="142.0" text="Name" textAlignment="CENTER" GridPane.columnIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label layoutX="152.0" layoutY="14.0" prefHeight="27.0" prefWidth="143.0" text="Points" textAlignment="CENTER" GridPane.columnIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Text fx:id="point_1" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="name_1" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="name_2" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="point_2" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
          </children>
       </GridPane>
-      <Button layoutX="401.0" layoutY="425.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Play again" />
+      <Button fx:id="againBtn" layoutX="401.0" layoutY="425.0" mnemonicParsing="false" onAction="#clickAgainButton" prefHeight="50.0" prefWidth="200.0" text="Play again" />
       <Label layoutX="450.0" layoutY="66.0" text="Result">
          <font>
             <Font size="40.0" />
          </font>
       </Label>
-      <Label layoutX="444.0" layoutY="150.0" text="Leaderboard">
+      <Label layoutX="420.0" layoutY="142.0" text="Leaderboard">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="27.0" />
          </font>
       </Label>
-      <Button layoutX="23.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.6" prefWidth="52.0" text="Return" />
+      <Button fx:id="returnBtn" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickReturnButton" prefHeight="25.6" prefWidth="52.0" text="Return" />
    </children>
 </Pane>

@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import ws2022.Client.Model.GameManager;
 
@@ -31,9 +32,9 @@ public class GuessPictureController {
         String answer = GameManager.getAnswer();
         SceneController sc = SceneController.getInstance();
         if (myChoice.equals(answer)) {
-            GameManager.currentPopUp = sc.createScene(event, "rightAnswer");
+            sc.createScene(event, "rightAnswer");
         } else {
-            GameManager.currentPopUp = sc.createScene(event, "wrongAnswer");
+            sc.createScene(event, "wrongAnswer");
         }
 
     }

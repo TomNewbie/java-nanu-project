@@ -272,7 +272,6 @@ public class BoardGameController {
         chooseColor.setOnAction(event -> {
             try {
                 Stage popupwindow = new Stage();
-                GameManager.currentPopUp = popupwindow;
                 popupwindow.initModality(Modality.APPLICATION_MODAL);
                 popupwindow.setTitle("This is a pop up window");
                 FXMLLoader loader = new FXMLLoader(
