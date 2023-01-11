@@ -2,8 +2,15 @@
    -fx-text-fill: black; 
    font-family: 'Inter';
 }
+
+/*Kim */
  .button {  
-    -fx-background-color: background: #F9A4A4;
-    ; 
-    
+    -fx-background-color: rgba(249, 164, 164, 0.6);
  }
+
+
+ /*Ngoc */
+ /* .button {  
+   -fx-background-color: rgba(249, 164, 164, 0.6);
+   border-radius: 20px;
+} */
