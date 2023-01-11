@@ -38,6 +38,9 @@ public class SceneController {
         root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/" + name + ".fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        scene.getStylesheets()
+                .add(getClass().getResource("/ws2022/Client/assets/styles/style.css").toExternalForm());
+        stage.setScene(scene);
         stage.setScene(scene);
         stage.show();
         return stage;
@@ -48,6 +51,9 @@ public class SceneController {
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        scene.getStylesheets()
+                .add(getClass().getResource("/ws2022/Client/assets/styles/style.css").toExternalForm());
+        stage.setScene(scene);
         stage.setScene(scene);
         stage.show();
     }
@@ -57,6 +63,9 @@ public class SceneController {
         Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/ManualPage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        scene.getStylesheets()
+                .add(getClass().getResource("/ws2022/Client/assets/styles/style.css").toExternalForm());
+        stage.setScene(scene);
         stage.setScene(scene);
         stage.show();
     }
@@ -68,6 +77,9 @@ public class SceneController {
     public void leaderboard(Stage stage) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/Leaderboard.fxml"));
         scene = new Scene(root);
+        scene.getStylesheets()
+                .add(getClass().getResource("/ws2022/Client/assets/styles/style.css").toExternalForm());
+        stage.setScene(scene);
         stage.setScene(scene);
         stage.show();
     }

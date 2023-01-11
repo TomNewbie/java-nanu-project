@@ -21,6 +21,9 @@ public class App extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/HomeScreen.fxml"));
         System.out.println("jee");
         scene = new Scene(root);
+        scene.getStylesheets()
+                .add(getClass().getResource("/ws2022/Client/assets/styles/style.css").toExternalForm());
+        stage.setScene(scene);
         GameManager.stage = stage;
         stage.setScene(scene);
         stage.show();
