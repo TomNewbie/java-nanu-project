@@ -1,9 +1,9 @@
-#ManualPageButton{  
-    -fx-background-color: red; 
-    -fx-text-fill: white; 
- }
-
+* {
+   -fx-text-fill: black; 
+   font-family: 'Inter';
+}
  .button {  
-    -fx-background-color: red; 
-    -fx-text-fill: white; 
+    -fx-background-color: background: #F9A4A4;
+    ; 
+    
  }
