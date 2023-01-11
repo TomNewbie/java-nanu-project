@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.HomeScreenController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController">
    <children>
       <Label layoutX="492.0" layoutY="11.0" text="NANU">
          <font>
@@ -15,6 +15,5 @@
       <Button fx:id="playOffline" layoutX="439.0" layoutY="97.0" mnemonicParsing="false" onAction="#playOffline" prefHeight="77.0" prefWidth="323.0" text="Play Offline" />
       <Button fx:id="playOnline" layoutX="433.0" layoutY="251.0" mnemonicParsing="false" onAction="#playOnline" prefHeight="67.0" prefWidth="335.0" text="Play Online" />
       <Button fx:id="logoutbtn" layoutX="433.0" layoutY="418.0" mnemonicParsing="false" onAction="#quit" prefHeight="67.0" prefWidth="335.0" text="Quit" />
-      <Button fx:id="ManualPageButton" layoutX="26.0" layoutY="25.0" mnemonicParsing="false" onAction="#manualPage" text="Manualpage" />
    </children>
 </Pane>
