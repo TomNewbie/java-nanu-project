@@ -234,7 +234,7 @@ public class BoardGameController {
                 popupwindow.setTitle("This is a pop up window");
 
                 FXMLLoader loader = new FXMLLoader(
-                        this.getClass().getResource("/ws2022/ViewFx/guessPicture.fxml"));
+                        this.getClass().getResource("/ws2022/fxml/guessPicture.fxml"));
                 Parent popUp = loader.load();
                 GuessPictureController gpc = loader.getController();
                 gpc.display();
@@ -275,7 +275,7 @@ public class BoardGameController {
                 popupwindow.initModality(Modality.APPLICATION_MODAL);
                 popupwindow.setTitle("This is a pop up window");
                 FXMLLoader loader = new FXMLLoader(
-                        this.getClass().getResource("/ws2022/ViewFx/WhichColor.fxml"));
+                        this.getClass().getResource("/ws2022/fxml/WhichColor.fxml"));
                 Parent popUp = loader.load();
                 WhichColorController gpc = loader.getController();
                 gpc.display();
