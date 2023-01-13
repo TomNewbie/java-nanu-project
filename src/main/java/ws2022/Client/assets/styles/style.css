@@ -18,7 +18,7 @@
  
  
   /* Ngoc */
-  /* .button {  
-    -fx-background-color: rgba(249, 164, 164, 0.6);
+.bigBtn {  
+    -fx-background-color: blue;
     -fx-border-radius: 20px;
- } */
+ }
