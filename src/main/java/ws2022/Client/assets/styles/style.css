@@ -1,16 +1,27 @@
-* {
+{
    -fx-text-fill: black; 
-   font-family: 'Inter';
+   -fx-font-family: 'Inter';
 }
 
-/*Kim */
+/*Regular button - Kim*/
  .button {  
-    -fx-background-color: rgba(249, 164, 164, 0.6);
+  // text
+  -fx-text-align: center;
+  -fx-font-size: 12pt;
+  
+  // background
+  -fx-background-color: rgba(249, 164, 164, 0.6);
+  -fx-background-radius: 15px;
+   
+  // border
+  -fx-border-radius: 15px;
+  -fx-border-width: 1px;
+  -fx-border-color: #000000;
  }
 
 
- /*Ngoc */
+ Ngoc
  .button {  
    -fx-background-color: rgba(249, 164, 164, 0.6);
-   border-radius: 20px;
+   -fx-border-radius: 20px;
 }
