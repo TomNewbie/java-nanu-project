@@ -15,7 +15,7 @@ public class HomeScreen extends Application {
 			Scene scene = new Scene(root);
 			// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
-			scene.getStylesheets().add(getClass().getResource("/ws2022/Client/assets/styles/style.css").toExternalForm());
+			// scene.getStylesheets().add(getClass().getResource("/ws2022/Client/assets/styles/style.css").toExternalForm());
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();

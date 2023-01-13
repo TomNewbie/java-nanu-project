@@ -240,8 +240,6 @@ public class BoardGameController {
                 gpc.display();
                 Scene scene = new Scene(popUp);
                 popupwindow.setScene(scene);
-                scene.getStylesheets()
-                        .add(getClass().getResource("/ws2022/Client/assets/styles/style.css").toExternalForm());
                 popupwindow.showAndWait();
 
             } catch (IOException e) {
@@ -281,8 +279,6 @@ public class BoardGameController {
                 WhichColorController gpc = loader.getController();
                 gpc.display();
                 Scene scene = new Scene(popUp);
-                scene.getStylesheets()
-                        .add(getClass().getResource("/ws2022/Client/assets/styles/style.css").toExternalForm());
                 popupwindow.setScene(scene);
                 popupwindow.showAndWait();
 
