@@ -1,24 +1,33 @@
-/* {
+{
    -fx-text-fill: black; 
    -fx-font-family: 'Inter';
-} */
+}
 
 /*Regular button - Kim*/
-.button {  
-   -fx-text-align: center;
-   -fx-font-size: 12pt;
+ .button {  
+  // text
+  -fx-text-align: center;
+  -fx-font-size: 12pt;
+  
+  // background
+  -fx-background-color: rgba(249, 164, 164, 0.6);
+  -fx-background-radius: 15px;
    
-   -fx-background-color: rgba(249, 164, 164, 0.6);
-   -fx-background-radius: 15px;
-    
-   -fx-border-radius: 15px;
-   -fx-border-width: 1px;
-   -fx-border-color: #000000;
-  }
+  // border
+  -fx-border-radius: 15px;
+  -fx-border-width: 1px;
+  -fx-border-color: #000000;
+ }
+
+ /* Big button - Ngoc */
+ .button {  
+   -fx-font-size: 32px;
+
+   -fx-text-align: center;
+
+   -fx-background-color: rgba(249, 164, 164, 1);
+   -fx-background-radius: 20px;
+   -fx-background-size: 350px 65px;
+}
+
  
- 
-  /* Ngoc */
-  /* .button {  
-    -fx-background-color: rgba(249, 164, 164, 0.6);
-    -fx-border-radius: 20px;
- } */
