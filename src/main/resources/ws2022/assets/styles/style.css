@@ -3,7 +3,7 @@
 /*Regular button - Kim*/
  .button {  
   -fx-text-align: center;
-  -fx-font-size: 12pt;
+  -fx-font-size: 15pt;
   
   -fx-background-color: rgba(249, 164, 164, 0.6);
   -fx-background-radius: 15px;
@@ -11,6 +11,11 @@
   -fx-border-radius: 15px;
   -fx-border-width: 1px;
   -fx-border-color: #000000;
+ }
+
+ /*Table label color - Kim*/
+ .table-row-cell{
+  -fx-background-color: #F9A4A4;
  }
 
  /* Big button - Ngoc */
