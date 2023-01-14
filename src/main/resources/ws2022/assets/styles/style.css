@@ -13,8 +13,8 @@
   -fx-border-color: #000000;
  }
 
- /*Table label color - Kim*/
- .table-row-cell{
+ /*Table cell - Kim*/
+ .leaderboard_label{
   -fx-background-color: #F9A4A4;
  }
 
