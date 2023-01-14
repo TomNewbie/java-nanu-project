@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.LeaderboardController" stylesheets="@../assets/styles/style.css" >
+<Pane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.LeaderboardController">
    <children>
-      <GridPane layoutX="288.0" layoutY="239.0" prefHeight="75.0" prefWidth="425.0">
+      <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="199.0" layoutY="244.0" prefHeight="191.0" prefWidth="618.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -23,61 +23,62 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label prefHeight="27.0" prefWidth="142.0" text="Rank" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="206.0" styleClass="table-row-cell" text="Rank" textAlignment="CENTER">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="14.0" prefHeight="65.0" prefWidth="207.0" styleClass="table-row-cell" text="Name" textAlignment="CENTER" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="30.0" />
                </font></Label>
-            <Label layoutX="10.0" layoutY="14.0" prefHeight="27.0" prefWidth="142.0" text="Name" textAlignment="CENTER" GridPane.columnIndex="1">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="152.0" layoutY="14.0" prefHeight="65.0" prefWidth="206.0" styleClass="table-row-cell" text="Points" textAlignment="CENTER" GridPane.columnIndex="2">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="30.0" />
                </font></Label>
-            <Label layoutX="152.0" layoutY="14.0" prefHeight="27.0" prefWidth="143.0" text="Points" textAlignment="CENTER" GridPane.columnIndex="2">
+            <Text fx:id="point_1" strokeType="OUTSIDE" strokeWidth="0.0" text="5" textAlignment="CENTER" wrappingWidth="205.205078125" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
-                  <Font size="18.0" />
-               </font></Label>
-            <Text fx:id="point_1" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <font>
-                  <Font size="18.0" />
+                  <Font size="25.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.rowIndex="1">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" textAlignment="CENTER" wrappingWidth="204.3697509765625" GridPane.rowIndex="1">
                <font>
-                  <Font size="18.0" />
+                  <Font size="25.0" />
                </font>
             </Text>
-            <Text fx:id="name_1" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Text fx:id="name_1" strokeType="OUTSIDE" strokeWidth="0.0" text="A" textAlignment="CENTER" wrappingWidth="205.205078125" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
-                  <Font size="18.0" />
+                  <Font size="25.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2" GridPane.rowIndex="2">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2" textAlignment="CENTER" wrappingWidth="204.369873046875" GridPane.rowIndex="2">
                <font>
-                  <Font size="18.0" />
+                  <Font size="25.0" />
                </font>
             </Text>
-            <Text fx:id="name_2" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Text fx:id="name_2" strokeType="OUTSIDE" strokeWidth="0.0" text="B" textAlignment="CENTER" wrappingWidth="205.205078125" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
-                  <Font size="18.0" />
+                  <Font size="25.0" />
                </font>
             </Text>
-            <Text fx:id="point_2" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Text fx:id="point_2" strokeType="OUTSIDE" strokeWidth="0.0" text="4" textAlignment="CENTER" wrappingWidth="207.8717041015625" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
-                  <Font size="18.0" />
+                  <Font size="25.0" />
                </font>
             </Text>
          </children>
       </GridPane>
-      <Button fx:id="againBtn" layoutX="401.0" layoutY="425.0" mnemonicParsing="false" onAction="#clickAgainButton" prefHeight="50.0" prefWidth="200.0" text="Play again" />
-      <Label layoutX="450.0" layoutY="66.0" text="Result">
+      <Button fx:id="againBtn" layoutX="414.0" layoutY="496.0" mnemonicParsing="false" onAction="#clickAgainButton" prefHeight="49.0" prefWidth="189.0" text="Play again" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="436.0" layoutY="61.0" text="Result">
+         <font>
+            <Font name="System Bold" size="50.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="398.0" layoutY="145.0" text="Leaderboard">
          <font>
             <Font size="40.0" />
          </font>
       </Label>
-      <Label layoutX="420.0" layoutY="142.0" text="Leaderboard">
-         <font>
-            <Font name="System Bold" size="27.0" />
-         </font>
-      </Label>
-      <Button fx:id="returnBtn" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickReturnButton" prefHeight="25.6" prefWidth="52.0" text="Return" />
+      <Button fx:id="returnBtn" layoutX="17.0" layoutY="17.0" mnemonicParsing="false" onAction="#clickReturnButton" prefHeight="45.0" prefWidth="91.0" text="Return" />
    </children>
 </Pane>
