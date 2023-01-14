@@ -81,14 +81,14 @@ public class Client {
     }
 
     public static void main(String[] args) throws IOException {
-        // Scanner scanner = new Scanner(System.in);
-        // System.out.println("Enter your username for the group chat: ");
-        // String username = scanner.nextLine();
-        // Socket socket = new Socket("localhost", 1234);
-        // Client client = new Client(socket, username);
-        // client.listenForMessage();
-        // client.sendMessage();
-        System.out.println(Inet4Address.getLocalHost().getHostAddress());
-        // System.out.println(Inet6Address.getLocalHost());
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your username for the group chat: ");
+        String username = scanner.nextLine();
+        System.out.println("Please enter the server IP add");
+        String ipv4 = scanner.nextLine();
+        Socket socket = new Socket(ipv4, 1234);
+        Client client = new Client(socket, username);
+        client.listenForMessage();
+        client.sendMessage();
     }
 }
