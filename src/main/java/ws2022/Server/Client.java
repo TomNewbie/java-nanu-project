@@ -86,7 +86,7 @@ public class Client {
         String username = scanner.nextLine();
         System.out.println("Please enter the server IP add");
         String ipv4 = scanner.nextLine();
-        Socket socket = new Socket(ipv4, 1234);
+        Socket socket = new Socket(ipv4, 8080);
         Client client = new Client(socket, username);
         client.listenForMessage();
         client.sendMessage();
