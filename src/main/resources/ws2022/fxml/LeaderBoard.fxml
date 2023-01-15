@@ -23,16 +23,16 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="206.0" styleClass="leaderboard_table_" text="Rank" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="206.0" styleClass="leaderboard_label" text="Rank" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="14.0" prefHeight="65.0" prefWidth="207.0" styleClass="leaderboard_table_" text="Name" textAlignment="CENTER" GridPane.columnIndex="1">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="14.0" prefHeight="65.0" prefWidth="207.0" styleClass="leaderboard_label" text="Name" textAlignment="CENTER" GridPane.columnIndex="1">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font></Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="152.0" layoutY="14.0" prefHeight="65.0" prefWidth="206.0" styleClass="leaderboard_table_" text="Points" textAlignment="CENTER" GridPane.columnIndex="2">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="152.0" layoutY="14.0" prefHeight="65.0" prefWidth="206.0" styleClass="leaderboard_label" text="Points" textAlignment="CENTER" GridPane.columnIndex="2">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font></Label>
