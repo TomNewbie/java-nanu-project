@@ -96,6 +96,10 @@ public class SceneController {
         createScene(event, loader);
     }
 
+    public void enterOnline(ActionEvent event) throws IOException {
+        createScene(event, "EnterProfileOnl");
+    }
+
     public void closeWindow() throws IOException {
         mystage = (Stage) pane.getScene().getWindow();
         mystage.close();

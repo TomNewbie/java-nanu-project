@@ -1,4 +1,4 @@
-package ws2022.Client.Model;
+package ws2022.Middleware;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,9 +10,13 @@ import javafx.scene.control.Alert;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.stage.Stage;
+import ws2022.Client.Model.Coordinate;
+import ws2022.Client.Model.Disc;
+import ws2022.Client.Model.Player;
 import ws2022.Client.ViewController.BoardGameController;
 import ws2022.Client.ViewController.SceneController;
 import ws2022.Client.utils.GenerateData;
+import ws2022.Server.Client;
 
 // public class GameManager {
 //     // Singleton pattern
@@ -47,6 +51,7 @@ public class GameManager {
     // public static
     public static Player PLAYER1;
     public static Player PLAYER2;
+    public static Client client;
     public static ArrayList<Disc> myList = new ArrayList<>();
     public static HashMap<String, Integer> coverHashMap = new HashMap<>();
     private static int totalDisc = 24;
@@ -89,10 +94,16 @@ public class GameManager {
     }
 
     public static void changeTurn() {
+        if (isOnline) {
+            return;
+        }
         isPlayer1Turn = !isPlayer1Turn; // flip turn
     }
 
     public static void updateGame(Stage stage) throws IOException {
+        if (isOnline) {
+            return;
+        }
         totalDisc--;
         if (totalDisc > 20) {
             BoardGameController bgc = BoardGameController.getInstance();
@@ -107,6 +118,9 @@ public class GameManager {
     }
 
     public static void startGame() {
+        if (isOnline) {
+            return;
+        }
         GenerateData.generateDisc(myList);
         Collections.shuffle(myList);
     }

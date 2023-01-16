@@ -1,6 +1,7 @@
 package ws2022.Client.ViewController;
 
 import java.io.IOException;
+import java.net.Socket;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,13 +9,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
+import ws2022.Server.Client;
 
 public class EnterProfileController {
     @FXML
     TextField nameTF;
     @FXML
     TextField ageTF;
-
+    @FXML
+    TextField IPserver;
     SceneController sceneController = SceneController.getInstance();
 
     public void returnHome(ActionEvent event) throws IOException {
@@ -56,6 +59,17 @@ public class EnterProfileController {
     public void displayProfile(String name, int age) {
         nameTF.setText(name);
         ageTF.setText("" + age);
+    }
+
+    public void enterOnlineGame(ActionEvent event) throws IOException {
+        String name = nameTF.getText();
+        String age = ageTF.getText();
+        String ipv4 = IPserver.getText();
+        GameManager.validateValue(name, age);
+        GameManager.PLAYER1 = new Player(name, Integer.parseInt(age));
+        GameManager.client = new Client(ipv4, name, age);
+        GameManager.client.sendMessage("ready");
+        sceneController.homeScreen(event);
     }
 
 }

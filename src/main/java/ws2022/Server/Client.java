@@ -17,12 +17,11 @@ public class Client {
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
 
-    public Client(Socket socket, String username, String age) {
+    public Client(String ipv4, String username, String age) {
         try {
-            this.socket = socket;
+            this.socket = new Socket(ipv4, 1809);
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            GameManager.PLAYER1 = new Player(username, Integer.parseInt(age));
         } catch (Exception e) {
             // TODO: handle exception
             closeEverything(socket, bufferedReader, bufferedWriter);
@@ -31,7 +30,8 @@ public class Client {
 
     public void sendMessage() {
         try {
-            bufferedWriter.write(GameManager.PLAYER1.getName() + ";" + GameManager.PLAYER1.getAge());
+            bufferedWriter.write(GameManager.PLAYER1.getName() + ";" +
+                    GameManager.PLAYER1.getAge());
             bufferedWriter.newLine();
             bufferedWriter.flush();
             Scanner scanner = new Scanner(System.in);
@@ -44,6 +44,19 @@ public class Client {
         } catch (IOException e) {
             closeEverything(socket, bufferedReader, bufferedWriter);
             // TODO: handle exception
+        }
+    }
+
+    public void sendMessage(String s) {
+        try {
+            String sendMessage = GameManager.PLAYER1.getName() + ";" + s;
+            bufferedWriter.write(sendMessage);
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
+        } catch (Exception e) {
+            closeEverything(socket, bufferedReader, bufferedWriter);
+            System.out.println("Some thing wrong with sendMessage");
+            e.printStackTrace();
         }
     }
 
@@ -100,9 +113,9 @@ public class Client {
         // String username = scanner.nextLine();
         // System.out.println("Please enter the server IP add");
         // String ipv4 = scanner.nextLine();
-        Socket socket = new Socket(ipv4, 8080);
-        Client client = new Client(socket, username, age);
-        client.listenForMessage();
-        client.sendMessage();
+        // Socket socket = new Socket(ipv4, 8080);
+        // Client client = new Client(socket, username, age);
+        // client.listenForMessage();
+        // client.sendMessage();
     }
 }

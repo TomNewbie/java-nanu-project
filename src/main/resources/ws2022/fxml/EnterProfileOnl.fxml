@@ -9,7 +9,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.EnterProfileController">
    <children>
       <TextField fx:id="nameTF" layoutX="237.0" layoutY="246.0" />
-      <Button layoutX="275.0" layoutY="394.0" mnemonicParsing="false" onAction="#enterGame" prefHeight="25.0" prefWidth="55.0" text="OK" />
+      <Button layoutX="275.0" layoutY="394.0" mnemonicParsing="false" onAction="#enterOnlineGame" prefHeight="25.0" prefWidth="55.0" text="OK" />
       <Label layoutX="146.0" layoutY="246.0" text="Name:">
          <font>
             <Font size="17.0" />
