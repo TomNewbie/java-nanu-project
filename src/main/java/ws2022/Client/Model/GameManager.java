@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
+import javafx.scene.control.Alert;
 
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -133,5 +134,24 @@ public class GameManager {
 
     public static Coordinate getCurrentColorCoord() {
         return Coordinate.convertFromIndex(GameManager.coverHashMap.get(GameManager.COLOR));
+    }
+
+    public static void validateValue(String name, String age) {
+        SceneController sceneController = SceneController.getInstance();
+        if (name.isEmpty()) {
+            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
+                    "Please enter your name");
+            return;
+        }
+        if (age == null) {
+            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
+                    "Please enter your age");
+            return;
+        }
+        if (!age.matches("\\d+")) {
+            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
+                    "Please enter your age again!");
+            return;
+        }
     }
 }

@@ -29,22 +29,12 @@ public class EnterProfileController {
         // In first enterprofile
         String name = nameTF.getText();
         String age = ageTF.getText();
-        if (name.isEmpty()) {
-            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
-                    "Please enter your name");
-            return;
-        }
-        if (age == null) {
-            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
-                    "Please enter your age");
-            return;
-        }
-        if (!age.matches("\\d+")) {
-            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
-                    "Please enter your age again!");
-            return;
-        }
+        GameManager.validateValue(name, age);
         GameManager.PLAYER1 = new Player(name, Integer.parseInt(age));
+        if (GameManager.isOnline) {
+            System.out.println("the game is online");
+            return;
+        }
         sceneController.enterProfile2(event, name);
     }
 
@@ -52,21 +42,7 @@ public class EnterProfileController {
         // in second enter profile (before go to game)
         String name = nameTF.getText();
         String age = ageTF.getText();
-        if (name.isEmpty()) {
-            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
-                    "You do not enter your name. Please enter your name!");
-            return;
-        }
-        if (age == null) {
-            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
-                    "You do not enter your age. Please enter your age!");
-            return;
-        }
-        if (!age.matches("\\d+")) {
-            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
-                    "Your age is not a number. Please enter a number!");
-            return;
-        }
+        GameManager.validateValue(name, age);
         if (GameManager.PLAYER1.getName().equals(name)) {
             sceneController.showAlertMessage(Alert.AlertType.ERROR, "Same name!",
                     "You have the same name as the player 1. Please enter another name!");

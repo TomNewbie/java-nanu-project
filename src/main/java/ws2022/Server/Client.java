@@ -9,18 +9,20 @@ import java.net.Inet4Address;
 import java.net.Socket;
 import java.util.Scanner;
 
+import ws2022.Client.Model.GameManager;
+import ws2022.Client.Model.Player;
+
 public class Client {
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
-    private String username;
 
-    public Client(Socket socket, String username) {
+    public Client(Socket socket, String username, String age) {
         try {
             this.socket = socket;
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            this.username = username;
+            GameManager.PLAYER1 = new Player(username, Integer.parseInt(age));
         } catch (Exception e) {
             // TODO: handle exception
             closeEverything(socket, bufferedReader, bufferedWriter);
@@ -29,13 +31,13 @@ public class Client {
 
     public void sendMessage() {
         try {
-            bufferedWriter.write(username);
+            bufferedWriter.write(GameManager.PLAYER1.getName() + ";" + GameManager.PLAYER1.getAge());
             bufferedWriter.newLine();
             bufferedWriter.flush();
             Scanner scanner = new Scanner(System.in);
             while (socket.isConnected()) {
                 String messageToSend = scanner.nextLine();
-                bufferedWriter.write(username + ": " + messageToSend);
+                bufferedWriter.write(GameManager.PLAYER1.getName() + ": " + messageToSend);
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
             }
@@ -80,14 +82,26 @@ public class Client {
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your username for the group chat: ");
-        String username = scanner.nextLine();
-        System.out.println("Please enter the server IP add");
-        String ipv4 = scanner.nextLine();
+    // public static void main(String[] args) throws IOException {
+    // Scanner scanner = new Scanner(System.in);
+    // System.out.println("Enter your username for the group chat: ");
+    // String username = scanner.nextLine();
+    // System.out.println("Please enter the server IP add");
+    // String ipv4 = scanner.nextLine();
+    // Socket socket = new Socket(ipv4, 8080);
+    // Client client = new Client(socket, username);
+    // client.listenForMessage();
+    // client.sendMessage();
+    // }
+
+    public static void connectServer(String username, String age, String ipv4) throws IOException {
+        // Scanner scanner = new Scanner(System.in);
+        // System.out.println("Enter your username for the group chat: ");
+        // String username = scanner.nextLine();
+        // System.out.println("Please enter the server IP add");
+        // String ipv4 = scanner.nextLine();
         Socket socket = new Socket(ipv4, 8080);
-        Client client = new Client(socket, username);
+        Client client = new Client(socket, username, age);
         client.listenForMessage();
         client.sendMessage();
     }
