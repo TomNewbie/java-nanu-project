@@ -28,8 +28,8 @@ public class WhichColorController {
     public void closePopUp() {
         String myChoice = choiceBox.getValue();
         GameManager.COLOR = myChoice;
-        Stage mystage = (Stage) mypane.getScene().getWindow();
-        mystage.close();
+        Stage popupwindow = (Stage) mypane.getScene().getWindow();
+        popupwindow.close();
         BoardGameController bgc = BoardGameController.getInstance();
         bgc.getNormalColor();
     }

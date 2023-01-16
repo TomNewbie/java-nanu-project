@@ -3,6 +3,7 @@ package ws2022.Client.ViewController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
@@ -72,8 +74,10 @@ public class BoardGameController {
         // }
         GameManager.startGame();
         int index = 0;
-        for (int y = 0; y < 4; y++) {
-            for (int x = 0; x < 6; x++) {
+        for (int y = 0; y < 7; y++) {
+            for (int x = 0; x < 7; x++) {
+                if (x != 0 && y != 0 && x != 6 && y != 6)
+                    continue;
                 String selectedImage = "/ws2022/assets/FootballTheme/"
                         + GameManager.myList.get(index).getImage();
                 Image image = new Image(this.getClass()
@@ -117,8 +121,8 @@ public class BoardGameController {
 
         int x = coord.getColumn();
         int y = coord.getRow();
-        int index = y * 6 + x;
-        GameManager.myList.get(index).setCover();
+        int indexPane = y * 7 + x;
+        int index = indexPane - (indexPane - 1) / 7 * 5;
         if (GameManager.coverHashMap.get(color) == null) {
             GameManager.coverHashMap.put(color, index);
         } else {
@@ -224,6 +228,8 @@ public class BoardGameController {
                 popupwindow.initModality(Modality.APPLICATION_MODAL);
                 popupwindow.setTitle("This is a pop up window");
 
+                popupwindow.setY(GameManager.stage.getY() + GameManager.stage.getHeight() / 3.5);
+                popupwindow.setX(GameManager.stage.getX() + GameManager.stage.getWidth() / 7.75);
                 FXMLLoader loader = new FXMLLoader(
                         this.getClass().getResource("/ws2022/fxml/guessPicture.fxml"));
                 Parent popUp = loader.load();
@@ -231,8 +237,6 @@ public class BoardGameController {
                 gpc.display();
                 Scene scene = new Scene(popUp);
                 popupwindow.setScene(scene);
-                scene.getStylesheets()
-                        .add(getClass().getResource("/ws2022/Client/assets/styles/style.css").toExternalForm());
                 popupwindow.showAndWait();
 
             } catch (IOException e) {
@@ -269,11 +273,11 @@ public class BoardGameController {
                 FXMLLoader loader = new FXMLLoader(
                         this.getClass().getResource("/ws2022/fxml/WhichColor.fxml"));
                 Parent popUp = loader.load();
+                popupwindow.setY(GameManager.stage.getY() + GameManager.stage.getHeight() / 3.5);
+                popupwindow.setX(GameManager.stage.getX() + GameManager.stage.getWidth() / 7.75);
                 WhichColorController gpc = loader.getController();
                 gpc.display();
                 Scene scene = new Scene(popUp);
-                scene.getStylesheets()
-                        .add(getClass().getResource("/ws2022/Client/assets/styles/style.css").toExternalForm());
                 popupwindow.setScene(scene);
                 popupwindow.showAndWait();
 

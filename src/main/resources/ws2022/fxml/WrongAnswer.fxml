@@ -7,14 +7,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.WrongAnswerController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.WrongAnswerController">
    <children>
-      <Label fx:id="label" layoutX="253.0" layoutY="21.0" text="Wrong!" textFill="RED">
+      <Label fx:id="label" layoutX="204.0" layoutY="20.0" text="Wrong!" textFill="RED">
          <font>
             <Font size="28.0" />
          </font>
       </Label>
-      <Button fx:id="nextBtn" layoutX="243.0" layoutY="331.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="45.0" prefWidth="114.0" text="Next" />
+      <Button fx:id="nextBtn" layoutX="193.0" layoutY="284.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="45.0" prefWidth="114.0" text="Next" />
       <Text layoutX="73.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The image under" textAlignment="CENTER">
          <font>
             <Font size="27.0" />
@@ -31,7 +31,7 @@
             <Font size="27.0" />
          </font>
       </Text>
-      <Text fx:id="valueText" layoutX="274.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="valueText" layoutX="225.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
             <Font size="27.0" />
          </font>
