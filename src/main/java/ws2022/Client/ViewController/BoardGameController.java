@@ -19,12 +19,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
-import ws2022.Client.utils.GenerateData;
 import ws2022.Middleware.GameManager;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -66,10 +64,11 @@ public class BoardGameController {
 
     @FXML
     public void initialize() throws FileNotFoundException {
-        // if (!GameManager.isOnline) {
-        // GenerateData.generateDisc(GameManager.myList);
-        // Collections.shuffle(GameManager.myList);
-        // }
+        if (!GameManager.isOnline) {
+            return;
+            // GenerateData.generateDisc(GameManager.myList);
+            // Collections.shuffle(GameManager.myList);
+        }
         GameManager.startGame();
         int index = 0;
         for (int y = 0; y < 4; y++) {
@@ -93,19 +92,19 @@ public class BoardGameController {
             }
         }
         // image of dice
-        player1.setText(GameManager.PLAYER1.getName());
-        player1Score.setText("" + GameManager.PLAYER1.getScore());
-        player2.setText(GameManager.PLAYER2.getName());
-        player2Score.setText("" + GameManager.PLAYER1.getScore());
+        player1.setText(GameManager.players.get(0).getName());
+        player1Score.setText("" + GameManager.players.get(0).getScore());
+        player2.setText(GameManager.players.get(1).getName());
+        player2Score.setText("" + GameManager.players.get(1).getScore());
     }
 
     public void setTurn(boolean isPlayer1Turn) {
         status.setVisible(true);
         if (isPlayer1Turn) {
-            status.setText("Player " + GameManager.PLAYER1.getName() + " turn: ");
+            status.setText("Player " + GameManager.players.get(0).getName() + " turn: ");
             return;
         }
-        status.setText("Player " + GameManager.PLAYER2.getName() + " turn: ");
+        status.setText("Player " + GameManager.players.get(1).getName() + " turn: ");
     }
 
     // random cover
@@ -284,9 +283,9 @@ public class BoardGameController {
 
     public void update() {
         if (GameManager.isPlayer1Turn) {
-            player1Score.setText("" + GameManager.PLAYER1.getScore());
+            player1Score.setText("" + GameManager.players.get(0).getScore());
         } else {
-            player2Score.setText("" + GameManager.PLAYER2.getScore());
+            player2Score.setText("" + GameManager.players.get(1).getScore());
         }
         status.setText("Please choose picture to place " + GameManager.COLOR + " cover");
         GameManager.isChangeDisc = true;

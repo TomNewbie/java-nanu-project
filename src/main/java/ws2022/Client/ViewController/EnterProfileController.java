@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import ws2022.Client.Model.Player;
 import ws2022.Middleware.GameManager;
+import ws2022.Middleware.API.Type;
 import ws2022.Server.Client;
 
 public class EnterProfileController {
@@ -33,7 +34,7 @@ public class EnterProfileController {
         String name = nameTF.getText();
         String age = ageTF.getText();
         GameManager.validateValue(name, age);
-        GameManager.PLAYER1 = new Player(name, Integer.parseInt(age));
+        GameManager.players.add(new Player(name, Integer.parseInt(age)));
         if (GameManager.isOnline) {
             System.out.println("the game is online");
             return;
@@ -46,12 +47,12 @@ public class EnterProfileController {
         String name = nameTF.getText();
         String age = ageTF.getText();
         GameManager.validateValue(name, age);
-        if (GameManager.PLAYER1.getName().equals(name)) {
+        if (GameManager.players.get(0).getName().equals(name)) {
             sceneController.showAlertMessage(Alert.AlertType.ERROR, "Same name!",
                     "You have the same name as the player 1. Please enter another name!");
             return;
         }
-        GameManager.PLAYER2 = new Player(name, Integer.parseInt(age));
+        GameManager.players.add(new Player(name, Integer.parseInt(age)));
 
         sceneController.enterGame(event);
     }
@@ -66,10 +67,10 @@ public class EnterProfileController {
         String age = ageTF.getText();
         String ipv4 = IPserver.getText();
         GameManager.validateValue(name, age);
-        GameManager.PLAYER1 = new Player(name, Integer.parseInt(age));
+        GameManager.players.add(new Player(name, Integer.parseInt(age)));
         GameManager.client = new Client(ipv4, name, age);
-        GameManager.client.sendMessage("ready");
-        sceneController.homeScreen(event);
+        GameManager.client.sendMessage(age, Type.ENTER_PROFILE);
+        // sceneController.homeScreen(event);
     }
 
 }
