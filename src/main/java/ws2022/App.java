@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ws2022.Client.Model.GameManager;
+import ws2022.Middleware.GameManager;
 
 import java.io.IOException;
 
