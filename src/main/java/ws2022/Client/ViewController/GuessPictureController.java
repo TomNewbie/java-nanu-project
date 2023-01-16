@@ -24,7 +24,7 @@ public class GuessPictureController {
 
     public void display() throws IOException {
         cover.setText(GameManager.COLOR + " cover ?");
-        choicebox.getItems().addAll(GameManager.value);
+        choicebox.getItems().addAll(GameManager.getArrayValue());
     }
 
     public void clickSubmit(ActionEvent event) throws IOException {
