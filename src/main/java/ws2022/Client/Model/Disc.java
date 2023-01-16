@@ -1,5 +1,7 @@
 package ws2022.Client.Model;
 
+import java.util.ArrayList;
+
 public class Disc {
     private String cardImage;
     private String value;
@@ -28,6 +30,14 @@ public class Disc {
 
     public void setCover() {
         hasCover = true;
+    }
+
+    public static ArrayList<String> convertToValue(ArrayList<Disc> discArrayList) {
+        ArrayList<String> result = new ArrayList<>();
+        for (Disc disc : discArrayList) {
+            result.add(disc.value);
+        }
+        return result;
     }
 
 }

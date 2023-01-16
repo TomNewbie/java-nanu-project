@@ -66,9 +66,11 @@ public class BoardGameController {
 
     @FXML
     public void initialize() throws FileNotFoundException {
-        GenerateData.getSortValue(GameManager.value);
-        GenerateData.generateDisc(GameManager.myList);
-        Collections.shuffle(GameManager.myList);
+        // if (!GameManager.isOnline) {
+        // GenerateData.generateDisc(GameManager.myList);
+        // Collections.shuffle(GameManager.myList);
+        // }
+        GameManager.startGame();
         int index = 0;
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 6; x++) {
@@ -107,22 +109,6 @@ public class BoardGameController {
     }
 
     // random cover
-    public void setUpCover() {
-        String[] colorImage = { "blue", "green", "orange", "red", "yellow" };
-        int count = 0;
-        while (count < 5) {
-            Random random = new Random();
-            int x = random.nextInt(6);
-            int y = random.nextInt(4);
-            int index = y * 6 + x;
-            String selectedImage = "/ws2022/assets/Covers/" + colorImage[count] + ".png";
-
-            if (GameManager.myList.get(index).checkCover())
-                continue;
-            putCover(selectedImage, new Coordinate(x, y), colorImage[count]);
-            count++;
-        }
-    }
 
     public void putCover(String selectedImage, Coordinate coord, String color) {
         Image image = new Image(this.getClass().getResource(selectedImage).toExternalForm());
@@ -133,10 +119,10 @@ public class BoardGameController {
         int y = coord.getRow();
         int index = y * 6 + x;
         GameManager.myList.get(index).setCover();
-        if (GameManager.myHashMap.get(color) == null) {
-            GameManager.myHashMap.put(color, index);
+        if (GameManager.coverHashMap.get(color) == null) {
+            GameManager.coverHashMap.put(color, index);
         } else {
-            GameManager.myHashMap.replace(color, index);
+            GameManager.coverHashMap.replace(color, index);
         }
         imageView.setFitWidth(100);
         imageView.setFitHeight(100);
@@ -160,10 +146,15 @@ public class BoardGameController {
         }
     }
 
-    // click remeber all
+    // click remeber all will set up cover
     @FXML
     public void clickRememberAll() throws IOException {
-        setUpCover();
+        Coordinate[] coverCoords = GameManager.setUpCover();
+        String[] colorImage = { "blue", "green", "orange", "red", "yellow" };
+        for (int count = 0; count < 5; count++) {
+            String selectedImage = "/ws2022/assets/Covers/" + colorImage[count] + ".png";
+            putCover(selectedImage, coverCoords[count], colorImage[count]);
+        }
         pane.getChildren().remove(myButton);
         GameManager.getFirstTurn();
         setTurn(GameManager.isPlayer1Turn);

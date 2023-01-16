@@ -40,8 +40,8 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
         System.out.print("Your IPv4 address: ");
-        System.out.println(Inet4Address.getLocalHost().getHostAddress());
-        ServerSocket serverSocket = new ServerSocket(1234);
+        System.out.println(Inet6Address.getLocalHost().getHostAddress());
+        ServerSocket serverSocket = new ServerSocket(8080);
         Server server = new Server(serverSocket);
         server.startServer();
     }

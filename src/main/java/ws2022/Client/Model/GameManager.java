@@ -2,13 +2,16 @@ package ws2022.Client.Model;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.stage.Stage;
 import ws2022.Client.ViewController.BoardGameController;
 import ws2022.Client.ViewController.SceneController;
+import ws2022.Client.utils.GenerateData;
 
 // public class GameManager {
 //     // Singleton pattern
@@ -44,24 +47,28 @@ public class GameManager {
     public static Player PLAYER1;
     public static Player PLAYER2;
     public static ArrayList<Disc> myList = new ArrayList<>();
-    public static ArrayList<String> value = new ArrayList<>();
-    public static HashMap<String, Integer> myHashMap = new HashMap<>();
+    public static HashMap<String, Integer> coverHashMap = new HashMap<>();
     private static int totalDisc = 24;
     public static String COLOR;
     public static boolean isChangeDisc = false;
     public static Stage stage;
     public static boolean isCorrect;
-    public static SceneController sc = SceneController.getInstance();
+    public static boolean isPlayer1Turn;
+    public static boolean isOnline = false;
 
     public static String getCardImage() {
-        return GameManager.myList.get(GameManager.myHashMap.get(GameManager.COLOR)).getCardImage();
+        return GameManager.myList.get(GameManager.coverHashMap.get(GameManager.COLOR)).getCardImage();
+    }
+
+    public static ArrayList<String> getArrayValue() {
+        ArrayList<String> result = Disc.convertToValue(myList);
+        GenerateData.getSortValue(result);
+        return result;
     }
 
     public static String getAnswer() {
-        return GameManager.myList.get(GameManager.myHashMap.get(GameManager.COLOR)).getValue();
+        return GameManager.myList.get(GameManager.coverHashMap.get(GameManager.COLOR)).getValue();
     }
-
-    public static boolean isPlayer1Turn;
 
     public static void getFirstTurn() {
         if (GameManager.PLAYER1.getAge() > GameManager.PLAYER2.getAge()) {
@@ -92,12 +99,39 @@ public class GameManager {
             bgc.update();
             return;
         } else {
+            SceneController sc = SceneController.getInstance();
             // create leaderboard here
             sc.leaderboard(stage);
         }
     }
 
+    public static void startGame() {
+        GenerateData.generateDisc(myList);
+        Collections.shuffle(myList);
+    }
+
+    public static Coordinate[] setUpCover() {
+        // String[] colorImage = { "blue", "green", "orange", "red", "yellow" };
+        Coordinate[] coordinates = new Coordinate[5];
+        int count = 0;
+        while (count < 5) {
+            Random random = new Random();
+            int x = random.nextInt(6);
+            int y = random.nextInt(4);
+            int index = y * 6 + x;
+            // String selectedImage = "/ws2022/assets/Covers/" + colorImage[count] + ".png";
+
+            if (GameManager.myList.get(index).checkCover())
+                continue;
+            GameManager.myList.get(index).setCover();
+            coordinates[count] = new Coordinate(x, y);
+            // putCover(selectedImage, new Coordinate(x, y), colorImage[count]);
+            count++;
+        }
+        return coordinates;
+    }
+
     public static Coordinate getCurrentColorCoord() {
-        return Coordinate.convertFromIndex(GameManager.myHashMap.get(GameManager.COLOR));
+        return Coordinate.convertFromIndex(GameManager.coverHashMap.get(GameManager.COLOR));
     }
 }
