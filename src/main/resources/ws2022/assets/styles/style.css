@@ -27,7 +27,8 @@
    -fx-background-color: rgba(249, 164, 164, 1);
    -fx-background-radius: 20px;
    -fx-background-size: 350px 65px;
-   -fx-effect: dropshadow(two-pass-box, rgba(249, 164, 164, 0.6), 30, 0, 0, 0);
+   -fx-border-color: rgba(249, 164, 164, 1);
+   -fx-effect: dropshadow(two-pass-box, rgba(249, 164, 164, 0.6), 50, 0, 0, 0);
 }
 
  
