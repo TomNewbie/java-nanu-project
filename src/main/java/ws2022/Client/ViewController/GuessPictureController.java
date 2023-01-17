@@ -7,6 +7,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.cell.ChoiceBoxListCell;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import ws2022.Client.Model.GameManager;
@@ -17,18 +20,20 @@ public class GuessPictureController {
     private Text cover;
 
     @FXML
-    private ChoiceBox<String> choicebox = new ChoiceBox<>();
+    private ComboBox<String> comboBox = new ComboBox<>();
 
     @FXML
     private Button submit;
 
     public void display() throws IOException {
         cover.setText(GameManager.COLOR + " cover ?");
-        choicebox.getItems().addAll(GameManager.getArrayValue());
+
+        comboBox.getItems().addAll(GameManager.getArrayValue());
+        comboBox.setVisibleRowCount(5);
     }
 
     public void clickSubmit(ActionEvent event) throws IOException {
-        String myChoice = choicebox.getValue();
+        String myChoice = comboBox.getValue();
         String answer = GameManager.getAnswer();
         SceneController sc = SceneController.getInstance();
         if (myChoice.equals(answer)) {

@@ -63,7 +63,8 @@ public class GameManager {
 
     public static ArrayList<String> getArrayValue() {
         ArrayList<String> result = Disc.convertToValue(myList);
-        GenerateData.getSortValue(result);
+        // GenerateData.getSortValue(result);
+        Collections.sort(result);
         return result;
     }
 
@@ -98,6 +99,7 @@ public class GameManager {
             BoardGameController bgc = BoardGameController.getInstance();
             bgc.removeGuessPictureBtn();
             bgc.update();
+            myList.get(coverHashMap.get(COLOR)).setGuess();
             return;
         } else {
             SceneController sc = SceneController.getInstance();

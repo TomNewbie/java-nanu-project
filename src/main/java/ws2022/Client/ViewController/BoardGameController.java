@@ -159,7 +159,7 @@ public class BoardGameController {
             String selectedImage = "/ws2022/assets/Covers/" + colorImage[count] + ".png";
             putCover(selectedImage, coverCoords[count], colorImage[count]);
         }
-        pane.getChildren().remove(myButton);
+        boardgame.getChildren().remove(myButton);
         GameManager.getFirstTurn();
         setTurn(GameManager.isPlayer1Turn);
         createRollDiceBtn();
@@ -173,12 +173,10 @@ public class BoardGameController {
         dice.setFitWidth(100);
         dice.setFitHeight(100);
         if (guessPicture != null) {
-            pane.getChildren().remove(guessPicture);
+            boardgame.getChildren().remove(guessPicture);
         }
-        rollDice.setPrefWidth(100);
         rollDice.setPrefHeight(50);
-        rollDice.setLayoutX(800);
-        rollDice.setLayoutY(342);
+        rollDice.setPrefWidth(297);
         rollDice.setOnAction(event -> {
             try {
                 clickRollDice();
@@ -187,7 +185,11 @@ public class BoardGameController {
                 e.printStackTrace();
             }
         });
-        pane.getChildren().add(rollDice);
+        boardgame.setColumnIndex(rollDice, 2);
+        boardgame.setRowIndex(rollDice, 5);
+        boardgame.setColumnSpan(rollDice, 3);
+        boardgame.getChildren().add(rollDice);
+
     }
 
     public void clickRollDice() throws IOException {
@@ -212,16 +214,14 @@ public class BoardGameController {
         dice.setFitWidth(100);
         dice.setFitHeight(100);
         if (chooseColor != null) {
-            pane.getChildren().remove(chooseColor);
+            boardgame.getChildren().remove(chooseColor);
         }
         // remove roll Dice button
-        pane.getChildren().remove(rollDice);
+        boardgame.getChildren().remove(rollDice);
 
         // add guess Picture button
-        guessPicture.setPrefWidth(100);
+        guessPicture.setPrefWidth(297);
         guessPicture.setPrefHeight(50);
-        guessPicture.setLayoutX(800);
-        guessPicture.setLayoutY(342);
         guessPicture.setOnAction(event -> {
             try {
                 Stage popupwindow = new Stage();
@@ -244,7 +244,10 @@ public class BoardGameController {
                 e.printStackTrace();
             }
         });
-        pane.getChildren().add(guessPicture);
+        boardgame.setColumnIndex(guessPicture, 2);
+        boardgame.setRowIndex(guessPicture, 5);
+        boardgame.setColumnSpan(guessPicture, 3);
+        boardgame.getChildren().add(guessPicture);
     }
 
     public void getJoker() {
@@ -258,13 +261,11 @@ public class BoardGameController {
         dice.setFitHeight(100);
 
         // remove roll Dice button
-        pane.getChildren().remove(rollDice);
+        boardgame.getChildren().remove(rollDice);
 
         // add which color button
-        chooseColor.setPrefWidth(100);
+        chooseColor.setPrefWidth(297);
         chooseColor.setPrefHeight(50);
-        chooseColor.setLayoutX(800);
-        chooseColor.setLayoutY(342);
         chooseColor.setOnAction(event -> {
             try {
                 Stage popupwindow = new Stage();
@@ -286,7 +287,10 @@ public class BoardGameController {
                 e.printStackTrace();
             }
         });
-        pane.getChildren().add(chooseColor);
+        boardgame.setColumnIndex(chooseColor, 2);
+        boardgame.setRowIndex(chooseColor, 5);
+        boardgame.setColumnSpan(chooseColor, 3);
+        boardgame.getChildren().add(chooseColor);
     }
 
     public void update() {
@@ -301,7 +305,7 @@ public class BoardGameController {
     }
 
     public void removeGuessPictureBtn() {
-        pane.getChildren().remove(guessPicture);
+        boardgame.getChildren().remove(guessPicture);
     }
 
     // show disc value when click on disc
