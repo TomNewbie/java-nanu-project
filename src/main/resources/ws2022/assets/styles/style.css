@@ -1,16 +1,42 @@
 * {
-   -fx-text-fill: black; 
-   font-family: 'Inter';
+  -fx-font-family: 'Helvetica', Arial, sans-serif;
+  -fx-text-fill:black;
 }
-
-/*Kim */
+/*Regular button - Kim*/
  .button {  
-    -fx-background-color: rgba(249, 164, 164, 0.6);
+  -fx-text-align: center;
+  -fx-font-size: 15pt;
+  
+  -fx-background-color: rgba(249, 164, 164, 0.6);
+  -fx-background-radius: 15px;
+   
+  -fx-border-radius: 15px;
+  -fx-border-width: 1px;
+  -fx-border-color: #000000;
  }
 
+ /*Table cell - Kim*/
+ .leaderboard_label{
+  -fx-background-color: #F9A4A4;
+ }
 
- /*Ngoc */
- /* .button {  
-   -fx-background-color: rgba(249, 164, 164, 0.6);
-   border-radius: 20px;
-} */
+ /* Big button - Ngoc */
+ .bigBtn {  
+   -fx-font-size: 32px;
+
+   -fx-text-align: center;
+
+   -fx-background-color: rgba(249, 164, 164, 1);
+   -fx-background-radius: 20px;
+   -fx-background-size: 350px 65px;
+   -fx-border-color: rgba(249, 164, 164, 1);
+   -fx-effect: dropshadow(two-pass-box, rgba(249, 164, 164, 0.6), 50, 0, 0, 0);
+}
+
+/* Choice Box - Ngoc*/
+.choicebox{
+  -fx-background-color: rgba(249, 164, 164, 0.6);
+  -fx-background-radius: 20px;
+  -fx-padding: 0.0 10.0 0.0 0.0;
+}
+ 

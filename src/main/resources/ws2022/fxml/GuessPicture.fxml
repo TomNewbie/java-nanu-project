@@ -6,10 +6,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.GuessPictureController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.GuessPictureController">
    <children>
-      <Button fx:id="submit" layoutX="210.0" layoutY="266.0" mnemonicParsing="false" onAction="#clickSubmit" prefHeight="36.0" prefWidth="100.0" text="Submit" />
-      <Text layoutX="14.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What is the picture under " wrappingWidth="313.5999755859375">
+      <Button fx:id="submit" layoutX="250.0" layoutY="324.0" mnemonicParsing="false" onAction="#clickSubmit" prefHeight="36.0" prefWidth="100.0" text="Submit" />
+      <Text layoutX="52.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What is the picture under " wrappingWidth="328.0">
          <font>
             <Font size="27.0" />
          </font>
@@ -19,6 +19,6 @@
             <Font size="27.0" />
          </font>
       </Text>
-      <ComboBox fx:id="comboBox" layoutX="185.0" layoutY="163.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="choicebox" layoutX="225.0" layoutY="175.0" prefWidth="150.0" styleClass="choicebox" />
    </children>
 </Pane>

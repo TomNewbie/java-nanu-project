@@ -6,31 +6,47 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.EnterProfileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.EnterProfileController">
    <children>
-      <TextField fx:id="nameTF" layoutX="237.0" layoutY="246.0" />
-      <Button layoutX="274.0" layoutY="346.0" mnemonicParsing="false" onAction="#enterGame" prefHeight="25.0" prefWidth="55.0" text="OK" />
-      <Label layoutX="146.0" layoutY="246.0" text="Name:">
+      <TextField fx:id="nameTF" layoutX="435.0" layoutY="316.0" prefHeight="59.0" prefWidth="277.0">
          <font>
-            <Font size="17.0" />
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <Button alignment="CENTER" layoutX="432.0" layoutY="505.0" mnemonicParsing="false" onAction="#enterGame" prefHeight="59.0" prefWidth="139.0" text="Start Game">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="291.0" layoutY="320.0" text="Name:">
+         <font>
+            <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="146.0" layoutY="290.0" text="Age:">
+      <Label fx:id="age" layoutX="292.0" layoutY="413.0" prefHeight="41.0" prefWidth="85.0" text="Age:">
          <font>
-            <Font size="17.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="198.0" layoutY="185.0" prefHeight="32.0" prefWidth="98.0" text="Player">
+      <Label alignment="CENTER" layoutX="386.0" layoutY="210.0" prefHeight="66.0" prefWidth="170.0" text="Player" textAlignment="CENTER">
          <font>
-            <Font size="31.0" />
+            <Font name="System Bold" size="45.0" />
          </font>
       </Label>
-      <Label layoutX="288.0" layoutY="185.0" prefHeight="32.0" prefWidth="98.0" text="2">
+      <Label alignment="CENTER" layoutX="553.0" layoutY="211.0" prefHeight="35.0" prefWidth="23.0" text="2" textAlignment="CENTER">
          <font>
-            <Font size="31.0" />
+            <Font name="System Bold" size="45.0" />
          </font>
       </Label>
-      <Button fx:id="A" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#enterProfile1" text="Return" />
-      <TextField fx:id="ageTF" layoutX="238.0" layoutY="291.0" />
+      <Button fx:id="returnButton" cancelButton="true" layoutX="26.0" layoutY="19.0" mnemonicParsing="false" onAction="#enterProfile1" text="Return">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <TextField fx:id="ageTF" layoutX="435.0" layoutY="405.0" prefHeight="59.0" prefWidth="277.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>
