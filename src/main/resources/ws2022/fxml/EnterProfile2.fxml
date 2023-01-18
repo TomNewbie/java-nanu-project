@@ -38,7 +38,7 @@
             <Font name="System Bold" size="45.0" />
          </font>
       </Label>
-      <Button fx:id="returnButton" cancelButton="true" layoutX="26.0" layoutY="19.0" mnemonicParsing="false" onAction="#returnHome" text="Return">
+      <Button fx:id="returnButton" cancelButton="true" layoutX="26.0" layoutY="19.0" mnemonicParsing="false" onAction="#enterProfile1" text="Return">
          <font>
             <Font size="15.0" />
          </font>

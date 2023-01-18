@@ -80,7 +80,8 @@ public class SceneController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/fxml/EnterProfile.fxml"));
         if (GameManager.PLAYER1 != null) {
             EnterProfileController epc = loader.getController();
-            epc.displayProfile(GameManager.PLAYER1.getName(), GameManager.PLAYER1.getAge());
+            epc.displayProfile(GameManager.PLAYER1.getName(),
+                    GameManager.PLAYER1.getAge());
         }
         createScene(event, loader);
     }
