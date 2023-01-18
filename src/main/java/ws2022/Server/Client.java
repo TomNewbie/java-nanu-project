@@ -9,8 +9,11 @@ import java.net.Inet4Address;
 import java.net.Socket;
 import java.util.Scanner;
 
-import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
+import ws2022.Client.ViewController.SceneController;
+import ws2022.Client.ViewController.WaitingController;
+import ws2022.Middleware.API;
+import ws2022.Middleware.GameManager;
 
 public class Client {
     private Socket socket;
@@ -28,28 +31,53 @@ public class Client {
         }
     }
 
-    public void sendMessage() {
-        try {
-            bufferedWriter.write(GameManager.PLAYER1.getName() + ";" +
-                    GameManager.PLAYER1.getAge());
-            bufferedWriter.newLine();
-            bufferedWriter.flush();
-            Scanner scanner = new Scanner(System.in);
-            while (socket.isConnected()) {
-                String messageToSend = scanner.nextLine();
-                bufferedWriter.write(GameManager.PLAYER1.getName() + ": " + messageToSend);
-                bufferedWriter.newLine();
-                bufferedWriter.flush();
-            }
-        } catch (IOException e) {
-            closeEverything(socket, bufferedReader, bufferedWriter);
-            // TODO: handle exception
+    private void onReceiveEnterProfile(String s) throws IOException {
+        String[] data = s.split(";");
+        String status = data[1];
+        if (status.equals("success")) {
+            WaitingController wc = WaitingController.getInstance();
+            wc.setName(GameManager.players.get(0).getName(), 1);
+            SceneController sc = SceneController.getInstance();
+            sc.enterWaiting(GameManager.stage);
         }
     }
 
-    public void sendMessage(String s) {
+    private void handleMessage(String s) throws IOException {
+        API.Type type = API.getTypeFromClient(s);
+        switch (type) {
+            case ENTER_PROFILE:
+                onReceiveEnterProfile(s);
+                break;
+            // break;
+            // case CHOOSE_COLOR:
+            // break;
+            // case GUESS_PICTURE:
+            // break;
+        }
+    }
+    // public void sendMessage() {
+    // try {
+    // bufferedWriter.write(GameManager.PLAYER1.getName() + ";" +
+    // GameManager.PLAYER1.getAge());
+    // bufferedWriter.newLine();
+    // bufferedWriter.flush();
+    // Scanner scanner = new Scanner(System.in);
+    // while (socket.isConnected()) {
+    // String messageToSend = scanner.nextLine();
+    // bufferedWriter.write(GameManager.PLAYER1.getName() + ": " + messageToSend);
+    // bufferedWriter.newLine();
+    // bufferedWriter.flush();
+    // }
+    // } catch (IOException e) {
+    // closeEverything(socket, bufferedReader, bufferedWriter);
+    // // TODO: handle exception
+    // }
+    // }
+
+    public void sendMessage(String s, API.Type type) {
         try {
-            String sendMessage = GameManager.PLAYER1.getName() + ";" + s;
+            String sendMessage = type.toString() + ";"
+                    + GameManager.players.get(0).getName() + ";" + s;
             bufferedWriter.write(sendMessage);
             bufferedWriter.newLine();
             bufferedWriter.flush();
@@ -64,11 +92,11 @@ public class Client {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String msgFromGroupChat;
+                String msgFromServer;
                 while (socket.isConnected()) {
                     try {
-                        msgFromGroupChat = bufferedReader.readLine();
-                        System.out.println(msgFromGroupChat);
+                        msgFromServer = bufferedReader.readLine();
+                        handleMessage(msgFromServer);
                     } catch (Exception e) {
                         closeEverything(socket, bufferedReader, bufferedWriter);
                         // TODO: handle exception

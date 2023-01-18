@@ -64,7 +64,7 @@ public class BoardGameController {
 
     @FXML
     public void initialize() throws FileNotFoundException {
-        if (!GameManager.isOnline) {
+        if (GameManager.isOnline) {
             return;
             // GenerateData.generateDisc(GameManager.myList);
             // Collections.shuffle(GameManager.myList);

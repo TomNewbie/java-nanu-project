@@ -8,6 +8,8 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import ws2022.Middleware.API;
+
 public class ClientHandler implements Runnable {
     public static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
     private Socket socket;
@@ -48,15 +50,27 @@ public class ClientHandler implements Runnable {
         }
     }
 
+    public static void handleMessage(String s) {
+        API.Type type = API.getTypeFromClient(s);
+        switch (type) {
+            case ENTER_PROFILE:
+
+                break;
+            case CHOOSE_COLOR:
+                break;
+            case GUESS_PICTURE:
+                break;
+
+        }
+    }
+
     public void broadcastMessage(String messageFromClient) {
         System.out.println(messageFromClient);
         for (ClientHandler clientHandler : clientHandlers) {
             try {
-                if (!clientHandler.clientUsername.equals(clientUsername)) {
-                    clientHandler.bufferedWriter.write(messageFromClient);
-                    clientHandler.bufferedWriter.newLine();
-                    clientHandler.bufferedWriter.flush();
-                }
+                clientHandler.bufferedWriter.write(messageFromClient);
+                clientHandler.bufferedWriter.newLine();
+                clientHandler.bufferedWriter.flush();
             } catch (IOException e) {
                 closeEverything(socket, bufferedReader, bufferedWriter);
                 // TODO: handle exception

@@ -37,7 +37,6 @@ public class Server {
             e.printStackTrace();
         }
     }
-
     public static void main(String[] args) throws IOException {
         System.out.print("Your IPv4 address: ");
         System.out.println(Inet4Address.getLocalHost().getHostAddress());
