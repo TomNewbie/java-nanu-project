@@ -10,10 +10,6 @@ public class Player {
         this.age = age;
     }
 
-    public Player(String name) {
-        this.name = name;
-    }
-
     public int getScore() {
         return score;
     }

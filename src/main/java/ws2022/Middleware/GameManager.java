@@ -20,7 +20,8 @@ import ws2022.Server.Client;
 
 public class GameManager {
     // public static
-    public static ArrayList<Player> players = new ArrayList<>();
+    public static Player PLAYER1;
+    public static Player PLAYER2;
     public static Client client;
     public static ArrayList<Disc> myList = new ArrayList<>();
     public static HashMap<String, Integer> coverHashMap = new HashMap<>();
@@ -47,7 +48,7 @@ public class GameManager {
     }
 
     public static void getFirstTurn() {
-        if (GameManager.players.get(0).getAge() > GameManager.players.get(1).getAge()) {
+        if (GameManager.PLAYER1.getAge() > GameManager.PLAYER2.getAge()) {
             GameManager.isPlayer1Turn = false;
             return;
         }
@@ -56,10 +57,10 @@ public class GameManager {
 
     public static void addScore() {
         if (GameManager.isPlayer1Turn) {
-            GameManager.players.get(0).addScore();
+            GameManager.PLAYER1.addScore();
             return;
         }
-        GameManager.players.get(1).addScore();
+        GameManager.PLAYER2.addScore();
 
     }
 
@@ -89,7 +90,6 @@ public class GameManager {
 
     public static void startGame() {
         if (isOnline) {
-
             return;
         }
         GenerateData.generateDisc(myList);

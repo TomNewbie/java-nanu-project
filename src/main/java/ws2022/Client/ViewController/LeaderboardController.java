@@ -33,16 +33,16 @@ public class LeaderboardController {
         String loserName = "";
         int winnerScore = 0;
         int loserScore = 0;
-        if (GameManager.players.get(0).getScore() >= GameManager.players.get(1).getScore()) {
-            winnerName = GameManager.players.get(0).getName();
-            winnerScore = GameManager.players.get(0).getScore();
-            loserName = GameManager.players.get(1).getName();
-            loserScore = GameManager.players.get(1).getScore();
+        if (GameManager.PLAYER1.getScore() >= GameManager.PLAYER2.getScore()) {
+            winnerName = GameManager.PLAYER1.getName();
+            winnerScore = GameManager.PLAYER1.getScore();
+            loserName = GameManager.PLAYER2.getName();
+            loserScore = GameManager.PLAYER2.getScore();
         } else {
-            winnerName = GameManager.players.get(1).getName();
-            winnerScore = GameManager.players.get(1).getScore();
-            loserName = GameManager.players.get(0).getName();
-            loserScore = GameManager.players.get(0).getScore();
+            winnerName = GameManager.PLAYER2.getName();
+            winnerScore = GameManager.PLAYER2.getScore();
+            loserName = GameManager.PLAYER1.getName();
+            loserScore = GameManager.PLAYER1.getScore();
         }
         name_1.setText(winnerName);
         point_1.setText("" + winnerScore);

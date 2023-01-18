@@ -74,18 +74,18 @@ public class SceneController {
 
     public void enterProfile1(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/fxml/EnterProfile.fxml"));
-        if (GameManager.players.get(0) != null) {
+        if (GameManager.PLAYER1 != null) {
             EnterProfileController epc = loader.getController();
-            epc.displayProfile(GameManager.players.get(0).getName(), GameManager.players.get(0).getAge());
+            epc.displayProfile(GameManager.PLAYER1.getName(), GameManager.PLAYER1.getAge());
         }
         createScene(event, loader);
     }
 
     public void enterProfile2(ActionEvent event, String tho) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/fxml/EnterProfile2.fxml"));
-        if (GameManager.players.get(1) != null) {
+        if (GameManager.PLAYER2 != null) {
             EnterProfileController epc = loader.getController();
-            epc.displayProfile(GameManager.players.get(1).getName(), GameManager.players.get(1).getAge());
+            epc.displayProfile(GameManager.PLAYER2.getName(), GameManager.PLAYER2.getAge());
         }
         createScene(event, loader);
     }
@@ -98,15 +98,6 @@ public class SceneController {
 
     public void enterOnline(ActionEvent event) throws IOException {
         createScene(event, "EnterProfileOnl");
-    }
-
-    public void enterWaiting(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/fxml/waitingScreen.fxml"));
-        loader.setController(WaitingController.getInstance());
-        root = loader.load();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
     public void closeWindow() throws IOException {
