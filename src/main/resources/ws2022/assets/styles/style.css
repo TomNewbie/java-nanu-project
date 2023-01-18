@@ -1,5 +1,7 @@
-
-
+* {
+  -fx-font-family: 'Helvetica', Arial, sans-serif;
+  -fx-text-fill:black;
+}
 /*Regular button - Kim*/
  .button {  
   -fx-text-align: center;

@@ -13,7 +13,7 @@
             <Font size="20.0" />
          </font>
       </TextField>
-      <Button alignment="CENTER" layoutX="432.0" layoutY="505.0" mnemonicParsing="false" onAction="#goToProfile2" prefHeight="59.0" prefWidth="139.0" text="Start Game">
+      <Button alignment="CENTER" layoutX="432.0" layoutY="505.0" mnemonicParsing="false" onAction="#enterGame" prefHeight="59.0" prefWidth="139.0" text="Start Game">
          <font>
             <Font size="15.0" />
          </font>
@@ -43,7 +43,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <TextField fx:id="nameTF1" layoutX="435.0" layoutY="405.0" prefHeight="59.0" prefWidth="277.0">
+      <TextField fx:id="ageTF" layoutX="435.0" layoutY="405.0" prefHeight="59.0" prefWidth="277.0">
          <font>
             <Font size="20.0" />
          </font>

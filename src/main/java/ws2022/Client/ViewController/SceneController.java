@@ -38,8 +38,6 @@ public class SceneController {
         root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/" + name + ".fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        scene.getStylesheets()
-                .add(getClass().getResource("/ws2022/Client/assets/styles/style.css").toExternalForm());
         stage.setScene(scene);
         stage.setScene(scene);
         stage.show();
