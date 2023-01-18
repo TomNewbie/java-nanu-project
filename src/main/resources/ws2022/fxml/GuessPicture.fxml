@@ -19,6 +19,6 @@
             <Font size="27.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="choicebox" layoutX="225.0" layoutY="175.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="choicebox" layoutX="225.0" layoutY="175.0" prefWidth="150.0" styleClass="choicebox" />
    </children>
 </Pane>
