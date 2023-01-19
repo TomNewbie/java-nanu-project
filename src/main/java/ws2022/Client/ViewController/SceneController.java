@@ -67,11 +67,11 @@ public class SceneController {
 
     public void leaderboard(Stage stage) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/Leaderboard.fxml"));
-        scene = new Scene(root);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-
+   
     public void enterProfile1(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/fxml/EnterProfile.fxml"));
         if (GameManager.PLAYER1 != null) {

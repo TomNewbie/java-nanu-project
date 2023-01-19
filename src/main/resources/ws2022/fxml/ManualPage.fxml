@@ -10,59 +10,15 @@
 <Pane fx:id="ManualPagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.ManuelPageController">
    <children>
       <Button layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="53.0" prefWidth="132.0" text="Return " />
-      <ImageView fitHeight="138.0" fitWidth="226.0" layoutX="87.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../ManualPageImage/EnterPlayer1.PNG" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="139.0" fitWidth="226.0" layoutX="334.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/ManualPageImage/EnterProfile2.PNG" />
-         </image>
-      </ImageView>
       <Label layoutX="234.0" layoutY="22.0" text="Manual Page">
          <font>
             <Font name="System Bold" size="37.0" />
          </font>
       </Label>
-      <ImageView fitHeight="135.0" fitWidth="237.0" layoutX="614.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/ManualPageImage/SelectPicture.PNG" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="164.0" fitWidth="255.0" layoutX="32.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="429.0" fitWidth="695.0" layoutX="114.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/ManualPageImage/EnterPlayer1.PNG" />
          </image></ImageView>
-      <ImageView fitHeight="150.0" fitWidth="243.0" layoutX="624.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/ManualPageImage/LeatherBoard.PNG" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="164.0" fitWidth="276.0" layoutX="48.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/ManualPageImage/ChooseAnswer.PNG" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="135.0" fitWidth="226.0" layoutX="350.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../ManualPageImage/Wrong.PNG" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="131.0" fitWidth="225.0" layoutX="615.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../ManualPageImage/LeatherBoard.PNG" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="157.0" fitWidth="249.0" layoutX="343.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/ManualPageImage/Wrong.PNG" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="87.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../ManualPageImage/Unbenannt.PNG" />
-         </image>
-      </ImageView>
+      <Button layoutX="854.0" layoutY="30.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="116.0" text="Next" />
    </children>
 </Pane>

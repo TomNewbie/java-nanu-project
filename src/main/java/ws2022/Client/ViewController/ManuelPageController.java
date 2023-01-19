@@ -9,4 +9,9 @@ public class ManuelPageController {
    public void returnHome(ActionEvent event) throws IOException{
     sc.homeScreen(event);
    }
+   
+   public void manualPage2(ActionEvent event) throws IOException {
+      sc.gotomanualpage(event);
+  }
+
 }
