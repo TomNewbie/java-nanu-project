@@ -1,0 +1,12 @@
+package ws2022.Client.ViewController;
+
+import java.io.IOException;
+
+import javafx.event.ActionEvent;
+
+public class ManuelPageController {
+   SceneController sc = SceneController.getInstance();
+   public void returnHome(ActionEvent event) throws IOException{
+    sc.homeScreen(event);
+   }
+}
