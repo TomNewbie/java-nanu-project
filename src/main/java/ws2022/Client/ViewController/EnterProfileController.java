@@ -1,20 +1,24 @@
 package ws2022.Client.ViewController;
 
 import java.io.IOException;
+import java.net.Socket;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
+import ws2022.Middleware.GameManager;
+import ws2022.Middleware.API.Type;
+import ws2022.Server.Client;
 
 public class EnterProfileController {
     @FXML
     TextField nameTF;
     @FXML
     TextField ageTF;
-
+    @FXML
+    TextField IPserver;
     SceneController sceneController = SceneController.getInstance();
 
     public void returnHome(ActionEvent event) throws IOException {

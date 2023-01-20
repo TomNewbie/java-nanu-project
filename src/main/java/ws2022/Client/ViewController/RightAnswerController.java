@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import ws2022.Client.Model.GameManager;
+import ws2022.Middleware.GameManager;
 
 public class RightAnswerController {
     @FXML

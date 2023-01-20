@@ -21,8 +21,8 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
-import ws2022.Client.Model.GameManager;
 import ws2022.Client.utils.GenerateData;
+import ws2022.Middleware.GameManager;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -68,10 +68,11 @@ public class BoardGameController {
 
     @FXML
     public void initialize() throws FileNotFoundException {
-        // if (!GameManager.isOnline) {
-        // GenerateData.generateDisc(GameManager.myList);
-        // Collections.shuffle(GameManager.myList);
-        // }
+        if (GameManager.isOnline) {
+            return;
+            // GenerateData.generateDisc(GameManager.myList);
+            // Collections.shuffle(GameManager.myList);
+        }
         GameManager.startGame();
         int index = 0;
         for (int y = 0; y < 7; y++) {

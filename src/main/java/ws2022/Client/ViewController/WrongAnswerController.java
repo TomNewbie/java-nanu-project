@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import ws2022.Client.Model.GameManager;
+import ws2022.Middleware.GameManager;
 
 public class WrongAnswerController {
     @FXML

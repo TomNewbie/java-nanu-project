@@ -1,5 +1,10 @@
 package ws2022.Server;
 
+import java.util.ArrayList;
+
+import ws2022.Middleware.GameManager;
+import ws2022.Middleware.API.Type;
+
 public class hehe {
     public enum KhoaBede {
         HAHA,
@@ -8,6 +13,7 @@ public class hehe {
     }
 
     public static void main(String[] args) {
-        System.out.println(hehe.KhoaBede.HAHA.name());
+        String tho = "haha;asdasd";
+        System.out.println(Integer.parseInt(Type.ENTER_PROFILE.toString()));
     }
 }
