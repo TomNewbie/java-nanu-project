@@ -11,11 +11,9 @@ public class HomeScreen extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/ws2022/Client/ViewFx/HomeScreen.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/BoardGameOnl.fxml"));
 			Scene scene = new Scene(root);
-			// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
-			// scene.getStylesheets().add(getClass().getResource("/ws2022/Client/assets/styles/style.css").toExternalForm());
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
