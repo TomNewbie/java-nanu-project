@@ -10,8 +10,8 @@ import java.net.Socket;
 import java.util.Scanner;
 
 import ws2022.Client.Model.Player;
+import ws2022.Client.ViewController.EnterProfileOnlController;
 import ws2022.Client.ViewController.SceneController;
-import ws2022.Client.ViewController.WaitingController;
 import ws2022.Middleware.API;
 import ws2022.Middleware.GameManager;
 
@@ -20,7 +20,7 @@ public class Client {
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
 
-    public Client(String ipv4, String username, String age) {
+    public Client(String ipv4) {
         try {
             this.socket = new Socket(ipv4, 1809);
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -33,13 +33,15 @@ public class Client {
 
     private void onReceiveEnterProfile(String s) throws IOException {
         String[] data = s.split(";");
-        String status = data[1];
-        if (status.equals("success")) {
-            WaitingController wc = WaitingController.getInstance();
-            wc.setName(GameManager.players.get(0).getName(), 1);
-            SceneController sc = SceneController.getInstance();
-            sc.enterWaiting(GameManager.stage);
+        if (data.length == 1) {
+            EnterProfileOnlController epoc = EnterProfileOnlController.getInstance();
+            epoc.setStatus();
+            return;
         }
+        // else this will sent the name and age of second player
+        GameManager.PLAYER2 = new Player(data[1], Integer.parseInt(data[2]));
+        SceneController sc = SceneController.getInstance();
+        sc.enterGameOnline(GameManager.stage);
     }
 
     private void handleMessage(String s) throws IOException {
@@ -54,6 +56,7 @@ public class Client {
             // case GUESS_PICTURE:
             // break;
         }
+        System.out.println("hehe handle message");
     }
     // public void sendMessage() {
     // try {
@@ -77,10 +80,11 @@ public class Client {
     public void sendMessage(String s, API.Type type) {
         try {
             String sendMessage = type.toString() + ";"
-                    + GameManager.players.get(0).getName() + ";" + s;
+                    + GameManager.PLAYER1.getName() + ";" + s;
             bufferedWriter.write(sendMessage);
             bufferedWriter.newLine();
             bufferedWriter.flush();
+            System.out.println("Send to server");
         } catch (Exception e) {
             closeEverything(socket, bufferedReader, bufferedWriter);
             System.out.println("Some thing wrong with sendMessage");
@@ -96,6 +100,7 @@ public class Client {
                 while (socket.isConnected()) {
                     try {
                         msgFromServer = bufferedReader.readLine();
+                        System.out.println("server: " + msgFromServer);
                         handleMessage(msgFromServer);
                     } catch (Exception e) {
                         closeEverything(socket, bufferedReader, bufferedWriter);

@@ -3,8 +3,6 @@ package ws2022.Middleware;
 public class API {
     public enum Type {
         ENTER_PROFILE, //
-        READY,
-        UN_READY,
         ROLL_DICE, //
         GUESS_PICTURE,
         RIGHT_ANSWER,
@@ -32,5 +30,10 @@ public class API {
         String typeString = message.split(";")[0];
         Type result = getType(typeString);
         return result;
+    }
+
+    public static void main(String[] args) {
+        Type tho = getTypeFromClient("ENTER_PROFILE1;HEHE");
+        System.out.println(tho.toString());
     }
 }

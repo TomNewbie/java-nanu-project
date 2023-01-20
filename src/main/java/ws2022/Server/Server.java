@@ -17,8 +17,8 @@ public class Server {
         try {
             while (!serverSocket.isClosed()) {
                 Socket socket = serverSocket.accept();
-                System.out.println("A new client has connected!");
                 ClientHandler clientHandler = new ClientHandler(socket);
+                System.out.println("A new client has connected!");
                 Thread thread = new Thread(clientHandler);
                 thread.start();
             }
@@ -37,6 +37,7 @@ public class Server {
             e.printStackTrace();
         }
     }
+
     public static void main(String[] args) throws IOException {
         System.out.print("Your IPv4 address: ");
         System.out.println(Inet4Address.getLocalHost().getHostAddress());
