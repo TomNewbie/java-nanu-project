@@ -74,20 +74,19 @@ public class SceneController {
 
     public void enterProfile1(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/fxml/EnterProfile.fxml"));
+        root = loader.load();
         if (GameManager.PLAYER1 != null) {
             EnterProfileController epc = loader.getController();
             epc.displayProfile(GameManager.PLAYER1.getName(), GameManager.PLAYER1.getAge());
         }
-        createScene(event, loader);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void enterProfile2(ActionEvent event, String tho) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/fxml/EnterProfile2.fxml"));
-        if (GameManager.PLAYER2 != null) {
-            EnterProfileController epc = loader.getController();
-            epc.displayProfile(GameManager.PLAYER2.getName(), GameManager.PLAYER2.getAge());
-        }
-        createScene(event, loader);
+        createScene(event, "EnterProfile2");
     }
 
     public void enterGame(ActionEvent event) throws IOException {
@@ -96,8 +95,20 @@ public class SceneController {
         createScene(event, loader);
     }
 
-    public void enterOnline(ActionEvent event) throws IOException {
-        createScene(event, "EnterProfileOnl");
+    public void enterProfileOnline(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/fxml/EnterProfileOnl.fxml"));
+        loader.setController(EnterProfileOnlController.getInstance());
+        createScene(event, loader);
+    }
+
+    public void enterGameOnline(Stage stage) throws IOException {
+        // FXMLLoader loader = new
+        // FXMLLoader(getClass().getResource("/ws2022/fxml/boardgameOnl.fxml"));
+        // loader.setController(BoardGameController.getInstance());
+        // scene = new Scene(loader.load());
+        // stage.setScene(scene);
+        // stage.show();
+        System.out.println("game start");
     }
 
     public void closeWindow() throws IOException {

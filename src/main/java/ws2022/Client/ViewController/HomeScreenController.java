@@ -20,7 +20,7 @@ public class HomeScreenController {
     public void playOnline(ActionEvent event) throws IOException {
         // sc.enterProfile1(event);
         GameManager.isOnline = true;
-        sc.enterOnline(event);
+        sc.enterProfileOnline(event);
     }
 
     public void quit(ActionEvent event) throws IOException {

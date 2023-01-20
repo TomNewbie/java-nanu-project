@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import ws2022.Client.Model.Player;
 import ws2022.Middleware.GameManager;
+import ws2022.Middleware.API.Type;
 import ws2022.Server.Client;
 
 public class EnterProfileController {
@@ -59,17 +60,6 @@ public class EnterProfileController {
     public void displayProfile(String name, int age) {
         nameTF.setText(name);
         ageTF.setText("" + age);
-    }
-
-    public void enterOnlineGame(ActionEvent event) throws IOException {
-        String name = nameTF.getText();
-        String age = ageTF.getText();
-        String ipv4 = IPserver.getText();
-        GameManager.validateValue(name, age);
-        GameManager.PLAYER1 = new Player(name, Integer.parseInt(age));
-        GameManager.client = new Client(ipv4, name, age);
-        GameManager.client.sendMessage("ready");
-        sceneController.homeScreen(event);
     }
 
 }
