@@ -1,6 +1,5 @@
 package ws2022.Client.ViewController;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -10,13 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 public class SoundController implements Initializable {
-    String path = "/ws2022/sound/click.mp3";
-
-    Media media = new Media(this.getClass()
-            .getResource(path)
-            .toExternalForm());
-
-    MediaPlayer mediaPlayer = new MediaPlayer(media);
+    // String path = "/ws2022/sound/click.mp3";
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -24,8 +17,53 @@ public class SoundController implements Initializable {
     }
 
     @FXML
-    public void click() {
+    public void playSound(String path) {
+        Media media = new Media(this.getClass()
+                .getResource(path)
+                .toExternalForm());
+
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
+    }
+
+    public void click() {
+        String path = "/ws2022/sound/click.mp3";
+        playSound(path);
+    }
+
+    public void correctAnswer() {
+        String path = "/ws2022/sound/correctanswer.mp3";
+        playSound(path);
+    }
+
+    public void dice() {
+        String path = "/ws2022/sound/dice.mp3";
+        playSound(path);
+    }
+
+    public void joker() {
+        String path = "/ws2022/sound/joker.mp3";
+        playSound(path);
+    }
+
+    public void lose() {
+        String path = "/ws2022/sound/losegame.mp3";
+        playSound(path);
+    }
+
+    public void wrongAnswer() {
+        String path = "/ws2022/sound/wronganswer.mp3";
+        playSound(path);
+    }
+
+    public void presskeyboard() {
+        String path = "/ws2022/sound/presskeyboard.mp3";
+        playSound(path);
+    }
+
+    public void victory() {
+        String path = "/ws2022/sound/victory.mp3";
+        playSound(path);
     }
 
 }

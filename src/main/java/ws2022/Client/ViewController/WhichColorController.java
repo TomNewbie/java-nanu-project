@@ -20,12 +20,14 @@ public class WhichColorController {
     private Button nextButton;
     private String[] color = { "red", "green", "blue", "yellow", "orange" };
     private List<String> colorList = Arrays.asList(color);
+    SoundController soundc = new SoundController();
 
     public void display() {
         choiceBox.getItems().addAll(colorList);
     }
 
     public void closePopUp() {
+        soundc.click();
         String myChoice = choiceBox.getValue();
         GameManager.COLOR = myChoice;
         Stage popupwindow = (Stage) mypane.getScene().getWindow();

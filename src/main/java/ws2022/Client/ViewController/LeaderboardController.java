@@ -27,8 +27,10 @@ public class LeaderboardController {
     public Text name_2;
     @FXML
     public Text point_2;
+    SoundController soundc = new SoundController();
 
     public void initialize() throws FileNotFoundException {
+        soundc.victory();
         String winnerName = "";
         String loserName = "";
         int winnerScore = 0;
@@ -51,11 +53,13 @@ public class LeaderboardController {
     }
 
     public void clickReturnButton(ActionEvent event) throws IOException {
+        soundc.click();
         SceneController sc = SceneController.getInstance();
         sc.createScene(event, "HomeScreen");
     }
 
     public void clickAgainButton(ActionEvent event) throws IOException {
+        soundc.click();
         SceneController sc = SceneController.getInstance();
         sc.createScene(event, "EnterProfile");
     }

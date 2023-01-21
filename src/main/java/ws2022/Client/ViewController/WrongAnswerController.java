@@ -27,6 +27,7 @@ public class WrongAnswerController {
     private Label label;
     @FXML
     private Pane pane;
+    SoundController soundc = new SoundController();
 
     @FXML
     public void initialize() throws FileNotFoundException {
@@ -45,6 +46,7 @@ public class WrongAnswerController {
     }
 
     public void closePopUp(ActionEvent event) throws IOException {
+        soundc.click();
         Stage mystage = (Stage) pane.getScene().getWindow();
         mystage.close();
         GameManager.changeTurn();

@@ -14,8 +14,10 @@ public class RightAnswerController {
     private Button nextBtn;
     @FXML
     private Pane pane;
+    SoundController soundc = new SoundController();
 
     public void closePopUp(ActionEvent event) throws IOException {
+        soundc.click();
         Stage mystage = (Stage) pane.getScene().getWindow();
         mystage.close();
         GameManager.addScore();

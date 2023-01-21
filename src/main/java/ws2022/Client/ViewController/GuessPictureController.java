@@ -24,6 +24,7 @@ public class GuessPictureController {
 
     @FXML
     private Button submit;
+    SoundController soundc = new SoundController();
 
     public void display() throws IOException {
         cover.setText(GameManager.COLOR + " cover ?");
@@ -33,12 +34,15 @@ public class GuessPictureController {
     }
 
     public void clickSubmit(ActionEvent event) throws IOException {
+        soundc.click();
         String myChoice = comboBox.getValue();
         String answer = GameManager.getAnswer();
         SceneController sc = SceneController.getInstance();
         if (myChoice.equals(answer)) {
+            soundc.correctAnswer();
             sc.createScene(event, "rightAnswer");
         } else {
+            soundc.wrongAnswer();
             sc.createScene(event, "wrongAnswer");
         }
 

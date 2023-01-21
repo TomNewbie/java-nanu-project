@@ -3,7 +3,6 @@ package ws2022.Client.ViewController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,18 +16,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
-import ws2022.Client.utils.GenerateData;
 import ws2022.Middleware.GameManager;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Random;
 
 public class BoardGameController {
     private static BoardGameController bgc;
@@ -65,6 +60,7 @@ public class BoardGameController {
     @FXML
     public ImageView imageView;
     private HashMap<String, ImageView> hashMapImageView = new HashMap<>();
+    SoundController soundc = new SoundController();
 
     @FXML
     public void initialize() throws FileNotFoundException {
@@ -154,6 +150,7 @@ public class BoardGameController {
     // click remeber all will set up cover
     @FXML
     public void clickRememberAll() throws IOException {
+        soundc.click();
         Coordinate[] coverCoords = GameManager.setUpCover();
         String[] colorImage = { "blue", "green", "orange", "red", "yellow" };
         for (int count = 0; count < 5; count++) {
@@ -181,6 +178,7 @@ public class BoardGameController {
         rollDice.setOnAction(event -> {
             try {
                 clickRollDice();
+
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -194,9 +192,11 @@ public class BoardGameController {
     }
 
     public void clickRollDice() throws IOException {
+        soundc.click();
         GameManager.COLOR = Dice.rollDice();
 
         if (GameManager.COLOR.equals("joker")) {
+            soundc.joker();
             System.out.println("you get joker mathar facker");
             getJoker();
         } else {
@@ -225,6 +225,7 @@ public class BoardGameController {
         guessPicture.setPrefHeight(50);
         guessPicture.setOnAction(event -> {
             try {
+                soundc.click();
                 Stage popupwindow = new Stage();
                 popupwindow.initModality(Modality.APPLICATION_MODAL);
                 popupwindow.setTitle("This is a pop up window");
@@ -315,6 +316,7 @@ public class BoardGameController {
         if (!GameManager.isChangeDisc) {
             return;
         }
+        soundc.click();
         GameManager.isChangeDisc = false;
         deleteCover(GameManager.getCurrentColorCoord());
         Node sourceComponent = (Node) event.getSource();
