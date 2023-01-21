@@ -27,7 +27,7 @@ public class GuessPictureController {
     SoundController soundc = new SoundController();
 
     public void display() throws IOException {
-        cover.setText(GameManager.COLOR + " cover ?");
+        cover.setText("What is the image under " + GameManager.COLOR + " cover ?");
 
         comboBox.getItems().addAll(GameManager.getArrayValue());
         comboBox.setVisibleRowCount(5);
