@@ -4,7 +4,9 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import ws2022.Client.Model.Player;
 import ws2022.Middleware.GameManager;
@@ -25,6 +27,10 @@ public class EnterProfileOnlController {
     private TextField ageTF;
     @FXML
     private TextField IPserver;
+    @FXML
+    private Button okButton;
+    @FXML
+    private AnchorPane pane;
 
     public static EnterProfileOnlController getInstance() {
         if (epoc == null) {
@@ -50,7 +56,7 @@ public class EnterProfileOnlController {
         GameManager.PLAYER1 = new Player(name, Integer.parseInt(age));
         GameManager.client = new Client(ipv4);
         GameManager.client.listenForMessage();
-        // Thread.sleep(5000);
         GameManager.client.sendMessage(GameManager.PLAYER1.getAge() + "", Type.ENTER_PROFILE);
+        pane.getChildren().remove(okButton);
     }
 }

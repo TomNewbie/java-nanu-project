@@ -15,10 +15,11 @@ public class Server {
 
     public void startServer() {
         try {
+            int count = 0;
             while (!serverSocket.isClosed()) {
+                count++;
                 Socket socket = serverSocket.accept();
                 ClientHandler clientHandler = new ClientHandler(socket);
-                System.out.println("A new client has connected!");
                 Thread thread = new Thread(clientHandler);
                 thread.start();
             }
@@ -40,6 +41,7 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
         System.out.print("Your IPv4 address: ");
+        // Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
         System.out.println(Inet4Address.getLocalHost().getHostAddress());
         ServerSocket serverSocket = new ServerSocket(1809);
         Server server = new Server(serverSocket);

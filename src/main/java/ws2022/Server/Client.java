@@ -5,9 +5,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.net.Inet4Address;
 import java.net.Socket;
-import java.util.Scanner;
 
 import ws2022.Client.Model.Player;
 import ws2022.Client.ViewController.EnterProfileOnlController;
@@ -104,7 +102,8 @@ public class Client {
                         handleMessage(msgFromServer);
                     } catch (Exception e) {
                         closeEverything(socket, bufferedReader, bufferedWriter);
-                        // TODO: handle exception
+                        e.printStackTrace();
+                        break;
                     }
                 }
             }
