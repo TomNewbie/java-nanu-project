@@ -39,6 +39,7 @@ public class SceneController {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setScene(scene);
         stage.show();
         return stage;
     }
@@ -49,6 +50,7 @@ public class SceneController {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setScene(scene);
         stage.show();
     }
 
@@ -57,6 +59,7 @@ public class SceneController {
         Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/ManualPage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        stage.setScene(scene);
         stage.setScene(scene);
         stage.show();
     }
@@ -69,6 +72,7 @@ public class SceneController {
         root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/Leaderboard.fxml"));
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setScene(scene);
         stage.show();
     }
 
@@ -77,7 +81,8 @@ public class SceneController {
         root = loader.load();
         if (GameManager.PLAYER1 != null) {
             EnterProfileController epc = loader.getController();
-            epc.displayProfile(GameManager.PLAYER1.getName(), GameManager.PLAYER1.getAge());
+            epc.displayProfile(GameManager.PLAYER1.getName(),
+                    GameManager.PLAYER1.getAge());
         }
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

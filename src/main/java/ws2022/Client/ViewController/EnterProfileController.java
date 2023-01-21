@@ -20,17 +20,21 @@ public class EnterProfileController {
     @FXML
     TextField IPserver;
     SceneController sceneController = SceneController.getInstance();
+    SoundController soundc = new SoundController();
 
     public void returnHome(ActionEvent event) throws IOException {
+        soundc.click();
         sceneController.homeScreen(event);
     }
 
     public void enterProfile1(ActionEvent event) throws IOException {
+        soundc.click();
         sceneController.enterProfile1(event);
     }
 
     public void goToProfile2(ActionEvent event) throws IOException {
         // In first enterprofile
+        soundc.click();
         String name = nameTF.getText();
         String age = ageTF.getText();
         GameManager.validateValue(name, age);
@@ -44,6 +48,7 @@ public class EnterProfileController {
 
     public void enterGame(ActionEvent event) throws IOException {
         // in second enter profile (before go to game)
+        soundc.click();
         String name = nameTF.getText();
         String age = ageTF.getText();
         GameManager.validateValue(name, age);

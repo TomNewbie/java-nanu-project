@@ -6,6 +6,7 @@ public class Disc {
     private String cardImage;
     private String value;
     private boolean hasCover = false;
+    private boolean isGuess = false;
 
     public String getValue() {
         return value;
@@ -32,10 +33,20 @@ public class Disc {
         hasCover = true;
     }
 
+    public void setGuess() {
+        isGuess = true;
+    }
+
+    public boolean checkIsGuess() {
+        return isGuess;
+    }
+
     public static ArrayList<String> convertToValue(ArrayList<Disc> discArrayList) {
         ArrayList<String> result = new ArrayList<>();
         for (Disc disc : discArrayList) {
-            result.add(disc.value);
+            if (!disc.checkIsGuess()) {
+                result.add(disc.value);
+            }
         }
         return result;
     }

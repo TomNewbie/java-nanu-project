@@ -21,6 +21,7 @@ public class App extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/HomeScreen.fxml"));
         System.out.println("jee");
         scene = new Scene(root);
+        stage.setScene(scene);
         GameManager.stage = stage;
         stage.setScene(scene);
         stage.show();

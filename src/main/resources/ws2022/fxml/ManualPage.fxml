@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="ManualPagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="ManualPagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../assets/styles/style.css" >
    <children>
       <Button layoutX="401.0" layoutY="533.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="132.0" text="Back" />
       <ImageView fitHeight="138.0" fitWidth="226.0" layoutX="87.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">

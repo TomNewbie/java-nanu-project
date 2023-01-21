@@ -19,14 +19,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
-import ws2022.Client.utils.GenerateData;
 import ws2022.Middleware.GameManager;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Random;
 
 public class BoardGameController {
     private static BoardGameController bgc;
@@ -63,6 +60,7 @@ public class BoardGameController {
     @FXML
     public ImageView imageView;
     private HashMap<String, ImageView> hashMapImageView = new HashMap<>();
+    SoundController soundc = new SoundController();
 
     @FXML
     public void initialize() throws FileNotFoundException {
@@ -73,8 +71,10 @@ public class BoardGameController {
         }
         GameManager.startGame();
         int index = 0;
-        for (int y = 0; y < 4; y++) {
-            for (int x = 0; x < 6; x++) {
+        for (int y = 0; y < 7; y++) {
+            for (int x = 0; x < 7; x++) {
+                if (x != 0 && y != 0 && x != 6 && y != 6)
+                    continue;
                 String selectedImage = "/ws2022/assets/FootballTheme/"
                         + GameManager.myList.get(index).getImage();
                 Image image = new Image(this.getClass()
@@ -118,8 +118,8 @@ public class BoardGameController {
 
         int x = coord.getColumn();
         int y = coord.getRow();
-        int index = y * 6 + x;
-        GameManager.myList.get(index).setCover();
+        int indexPane = y * 7 + x;
+        int index = indexPane - (indexPane - 1) / 7 * 5;
         if (GameManager.coverHashMap.get(color) == null) {
             GameManager.coverHashMap.put(color, index);
         } else {
@@ -150,13 +150,14 @@ public class BoardGameController {
     // click remeber all will set up cover
     @FXML
     public void clickRememberAll() throws IOException {
+        soundc.click();
         Coordinate[] coverCoords = GameManager.setUpCover();
         String[] colorImage = { "blue", "green", "orange", "red", "yellow" };
         for (int count = 0; count < 5; count++) {
             String selectedImage = "/ws2022/assets/Covers/" + colorImage[count] + ".png";
             putCover(selectedImage, coverCoords[count], colorImage[count]);
         }
-        pane.getChildren().remove(myButton);
+        boardgame.getChildren().remove(myButton);
         GameManager.getFirstTurn();
         setTurn(GameManager.isPlayer1Turn);
         createRollDiceBtn();
@@ -170,27 +171,32 @@ public class BoardGameController {
         dice.setFitWidth(100);
         dice.setFitHeight(100);
         if (guessPicture != null) {
-            pane.getChildren().remove(guessPicture);
+            boardgame.getChildren().remove(guessPicture);
         }
-        rollDice.setPrefWidth(100);
         rollDice.setPrefHeight(50);
-        rollDice.setLayoutX(800);
-        rollDice.setLayoutY(342);
+        rollDice.setPrefWidth(297);
         rollDice.setOnAction(event -> {
             try {
                 clickRollDice();
+
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         });
-        pane.getChildren().add(rollDice);
+        boardgame.setColumnIndex(rollDice, 2);
+        boardgame.setRowIndex(rollDice, 5);
+        boardgame.setColumnSpan(rollDice, 3);
+        boardgame.getChildren().add(rollDice);
+
     }
 
     public void clickRollDice() throws IOException {
+        soundc.click();
         GameManager.COLOR = Dice.rollDice();
 
         if (GameManager.COLOR.equals("joker")) {
+            soundc.joker();
             System.out.println("you get joker mathar facker");
             getJoker();
         } else {
@@ -209,22 +215,23 @@ public class BoardGameController {
         dice.setFitWidth(100);
         dice.setFitHeight(100);
         if (chooseColor != null) {
-            pane.getChildren().remove(chooseColor);
+            boardgame.getChildren().remove(chooseColor);
         }
         // remove roll Dice button
-        pane.getChildren().remove(rollDice);
+        boardgame.getChildren().remove(rollDice);
 
         // add guess Picture button
-        guessPicture.setPrefWidth(100);
+        guessPicture.setPrefWidth(297);
         guessPicture.setPrefHeight(50);
-        guessPicture.setLayoutX(800);
-        guessPicture.setLayoutY(342);
         guessPicture.setOnAction(event -> {
             try {
+                soundc.click();
                 Stage popupwindow = new Stage();
                 popupwindow.initModality(Modality.APPLICATION_MODAL);
                 popupwindow.setTitle("This is a pop up window");
 
+                popupwindow.setY(GameManager.stage.getY() + GameManager.stage.getHeight() / 3.5);
+                popupwindow.setX(GameManager.stage.getX() + GameManager.stage.getWidth() / 7.75);
                 FXMLLoader loader = new FXMLLoader(
                         this.getClass().getResource("/ws2022/fxml/guessPicture.fxml"));
                 Parent popUp = loader.load();
@@ -232,7 +239,6 @@ public class BoardGameController {
                 gpc.display();
                 Scene scene = new Scene(popUp);
                 popupwindow.setScene(scene);
-
                 popupwindow.showAndWait();
 
             } catch (IOException e) {
@@ -240,7 +246,10 @@ public class BoardGameController {
                 e.printStackTrace();
             }
         });
-        pane.getChildren().add(guessPicture);
+        boardgame.setColumnIndex(guessPicture, 2);
+        boardgame.setRowIndex(guessPicture, 5);
+        boardgame.setColumnSpan(guessPicture, 3);
+        boardgame.getChildren().add(guessPicture);
     }
 
     public void getJoker() {
@@ -254,13 +263,11 @@ public class BoardGameController {
         dice.setFitHeight(100);
 
         // remove roll Dice button
-        pane.getChildren().remove(rollDice);
+        boardgame.getChildren().remove(rollDice);
 
         // add which color button
-        chooseColor.setPrefWidth(100);
+        chooseColor.setPrefWidth(297);
         chooseColor.setPrefHeight(50);
-        chooseColor.setLayoutX(800);
-        chooseColor.setLayoutY(342);
         chooseColor.setOnAction(event -> {
             try {
                 Stage popupwindow = new Stage();
@@ -269,6 +276,8 @@ public class BoardGameController {
                 FXMLLoader loader = new FXMLLoader(
                         this.getClass().getResource("/ws2022/fxml/WhichColor.fxml"));
                 Parent popUp = loader.load();
+                popupwindow.setY(GameManager.stage.getY() + GameManager.stage.getHeight() / 3.5);
+                popupwindow.setX(GameManager.stage.getX() + GameManager.stage.getWidth() / 7.75);
                 WhichColorController gpc = loader.getController();
                 gpc.display();
                 Scene scene = new Scene(popUp);
@@ -280,7 +289,10 @@ public class BoardGameController {
                 e.printStackTrace();
             }
         });
-        pane.getChildren().add(chooseColor);
+        boardgame.setColumnIndex(chooseColor, 2);
+        boardgame.setRowIndex(chooseColor, 5);
+        boardgame.setColumnSpan(chooseColor, 3);
+        boardgame.getChildren().add(chooseColor);
     }
 
     public void update() {
@@ -295,7 +307,7 @@ public class BoardGameController {
     }
 
     public void removeGuessPictureBtn() {
-        pane.getChildren().remove(guessPicture);
+        boardgame.getChildren().remove(guessPicture);
     }
 
     // show disc value when click on disc
@@ -304,6 +316,7 @@ public class BoardGameController {
         if (!GameManager.isChangeDisc) {
             return;
         }
+        soundc.click();
         GameManager.isChangeDisc = false;
         deleteCover(GameManager.getCurrentColorCoord());
         Node sourceComponent = (Node) event.getSource();
