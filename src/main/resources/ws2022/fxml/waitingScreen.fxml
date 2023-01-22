@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane fx:id="pane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="myButton" layoutX="218.0" layoutY="497.0" mnemonicParsing="false" onAction="#clickReady" prefHeight="50.0" prefWidth="200.0" text="Ready" />
+      <ImageView fx:id="dice" fitHeight="150.0" fitWidth="200.0" layoutX="745.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="player2" fill="RED" layoutX="278.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="85.2523193359375">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text fx:id="player1" layoutX="278.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text fx:id="player4" fill="#ff00cc" layoutX="278.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text fx:id="player3" fill="#00ff1e" layoutX="278.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Button layoutX="696.0" layoutY="306.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="200.0" text="Chat " />
+      <Text fx:id="player13" layoutX="109.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 4">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text fx:id="player14" layoutX="109.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 3">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text fx:id="player15" layoutX="109.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text fx:id="player16" layoutX="109.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text fx:id="status1" layoutX="467.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text fx:id="status4" layoutX="467.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text fx:id="status3" layoutX="467.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text fx:id="status2" layoutX="467.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text layoutX="290.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Waiting other player ready" wrappingWidth="394.13665771484375">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>
