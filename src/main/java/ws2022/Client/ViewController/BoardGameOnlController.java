@@ -56,7 +56,6 @@ public class BoardGameOnlController {
         }, null);
         time.getKeyFrames().add(frame);
         time.playFromStart();
-
     }
 
     // private SceneController sc = SceneController.getInstance();
