@@ -19,6 +19,6 @@
          <image>
             <Image url="@../assets/ManualPageImage/EnterPlayer1.PNG" />
          </image></ImageView>
-      <Button layoutX="854.0" layoutY="30.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="116.0" text="Next" />
+      <Button layoutX="854.0" layoutY="30.0" mnemonicParsing="false" onAction="#manpage2" prefHeight="53.0" prefWidth="116.0" text="Next" />
    </children>
 </Pane>
