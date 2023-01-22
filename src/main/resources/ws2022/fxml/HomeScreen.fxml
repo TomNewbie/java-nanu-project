@@ -7,14 +7,14 @@
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.HomeScreenController">
    <children>
-      <Label layoutX="488.0" layoutY="89.0" text="NANU">
+      <Label layoutX="521.0" layoutY="108.0" text="NANU">
          <font>
             <Font size="53.0" />
          </font>
       </Label>
-      <Button fx:id="playOffline" layoutX="401.0" layoutY="237.0" mnemonicParsing="false" onAction="#playOffline" prefHeight="77.0" prefWidth="323.0" styleClass="bigBtn" text="Play Offline" />
-      <Button fx:id="playOnline" layoutX="401.0" layoutY="383.0" mnemonicParsing="false" onAction="#playOnline" prefHeight="67.0" prefWidth="335.0" styleClass="bigBtn" text="Play Online" />
-      <Button fx:id="logoutbtn" layoutX="401.0" layoutY="526.0" mnemonicParsing="false" onAction="#quit" prefHeight="67.0" prefWidth="335.0" styleClass="bigBtn" text="Quit" />
-      <Button fx:id="ManualPageButton" layoutX="26.0" layoutY="25.0" mnemonicParsing="false" onAction="#manualPage" text="Manualpage" />
+      <Button fx:id="playOffline" layoutX="431.0" layoutY="230.0" mnemonicParsing="false" onAction="#playOffline" prefHeight="80.0" prefWidth="330.0" styleClass="bigBtn" text="Play Offline" />
+      <Button fx:id="playOnline" layoutX="431.0" layoutY="383.0" mnemonicParsing="false" onAction="#playOnline" prefHeight="80.0" prefWidth="330.0" styleClass="bigBtn" text="Play Online" />
+      <Button fx:id="logoutbtn" layoutX="431.0" layoutY="530.0" mnemonicParsing="false" onAction="#quit" prefHeight="80.0" prefWidth="330.0" styleClass="bigBtn" text="Quit" />
+      <Button fx:id="ManualPageButton" layoutX="26.0" layoutY="25.0" mnemonicParsing="false" onAction="#manualPage" prefHeight="60.0" prefWidth="150.0" text="Manual page" />
    </children>
 </Pane>

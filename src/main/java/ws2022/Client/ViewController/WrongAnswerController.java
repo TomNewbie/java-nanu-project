@@ -32,7 +32,7 @@ public class WrongAnswerController {
     @FXML
     public void initialize() throws FileNotFoundException {
 
-        coverText.setText(GameManager.COLOR);
+        coverText.setText("The image under " + GameManager.COLOR + " cover is:");
         String selectedImage = "/ws2022/assets/FootballTheme/"
                 +
                 GameManager.getCardImage();

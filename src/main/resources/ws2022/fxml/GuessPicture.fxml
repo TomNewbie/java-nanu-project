@@ -9,12 +9,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.GuessPictureController">
    <children>
       <Button fx:id="submit" layoutX="200.0" layoutY="268.0" mnemonicParsing="false" onAction="#clickSubmit" prefHeight="36.0" prefWidth="100.0" text="Submit" />
-      <Text layoutX="14.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What is the picture under " wrappingWidth="328.0">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Text>
-      <Text fx:id="cover" layoutX="326.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="166.0">
+      <Text fx:id="cover" layoutX="3.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="493.20001220703125">
          <font>
             <Font size="27.0" />
          </font>
