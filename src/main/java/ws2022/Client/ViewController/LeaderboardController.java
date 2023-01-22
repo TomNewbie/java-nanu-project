@@ -8,9 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import ws2022.Client.Model.GameManager;
+import ws2022.Middleware.GameManager;
 
 public class LeaderboardController {
     @FXML
@@ -27,8 +26,10 @@ public class LeaderboardController {
     public Text name_2;
     @FXML
     public Text point_2;
+    SoundController soundc = new SoundController();
 
     public void initialize() throws FileNotFoundException {
+        soundc.victory();
         String winnerName = "";
         String loserName = "";
         int winnerScore = 0;
@@ -51,11 +52,13 @@ public class LeaderboardController {
     }
 
     public void clickReturnButton(ActionEvent event) throws IOException {
+        soundc.click();
         SceneController sc = SceneController.getInstance();
         sc.createScene(event, "HomeScreen");
     }
 
     public void clickAgainButton(ActionEvent event) throws IOException {
+        soundc.click();
         SceneController sc = SceneController.getInstance();
         sc.createScene(event, "EnterProfile");
     }

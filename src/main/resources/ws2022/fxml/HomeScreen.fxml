@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.HomeScreenController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.HomeScreenController">
    <children>
-      <Label layoutX="492.0" layoutY="11.0" text="NANU">
+      <Label layoutX="488.0" layoutY="89.0" text="NANU">
          <font>
             <Font size="53.0" />
          </font>
       </Label>
-      <Button fx:id="playOffline" layoutX="439.0" layoutY="97.0" mnemonicParsing="false" onAction="#playOffline" prefHeight="77.0" prefWidth="323.0" text="Play Offline" />
-      <Button fx:id="playOnline" layoutX="433.0" layoutY="251.0" mnemonicParsing="false" onAction="#playOnline" prefHeight="67.0" prefWidth="335.0" text="Play Online" />
-      <Button fx:id="logoutbtn" layoutX="433.0" layoutY="418.0" mnemonicParsing="false" onAction="#quit" prefHeight="67.0" prefWidth="335.0" text="Quit" />
-      <Button fx:id="ManPageButton" layoutX="45.0" layoutY="25.0" mnemonicParsing="false" onAction="#manualPage" prefHeight="45.0" prefWidth="105.0" text="Manual Page" />
+      <Button fx:id="playOffline" layoutX="401.0" layoutY="237.0" mnemonicParsing="false" onAction="#playOffline" prefHeight="77.0" prefWidth="323.0" styleClass="bigBtn" text="Play Offline" />
+      <Button fx:id="playOnline" layoutX="401.0" layoutY="383.0" mnemonicParsing="false" onAction="#playOnline" prefHeight="67.0" prefWidth="335.0" styleClass="bigBtn" text="Play Online" />
+      <Button fx:id="logoutbtn" layoutX="401.0" layoutY="526.0" mnemonicParsing="false" onAction="#quit" prefHeight="67.0" prefWidth="335.0" styleClass="bigBtn" text="Quit" />
+      <Button fx:id="ManualPageButton" layoutX="26.0" layoutY="25.0" mnemonicParsing="false" onAction="#manualPage" text="Manualpage" />
    </children>
 </Pane>

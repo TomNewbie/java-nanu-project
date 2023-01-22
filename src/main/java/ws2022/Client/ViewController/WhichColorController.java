@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import ws2022.Client.Model.GameManager;
+import ws2022.Middleware.GameManager;
 
 public class WhichColorController {
 
@@ -20,16 +20,18 @@ public class WhichColorController {
     private Button nextButton;
     private String[] color = { "red", "green", "blue", "yellow", "orange" };
     private List<String> colorList = Arrays.asList(color);
+    SoundController soundc = new SoundController();
 
     public void display() {
         choiceBox.getItems().addAll(colorList);
     }
 
     public void closePopUp() {
+        soundc.click();
         String myChoice = choiceBox.getValue();
         GameManager.COLOR = myChoice;
-        Stage mystage = (Stage) mypane.getScene().getWindow();
-        mystage.close();
+        Stage popupwindow = (Stage) mypane.getScene().getWindow();
+        popupwindow.close();
         BoardGameController bgc = BoardGameController.getInstance();
         bgc.getNormalColor();
     }

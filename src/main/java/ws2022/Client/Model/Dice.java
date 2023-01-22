@@ -3,13 +3,9 @@ package ws2022.Client.Model;
 import java.util.Random;
 
 public class Dice {
-    private int color;
-
-    public Dice() {
-    };
+    private static String color;
 
     static public String rollDice() {
-        String color;
         Random rand = new Random();
         int number = rand.nextInt(6);
         switch (number) {
