@@ -8,7 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Node;
-public class ManuelPageController {
+public class ManualPageController {
    //private Stage stage;
     Scene scene;
     Parent root;
@@ -51,7 +51,7 @@ public class ManuelPageController {
    scene.getStylesheets()
          .add(getClass().getResource("/ws2022/Client/assets/styles/style.css").toExternalForm());
    stage.setScene(scene);
-   stage.setScene(scene);
+   //stage.setScene(scene);
    stage.show();
    // sc.gotomanualpage(event);
 
