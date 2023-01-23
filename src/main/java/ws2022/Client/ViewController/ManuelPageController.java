@@ -18,6 +18,8 @@ public class ManuelPageController {
    public void returnHome(ActionEvent event) throws IOException{
     sc.homeScreen(event);
    }
-   
+   public void switchtomanualpage2(ActionEvent event)throws IOException{
+       
+   }
  
 }
