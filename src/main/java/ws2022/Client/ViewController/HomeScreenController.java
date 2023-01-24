@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import ws2022.Middleware.GameManager;
+import ws2022.Client.Model.GameManager;
 
 public class HomeScreenController {
     @FXML
@@ -26,7 +26,7 @@ public class HomeScreenController {
     public void playOnline(ActionEvent event) throws IOException {
         // sc.enterProfile1(event);
         soundc.click();
-        GameManager.isOnline = true;
+        GameManager.isClient = true;
         sc.enterProfileOnline(event);
     }
 

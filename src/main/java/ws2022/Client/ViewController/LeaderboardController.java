@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import ws2022.Middleware.GameManager;
+import ws2022.Client.Model.GameManager;
 
 public class LeaderboardController {
     @FXML

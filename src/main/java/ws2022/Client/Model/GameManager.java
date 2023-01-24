@@ -1,4 +1,4 @@
-package ws2022.Middleware;
+package ws2022.Client.Model;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,9 +10,6 @@ import javafx.scene.control.Alert;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.stage.Stage;
-import ws2022.Client.Model.Coordinate;
-import ws2022.Client.Model.Disc;
-import ws2022.Client.Model.Player;
 import ws2022.Client.ViewController.BoardGameController;
 import ws2022.Client.ViewController.SceneController;
 import ws2022.Client.utils.GenerateData;
@@ -32,7 +29,8 @@ public class GameManager {
     public static Stage stage;
     public static boolean isCorrect;
     public static boolean isPlayer1Turn;
-    public static boolean isOnline = false;
+    public static boolean isClient = false;
+    private static SceneController sc = SceneController.getInstance();
 
     public static String getCardImage() {
         return GameManager.myList.get(GameManager.coverHashMap.get(GameManager.COLOR)).getCardImage();
@@ -40,7 +38,6 @@ public class GameManager {
 
     public static ArrayList<String> getArrayValue() {
         ArrayList<String> result = Disc.convertToValue(myList);
-        // GenerateData.getSortValue(result);
         Collections.sort(result);
         return result;
     }
@@ -67,14 +64,11 @@ public class GameManager {
     }
 
     public static void changeTurn() {
-        if (isOnline) {
-            return;
-        }
         isPlayer1Turn = !isPlayer1Turn; // flip turn
     }
 
     public static void updateGame(Stage stage) throws IOException {
-        if (isOnline) {
+        if (isClient) {
             return;
         }
         totalDisc--;
@@ -86,14 +80,14 @@ public class GameManager {
             myList.get(coverHashMap.get(COLOR)).setGuess();
             return;
         } else {
-            SceneController sc = SceneController.getInstance();
             // create leaderboard here
             sc.leaderboard(stage);
         }
     }
 
     public static void startGame() {
-        if (isOnline) {
+        if (isClient) {
+            System.out.println("Game start");
             return;
         }
         GenerateData.generateDisc(myList);
@@ -135,19 +129,18 @@ public class GameManager {
     }
 
     public static void validateValue(String name, String age) {
-        SceneController sceneController = SceneController.getInstance();
         if (name.isEmpty()) {
-            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
+            sc.showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
                     "Please enter your name");
             return;
         }
         if (age == null) {
-            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
+            sc.showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
                     "Please enter your age");
             return;
         }
         if (!age.matches("\\d+")) {
-            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
+            sc.showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
                     "Please enter your age again!");
             return;
         }

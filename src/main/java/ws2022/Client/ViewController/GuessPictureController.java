@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.text.Text;
-import ws2022.Middleware.GameManager;
+import ws2022.Client.Model.GameManager;
 
 public class GuessPictureController {
 
