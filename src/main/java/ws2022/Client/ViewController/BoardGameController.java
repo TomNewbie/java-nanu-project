@@ -196,7 +196,6 @@ public class BoardGameController {
 
         if (GameManager.COLOR.equals("joker")) {
             soundc.joker();
-            System.out.println("you get joker mathar facker");
             getJoker();
         } else {
             getNormalColor();

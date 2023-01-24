@@ -36,7 +36,6 @@ public class GameManager {
 
     public static ArrayList<String> getArrayValue() {
         ArrayList<String> result = Disc.convertToValue(myList);
-        // GenerateData.getSortValue(result);
         Collections.sort(result);
         return result;
     }
@@ -74,7 +73,7 @@ public class GameManager {
             return;
         }
         totalDisc--;
-        if (totalDisc > 20) {
+        if (totalDisc > 4) {
             BoardGameController bgc = BoardGameController.getInstance();
             bgc.removeGuessPictureBtn();
             bgc.update();
@@ -96,7 +95,6 @@ public class GameManager {
     }
 
     public static Coordinate[] setUpCover() {
-        // String[] colorImage = { "blue", "green", "orange", "red", "yellow" };
         Coordinate[] coordinates = new Coordinate[5];
         int count = 0;
         while (count < 5) {
@@ -107,13 +105,11 @@ public class GameManager {
                 continue;
             int indexPane = y * 7 + x;
             int indexList = indexPane - (indexPane - 1) / 7 * 5;
-            // String selectedImage = "/ws2022/assets/Covers/" + colorImage[count] + ".png";
 
             if (GameManager.myList.get(indexList).checkCover())
                 continue;
             GameManager.myList.get(indexList).setCover();
             coordinates[count] = new Coordinate(x, y);
-            // putCover(selectedImage, new Coordinate(x, y), colorImage[count]);
             count++;
         }
         return coordinates;
