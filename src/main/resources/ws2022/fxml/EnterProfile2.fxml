@@ -38,7 +38,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <TextField fx:id="ageTF" layoutX="536.0" layoutY="399.0" prefHeight="60.0" prefWidth="340.0">
+      <TextField fx:id="ageTF" layoutX="531.0" layoutY="399.0" prefHeight="60.0" prefWidth="340.0">
          <font>
             <Font size="20.0" />
          </font>
