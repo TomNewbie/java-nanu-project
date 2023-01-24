@@ -75,7 +75,7 @@ public class SceneController {
         stage.setScene(scene);
         stage.show();
     }
-   
+
     public void enterProfile1(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/fxml/EnterProfile.fxml"));
         root = loader.load();
