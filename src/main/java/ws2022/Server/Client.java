@@ -9,11 +9,11 @@ import java.net.Inet4Address;
 import java.net.Socket;
 import java.util.Scanner;
 
+import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
 import ws2022.Client.ViewController.EnterProfileOnlController;
 import ws2022.Client.ViewController.SceneController;
 import ws2022.Middleware.API;
-import ws2022.Middleware.GameManager;
 
 public class Client {
     private Socket socket;

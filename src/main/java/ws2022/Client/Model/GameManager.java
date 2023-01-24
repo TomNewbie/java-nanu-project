@@ -1,4 +1,4 @@
-package ws2022.Middleware;
+package ws2022.Client.Model;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,9 +10,6 @@ import javafx.scene.control.Alert;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.stage.Stage;
-import ws2022.Client.Model.Coordinate;
-import ws2022.Client.Model.Disc;
-import ws2022.Client.Model.Player;
 import ws2022.Client.ViewController.BoardGameController;
 import ws2022.Client.ViewController.SceneController;
 import ws2022.Client.utils.GenerateData;

@@ -2,7 +2,7 @@ package ws2022.Server;
 
 import java.util.ArrayList;
 
-import ws2022.Middleware.GameManager;
+import ws2022.Client.Model.GameManager;
 import ws2022.Middleware.API.Type;
 
 public class hehe {

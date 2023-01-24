@@ -12,7 +12,7 @@ import javafx.scene.control.ScrollBar;
 import javafx.scene.control.cell.ChoiceBoxListCell;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import ws2022.Middleware.GameManager;
+import ws2022.Client.Model.GameManager;
 
 public class GuessPictureController {
 

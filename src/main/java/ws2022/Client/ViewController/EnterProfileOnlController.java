@@ -6,8 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
-import ws2022.Middleware.GameManager;
 import ws2022.Middleware.API.Type;
 import ws2022.Server.Client;
 

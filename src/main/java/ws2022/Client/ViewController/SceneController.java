@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import ws2022.Middleware.GameManager;
+import ws2022.Client.Model.GameManager;
 
 public class SceneController {
     private Stage stage;
