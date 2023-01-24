@@ -1,12 +1,19 @@
 package ws2022.Client.ViewController;
 
+import javafx.util.Duration;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,18 +30,16 @@ import ws2022.Client.Model.GameManager;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 
 public class BoardGameController {
-    private static BoardGameController bgc;
+    private static BoardGameController bgc = new BoardGameController();
 
     private BoardGameController() {
     }
 
     public static BoardGameController getInstance() {
-        if (BoardGameController.bgc == null) {
-            bgc = new BoardGameController();
-        }
         return bgc;
     }
 
@@ -59,18 +64,18 @@ public class BoardGameController {
     public Text status;
     @FXML
     public ImageView imageView;
+
     private HashMap<String, ImageView> hashMapImageView = new HashMap<>();
     private HashMap<String, ImageView> hashMapPicture = new HashMap<>();
     SoundController soundc = new SoundController();
+    private Integer seconds = 15;
+    public Coordinate[] coverCoords = new Coordinate[5];
+    @FXML
+    Label countdown; // for online
 
     @FXML
     public void initialize() throws FileNotFoundException {
-        if (GameManager.isOnline) {
-            return;
-            // GenerateData.generateDisc(GameManager.myList);
-            // Collections.shuffle(GameManager.myList);
-        }
-        GameManager.startGame();
+
         int index = 0;
         for (int y = 0; y < 7; y++) {
             for (int x = 0; x < 7; x++) {
@@ -100,6 +105,10 @@ public class BoardGameController {
         player1Score.setText("" + GameManager.PLAYER1.getScore());
         player2.setText(GameManager.PLAYER2.getName());
         player2Score.setText("" + GameManager.PLAYER1.getScore());
+        if (GameManager.isClient) {
+            countdown.setText("00:" + seconds);
+            countdownTimer();
+        }
     }
 
     public void setTurn(boolean isPlayer1Turn) {
@@ -112,6 +121,37 @@ public class BoardGameController {
     }
 
     // random cover
+    public void countdownTimer() {
+        Timeline time = new Timeline();
+        time.setCycleCount(Timeline.INDEFINITE);
+        if (time != null) {
+            time.stop();
+
+        }
+        DecimalFormat dFormat = new DecimalFormat("00");
+        KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                // TODO Auto-generated method stub
+                seconds--;
+                countdown.setText("00:" + dFormat.format(seconds));
+                if (seconds <= 0) {
+                    time.stop();
+                    try {
+                        clickRememberAll();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        // TODO: handle exception
+                    }
+                }
+            }
+        });
+        time.getKeyFrames().add(frame);
+        time.playFromStart();
+        System.out.println("hehe");
+    }
 
     public void putCover(String selectedImage, Coordinate coord, String color) {
         Image image = new Image(this.getClass().getResource(selectedImage).toExternalForm());
@@ -150,8 +190,10 @@ public class BoardGameController {
     // click remeber all will set up cover
     @FXML
     public void clickRememberAll() throws IOException {
-        soundc.click();
-        Coordinate[] coverCoords = GameManager.setUpCover();
+        if (!GameManager.isClient) {
+            soundc.click();
+            coverCoords = GameManager.setUpCover();
+        }
         String[] colorImage = { "blue", "green", "orange", "red", "yellow" };
         for (int count = 0; count < 5; count++) {
             String selectedImage = "/ws2022/assets/Covers/" + colorImage[count] + ".png";

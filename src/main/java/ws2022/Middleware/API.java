@@ -3,6 +3,8 @@ package ws2022.Middleware;
 public class API {
     public enum Type {
         ENTER_PROFILE, //
+        DATA,
+        TURN,
         ROLL_DICE, //
         GUESS_PICTURE,
         RIGHT_ANSWER,

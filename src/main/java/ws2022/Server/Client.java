@@ -8,11 +8,15 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 import javafx.application.Platform;
+import ws2022.Client.Model.Coordinate;
+import ws2022.Client.Model.Disc;
+import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
+import ws2022.Client.ViewController.BoardGameController;
+import ws2022.Client.ViewController.BoardGameOnlController;
 import ws2022.Client.ViewController.EnterProfileOnlController;
 import ws2022.Client.ViewController.SceneController;
 import ws2022.Middleware.API;
-import ws2022.Middleware.GameManager;
 
 public class Client {
     private Socket socket;
@@ -39,21 +43,6 @@ public class Client {
         }
         // else this will sent the name and age of second player
         GameManager.PLAYER2 = new Player(data[1], Integer.parseInt(data[2]));
-
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    SceneController sc = SceneController.getInstance();
-                    sc.enterGameOnline(GameManager.stage);
-                } catch (Exception e) {
-                    System.out.println("can not load game");
-                    e.printStackTrace();
-                    // TODO: handle exception
-                }
-
-            }
-        });
     }
 
     private void handleMessage(String s) throws IOException {
@@ -62,7 +51,9 @@ public class Client {
             case ENTER_PROFILE:
                 onReceiveEnterProfile(s);
                 break;
-            // break;
+            case DATA:
+                onReceiveData(s);
+                break;
             // case CHOOSE_COLOR:
             // break;
             // case GUESS_PICTURE:
@@ -70,6 +61,11 @@ public class Client {
         }
         System.out.println("hehe handle message");
     }
+
+    public void onReceiveTurn(String s) {
+
+    }
+
     // public void sendMessage() {
     // try {
     // bufferedWriter.write(GameManager.PLAYER1.getName() + ";" +
@@ -88,6 +84,68 @@ public class Client {
     // // TODO: handle exception
     // }
     // }
+    public void setUpGame(String s) {
+        String splString[] = s.split(";");
+        System.out.println(splString.length);
+        for (int i = 2; i < splString.length - 1; i = i + 2) {
+            GameManager.myList.add(new Disc(splString[i + 1], splString[i]));
+        }
+        GameManager.pictureName = GameManager.getArrayValue();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    SceneController sc = SceneController.getInstance();
+                    sc.enterGameOnline(GameManager.stage);
+                } catch (Exception e) {
+                    System.out.println("can not load game");
+                    e.printStackTrace();
+                    // TODO: handle exception
+                }
+
+            }
+        });
+    }
+
+    public void onReceiveData(String s) {
+        String type = s.split(";")[1];
+        System.out.println(s);
+        if (type.equals("boardgame")) {
+            setUpGame(s);
+        } else if (type.equals("turn")) {
+            String data = s.split(";")[2];
+            if (GameManager.PLAYER1.getName().equals(data)) {
+                GameManager.isPlayer1Turn = true;
+            } else {
+                GameManager.isPlayer1Turn = false;
+            }
+        } else {
+            System.out.println("cover run");
+            BoardGameController bgc = BoardGameController.getInstance();
+            bgc.coverCoords = getCoord(s);
+        }
+        // } else if (type.equals("cover")) {
+        // GameManager.coverHashMap
+        // }
+
+    }
+
+    public Coordinate[] getCoord(String s) {
+        Coordinate[] result = new Coordinate[5];
+        String[] splString = s.split(";");
+        int count = 0;
+        for (int i = 2; i < splString.length - 1; i = i + 2) {
+            if (count > 4) {
+                break;
+            }
+            result[count] = new Coordinate(Integer.parseInt(splString[i]), Integer.parseInt(splString[i + 1]));
+            count++;
+        }
+        for (int i = 0; i < 5; i++) {
+            System.out.println(result[i].getRow());
+        }
+        return result;
+    }
 
     public void sendMessage(String s, API.Type type) {
         try {
@@ -112,7 +170,6 @@ public class Client {
                 while (socket.isConnected()) {
                     try {
                         msgFromServer = bufferedReader.readLine();
-                        System.out.println("server: " + msgFromServer);
                         handleMessage(msgFromServer);
                     } catch (Exception e) {
                         closeEverything(socket, bufferedReader, bufferedWriter);

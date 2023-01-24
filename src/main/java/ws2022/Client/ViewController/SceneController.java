@@ -108,7 +108,7 @@ public class SceneController {
 
     public void enterGameOnline(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/fxml/boardgameOnl.fxml"));
-        loader.setController(BoardGameOnlController.getInstance());
+        loader.setController(BoardGameController.getInstance());
         scene = new Scene(loader.load());
         stage.setScene(scene);
         stage.show();

@@ -50,7 +50,7 @@ public class EnterProfileController {
             return;
         }
         GameManager.PLAYER2 = new Player(name, Integer.parseInt(age));
-
+        GameManager.startGame();
         sceneController.enterGame(event);
     }
 

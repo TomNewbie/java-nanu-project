@@ -8,9 +8,11 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import ws2022.Client.Model.Coordinate;
+import ws2022.Client.Model.Disc;
+import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
 import ws2022.Middleware.API;
-import ws2022.Middleware.GameManager;
 import ws2022.Middleware.API.Type;
 
 public class ClientHandler implements Runnable {
@@ -43,8 +45,10 @@ public class ClientHandler implements Runnable {
         while (socket.isConnected()) {
             try {
                 messageFromClient = bufferedReader.readLine();
-                System.out.println(messageFromClient);
-                handleMessage(messageFromClient);
+                if (messageFromClient != null) {
+                    System.out.println(messageFromClient);
+                    handleMessage(messageFromClient);
+                }
             } catch (Exception e) {
                 closeEverything(socket, bufferedReader, bufferedWriter);
                 e.printStackTrace();
@@ -61,11 +65,9 @@ public class ClientHandler implements Runnable {
                 System.out.println("hehe");
                 handleEnterProfile(s);
                 break;
-            case CHOOSE_COLOR:
+            case DATA:
+                generateBoardGame();
                 break;
-            case GUESS_PICTURE:
-                break;
-
         }
         System.out.println("handle Message");
     }
@@ -88,9 +90,12 @@ public class ClientHandler implements Runnable {
                 + GameManager.PLAYER1.getName() + ";" + GameManager.PLAYER1.getAge();
         unicastMessage(msgToPlayer1, 0);
         unicastMessage(msgToPlayer2, 1);
+        generateBoardGame();
+        generateCover();
     }
 
     public void unicastMessage(String messageFromClient, int clientNumber) {
+        // send message to specific machine
         System.out.println("messageFromClient");
         try {
             clientHandlers.get(clientNumber).bufferedWriter.write(messageFromClient);
@@ -98,11 +103,22 @@ public class ClientHandler implements Runnable {
             clientHandlers.get(clientNumber).bufferedWriter.flush();
         } catch (IOException e) {
             closeEverything(socket, bufferedReader, bufferedWriter);
-            // TODO: handle exception
+            e.printStackTrace();
         }
     }
 
+    public void generateCover() {
+        Coordinate[] result = GameManager.setUpCover();
+        String msgClient = API.Type.DATA.toString() + ";" + "cover;";
+        for (int i = 0; i < result.length; i++) {
+            msgClient = msgClient + result[i].getColumn() + ";";
+            msgClient = msgClient + result[i].getRow() + ";";
+        }
+        broadcastMessage(msgClient);
+    }
+
     public void broadcastMessage(String messageFromClient) {
+        // use when general message like boardgame info, turn
         for (ClientHandler clientHandler : clientHandlers) {
             try {
                 clientHandler.bufferedWriter.write(messageFromClient);
@@ -110,9 +126,39 @@ public class ClientHandler implements Runnable {
                 clientHandler.bufferedWriter.flush();
             } catch (IOException e) {
                 closeEverything(socket, bufferedReader, bufferedWriter);
-                // TODO: handle exception
+                e.printStackTrace();
             }
         }
+    }
+
+    public void generateBoardGame() {
+        String msgToClient = API.Type.DATA.toString() + ";" + "boardgame;";
+        for (Disc disc : GameManager.myList) {
+            msgToClient = msgToClient + disc.getValue() + ";";
+            msgToClient = msgToClient + disc.getCardImage() + ";";
+        }
+        broadcastMessage(msgToClient);
+    }
+
+    public void announceTurn(String s) {
+        String[] splStrings = s.split(";");
+        String query = splStrings[1];
+        String msgToClient = API.Type.TURN.toString() + ";";
+        // set isPlayer1Turn
+        // if isPlayer1Turn = true -> player 1
+        // if isPlayer1Turn = false -> player 2
+        if (query.equals("start")) {
+            GameManager.getFirstTurn();
+        }
+        if (query.equals("change")) {
+            GameManager.changeTurn();
+        }
+        if (GameManager.isPlayer1Turn) {
+            msgToClient = msgToClient + GameManager.PLAYER1.getName();
+        } else {
+            msgToClient = msgToClient + GameManager.PLAYER2.getName();
+        }
+        broadcastMessage(msgToClient);
     }
 
     public void removeClientHandler() {

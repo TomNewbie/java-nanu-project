@@ -96,21 +96,11 @@ public class GameManager {
     }
 
     public static Coordinate[] setUpCover() {
-        // String[] colorImage = { "blue", "green", "orange", "red", "yellow" };
         Coordinate[] coordinates = new Coordinate[5];
         int count = 0;
         while (count < 5) {
             Random random = new Random();
-            // int x = random.nextInt(7);
-            // int y = random.nextInt(7);
             int indexList = random.nextInt(totalDisc);
-            // if (x != 0 && y != 0 && x != 6 && y != 6)
-            // continue;
-
-            // int indexPane = y * 7 + x;
-            // int indexList = indexPane - (indexPane - 1) / 7 * 5;
-            // String selectedImage = "/ws2022/assets/Covers/" + colorImage[count] + ".png";
-
             if (GameManager.myList.get(indexList).checkCover())
                 continue;
             GameManager.myList.get(indexList).setCover();
@@ -118,7 +108,6 @@ public class GameManager {
             System.out.println("set up cover");
             System.out.println("index: " + indexList);
             System.out.println("x, y" + ": " + coordinates[count].getColumn() + ", " + coordinates[count].getRow());
-            // putCover(selectedImage, new Coordinate(x, y), colorImage[count]);
             count++;
         }
         return coordinates;
