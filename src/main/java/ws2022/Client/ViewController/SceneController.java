@@ -70,7 +70,7 @@ public class SceneController {
 
     public void leaderboard(Stage stage) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/Leaderboard.fxml"));
-        scene = new Scene(root);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setScene(scene);
         stage.show();
