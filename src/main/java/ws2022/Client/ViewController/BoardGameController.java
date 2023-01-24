@@ -93,7 +93,6 @@ public class BoardGameController {
                 index++;
             }
         }
-        // image of dice
         player1.setText(GameManager.PLAYER1.getName());
         player1Score.setText("" + GameManager.PLAYER1.getScore());
         player2.setText(GameManager.PLAYER2.getName());
