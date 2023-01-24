@@ -70,7 +70,7 @@ public class SceneController {
 
     public void leaderboard(Stage stage) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/Leaderboard.fxml"));
-        scene = new Scene(root);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setScene(scene);
         stage.show();
@@ -107,13 +107,12 @@ public class SceneController {
     }
 
     public void enterGameOnline(Stage stage) throws IOException {
-        // FXMLLoader loader = new
-        // FXMLLoader(getClass().getResource("/ws2022/fxml/boardgameOnl.fxml"));
-        // loader.setController(BoardGameController.getInstance());
-        // scene = new Scene(loader.load());
-        // stage.setScene(scene);
-        // stage.show();
-        System.out.println("game start");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/fxml/boardgameOnl.fxml"));
+        loader.setController(BoardGameOnlController.getInstance());
+        scene = new Scene(loader.load());
+        stage.setScene(scene);
+        stage.show();
+        // System.out.println("game start");
     }
 
     public void closeWindow() throws IOException {

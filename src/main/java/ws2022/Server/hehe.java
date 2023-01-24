@@ -1,19 +1,54 @@
-package ws2022.Server;
+// package
+// import javafx.application.Application;
+// import javafx.application.Platform;
+// import javafx.scene.Scene;
+// import javafx.scene.control.ProgressBar;
+// import javafx.scene.layout.VBox;
+// import javafx.stage.Stage;
 
-import java.util.ArrayList;
+// public class hehe extends Application {
+// public static void main(String[] args) {
+// launch(args);
+// }
 
-import ws2022.Client.Model.GameManager;
-import ws2022.Middleware.API.Type;
+// @Override
+// public void start(Stage primaryStage) {
+// primaryStage.setTitle("JavaFX App");
 
-public class hehe {
-    public enum KhoaBede {
-        HAHA,
-        HOHO,
-        HIHI
-    }
+// ProgressBar progressBar = new ProgressBar(0);
 
-    public static void main(String[] args) {
-        String tho = "haha;asdasd";
-        System.out.println(Integer.parseInt(Type.ENTER_PROFILE.toString()));
-    }
-}
+// VBox vBox = new VBox(progressBar);
+// Scene scene = new Scene(vBox, 960, 600);
+
+// primaryStage.setScene(scene);
+// primaryStage.show();
+
+// Thread taskThread = new Thread(new Runnable() {
+// @Override
+// public void run() {
+// double progress = 0;
+// for (int i = 0; i < 10; i++) {
+
+// try {
+// Thread.sleep(1000);
+// } catch (InterruptedException e) {
+// e.printStackTrace();
+// }
+
+// progress += 0.1;
+// final double reportedProgress = progress;
+
+// Platform.runLater(new Runnable() {
+// @Override
+// public void run() {
+// progressBar
+// .setProgress(reportedProgress);
+// }
+// });
+// }
+// }
+// });
+
+// taskThread.start();
+// }
+// }

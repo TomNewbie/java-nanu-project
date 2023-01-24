@@ -5,11 +5,10 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.net.Inet4Address;
 import java.net.Socket;
-import java.util.Scanner;
 
 import ws2022.Client.Model.GameManager;
+import javafx.application.Platform;
 import ws2022.Client.Model.Player;
 import ws2022.Client.ViewController.EnterProfileOnlController;
 import ws2022.Client.ViewController.SceneController;
@@ -40,8 +39,21 @@ public class Client {
         }
         // else this will sent the name and age of second player
         GameManager.PLAYER2 = new Player(data[1], Integer.parseInt(data[2]));
-        SceneController sc = SceneController.getInstance();
-        sc.enterGameOnline(GameManager.stage);
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    SceneController sc = SceneController.getInstance();
+                    sc.enterGameOnline(GameManager.stage);
+                } catch (Exception e) {
+                    System.out.println("can not load game");
+                    e.printStackTrace();
+                    // TODO: handle exception
+                }
+
+            }
+        });
     }
 
     private void handleMessage(String s) throws IOException {
@@ -104,7 +116,8 @@ public class Client {
                         handleMessage(msgFromServer);
                     } catch (Exception e) {
                         closeEverything(socket, bufferedReader, bufferedWriter);
-                        // TODO: handle exception
+                        e.printStackTrace();
+                        break;
                     }
                 }
             }

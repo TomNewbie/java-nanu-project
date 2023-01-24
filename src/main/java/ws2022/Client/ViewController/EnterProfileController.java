@@ -1,16 +1,12 @@
 package ws2022.Client.ViewController;
 
 import java.io.IOException;
-import java.net.Socket;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
-import ws2022.Middleware.API.Type;
-import ws2022.Server.Client;
 
 public class EnterProfileController {
     @FXML
@@ -39,10 +35,6 @@ public class EnterProfileController {
         String age = ageTF.getText();
         GameManager.validateValue(name, age);
         GameManager.PLAYER1 = new Player(name, Integer.parseInt(age));
-        if (GameManager.isOnline) {
-            System.out.println("the game is online");
-            return;
-        }
         sceneController.enterProfile2(event, name);
     }
 

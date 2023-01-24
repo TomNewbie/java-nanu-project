@@ -60,6 +60,7 @@ public class BoardGameController {
     @FXML
     public ImageView imageView;
     private HashMap<String, ImageView> hashMapImageView = new HashMap<>();
+    private HashMap<String, ImageView> hashMapPicture = new HashMap<>();
     SoundController soundc = new SoundController();
 
     @FXML
@@ -89,6 +90,7 @@ public class BoardGameController {
                 imageView.setClip(clip);
                 imageView.setOnMouseClicked(event -> changeDisc(event));
                 imageView.setUserData(new Coordinate(x, y)); // index data
+                hashMapPicture.put(GameManager.myList.get(index).getValue(), imageView);
                 boardgame.add(imageView, x, y);
                 index++;
             }
@@ -117,8 +119,11 @@ public class BoardGameController {
 
         int x = coord.getColumn();
         int y = coord.getRow();
-        int indexPane = y * 7 + x;
-        int index = indexPane - (indexPane - 1) / 7 * 5;
+        int index = Coordinate.convertToIndex(coord);
+        if (index == -1) {
+            System.out.println("there is something wrong with putCover");
+            return;
+        }
         if (GameManager.coverHashMap.get(color) == null) {
             GameManager.coverHashMap.put(color, index);
         } else {
@@ -129,21 +134,16 @@ public class BoardGameController {
         imageView.setClip(clip);
         imageView.setOnMouseClicked(event -> alertCover(event));
         hashMapImageView.put(color, imageView);
+        System.out.println("put cover");
+        System.out.println("x, y" + x + " ," + y);
+        System.out.println("index: " + index);
         boardgame.add(imageView, x, y);
     }
 
-    public void deleteCover(Coordinate coord) {
+    public void deleteCover() {
         // deleteCover by coordinate
         boardgame.getChildren().remove(hashMapImageView.get(GameManager.COLOR));
-        ObservableList<Node> childrens = boardgame.getChildren();
-        for (Node node : childrens) {
-            if (node instanceof ImageView && GridPane.getRowIndex(node) == coord.getRow()
-                    && GridPane.getColumnIndex(node) == coord.getColumn()) {
-                ImageView imageView = (ImageView) node; // use what you want to remove
-                boardgame.getChildren().remove(imageView);
-                break;
-            }
-        }
+        boardgame.getChildren().remove(hashMapPicture.get(GameManager.getAnswer()));
     }
 
     // click remeber all will set up cover
@@ -316,7 +316,7 @@ public class BoardGameController {
         }
         soundc.click();
         GameManager.isChangeDisc = false;
-        deleteCover(GameManager.getCurrentColorCoord());
+        deleteCover();
         Node sourceComponent = (Node) event.getSource();
         Coordinate coord = (Coordinate) sourceComponent.getUserData();
         String coverImage = "/ws2022/assets/Covers/" + GameManager.COLOR + ".png";

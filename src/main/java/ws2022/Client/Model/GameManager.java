@@ -21,6 +21,7 @@ public class GameManager {
     public static Player PLAYER2;
     public static Client client;
     public static ArrayList<Disc> myList = new ArrayList<>();
+    public static ArrayList<String> pictureName = new ArrayList<>();
     public static HashMap<String, Integer> coverHashMap = new HashMap<>();
     private static int totalDisc = 24;
     public static String COLOR;
@@ -28,7 +29,8 @@ public class GameManager {
     public static Stage stage;
     public static boolean isCorrect;
     public static boolean isPlayer1Turn;
-    public static boolean isOnline = false;
+    public static boolean isClient = false;
+    private static SceneController sc = SceneController.getInstance();
 
     public static String getCardImage() {
         return GameManager.myList.get(GameManager.coverHashMap.get(GameManager.COLOR)).getCardImage();
@@ -62,36 +64,35 @@ public class GameManager {
     }
 
     public static void changeTurn() {
-        if (isOnline) {
-            return;
-        }
         isPlayer1Turn = !isPlayer1Turn; // flip turn
     }
 
     public static void updateGame(Stage stage) throws IOException {
-        if (isOnline) {
+        if (isClient) {
             return;
         }
         totalDisc--;
         if (totalDisc > 4) {
             BoardGameController bgc = BoardGameController.getInstance();
+            GameManager.pictureName.remove(GameManager.getAnswer());
             bgc.removeGuessPictureBtn();
             bgc.update();
             myList.get(coverHashMap.get(COLOR)).setGuess();
             return;
         } else {
-            SceneController sc = SceneController.getInstance();
             // create leaderboard here
             sc.leaderboard(stage);
         }
     }
 
     public static void startGame() {
-        if (isOnline) {
+        if (isClient) {
+            System.out.println("Game start");
             return;
         }
         GenerateData.generateDisc(myList);
         Collections.shuffle(myList);
+        pictureName = getArrayValue();
     }
 
     public static Coordinate[] setUpCover() {
@@ -99,40 +100,46 @@ public class GameManager {
         int count = 0;
         while (count < 5) {
             Random random = new Random();
-            int x = random.nextInt(7);
-            int y = random.nextInt(7);
-            if (x != 0 && y != 0 && x != 6 && y != 6)
-                continue;
-            int indexPane = y * 7 + x;
-            int indexList = indexPane - (indexPane - 1) / 7 * 5;
+            // int x = random.nextInt(7);
+            // int y = random.nextInt(7);
+            int indexList = random.nextInt(totalDisc);
+            // if (x != 0 && y != 0 && x != 6 && y != 6)
+            // continue;
+
+            // int indexPane = y * 7 + x;
+            // int indexList = indexPane - (indexPane - 1) / 7 * 5;
+            // String selectedImage = "/ws2022/assets/Covers/" + colorImage[count] + ".png";
 
             if (GameManager.myList.get(indexList).checkCover())
                 continue;
             GameManager.myList.get(indexList).setCover();
-            coordinates[count] = new Coordinate(x, y);
+            coordinates[count] = Coordinate.convertToCoordinate(indexList);
+            System.out.println("set up cover");
+            System.out.println("index: " + indexList);
+            System.out.println("x, y" + ": " + coordinates[count].getColumn() + ", " + coordinates[count].getRow());
+            // putCover(selectedImage, new Coordinate(x, y), colorImage[count]);
             count++;
         }
         return coordinates;
     }
 
     public static Coordinate getCurrentColorCoord() {
-        return Coordinate.convertFromIndex(GameManager.coverHashMap.get(GameManager.COLOR));
+        return Coordinate.convertToCoordinate(GameManager.coverHashMap.get(GameManager.COLOR));
     }
 
     public static void validateValue(String name, String age) {
-        SceneController sceneController = SceneController.getInstance();
         if (name.isEmpty()) {
-            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
+            sc.showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
                     "Please enter your name");
             return;
         }
         if (age == null) {
-            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
+            sc.showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
                     "Please enter your age");
             return;
         }
         if (!age.matches("\\d+")) {
-            sceneController.showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
+            sc.showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
                     "Please enter your age again!");
             return;
         }

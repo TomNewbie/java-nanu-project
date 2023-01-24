@@ -7,10 +7,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField fx:id="nameTF" layoutX="237.0" layoutY="246.0" />
-      <Button layoutX="275.0" layoutY="394.0" mnemonicParsing="false" onAction="#enterOnlineGame" prefHeight="25.0" prefWidth="55.0" text="OK" />
+      <Button fx:id="okButton" layoutX="275.0" layoutY="394.0" mnemonicParsing="false" onAction="#enterOnlineGame" prefHeight="25.0" prefWidth="55.0" text="OK" />
       <Label layoutX="146.0" layoutY="246.0" text="Name:">
          <font>
             <Font size="17.0" />
@@ -29,7 +29,7 @@
          </font>
       </Label>
       <TextField fx:id="IPserver" layoutX="238.0" layoutY="335.0" />
-      <Text fx:id="status" layoutX="377.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="159.73675537109375">
+      <Text fx:id="status" layoutX="206.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="587.7368774414062">
          <font>
             <Font size="29.0" />
          </font>

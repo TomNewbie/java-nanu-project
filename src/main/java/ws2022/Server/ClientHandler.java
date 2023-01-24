@@ -47,6 +47,7 @@ public class ClientHandler implements Runnable {
                 handleMessage(messageFromClient);
             } catch (Exception e) {
                 closeEverything(socket, bufferedReader, bufferedWriter);
+                e.printStackTrace();
                 break;
                 // TODO: handle exception
             }
@@ -69,30 +70,24 @@ public class ClientHandler implements Runnable {
         System.out.println("handle Message");
     }
 
-    public void handleEnterProfile(String s) throws IOException {
-        try {
+    public void handleEnterProfile(String s) throws NumberFormatException {
+        String[] splStrings = s.split(";");
 
-            String[] splStrings = s.split(";");
-
-            if (clientHandlers.size() == 1 && GameManager.PLAYER1 == null) {
-                System.out.println("helo");
-                GameManager.PLAYER1 = new Player(splStrings[1], Integer.parseInt(splStrings[0]));
-                String msg = Type.ENTER_PROFILE.toString();
-                unicastMessage(msg, 0);
-                System.out.println("helo");
-                return;
-            }
-            GameManager.PLAYER2 = new Player(splStrings[1], Integer.parseInt(splStrings[2]));
-            String msgToPlayer1 = Type.ENTER_PROFILE.toString() + ";"
-                    + GameManager.PLAYER2.getName() + ";" + GameManager.PLAYER2.getAge();
-            String msgToPlayer2 = Type.ENTER_PROFILE.toString() + ";"
-                    + GameManager.PLAYER1.getName() + ";" + GameManager.PLAYER1.getAge();
-            unicastMessage(msgToPlayer1, 0);
-            unicastMessage(msgToPlayer2, 1);
-        } catch (Exception e) {
-            e.getStackTrace();
-            // TODO: handle exception
+        if (clientHandlers.size() == 1 && GameManager.PLAYER1 == null) {
+            System.out.println("helo");
+            GameManager.PLAYER1 = new Player(splStrings[1], Integer.parseInt(splStrings[2]));
+            String msg = Type.ENTER_PROFILE.toString();
+            unicastMessage(msg, 0);
+            System.out.println("helo");
+            return;
         }
+        GameManager.PLAYER2 = new Player(splStrings[1], Integer.parseInt(splStrings[2]));
+        String msgToPlayer1 = Type.ENTER_PROFILE.toString() + ";"
+                + GameManager.PLAYER2.getName() + ";" + GameManager.PLAYER2.getAge();
+        String msgToPlayer2 = Type.ENTER_PROFILE.toString() + ";"
+                + GameManager.PLAYER1.getName() + ";" + GameManager.PLAYER1.getAge();
+        unicastMessage(msgToPlayer1, 0);
+        unicastMessage(msgToPlayer2, 1);
     }
 
     public void unicastMessage(String messageFromClient, int clientNumber) {

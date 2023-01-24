@@ -24,4 +24,5 @@ public class ManualPage {
       stage.setScene(scene);
       stage.show();
    }
+   
 }
