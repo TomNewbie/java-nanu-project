@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import ws2022.Middleware.GameManager;
+import ws2022.Client.Model.GameManager;
 
 public class SceneController {
     private Stage stage;
@@ -75,7 +75,7 @@ public class SceneController {
         stage.setScene(scene);
         stage.show();
     }
-   
+
     public void enterProfile1(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/fxml/EnterProfile.fxml"));
         root = loader.load();
@@ -107,13 +107,12 @@ public class SceneController {
     }
 
     public void enterGameOnline(Stage stage) throws IOException {
-        // FXMLLoader loader = new
-        // FXMLLoader(getClass().getResource("/ws2022/fxml/boardgameOnl.fxml"));
-        // loader.setController(BoardGameController.getInstance());
-        // scene = new Scene(loader.load());
-        // stage.setScene(scene);
-        // stage.show();
-        System.out.println("game start");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/fxml/boardgameOnl.fxml"));
+        loader.setController(BoardGameOnlController.getInstance());
+        scene = new Scene(loader.load());
+        stage.setScene(scene);
+        stage.show();
+        // System.out.println("game start");
     }
 
     public void closeWindow() throws IOException {

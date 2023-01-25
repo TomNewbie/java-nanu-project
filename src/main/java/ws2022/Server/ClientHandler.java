@@ -8,9 +8,9 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
 import ws2022.Middleware.API;
-import ws2022.Middleware.GameManager;
 import ws2022.Middleware.API.Type;
 
 public class ClientHandler implements Runnable {

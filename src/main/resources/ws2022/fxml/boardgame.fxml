@@ -40,22 +40,22 @@
             <ImageView fx:id="dice" fitHeight="84.0" fitWidth="88.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
-      <Text fx:id="player1" layoutX="878.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="player1" layoutX="878.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1">
          <font>
             <Font size="28.0" />
          </font>
       </Text>
-      <Text fx:id="player2" fill="RED" layoutX="878.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="94.0523681640625">
+      <Text fx:id="player2" fill="RED" layoutX="878.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" wrappingWidth="113.25244140625">
          <font>
             <Font size="28.0" />
          </font>
       </Text>
-      <Text fx:id="player1Score" layoutX="1067.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="player1Score" layoutX="1067.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score">
          <font>
             <Font size="28.0" />
          </font>
       </Text>
-      <Text fx:id="player2Score" fill="RED" layoutX="1067.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="player2Score" fill="RED" layoutX="1067.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score">
          <font>
             <Font size="28.0" />
          </font>

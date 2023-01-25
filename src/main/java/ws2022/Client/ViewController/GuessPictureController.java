@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.text.Text;
-import ws2022.Middleware.GameManager;
+import ws2022.Client.Model.GameManager;
 
 public class GuessPictureController {
 
@@ -21,7 +21,7 @@ public class GuessPictureController {
     SoundController soundc = new SoundController();
 
     public void display() throws IOException {
-        cover.setText(GameManager.COLOR + " cover ?");
+        cover.setText("What is the image under " + GameManager.COLOR + " cover ?");
 
         comboBox.getItems().addAll(GameManager.pictureName);
         comboBox.setVisibleRowCount(7);

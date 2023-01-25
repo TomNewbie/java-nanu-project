@@ -8,39 +8,34 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.EnterProfileController">
    <children>
-      <TextField fx:id="nameTF" layoutX="435.0" layoutY="316.0" prefHeight="59.0" prefWidth="277.0">
+      <TextField fx:id="nameTF" layoutX="531.0" layoutY="302.0" prefHeight="60.0" prefWidth="340.0">
          <font>
             <Font size="20.0" />
          </font></TextField>
-      <Button alignment="CENTER" layoutX="432.0" layoutY="511.0" mnemonicParsing="false" onAction="#goToProfile2" prefHeight="53.0" prefWidth="119.0" text="Next">
+      <Button alignment="CENTER" layoutX="466.0" layoutY="550.0" mnemonicParsing="false" onAction="#goToProfile2" prefHeight="60.0" prefWidth="250.0" text="Next">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Label layoutX="291.0" layoutY="320.0" text="Name:">
+      <Label layoutX="338.0" layoutY="322.0" text="Name:">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="age" layoutX="292.0" layoutY="413.0" prefHeight="41.0" prefWidth="85.0" text="Age:">
+      <Label fx:id="age" layoutX="338.0" layoutY="410.0" prefHeight="41.0" prefWidth="85.0" text="Age:">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="386.0" layoutY="210.0" prefHeight="66.0" prefWidth="170.0" text="Player" textAlignment="CENTER">
+      <Label alignment="CENTER" layoutX="491.0" layoutY="153.0" prefHeight="66.0" prefWidth="170.0" text="Player 1" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="45.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="553.0" layoutY="211.0" prefHeight="35.0" prefWidth="23.0" text="1" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="45.0" />
-         </font>
-      </Label>
-      <Button fx:id="returnButton" cancelButton="true" layoutX="26.0" layoutY="19.0" mnemonicParsing="false" onAction="#returnHome" text="Return">
+      <Button fx:id="returnButton" cancelButton="true" layoutX="26.0" layoutY="19.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="60.0" prefWidth="150.0" text="Return">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <TextField fx:id="ageTF" layoutX="435.0" layoutY="405.0" prefHeight="59.0" prefWidth="277.0">
+      <TextField fx:id="ageTF" layoutX="531.0" layoutY="399.0" prefHeight="60.0" prefWidth="340.0">
          <font>
             <Font size="20.0" />
          </font></TextField>

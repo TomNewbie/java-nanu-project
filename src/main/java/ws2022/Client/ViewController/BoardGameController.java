@@ -19,7 +19,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
-import ws2022.Middleware.GameManager;
+import ws2022.Client.Model.GameManager;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -95,7 +95,6 @@ public class BoardGameController {
                 index++;
             }
         }
-        // image of dice
         player1.setText(GameManager.PLAYER1.getName());
         player1Score.setText("" + GameManager.PLAYER1.getScore());
         player2.setText(GameManager.PLAYER2.getName());
@@ -197,7 +196,6 @@ public class BoardGameController {
 
         if (GameManager.COLOR.equals("joker")) {
             soundc.joker();
-            System.out.println("you get joker mathar facker");
             getJoker();
         } else {
             getNormalColor();

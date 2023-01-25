@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import ws2022.Middleware.GameManager;
+import ws2022.Client.Model.GameManager;
 
 public class WrongAnswerController {
     @FXML
@@ -32,7 +32,7 @@ public class WrongAnswerController {
     @FXML
     public void initialize() throws FileNotFoundException {
 
-        coverText.setText(GameManager.COLOR);
+        coverText.setText("The image under " + GameManager.COLOR + " cover is:");
         String selectedImage = "/ws2022/assets/FootballTheme/"
                 +
                 GameManager.getCardImage();
