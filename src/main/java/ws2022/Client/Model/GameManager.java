@@ -73,7 +73,7 @@ public class GameManager {
             return;
         }
         totalDisc--;
-        if (totalDisc > 20) {
+        if (totalDisc > 4) {
             BoardGameController bgc = BoardGameController.getInstance();
             GameManager.pictureName.remove(GameManager.getAnswer());
             bgc.removeGuessPictureBtn();

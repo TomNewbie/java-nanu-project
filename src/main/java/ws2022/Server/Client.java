@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
+import ws2022.Client.Model.GameManager;
 import javafx.application.Platform;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Disc;

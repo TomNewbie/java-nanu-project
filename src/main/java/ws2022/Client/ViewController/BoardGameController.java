@@ -78,7 +78,6 @@ public class BoardGameController {
 
     @FXML
     public void initialize() throws FileNotFoundException {
-
         int index = 0;
         for (int y = 0; y < 7; y++) {
             for (int x = 0; x < 7; x++) {
@@ -103,7 +102,6 @@ public class BoardGameController {
                 index++;
             }
         }
-        // image of dice
         player1.setText(GameManager.PLAYER1.getName());
         player1Score.setText("" + GameManager.PLAYER1.getScore());
         player2.setText(GameManager.PLAYER2.getName());
@@ -254,7 +252,6 @@ public class BoardGameController {
         }
         if (GameManager.COLOR.equals("joker")) {
             soundc.joker();
-            System.out.println("you get joker mathar facker");
             getJoker();
         } else {
             getNormalColor();
