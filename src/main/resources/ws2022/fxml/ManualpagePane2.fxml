@@ -12,7 +12,7 @@
             <Image url="@../assets/ManualPageImage/EnterProfile2.PNG" />
          </image>
       </ImageView>
-      <Button layoutX="53.0" layoutY="32.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="103.0" text="Back" />
-      <Button layoutX="866.0" layoutY="32.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="103.0" text="Next" />
+      <Button layoutX="53.0" layoutY="32.0" mnemonicParsing="false" onAction="#switchtomanualpage1" prefHeight="52.0" prefWidth="103.0" text="Back" />
+      <Button layoutX="866.0" layoutY="32.0" mnemonicParsing="false" onAction="#switchtomanualpage3" prefHeight="52.0" prefWidth="103.0" text="Next" />
    </children>
 </Pane>
