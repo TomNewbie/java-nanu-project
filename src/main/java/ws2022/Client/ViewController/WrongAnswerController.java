@@ -40,8 +40,8 @@ public class WrongAnswerController {
                 .getResource(selectedImage)
                 .toExternalForm());
         coverImage.setImage(image);
-        coverImage.setFitWidth(200);
-        coverImage.setFitHeight(200);
+        coverImage.setFitWidth(150);
+        coverImage.setFitHeight(150);
         valueText.setText(GameManager.getAnswer());
     }
 
