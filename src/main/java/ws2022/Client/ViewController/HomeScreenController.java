@@ -51,7 +51,7 @@ public class HomeScreenController {
         stage.show();*/
         // sc.gotomanualpage(event);
         soundc.click();
-        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/ManualPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("resources/ws2022/fxml/ManualPage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

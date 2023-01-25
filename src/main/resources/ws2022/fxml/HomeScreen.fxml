@@ -7,7 +7,7 @@
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.HomeScreenController">
    <children>
-      <Label layoutX="488.0" layoutY="89.0" text="NANNU">
+      <Label layoutX="488.0" layoutY="89.0" text="NANU">
          <font>
             <Font size="53.0" />
          </font>
