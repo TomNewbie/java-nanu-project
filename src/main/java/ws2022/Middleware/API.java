@@ -6,10 +6,7 @@ public class API {
         DATA,
         TURN,
         ROLL_DICE, //
-        GUESS_PICTURE,
-        RIGHT_ANSWER,
-        WRONG_ANSWER,
-        CHOOSE_COLOR,
+        ANSWER,
         SET_COLOR,
         END_GAME,
         UNKNOWN_TYPE,

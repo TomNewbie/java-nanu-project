@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import ws2022.Client.Model.Coordinate;
+import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.Disc;
 import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
@@ -65,11 +66,40 @@ public class ClientHandler implements Runnable {
                 System.out.println("hehe");
                 handleEnterProfile(s);
                 break;
-            case DATA:
-                generateBoardGame();
-                break;
+            case ROLL_DICE:
+                handleRolldice();
+            case ANSWER:
+                handleAnswer(s);
+                // case SET_COLOR:
+                // handleSetColor(s);
+                // case END_GAME:
+                // handleEndGame(s);
+            default:
+                System.out.println("Unspecify type");
+                // error handling here
         }
         System.out.println("handle Message");
+    }
+
+    public void handleRolldice() {
+        String msgClient = API.Type.ROLL_DICE + ";";
+        String result = Dice.rollDice();
+        GameManager.COLOR = result;
+        msgClient = msgClient + result;
+        broadcastMessage(msgClient);
+    }
+
+    public void handleAnswer(String s) {
+        String clientAnswer = s.split(";")[2];
+        String serverAnswer = GameManager.getAnswer();
+        String msgClient = API.Type.ANSWER + ";";
+        if (clientAnswer.equals(serverAnswer)) {
+            msgClient = msgClient + "right";
+            // change turn
+        } else {
+            msgClient = msgClient + "wrong";
+        }
+        broadcastMessage(msgClient);
     }
 
     public void handleEnterProfile(String s) throws NumberFormatException {
@@ -92,6 +122,11 @@ public class ClientHandler implements Runnable {
         unicastMessage(msgToPlayer2, 1);
         generateBoardGame();
         generateCover();
+        announceTurn(true);
+    }
+
+    public void handleTurn() {
+        announceTurn(false);
     }
 
     public void unicastMessage(String messageFromClient, int clientNumber) {
@@ -109,6 +144,7 @@ public class ClientHandler implements Runnable {
 
     public void generateCover() {
         Coordinate[] result = GameManager.setUpCover();
+        Helper.generateCoverHashMap(result);
         String msgClient = API.Type.DATA.toString() + ";" + "cover;";
         for (int i = 0; i < result.length; i++) {
             msgClient = msgClient + result[i].getColumn() + ";";
@@ -140,17 +176,14 @@ public class ClientHandler implements Runnable {
         broadcastMessage(msgToClient);
     }
 
-    public void announceTurn(String s) {
-        String[] splStrings = s.split(";");
-        String query = splStrings[1];
-        String msgToClient = API.Type.TURN.toString() + ";";
+    public void announceTurn(boolean isStart) {
+        String msgToClient = API.Type.DATA.toString() + ";turn;";
         // set isPlayer1Turn
         // if isPlayer1Turn = true -> player 1
         // if isPlayer1Turn = false -> player 2
-        if (query.equals("start")) {
+        if (isStart) {
             GameManager.getFirstTurn();
-        }
-        if (query.equals("change")) {
+        } else {
             GameManager.changeTurn();
         }
         if (GameManager.isPlayer1Turn) {

@@ -29,8 +29,9 @@ public class GameManager {
     public static Stage stage;
     public static boolean isCorrect;
     public static boolean isPlayer1Turn;
-    public static boolean isClient = false;
+    public static boolean isOnline = false;
     private static SceneController sc = SceneController.getInstance();
+    public static String[] colorImage = { "blue", "green", "orange", "red", "yellow" };
 
     public static String getCardImage() {
         return GameManager.myList.get(GameManager.coverHashMap.get(GameManager.COLOR)).getCardImage();
@@ -68,7 +69,7 @@ public class GameManager {
     }
 
     public static void updateGame(Stage stage) throws IOException {
-        if (isClient) {
+        if (isOnline) {
             return;
         }
         totalDisc--;
@@ -86,10 +87,7 @@ public class GameManager {
     }
 
     public static void startGame() {
-        if (isClient) {
-            System.out.println("Game start");
-            return;
-        }
+
         GenerateData.generateDisc(myList);
         Collections.shuffle(myList);
         pictureName = getArrayValue();

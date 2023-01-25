@@ -30,6 +30,10 @@ public class GuessPictureController {
     public void clickSubmit(ActionEvent event) throws IOException {
         soundc.click();
         String myChoice = comboBox.getValue();
+        if (GameManager.isOnline) {
+            GameManager.client.sendAnswer(myChoice);
+            return;
+        }
         String answer = GameManager.getAnswer();
         SceneController sc = SceneController.getInstance();
         if (myChoice.equals(answer)) {

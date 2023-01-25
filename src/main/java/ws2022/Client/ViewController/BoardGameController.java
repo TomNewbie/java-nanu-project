@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.GameManager;
+import ws2022.Server.Client;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -63,12 +64,14 @@ public class BoardGameController {
     @FXML
     public Text status;
     @FXML
+    public Text message;
+    @FXML
     public ImageView imageView;
 
     private HashMap<String, ImageView> hashMapImageView = new HashMap<>();
     private HashMap<String, ImageView> hashMapPicture = new HashMap<>();
     SoundController soundc = new SoundController();
-    private Integer seconds = 15;
+    private Integer seconds = 2;
     public Coordinate[] coverCoords = new Coordinate[5];
     @FXML
     Label countdown; // for online
@@ -105,7 +108,7 @@ public class BoardGameController {
         player1Score.setText("" + GameManager.PLAYER1.getScore());
         player2.setText(GameManager.PLAYER2.getName());
         player2Score.setText("" + GameManager.PLAYER1.getScore());
-        if (GameManager.isClient) {
+        if (GameManager.isOnline) {
             countdown.setText("00:" + seconds);
             countdownTimer();
         }
@@ -117,7 +120,12 @@ public class BoardGameController {
             status.setText("Player " + GameManager.PLAYER1.getName() + " turn: ");
             return;
         }
+        // Player 2 turn
         status.setText("Player " + GameManager.PLAYER2.getName() + " turn: ");
+        if (GameManager.isOnline) {
+            message.setVisible(true);
+            message.setText("Waiting player " + GameManager.PLAYER2.getName() + " to roll dice");
+        }
     }
 
     // random cover
@@ -138,6 +146,7 @@ public class BoardGameController {
                 countdown.setText("00:" + dFormat.format(seconds));
                 if (seconds <= 0) {
                     time.stop();
+                    countdown.setVisible(false);
                     try {
                         clickRememberAll();
 
@@ -165,10 +174,12 @@ public class BoardGameController {
             System.out.println("there is something wrong with putCover");
             return;
         }
-        if (GameManager.coverHashMap.get(color) == null) {
-            GameManager.coverHashMap.put(color, index);
-        } else {
-            GameManager.coverHashMap.replace(color, index);
+        if (!GameManager.isOnline) {
+            if (GameManager.coverHashMap.get(color) == null) {
+                GameManager.coverHashMap.put(color, index);
+            } else {
+                GameManager.coverHashMap.replace(color, index);
+            }
         }
         imageView.setFitWidth(100);
         imageView.setFitHeight(100);
@@ -190,19 +201,20 @@ public class BoardGameController {
     // click remeber all will set up cover
     @FXML
     public void clickRememberAll() throws IOException {
-        if (!GameManager.isClient) {
+        if (!GameManager.isOnline) {
             soundc.click();
             coverCoords = GameManager.setUpCover();
+            GameManager.getFirstTurn();
+            boardgame.getChildren().remove(myButton);
         }
-        String[] colorImage = { "blue", "green", "orange", "red", "yellow" };
         for (int count = 0; count < 5; count++) {
-            String selectedImage = "/ws2022/assets/Covers/" + colorImage[count] + ".png";
-            putCover(selectedImage, coverCoords[count], colorImage[count]);
+            String selectedImage = "/ws2022/assets/Covers/" + GameManager.colorImage[count] + ".png";
+            putCover(selectedImage, coverCoords[count], GameManager.colorImage[count]);
         }
-        boardgame.getChildren().remove(myButton);
-        GameManager.getFirstTurn();
         setTurn(GameManager.isPlayer1Turn);
-        createRollDiceBtn();
+        if (GameManager.isPlayer1Turn) {
+            createRollDiceBtn();
+        }
     }
 
     public void createRollDiceBtn() {
@@ -219,8 +231,10 @@ public class BoardGameController {
         rollDice.setPrefWidth(297);
         rollDice.setOnAction(event -> {
             try {
+                if (GameManager.isOnline) {
+                    GameManager.client.requestDice();
+                }
                 clickRollDice();
-
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -235,8 +249,9 @@ public class BoardGameController {
 
     public void clickRollDice() throws IOException {
         soundc.click();
-        GameManager.COLOR = Dice.rollDice();
-
+        if (!GameManager.isOnline) {
+            GameManager.COLOR = Dice.rollDice();
+        }
         if (GameManager.COLOR.equals("joker")) {
             soundc.joker();
             System.out.println("you get joker mathar facker");

@@ -54,16 +54,45 @@ public class Client {
             case DATA:
                 onReceiveData(s);
                 break;
-            // case CHOOSE_COLOR:
-            // break;
-            // case GUESS_PICTURE:
-            // break;
+            case ROLL_DICE:
+                onReceiveRollDice(s);
+            case ANSWER:
+                onReceiveAnswer(s);
+                // break;
+                // case GUESS_PICTURE:
+                // break;
         }
         System.out.println("hehe handle message");
     }
 
-    public void onReceiveTurn(String s) {
+    public void onReceiveAnswer(String s) {
+        // suy nghĩ thêm cái này
+        String status = s.split(";")[1];
+        if (status.equals("right")) {
 
+        } else {
+            GameManager.changeTurn();
+        }
+    }
+
+    public void onReceiveRollDice(String s) throws IOException {
+        String result = s.split(";")[1];
+        // if player 2 turn print message that player 2 get
+        BoardGameController bgc = BoardGameController.getInstance();
+        if (!GameManager.isPlayer1Turn) {
+            bgc.message.setText("Player " + GameManager.PLAYER2.getName() + " get: " + result);
+            return;
+        }
+        GameManager.COLOR = result;
+        bgc.clickRollDice();
+    }
+
+    public void requestDice() {
+        sendMessage("", API.Type.ROLL_DICE);
+    }
+
+    public void sendAnswer(String answer) {
+        sendMessage(answer, API.Type.ANSWER);
     }
 
     // public void sendMessage() {
@@ -102,7 +131,6 @@ public class Client {
                     e.printStackTrace();
                     // TODO: handle exception
                 }
-
             }
         });
     }
