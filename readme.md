@@ -38,6 +38,7 @@ Nanu Game Team
   - [Flow Chart](#Flow-Chart)
 * How to play the game
 
+* [Authors](#Authors)
 
 ## Introduction
 
@@ -155,3 +156,10 @@ https://www.figma.com/file/iQLAIDtyQSxNdCKzSO8HGx/Nanu-game?node-id=0%3A1&t=2ZMh
 https://www.figma.com/file/GRC56e384dnW1vtGOBuxu2/nanu?t=3MCzRTGohLyGowFa-0
 
 ## How to play the game
+
+## Authors
+* [Tho Phan Chi](https://github.com/TomNewbie)
+* [Thanh Le Hoang Kim](https://github.com/Kimthanh11)
+* [Ferid Gökkaya](https://github.com/ferid99)
+* [Kim Tran Hoang](https://github.com/HoangKim1504)
+* [Ngoc Pham Nhu](https://github.com/PhamNhuNgoc)
