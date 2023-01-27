@@ -6,6 +6,8 @@ import java.net.Inet6Address;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import ws2022.Client.Model.GameManager;
+
 public class Server {
     private ServerSocket serverSocket;
 
@@ -45,6 +47,7 @@ public class Server {
         System.out.println(Inet4Address.getLocalHost().getHostAddress());
         ServerSocket serverSocket = new ServerSocket(1809);
         Server server = new Server(serverSocket);
+        GameManager.startGame();
         server.startServer();
     }
 }

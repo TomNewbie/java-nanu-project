@@ -8,6 +8,9 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import ws2022.Client.Model.Coordinate;
+import ws2022.Client.Model.Dice;
+import ws2022.Client.Model.Disc;
 import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
 import ws2022.Middleware.API;
@@ -43,8 +46,10 @@ public class ClientHandler implements Runnable {
         while (socket.isConnected()) {
             try {
                 messageFromClient = bufferedReader.readLine();
-                System.out.println(messageFromClient);
-                handleMessage(messageFromClient);
+                if (messageFromClient != null) {
+                    System.out.println(messageFromClient);
+                    handleMessage(messageFromClient);
+                }
             } catch (Exception e) {
                 closeEverything(socket, bufferedReader, bufferedWriter);
                 e.printStackTrace();
@@ -61,13 +66,55 @@ public class ClientHandler implements Runnable {
                 System.out.println("hehe");
                 handleEnterProfile(s);
                 break;
-            case CHOOSE_COLOR:
+            case ROLL_DICE:
+                handleRolldice();
                 break;
-            case GUESS_PICTURE:
+            case ANSWER:
+                handleAnswer(s);
                 break;
-
+            case STATUS:
+                handleStatus(s);
+                break;
+            // case SET_COLOR:
+            // handleSetColor(s);
+            // case END_GAME:
+            // handleEndGame(s);
+            default:
+                System.out.println("Unspecify type");
+                // error handling here
         }
         System.out.println("handle Message");
+    }
+
+    public void handleRolldice() {
+        String msgClient = API.Type.ROLL_DICE + ";";
+        String result = Dice.rollDice();
+        GameManager.COLOR = result;
+        msgClient = msgClient + result;
+        broadcastMessage(msgClient);
+    }
+
+    public void handleStatus(String s) {
+        String status = s.split(";")[2];
+        if (status.equals("wrong")) {
+            broadcastMessage(s);
+        }
+    }
+
+    public void handleAnswer(String s) {
+        String clientAnswer = s.split(";")[2];
+        String serverAnswer = GameManager.getAnswer();
+        String imageAnswer = GameManager.getCardImage();
+        String msgClient = API.Type.ANSWER + ";";
+        if (!clientAnswer.equals(serverAnswer)) {
+            msgClient = msgClient + "wrong;" + clientAnswer + ";" + serverAnswer + ";" + imageAnswer;
+            broadcastMessage(msgClient);
+            GameManager.changeTurn();
+            // change turn
+            return;
+        }
+        msgClient = msgClient + "right;" + clientAnswer;
+        broadcastMessage(msgClient);
     }
 
     public void handleEnterProfile(String s) throws NumberFormatException {
@@ -88,9 +135,17 @@ public class ClientHandler implements Runnable {
                 + GameManager.PLAYER1.getName() + ";" + GameManager.PLAYER1.getAge();
         unicastMessage(msgToPlayer1, 0);
         unicastMessage(msgToPlayer2, 1);
+        generateBoardGame();
+        generateCover();
+        announceTurn(true);
+    }
+
+    public void handleTurn() {
+        announceTurn(false);
     }
 
     public void unicastMessage(String messageFromClient, int clientNumber) {
+        // send message to specific machine
         System.out.println("messageFromClient");
         try {
             clientHandlers.get(clientNumber).bufferedWriter.write(messageFromClient);
@@ -98,11 +153,23 @@ public class ClientHandler implements Runnable {
             clientHandlers.get(clientNumber).bufferedWriter.flush();
         } catch (IOException e) {
             closeEverything(socket, bufferedReader, bufferedWriter);
-            // TODO: handle exception
+            e.printStackTrace();
         }
     }
 
+    public void generateCover() {
+        Coordinate[] result = GameManager.setUpCover();
+        Helper.generateCoverHashMap(result);
+        String msgClient = API.Type.DATA.toString() + ";" + "cover;";
+        for (int i = 0; i < result.length; i++) {
+            msgClient = msgClient + result[i].getColumn() + ";";
+            msgClient = msgClient + result[i].getRow() + ";";
+        }
+        broadcastMessage(msgClient);
+    }
+
     public void broadcastMessage(String messageFromClient) {
+        // use when general message like boardgame info, turn
         for (ClientHandler clientHandler : clientHandlers) {
             try {
                 clientHandler.bufferedWriter.write(messageFromClient);
@@ -110,9 +177,36 @@ public class ClientHandler implements Runnable {
                 clientHandler.bufferedWriter.flush();
             } catch (IOException e) {
                 closeEverything(socket, bufferedReader, bufferedWriter);
-                // TODO: handle exception
+                e.printStackTrace();
             }
         }
+    }
+
+    public void generateBoardGame() {
+        String msgToClient = API.Type.DATA.toString() + ";" + "boardgame;";
+        for (Disc disc : GameManager.myList) {
+            msgToClient = msgToClient + disc.getValue() + ";";
+            msgToClient = msgToClient + disc.getCardImage() + ";";
+        }
+        broadcastMessage(msgToClient);
+    }
+
+    public void announceTurn(boolean isStart) {
+        String msgToClient = API.Type.DATA.toString() + ";turn;";
+        // set isPlayer1Turn
+        // if isPlayer1Turn = true -> player 1
+        // if isPlayer1Turn = false -> player 2
+        if (isStart) {
+            GameManager.getFirstTurn();
+        } else {
+            GameManager.changeTurn();
+        }
+        if (GameManager.isPlayer1Turn) {
+            msgToClient = msgToClient + GameManager.PLAYER1.getName();
+        } else {
+            msgToClient = msgToClient + GameManager.PLAYER2.getName();
+        }
+        broadcastMessage(msgToClient);
     }
 
     public void removeClientHandler() {

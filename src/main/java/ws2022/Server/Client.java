@@ -9,9 +9,15 @@ import java.net.Socket;
 
 import ws2022.Client.Model.GameManager;
 import javafx.application.Platform;
+import ws2022.Client.Model.Coordinate;
+import ws2022.Client.Model.Disc;
+import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
+import ws2022.Client.ViewController.BoardGameController;
+import ws2022.Client.ViewController.BoardGameOnlController;
 import ws2022.Client.ViewController.EnterProfileOnlController;
 import ws2022.Client.ViewController.SceneController;
+import ws2022.Client.ViewController.SoundController;
 import ws2022.Middleware.API;
 
 public class Client {
@@ -39,21 +45,6 @@ public class Client {
         }
         // else this will sent the name and age of second player
         GameManager.PLAYER2 = new Player(data[1], Integer.parseInt(data[2]));
-
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    SceneController sc = SceneController.getInstance();
-                    sc.enterGameOnline(GameManager.stage);
-                } catch (Exception e) {
-                    System.out.println("can not load game");
-                    e.printStackTrace();
-                    // TODO: handle exception
-                }
-
-            }
-        });
     }
 
     private void handleMessage(String s) throws IOException {
@@ -62,14 +53,131 @@ public class Client {
             case ENTER_PROFILE:
                 onReceiveEnterProfile(s);
                 break;
-            // break;
-            // case CHOOSE_COLOR:
-            // break;
+            case DATA:
+                onReceiveData(s);
+                break;
+            case ROLL_DICE:
+                onReceiveRollDice(s);
+                break;
+            case ANSWER:
+                onReceiveAnswer(s);
+                break;
+            case STATUS:
+                onReceivePopUp(s);
+                break;
             // case GUESS_PICTURE:
             // break;
         }
         System.out.println("hehe handle message");
     }
+
+    public void onReceiveAnswer(String s) throws IOException {
+        // suy nghĩ thêm cái này
+        String[] splString = s.split(";");
+        String status = splString[1];
+        String answer = splString[2];
+        GameManager.answer = splString[3];
+        GameManager.imageString = splString[4];
+        SceneController sc = SceneController.getInstance();
+        BoardGameController bgc = BoardGameController.getInstance();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (status.equals("right")) {
+                        if (GameManager.isPlayer1Turn) {
+                            SoundController sound = new SoundController();
+                            sound.correctAnswer();
+                            sc.loadSceneByStage(bgc.popUpStage, "RightAnswer");
+                        } else {
+                            bgc.message.setText(
+                                    "Player " + GameManager.PLAYER2.getName() + " guess " + answer + " on dice "
+                                            + GameManager.COLOR + " got Right answer");
+                        }
+                    } else {
+                        if (GameManager.isPlayer1Turn) {
+                            SoundController sound = new SoundController();
+                            sound.wrongAnswer();
+                            sc.loadSceneByStage(bgc.popUpStage, "WrongAnswer");
+                        } else {
+                            bgc.message.setText(
+                                    "Player " + GameManager.PLAYER2.getName() + " guess " + answer + " on dice "
+                                            + GameManager.COLOR + " got Wrong answer");
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
+
+    public void onReceivePopUp(String s) throws IOException {
+        String[] splString = s.split(";");
+        String status = splString[2];
+        BoardGameController bgc = BoardGameController.getInstance();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (status.equals("wrong")) {
+                        if (GameManager.isPlayer1Turn) {
+
+                            bgc.removeGuessPictureBtn();
+                            bgc.dice.setVisible(false);
+                        } else {
+                            // GameManager.changeTurn();
+                            // bgc.message.setVisible(false);
+                            // bgc.setTurn(GameManager.isPlayer1Turn);
+                            bgc.createRollDiceBtn();
+                        }
+                        GameManager.changeTurn();
+                        bgc.setTurn(GameManager.isPlayer1Turn);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // TODO: handle exception
+                }
+            }
+        });
+    }
+
+    public void onReceiveRollDice(String s) throws IOException {
+        String result = s.split(";")[1];
+        // if player 2 turn print message that player 2 get
+        BoardGameController bgc = BoardGameController.getInstance();
+        GameManager.COLOR = result;
+        if (!GameManager.isPlayer1Turn) {
+            bgc.message.setText("Player " + GameManager.PLAYER2.getName() + " get: " + result);
+            return;
+        }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    bgc.clickRollDice();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // TODO: handle exception
+                }
+            }
+        });
+
+    }
+
+    public void requestDice() {
+        sendMessage("", API.Type.ROLL_DICE);
+    }
+
+    public void sendAnswer(String answer) {
+        sendMessage(answer, API.Type.ANSWER);
+    }
+
+    public void sendStatus(String s) {
+        sendMessage(s, API.Type.STATUS);
+    }
+
     // public void sendMessage() {
     // try {
     // bufferedWriter.write(GameManager.PLAYER1.getName() + ";" +
@@ -88,6 +196,67 @@ public class Client {
     // // TODO: handle exception
     // }
     // }
+    public void setUpGame(String s) {
+        String splString[] = s.split(";");
+        System.out.println(splString.length);
+        for (int i = 2; i < splString.length - 1; i = i + 2) {
+            GameManager.myList.add(new Disc(splString[i + 1], splString[i]));
+        }
+        GameManager.pictureName = GameManager.getArrayValue();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    SceneController sc = SceneController.getInstance();
+                    sc.enterGameOnline(GameManager.stage);
+                } catch (Exception e) {
+                    System.out.println("can not load game");
+                    e.printStackTrace();
+                    // TODO: handle exception
+                }
+            }
+        });
+    }
+
+    public void onReceiveData(String s) {
+        String type = s.split(";")[1];
+        System.out.println(s);
+        if (type.equals("boardgame")) {
+            setUpGame(s);
+        } else if (type.equals("turn")) {
+            String data = s.split(";")[2];
+            if (GameManager.PLAYER1.getName().equals(data)) {
+                GameManager.isPlayer1Turn = true;
+            } else {
+                GameManager.isPlayer1Turn = false;
+            }
+        } else {
+            System.out.println("cover run");
+            BoardGameController bgc = BoardGameController.getInstance();
+            bgc.coverCoords = getCoord(s);
+        }
+        // } else if (type.equals("cover")) {
+        // GameManager.coverHashMap
+        // }
+
+    }
+
+    public Coordinate[] getCoord(String s) {
+        Coordinate[] result = new Coordinate[5];
+        String[] splString = s.split(";");
+        int count = 0;
+        for (int i = 2; i < splString.length - 1; i = i + 2) {
+            if (count > 4) {
+                break;
+            }
+            result[count] = new Coordinate(Integer.parseInt(splString[i]), Integer.parseInt(splString[i + 1]));
+            count++;
+        }
+        for (int i = 0; i < 5; i++) {
+            System.out.println(result[i].getRow());
+        }
+        return result;
+    }
 
     public void sendMessage(String s, API.Type type) {
         try {
@@ -112,7 +281,7 @@ public class Client {
                 while (socket.isConnected()) {
                     try {
                         msgFromServer = bufferedReader.readLine();
-                        System.out.println("server: " + msgFromServer);
+                        System.out.println(msgFromServer);
                         handleMessage(msgFromServer);
                     } catch (Exception e) {
                         closeEverything(socket, bufferedReader, bufferedWriter);

@@ -25,7 +25,7 @@ public class Dice {
                 color = "orange";
                 break;
             case 5:
-                color = "joker";
+                color = "red"; // sua lai joker sau
                 break;
             default:
                 color = "";

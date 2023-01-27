@@ -29,10 +29,17 @@ public class GameManager {
     public static Stage stage;
     public static boolean isCorrect;
     public static boolean isPlayer1Turn;
-    public static boolean isClient = false;
     private static SceneController sc = SceneController.getInstance();
+    // for online
+    public static boolean isOnline = false;
+    public static String imageString;
+    public static String answer;
+    public static String[] colorImage = { "blue", "green", "orange", "red", "yellow" };
 
     public static String getCardImage() {
+        if (GameManager.isOnline) {
+            return imageString;
+        }
         return GameManager.myList.get(GameManager.coverHashMap.get(GameManager.COLOR)).getCardImage();
     }
 
@@ -43,6 +50,9 @@ public class GameManager {
     }
 
     public static String getAnswer() {
+        if (GameManager.isOnline) {
+            return answer;
+        }
         return GameManager.myList.get(GameManager.coverHashMap.get(GameManager.COLOR)).getValue();
     }
 
@@ -68,28 +78,29 @@ public class GameManager {
     }
 
     public static void updateGame(Stage stage) throws IOException {
-        if (isClient) {
-            return;
-        }
         totalDisc--;
         if (totalDisc > 4) {
             BoardGameController bgc = BoardGameController.getInstance();
             GameManager.pictureName.remove(GameManager.getAnswer());
             bgc.removeGuessPictureBtn();
             bgc.update();
-            myList.get(coverHashMap.get(COLOR)).setGuess();
             return;
         } else {
             // create leaderboard here
-            sc.leaderboard(stage);
+            sc.loadSceneByStage(stage, "Leaderboard");
+        }
+    }
+
+    public static void updateGameOnline() {
+        totalDisc--;
+        addScore();
+        if (totalDisc > 4) {
+
         }
     }
 
     public static void startGame() {
-        if (isClient) {
-            System.out.println("Game start");
-            return;
-        }
+
         GenerateData.generateDisc(myList);
         Collections.shuffle(myList);
         pictureName = getArrayValue();
@@ -100,16 +111,7 @@ public class GameManager {
         int count = 0;
         while (count < 5) {
             Random random = new Random();
-            // int x = random.nextInt(7);
-            // int y = random.nextInt(7);
             int indexList = random.nextInt(totalDisc);
-            // if (x != 0 && y != 0 && x != 6 && y != 6)
-            // continue;
-
-            // int indexPane = y * 7 + x;
-            // int indexList = indexPane - (indexPane - 1) / 7 * 5;
-            // String selectedImage = "/ws2022/assets/Covers/" + colorImage[count] + ".png";
-
             if (GameManager.myList.get(indexList).checkCover())
                 continue;
             GameManager.myList.get(indexList).setCover();
@@ -117,7 +119,6 @@ public class GameManager {
             System.out.println("set up cover");
             System.out.println("index: " + indexList);
             System.out.println("x, y" + ": " + coordinates[count].getColumn() + ", " + coordinates[count].getRow());
-            // putCover(selectedImage, new Coordinate(x, y), colorImage[count]);
             count++;
         }
         return coordinates;

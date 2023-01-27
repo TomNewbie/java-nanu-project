@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.BoardGameOnlController">
+<Pane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane fx:id="boardgame" alignment="CENTER" layoutX="37.0" layoutY="38.0" prefHeight="730.0" prefWidth="728.0">
+      <GridPane fx:id="boardgame" alignment="CENTER" layoutX="24.0" layoutY="15.0" prefHeight="670.0" prefWidth="750.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.3333740234375" minWidth="10.0" prefWidth="116.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="116.0" />
@@ -42,6 +42,11 @@
                   <Font size="36.0" />
                </font>
             </Label>
+            <Text fx:id="message" layoutX="240.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player turn" textAlignment="CENTER" visible="false" wrappingWidth="512.536838054657" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Text>
          </children>
       </GridPane>
       <Text fx:id="player1" layoutX="878.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
