@@ -78,9 +78,9 @@ The _build file_ will be in the _target folder_
 To clean the target file
 
 > **Note:**
-> Currently maven is not neccessary yet, if you want to find out you can check it
+> * Currently maven is not neccessary yet, if you want to find out you can check it
 > 
-> If you can not run the file by button you can run it manually
+> * If you can not run the file by button you can run it manually
 
 ### Command to run file:
 
