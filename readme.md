@@ -1,5 +1,20 @@
 # Game Nanu Project for Java WS2022
 
+## Table of contents
+* [Introduction](#Introduction)
+* [Set up and Concepts to Play](#Set up and Concepts to Play)
+* [Convention](#Convention)
+* [Build maven](#Build maven)
+* [Clean maven](#Clean maven)
+* [Command to run file](#Command to run file)
+* [Cover color code](#Cover color code)
+* [Clean maven](#Clean maven)
+* [Resolution](#Resolution)
+* [Load JavaFX file](#Load JavaFX file)
+* [LaTeX Documentation](#LaTeX Documentation)
+* [Figma GUI Design](#Figma GUI Design)
+* [Flow Chart](#Flow Chart)
+
 ## Introduction
 
 Children learn through play. Games and toys help to develop important cognitive, visual perceptual, motor, sensory, social, play and leisure skills. Remember five different color/image combinations at the same time. Now quickly forget those as new combinations are introduced, over and over. That’s Nanu?. A board game by (Uncredited) Heinz Meister, publisher: Ravensburger Verlag GmbH.
@@ -23,17 +38,6 @@ _function_ start with Capital letter. Ex: `DrawCard()`, `StartGame()`
 
 _class_ always start with Capital letter. Ex: `Controller`, `Card`
 
-## Note:
-
-Currently maven is not neccessary yet, if you want to find out you can check it
-
-If you can not run the file by button you can run it manually
-
-## Clean maven:
-
-`mvn clean`
-To clean the target file
-
 ## Build maven:
 
 `mvn build`
@@ -41,6 +45,17 @@ To clean the target file
 Build file in src folder and test in test folder
 
 The _build file_ will be in the _target folder_
+
+## Clean maven:
+
+`mvn clean`
+To clean the target file
+
+## Note:
+
+Currently maven is not neccessary yet, if you want to find out you can check it
+
+If you can not run the file by button you can run it manually
 
 ## Command to run file:
 
@@ -75,7 +90,7 @@ getLClass().getResource("/ws2022/Client/ViewFx/yourname.fxml"));
 
 https://www.overleaf.com/7329553797sryqvnqsmpzd
 
-## Figma Design
+## Figma GUI Design
 
 https://www.figma.com/file/iQLAIDtyQSxNdCKzSO8HGx/Nanu-game?node-id=0%3A1&t=2ZMhV3Kt0HN656eo-1
 
