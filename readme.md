@@ -1,6 +1,6 @@
-# Game Nanu Project for Java WS2022
+# Nanu Game Project for Java WS2022
 
-NANU Game - board game application using Java.
+Nanu Game - board game application using Java.
 
 This project is started from 24th November 2022 to 7th February 2023.
 
@@ -12,7 +12,7 @@ If you have any questions or some feedback on the application then send a mail t
 
 Thank you for spending your time to know more about our team!
 
-NANU Game Team
+Nanu Game Team
 
 ## Table of contents
 * [Introduction](#Introduction)
@@ -30,6 +30,7 @@ NANU Game Team
   - [LaTeX Documentation](#LaTeX-Documentation)
   - [Figma GUI Design](#Figma-GUI-Design)
   - [Flow Chart](#Flow-Chart)
+* [How to play the game](#How-to-play-the-game)
 
 ## Introduction
 
@@ -121,3 +122,5 @@ https://www.figma.com/file/iQLAIDtyQSxNdCKzSO8HGx/Nanu-game?node-id=0%3A1&t=2ZMh
 ### Flow Chart
 
 https://www.figma.com/file/GRC56e384dnW1vtGOBuxu2/nanu?t=3MCzRTGohLyGowFa-0
+
+## How to play the game
