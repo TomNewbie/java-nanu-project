@@ -11,7 +11,7 @@
 
 <Pane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane fx:id="boardgame" alignment="CENTER" layoutX="37.0" layoutY="38.0" prefHeight="730.0" prefWidth="728.0">
+      <GridPane fx:id="boardgame" alignment="CENTER" layoutX="24.0" layoutY="15.0" prefHeight="670.0" prefWidth="750.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.3333740234375" minWidth="10.0" prefWidth="116.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="116.0" />
