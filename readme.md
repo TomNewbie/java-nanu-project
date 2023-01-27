@@ -15,10 +15,12 @@ Thank you for spending your time to know more about our team!
 Nanu Game Team
 
 ## Table of contents
+
 * [Introduction](#Introduction)
   - [Set up and Concepts to Play](#Set-up-and-Concepts-to-Play)
 * [Using Nanu](#Using-Nanu)
-* [Repository materials](#Repository-materials)
+* Repository materials
+  - [Folder stucture](#Folder-stucture)
   - [Convention](#Convention)
   - [Build maven](#Build-maven)
   - [Clean maven](#Clean-maven)
@@ -46,11 +48,31 @@ where.
 The first player throws the die. The color he gets will indicate the color of cover he will he lifting. If he gets the joker he can lift any cover. Let’s pretend the player got an orange on the die. Before lifting the cover, the player must announce the image that is under the cover, saying something like ”Under the orange cover is the tree”. If he is correct, he takes the disc and sets it by his place (to be counted at the end of the game). He then takes the cover and puts it on any disc left in the grid, announcing what he is covering and the color of the cover. His turn is over. If he is incorrect, he has to leave the disc there, re-cover it, and the next player throws the die for their turn. The game will end when there are only four discs left in the grid and there is nowhere to place the fifth cover. Player with the most discs at this point is the winner.
 
 ## Using Nanu
+
 There is documentation for the Nanu Game [here](http://projects.csail.mit.edu/jeeves/doc/jeeveslib.html). We have a [Quick Introduction to Jeeves](https://github.com/jeanqasaur/jeeves/wiki/A-Quick-Introduction-to-Jeeves). (Happy to take suggestions on how to make it more useful!)
 
 You may also find it helpful to read our tests in ```test``` and ```test/gallery```.
 
 ## Repository materials
+
+### Folder stucture:
+
+* .vscode: 
+Workspace settings as well as debugging and task configurations are stored at the root in a .vscode folder.
+* src/main: main folder, this is the part where we put all our code.
+* java/ws2022: This folder contains 3 more subfolders: client, middleware, and server and one file app.java.
+* Client: this folder contains the code for control the logic (offline game) and also the code for the client side (online game).
+* Model: contains class structure of the game, directly manages data, logic, and rules of the application.
+* View: contains the GUI of the game.
+* Controller: contains of java file controlling fxml file.
+* Middleware: the API is the translation message between the client and server (online game).
+* Server: it contains the logic for set up the server to connect between multiple machines (online game)
+* resources/ws2022: This folder keeps all the resources, e.g. sound, image for our games. In this folder, there are 3 subfolders: assets (keeps the image), sound (keeps sound files for sound effect), fxml (keeps all the file with the extension .fxml for the UI)
+* target: The target folder is the maven default output folder. When a project is build or packaged, all the content of the sources, resources and web files will be put inside of it, it will be used for construct the artifacts and for run tests.
+* .classpath: The .classpath maintains the project's source and target references for Java compilation and compressed file or project dependencies.
+* .gitignore: When working with github to share our code, we don’t want to push some unnecessary files to our repository, e.g. .class, .vscode so we add some patterns to this file so github will ignore these files.
+* pom.xml: The pom.xml file contains information of project and configuration information for the maven to build the project such as dependencies, build directory, source directory, test source directory, plugin, goals etc.
+* readme.md: The What, Why, and How of the project are addressed in the readme.md file. Visitors to the repository will see the README automatically from GitHub.
 
 ### Convention:
 
