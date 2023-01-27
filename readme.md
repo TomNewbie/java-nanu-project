@@ -2,8 +2,8 @@
 
 ## Table of contents
 * [Introduction](#Introduction)
+** [Set up and Concepts to Play](#Set-up-and-Concepts-to-Play)
 * [Repository materials] (#Repository-materials)
-* [Set up and Concepts to Play](#Set-up-and-Concepts-to-Play)
 * [Convention](#Convention)
 * [Build maven](#Build-maven)
 * [Clean maven](#Clean-maven)
@@ -29,7 +29,7 @@ where.
 
 The first player throws the die. The color he gets will indicate the color of cover he will he lifting. If he gets the joker he can lift any cover. Let’s pretend the player got an orange on the die. Before lifting the cover, the player must announce the image that is under the cover, saying something like ”Under the orange cover is the tree”. If he is correct, he takes the disc and sets it by his place (to be counted at the end of the game). He then takes the cover and puts it on any disc left in the grid, announcing what he is covering and the color of the cover. His turn is over. If he is incorrect, he has to leave the disc there, re-cover it, and the next player throws the die for their turn. The game will end when there are only four discs left in the grid and there is nowhere to place the fifth cover. Player with the most discs at this point is the winner.
 
-## Repository materials:
+## Repository materials
 
 ### Convention:
 
