@@ -2,18 +2,18 @@
 
 ## Table of contents
 * [Introduction](#Introduction)
-* [Set up and Concepts to Play](#Set up and Concepts to Play)
+* [Set up and Concepts to Play](#Set-up-and-Concepts-to-Play)
 * [Convention](#Convention)
-* [Build maven](#Build maven)
-* [Clean maven](#Clean maven)
-* [Command to run file](#Command to run file)
-* [Cover color code](#Cover color code)
-* [Clean maven](#Clean maven)
+* [Build maven](#Build-maven)
+* [Clean maven](#Clean-maven)
+* [Command to run file](#Command-to-run-file)
+* [Cover color code](#Cover-color-code)
+* [Clean maven](#Clean-maven)
 * [Resolution](#Resolution)
-* [Load JavaFX file](#Load JavaFX file)
-* [LaTeX Documentation](#LaTeX Documentation)
-* [Figma GUI Design](#Figma GUI Design)
-* [Flow Chart](#Flow Chart)
+* [Load JavaFX file](#Load-JavaFX-file)
+* [LaTeX Documentation](#LaTeX-Documentation)
+* [Figma GUI Design](#Figma-GUI-Design)
+* [Flow Chart](#Flow-Chart)
 
 ## Introduction
 
