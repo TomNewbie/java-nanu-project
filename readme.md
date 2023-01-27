@@ -1,5 +1,7 @@
 # Nanu Game Project for Java WS2022
 
+![pic697952](https://user-images.githubusercontent.com/101057915/215149706-e69b1eae-c2de-4fcc-a657-d843b3739106.jpg)
+
 Nanu Game - board game application using Java.
 
 This project is started from 24th November 2022 to 7th February 2023.
@@ -19,7 +21,7 @@ Nanu Game Team
 * Introduction
   - [Introduction of the game](#Introduction-of-the-game)
   - [Set up and Concepts to play](#Set-up-and-Concepts-to-play)
-* [Using Nanu](#Using-Nanu)![pic697952](https://user-images.githubusercontent.com/101057915/215149706-e69b1eae-c2de-4fcc-a657-d843b3739106.jpg)
+* [Using Nanu](#Using-Nanu)
 
 * Repository materials
   - [Folder stucture](#Folder-stucture)
@@ -61,6 +63,8 @@ You may also find it helpful to read our tests in ```test``` and ```test/gallery
 ## Repository materials
 
 ### Folder stucture:
+
+<img width="202" alt="Folder structure" src="https://user-images.githubusercontent.com/101057915/215150670-6f53a55f-c46d-42be-8cb3-308b5645a7b0.png">
 
 * .vscode: 
 Workspace settings as well as debugging and task configurations are stored at the root in a .vscode folder.
