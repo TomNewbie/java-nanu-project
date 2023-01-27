@@ -16,9 +16,11 @@ Nanu Game Team
 
 ## Table of contents
 
-* [Introduction](#Introduction)
-  - [Set up and Concepts to Play](#Set-up-and-Concepts-to-Play)
-* [Using Nanu](#Using-Nanu)
+* Introduction
+  - [Introduction of the game](#Introduction-of-the-game)
+  - [Set up and Concepts to play](#Set-up-and-Concepts-to-play)
+* [Using Nanu](#Using-Nanu)![pic697952](https://user-images.githubusercontent.com/101057915/215149706-e69b1eae-c2de-4fcc-a657-d843b3739106.jpg)
+
 * Repository materials
   - [Folder stucture](#Folder-stucture)
   - [Convention](#Convention)
@@ -32,15 +34,18 @@ Nanu Game Team
   - [LaTeX Documentation](#LaTeX-Documentation)
   - [Figma GUI Design](#Figma-GUI-Design)
   - [Flow Chart](#Flow-Chart)
-* [How to play the game](#How-to-play-the-game)
+* How to play the game
+
 
 ## Introduction
+
+### Introduction of the game
 
 Children learn through play. Games and toys help to develop important cognitive, visual perceptual, motor, sensory, social, play and leisure skills. Remember five different color/image combinations at the same time. Now quickly forget those as new combinations are introduced, over and over. That’s Nanu?. A board game by (Uncredited) Heinz Meister, publisher: Ravensburger Verlag GmbH.
 
 The goal is to collect the most discs by remembering the images under the covers. The discs are 1 5/8” in diameter and the plastic covers are just a little bit bigger so they can fit over the top of them. Each disc has one ordinary item pictured on it such as tree, rooster, ball, cat, cherries and sail boat and each disc has a different image. The covers are about 7/16” deep and are hollow so that they fit over the top of the disc without anything showing. The cover colors are red, blue, green, yellow and orange. The die has a different color on five of the sides, to match the colors of the covers, and the sixth side has a picture of a joker. The game will over when a player has the most discs.
 
-##  Set up and Concepts to Play
+###  Set up and Concepts to play
 
 Place the 24 discs, picture side up, in a grid shape on the table top. Place the five covers over five discs. As you place each cover say something like “The tree is under the orange disc”. All players pay attention to this part and watch and listen to remember which pictures are
 where.
