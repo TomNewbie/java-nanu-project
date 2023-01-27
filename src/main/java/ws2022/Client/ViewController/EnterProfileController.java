@@ -43,7 +43,8 @@ public class EnterProfileController {
         soundc.click();
         String name = nameTF.getText();
         String age = ageTF.getText();
-        GameManager.validateValue(name, age);
+        if (!GameManager.validateValue(name, age))
+            return;
         if (GameManager.PLAYER1.getName().equals(name)) {
             sceneController.showAlertMessage(Alert.AlertType.ERROR, "Same name!",
                     "You have the same name as the player 1. Please enter another name!");

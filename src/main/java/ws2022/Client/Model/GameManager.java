@@ -128,21 +128,27 @@ public class GameManager {
         return Coordinate.convertToCoordinate(GameManager.coverHashMap.get(GameManager.COLOR));
     }
 
-    public static void validateValue(String name, String age) {
+    public static boolean validateValue(String name, String age) {
         if (name.isEmpty()) {
             sc.showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
                     "Please enter your name");
-            return;
+            return false;
         }
         if (age == null) {
             sc.showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
                     "Please enter your age");
-            return;
+            return false;
         }
         if (!age.matches("\\d+")) {
             sc.showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
                     "Please enter your age again!");
-            return;
+            return false;
         }
+        if (Integer.parseInt(age) > 100) {
+            sc.showAlertMessage(Alert.AlertType.ERROR, "Wrong logic!",
+                    "Please another age! Why you are so old?");
+            return false;
+        }
+        return true;
     }
 }
