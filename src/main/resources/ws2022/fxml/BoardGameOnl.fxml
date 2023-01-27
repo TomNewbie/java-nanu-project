@@ -42,7 +42,7 @@
                   <Font size="36.0" />
                </font>
             </Label>
-            <Text fx:id="message" layoutX="240.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player turn" textAlignment="CENTER" wrappingWidth="578.9368014335632" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Text fx:id="message" layoutX="240.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player turn" textAlignment="CENTER" visible="false" wrappingWidth="512.536838054657" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="28.0" />
                </font>

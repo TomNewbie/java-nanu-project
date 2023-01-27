@@ -36,6 +36,7 @@ import java.util.HashMap;
 
 public class BoardGameController {
     private static BoardGameController bgc = new BoardGameController();
+    public Stage popUpStage;
 
     private BoardGameController() {
     }
@@ -114,6 +115,8 @@ public class BoardGameController {
 
     public void setTurn(boolean isPlayer1Turn) {
         status.setVisible(true);
+        if (message != null)
+            message.setVisible(false);
         if (isPlayer1Turn) {
             status.setText("Player " + GameManager.PLAYER1.getName() + " turn: ");
             return;
@@ -204,18 +207,20 @@ public class BoardGameController {
             coverCoords = GameManager.setUpCover();
             GameManager.getFirstTurn();
             boardgame.getChildren().remove(myButton);
+            createRollDiceBtn();
         }
         for (int count = 0; count < 5; count++) {
             String selectedImage = "/ws2022/assets/Covers/" + GameManager.colorImage[count] + ".png";
             putCover(selectedImage, coverCoords[count], GameManager.colorImage[count]);
         }
         setTurn(GameManager.isPlayer1Turn);
-        if (GameManager.isPlayer1Turn) {
+        if (GameManager.isPlayer1Turn && GameManager.isOnline) {
             createRollDiceBtn();
         }
     }
 
     public void createRollDiceBtn() {
+        dice.setVisible(true);
         Image diceImage = new Image(this.getClass()
                 .getResource("/ws2022/assets/Dice/dice.png")
                 .toExternalForm());
@@ -231,6 +236,7 @@ public class BoardGameController {
             try {
                 if (GameManager.isOnline) {
                     GameManager.client.requestDice();
+                    return;
                 }
                 clickRollDice();
             } catch (IOException e) {
@@ -281,6 +287,7 @@ public class BoardGameController {
             try {
                 soundc.click();
                 Stage popupwindow = new Stage();
+                this.popUpStage = popupwindow;
                 popupwindow.initModality(Modality.APPLICATION_MODAL);
                 popupwindow.setTitle("This is a pop up window");
 

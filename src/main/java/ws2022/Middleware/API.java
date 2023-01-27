@@ -10,6 +10,7 @@ public class API {
         SET_COLOR,
         END_GAME,
         UNKNOWN_TYPE,
+        STATUS
     }
 
     // public static

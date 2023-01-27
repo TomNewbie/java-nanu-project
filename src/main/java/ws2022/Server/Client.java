@@ -17,6 +17,7 @@ import ws2022.Client.ViewController.BoardGameController;
 import ws2022.Client.ViewController.BoardGameOnlController;
 import ws2022.Client.ViewController.EnterProfileOnlController;
 import ws2022.Client.ViewController.SceneController;
+import ws2022.Client.ViewController.SoundController;
 import ws2022.Middleware.API;
 
 public class Client {
@@ -57,35 +58,112 @@ public class Client {
                 break;
             case ROLL_DICE:
                 onReceiveRollDice(s);
+                break;
             case ANSWER:
                 onReceiveAnswer(s);
-                // break;
-                // case GUESS_PICTURE:
-                // break;
+                break;
+            case STATUS:
+                onReceivePopUp(s);
+                break;
+            // case GUESS_PICTURE:
+            // break;
         }
         System.out.println("hehe handle message");
     }
 
-    public void onReceiveAnswer(String s) {
+    public void onReceiveAnswer(String s) throws IOException {
         // suy nghĩ thêm cái này
-        String status = s.split(";")[1];
-        if (status.equals("right")) {
+        String[] splString = s.split(";");
+        String status = splString[1];
+        String answer = splString[2];
+        GameManager.answer = splString[3];
+        GameManager.imageString = splString[4];
+        SceneController sc = SceneController.getInstance();
+        BoardGameController bgc = BoardGameController.getInstance();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (status.equals("right")) {
+                        if (GameManager.isPlayer1Turn) {
+                            SoundController sound = new SoundController();
+                            sound.correctAnswer();
+                            sc.loadSceneByStage(bgc.popUpStage, "RightAnswer");
+                        } else {
+                            bgc.message.setText(
+                                    "Player " + GameManager.PLAYER2.getName() + " guess " + answer + " on dice "
+                                            + GameManager.COLOR + " got Right answer");
+                        }
+                    } else {
+                        if (GameManager.isPlayer1Turn) {
+                            SoundController sound = new SoundController();
+                            sound.wrongAnswer();
+                            sc.loadSceneByStage(bgc.popUpStage, "WrongAnswer");
+                        } else {
+                            bgc.message.setText(
+                                    "Player " + GameManager.PLAYER2.getName() + " guess " + answer + " on dice "
+                                            + GameManager.COLOR + " got Wrong answer");
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
-        } else {
-            GameManager.changeTurn();
-        }
+    }
+
+    public void onReceivePopUp(String s) throws IOException {
+        String[] splString = s.split(";");
+        String status = splString[2];
+        BoardGameController bgc = BoardGameController.getInstance();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (status.equals("wrong")) {
+                        if (GameManager.isPlayer1Turn) {
+
+                            bgc.removeGuessPictureBtn();
+                            bgc.dice.setVisible(false);
+                        } else {
+                            // GameManager.changeTurn();
+                            // bgc.message.setVisible(false);
+                            // bgc.setTurn(GameManager.isPlayer1Turn);
+                            bgc.createRollDiceBtn();
+                        }
+                        GameManager.changeTurn();
+                        bgc.setTurn(GameManager.isPlayer1Turn);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // TODO: handle exception
+                }
+            }
+        });
     }
 
     public void onReceiveRollDice(String s) throws IOException {
         String result = s.split(";")[1];
         // if player 2 turn print message that player 2 get
         BoardGameController bgc = BoardGameController.getInstance();
+        GameManager.COLOR = result;
         if (!GameManager.isPlayer1Turn) {
             bgc.message.setText("Player " + GameManager.PLAYER2.getName() + " get: " + result);
             return;
         }
-        GameManager.COLOR = result;
-        bgc.clickRollDice();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    bgc.clickRollDice();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // TODO: handle exception
+                }
+            }
+        });
+
     }
 
     public void requestDice() {
@@ -94,6 +172,10 @@ public class Client {
 
     public void sendAnswer(String answer) {
         sendMessage(answer, API.Type.ANSWER);
+    }
+
+    public void sendStatus(String s) {
+        sendMessage(s, API.Type.STATUS);
     }
 
     // public void sendMessage() {
@@ -199,6 +281,7 @@ public class Client {
                 while (socket.isConnected()) {
                     try {
                         msgFromServer = bufferedReader.readLine();
+                        System.out.println(msgFromServer);
                         handleMessage(msgFromServer);
                     } catch (Exception e) {
                         closeEverything(socket, bufferedReader, bufferedWriter);

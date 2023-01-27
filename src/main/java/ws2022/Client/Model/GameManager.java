@@ -29,11 +29,17 @@ public class GameManager {
     public static Stage stage;
     public static boolean isCorrect;
     public static boolean isPlayer1Turn;
-    public static boolean isOnline = false;
     private static SceneController sc = SceneController.getInstance();
+    // for online
+    public static boolean isOnline = false;
+    public static String imageString;
+    public static String answer;
     public static String[] colorImage = { "blue", "green", "orange", "red", "yellow" };
 
     public static String getCardImage() {
+        if (GameManager.isOnline) {
+            return imageString;
+        }
         return GameManager.myList.get(GameManager.coverHashMap.get(GameManager.COLOR)).getCardImage();
     }
 
@@ -44,6 +50,9 @@ public class GameManager {
     }
 
     public static String getAnswer() {
+        if (GameManager.isOnline) {
+            return answer;
+        }
         return GameManager.myList.get(GameManager.coverHashMap.get(GameManager.COLOR)).getValue();
     }
 
@@ -69,20 +78,24 @@ public class GameManager {
     }
 
     public static void updateGame(Stage stage) throws IOException {
-        if (isOnline) {
-            return;
-        }
         totalDisc--;
         if (totalDisc > 4) {
             BoardGameController bgc = BoardGameController.getInstance();
             GameManager.pictureName.remove(GameManager.getAnswer());
             bgc.removeGuessPictureBtn();
             bgc.update();
-            myList.get(coverHashMap.get(COLOR)).setGuess();
             return;
         } else {
             // create leaderboard here
-            sc.leaderboard(stage);
+            sc.loadSceneByStage(stage, "Leaderboard");
+        }
+    }
+
+    public static void updateGameOnline() {
+        totalDisc--;
+        addScore();
+        if (totalDisc > 4) {
+
         }
     }
 

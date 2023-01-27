@@ -46,12 +46,18 @@ public class WrongAnswerController {
     }
 
     public void closePopUp(ActionEvent event) throws IOException {
+
         soundc.click();
         Stage mystage = (Stage) pane.getScene().getWindow();
         mystage.close();
-        GameManager.changeTurn();
         BoardGameController bgc = BoardGameController.getInstance();
-        bgc.createRollDiceBtn();
-        bgc.setTurn(GameManager.isPlayer1Turn);
+        if (GameManager.isOnline) {
+            // handle case nay
+            GameManager.client.sendStatus("wrong");
+        } else {
+            GameManager.changeTurn();
+            bgc.createRollDiceBtn();
+            bgc.setTurn(GameManager.isPlayer1Turn);
+        }
     }
 }

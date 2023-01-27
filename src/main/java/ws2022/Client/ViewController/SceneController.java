@@ -68,8 +68,17 @@ public class SceneController {
         createScene(event, "HomeScreen");
     }
 
-    public void leaderboard(Stage stage) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/Leaderboard.fxml"));
+    // public void leaderboard(Stage stage) throws IOException {
+    // root =
+    // FXMLLoader.load(getClass().getResource("/ws2022/fxml/Leaderboard.fxml"));
+    // Scene scene = new Scene(root);
+    // stage.setScene(scene);
+    // stage.setScene(scene);
+    // stage.show();
+    // }
+
+    public void loadSceneByStage(Stage stage, String name) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/" + name + ".fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setScene(scene);

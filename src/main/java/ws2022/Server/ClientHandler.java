@@ -68,12 +68,17 @@ public class ClientHandler implements Runnable {
                 break;
             case ROLL_DICE:
                 handleRolldice();
+                break;
             case ANSWER:
                 handleAnswer(s);
-                // case SET_COLOR:
-                // handleSetColor(s);
-                // case END_GAME:
-                // handleEndGame(s);
+                break;
+            case STATUS:
+                handleStatus(s);
+                break;
+            // case SET_COLOR:
+            // handleSetColor(s);
+            // case END_GAME:
+            // handleEndGame(s);
             default:
                 System.out.println("Unspecify type");
                 // error handling here
@@ -89,16 +94,26 @@ public class ClientHandler implements Runnable {
         broadcastMessage(msgClient);
     }
 
+    public void handleStatus(String s) {
+        String status = s.split(";")[2];
+        if (status.equals("wrong")) {
+            broadcastMessage(s);
+        }
+    }
+
     public void handleAnswer(String s) {
         String clientAnswer = s.split(";")[2];
         String serverAnswer = GameManager.getAnswer();
+        String imageAnswer = GameManager.getCardImage();
         String msgClient = API.Type.ANSWER + ";";
-        if (clientAnswer.equals(serverAnswer)) {
-            msgClient = msgClient + "right";
+        if (!clientAnswer.equals(serverAnswer)) {
+            msgClient = msgClient + "wrong;" + clientAnswer + ";" + serverAnswer + ";" + imageAnswer;
+            broadcastMessage(msgClient);
+            GameManager.changeTurn();
             // change turn
-        } else {
-            msgClient = msgClient + "wrong";
+            return;
         }
+        msgClient = msgClient + "right;" + clientAnswer;
         broadcastMessage(msgClient);
     }
 
