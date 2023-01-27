@@ -15,21 +15,21 @@ Thank you for spending your time to know more about our team!
 NANU Game Team
 
 ## Table of contents
-**[Introduction](#Introduction)
-* [Set up and Concepts to Play](#Set-up-and-Concepts-to-Play)
-**[Using Nanu](#Using-Nanu)
-**[Repository materials] (#Repository-materials)
-* [Convention](#Convention)
-* [Build maven](#Build-maven)
-* [Clean maven](#Clean-maven)
-* [Command to run file](#Command-to-run-file)
-* [Cover color code](#Cover-color-code)
-* [Clean maven](#Clean-maven)
-* [Resolution](#Resolution)
-* [Load JavaFX file](#Load-JavaFX-file)
-* [LaTeX Documentation](#LaTeX-Documentation)
-* [Figma GUI Design](#Figma-GUI-Design)
-* [Flow Chart](#Flow-Chart)
+* [Introduction](#Introduction)
+  - [Set up and Concepts to Play](#Set-up-and-Concepts-to-Play)
+* [Using Nanu](#Using-Nanu)
+* [Repository materials](#Repository-materials)
+  - [Convention](#Convention)
+  - [Build maven](#Build-maven)
+  - [Clean maven](#Clean-maven)
+  - [Command to run file](#Command-to-run-file)
+  - [Cover color code](#Cover-color-code)
+  - [Clean maven](#Clean-maven)
+  - [Resolution](#Resolution)
+  - [Load JavaFX file](#Load-JavaFX-file)
+  - [LaTeX Documentation](#LaTeX-Documentation)
+  - [Figma GUI Design](#Figma-GUI-Design)
+  - [Flow Chart](#Flow-Chart)
 
 ## Introduction
 
@@ -76,11 +76,10 @@ The _build file_ will be in the _target folder_
 `mvn clean`
 To clean the target file
 
-#### Note:
-
-Currently maven is not neccessary yet, if you want to find out you can check it
-
-If you can not run the file by button you can run it manually
+> **Note:**
+> Currently maven is not neccessary yet, if you want to find out you can check it
+> 
+> If you can not run the file by button you can run it manually
 
 ### Command to run file:
 
