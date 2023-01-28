@@ -62,7 +62,7 @@ public class Client {
             case ANSWER:
                 onReceiveAnswer(s);
                 break;
-            case STATUS:
+            case POP_UP:
                 onReceivePopUp(s);
                 break;
             // case GUESS_PICTURE:
@@ -113,9 +113,17 @@ public class Client {
 
     }
 
+    // public void onReceiveStatus(String s) throws IOException {
+    // String[] splString = s.split(";");
+    // String typeString = splString[2];
+    // if (typeString.equals("closePopUp"))
+    // onReceivePopUp(s);
+
+    // }
+
     public void onReceivePopUp(String s) throws IOException {
         String[] splString = s.split(";");
-        String status = splString[2];
+        String status = splString[1];
         BoardGameController bgc = BoardGameController.getInstance();
         Platform.runLater(new Runnable() {
             @Override
@@ -134,6 +142,17 @@ public class Client {
                         }
                         GameManager.changeTurn();
                         bgc.setTurn(GameManager.isPlayer1Turn);
+                    } else {
+                        updateScore(s);
+                        bgc.update();
+                        if (GameManager.isPlayer1Turn) {
+                            bgc.message.setText(
+                                    "Please choose picture to place " + GameManager.COLOR + " cover");
+                        } else {
+                            bgc.message.setText(
+                                    "Waiting for player " + GameManager.PLAYER2.getName() + " choose picture to cover "
+                                            + GameManager.COLOR);
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -141,6 +160,17 @@ public class Client {
                 }
             }
         });
+    }
+
+    public void updateScore(String s) {
+        String[] splStrings = s.split(";");
+        if (GameManager.PLAYER1.equals(splStrings[2])) {
+            GameManager.PLAYER1.addScore(Integer.parseInt(splStrings[3]));
+            GameManager.PLAYER2.addScore(Integer.parseInt(splStrings[5]));
+        } else {
+            GameManager.PLAYER1.addScore(Integer.parseInt(splStrings[5]));
+            GameManager.PLAYER2.addScore(Integer.parseInt(splStrings[3]));
+        }
     }
 
     public void onReceiveRollDice(String s) throws IOException {
@@ -174,8 +204,8 @@ public class Client {
         sendMessage(answer, API.Type.ANSWER);
     }
 
-    public void sendStatus(String s) {
-        sendMessage(s, API.Type.STATUS);
+    public void closePopUp(String s) {
+        sendMessage(s, API.Type.POP_UP);
     }
 
     // public void sendMessage() {

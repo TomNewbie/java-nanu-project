@@ -357,12 +357,10 @@ public class BoardGameController {
     }
 
     public void update() {
-        if (GameManager.isPlayer1Turn) {
-            player1Score.setText("" + GameManager.PLAYER1.getScore());
-        } else {
-            player2Score.setText("" + GameManager.PLAYER2.getScore());
-        }
-        status.setText("Please choose picture to place " + GameManager.COLOR + " cover");
+        player1Score.setText("" + GameManager.PLAYER1.getScore());
+        player2Score.setText("" + GameManager.PLAYER2.getScore());
+        if (!GameManager.isOnline)
+            status.setText("Please choose picture to place " + GameManager.COLOR + " cover");
         GameManager.isChangeDisc = true;
 
     }

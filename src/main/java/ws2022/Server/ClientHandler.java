@@ -72,8 +72,8 @@ public class ClientHandler implements Runnable {
             case ANSWER:
                 handleAnswer(s);
                 break;
-            case STATUS:
-                handleStatus(s);
+            case POP_UP:
+                handlePopUp(s);
                 break;
             // case SET_COLOR:
             // handleSetColor(s);
@@ -94,11 +94,23 @@ public class ClientHandler implements Runnable {
         broadcastMessage(msgClient);
     }
 
-    public void handleStatus(String s) {
+    public void handlePopUp(String s) {
         String status = s.split(";")[2];
-        if (status.equals("wrong")) {
-            broadcastMessage(s);
+        String message = API.Type.POP_UP.toString() + ";" + status;
+        if (status.equals("right")) {
+            boolean isGameOver = GameManager.updateGameOnline();
+            if (isGameOver) {
+                handleEndGame();
+            } else {
+                message = message + GameManager.PLAYER1.getName() + ";" + GameManager.PLAYER1.getScore() + ";"
+                        + GameManager.PLAYER2.getName() + ";" + GameManager.PLAYER2.getScore();
+            }
         }
+        broadcastMessage(message);
+    }
+
+    public void handleEndGame() {
+        System.out.println("hehehehe");
     }
 
     public void handleAnswer(String s) {
