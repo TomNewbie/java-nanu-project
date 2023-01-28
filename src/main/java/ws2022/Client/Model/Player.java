@@ -18,6 +18,10 @@ public class Player {
         score++;
     }
 
+    public void addScore(int score) {
+        this.score = score;
+    }
+
     public String getName() {
         return this.name;
     }

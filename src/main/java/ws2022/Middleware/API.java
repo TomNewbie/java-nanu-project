@@ -10,7 +10,8 @@ public class API {
         SET_COLOR,
         END_GAME,
         UNKNOWN_TYPE,
-        STATUS
+        POP_UP,
+        CHOOSE_COVER
     }
 
     // public static

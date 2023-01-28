@@ -53,7 +53,7 @@ public class WrongAnswerController {
         BoardGameController bgc = BoardGameController.getInstance();
         if (GameManager.isOnline) {
             // handle case nay
-            GameManager.client.sendStatus("wrong");
+            GameManager.client.closePopUp("wrong");
         } else {
             GameManager.changeTurn();
             bgc.createRollDiceBtn();

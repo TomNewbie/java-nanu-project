@@ -91,12 +91,13 @@ public class GameManager {
         }
     }
 
-    public static void updateGameOnline() {
+    public static boolean updateGameOnline() {
         totalDisc--;
         addScore();
         if (totalDisc > 4) {
-
+            return false;
         }
+        return true;
     }
 
     public static void startGame() {
