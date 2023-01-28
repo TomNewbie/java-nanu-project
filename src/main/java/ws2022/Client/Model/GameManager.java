@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.Random;
 import javafx.scene.control.Alert;
 
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.stage.Stage;
 import ws2022.Client.ViewController.BoardGameController;
 import ws2022.Client.ViewController.SceneController;
@@ -100,7 +98,6 @@ public class GameManager {
     }
 
     public static void startGame() {
-
         GenerateData.generateDisc(myList);
         Collections.shuffle(myList);
         pictureName = getArrayValue();

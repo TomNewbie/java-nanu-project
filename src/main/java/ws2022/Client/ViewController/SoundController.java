@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 public class SoundController implements Initializable {
-    // String path = "/ws2022/sound/click.mp3";
+    public static double volume = 100;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -21,8 +21,8 @@ public class SoundController implements Initializable {
         Media media = new Media(this.getClass()
                 .getResource(path)
                 .toExternalForm());
-
         MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setVolume(SoundController.volume);
         mediaPlayer.play();
     }
 

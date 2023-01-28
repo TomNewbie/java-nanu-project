@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.MenuController">
+   <children>
+      <Slider fx:id="soundValue" layoutX="690.0" layoutY="213.0" onMouseReleased="#updateVolume" prefHeight="28.0" prefWidth="274.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+      <Label layoutX="292.0" layoutY="205.0" prefHeight="27.0" prefWidth="123.0" text="Sound">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="283.0" layoutY="403.0" text="Theme">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="691.0" layoutY="410.0" prefHeight="40.0" prefWidth="273.0" />
+      <Label layoutX="562.0" layoutY="66.0" text="Setting">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Button fx:id="HomeButton" layoutX="34.0" layoutY="41.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="60.0" prefWidth="150.0" text="Return home">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+   </children>
+</Pane>
