@@ -5,11 +5,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.ManualPageController">
    <children>
-      <Button layoutX="81.0" layoutY="59.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="97.0" text="Back" />
-      <Button layoutX="826.0" layoutY="39.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="106.0" text="Next" />
+      <Button fx:id="NextButton5" layoutX="81.0" layoutY="59.0" mnemonicParsing="false" onAction="#switchtomanualpage5" prefHeight="52.0" prefWidth="97.0" text="Back" />
+      <Button fx:id="NextButton7" layoutX="826.0" layoutY="39.0" mnemonicParsing="false" onAction="#switchtomanualpage7" prefHeight="60.0" prefWidth="106.0" text="Next" />
       <ImageView fitHeight="423.0" fitWidth="650.0" layoutX="195.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/ManualPageImage/Joker.PNG" />

@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
 
-<Pane fx:id="ManualPagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../assets/styles/style.css" fx:controller="ws2022.Client.ViewController.ManualPageController">
+<Pane fx:id="ManualPagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.ManualPageController">
    <children>
-      <Button layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="53.0" prefWidth="132.0" text="Return " />
-      <Label layoutX="234.0" layoutY="22.0" text="Manual Page">
-         <font>
-            <Font name="System Bold" size="37.0" />
-         </font>
-      </Label>
+      <Button layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="53.0" prefWidth="132.0" text="Back" />
       <ImageView fitHeight="429.0" fitWidth="695.0" layoutX="114.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/ManualPageImage/EnterPlayer1.PNG" />
          </image></ImageView>
-      <Button layoutX="854.0" layoutY="30.0" mnemonicParsing="false" onAction="#manpage2" prefHeight="53.0" prefWidth="116.0" text="Next" />
+      <Button fx:id="NextButton2" layoutX="854.0" layoutY="30.0" mnemonicParsing="false" onAction="#switchtomanualpage2" prefHeight="53.0" prefWidth="116.0" text="Next" />
    </children>
 </Pane>
