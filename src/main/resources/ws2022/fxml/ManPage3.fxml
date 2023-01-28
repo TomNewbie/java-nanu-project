@@ -5,13 +5,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.ManualPageController">
    <children>
       <ImageView fitHeight="439.0" fitWidth="679.0" layoutX="112.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/ManualPageImage/SelectPicture.PNG" />
          </image></ImageView>
-      <Button layoutX="52.0" layoutY="23.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="120.0" text="Back" />
-      <Button layoutX="846.0" layoutY="37.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="114.0" text="Next" />
+      <Button fx:id="BackButton2" layoutX="52.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchtomanualpage2" prefHeight="52.0" prefWidth="120.0" text="Back" />
+      <Button fx:id="NextButton4" layoutX="846.0" layoutY="37.0" mnemonicParsing="false" onAction="#switchtomanualpage4" prefHeight="52.0" prefWidth="114.0" text="Next" />
    </children>
 </Pane>
