@@ -176,13 +176,13 @@ public class BoardGameController {
             System.out.println("there is something wrong with putCover");
             return;
         }
-        if (!GameManager.isOnline) {
-            if (GameManager.coverHashMap.get(color) == null) {
-                GameManager.coverHashMap.put(color, index);
-            } else {
-                GameManager.coverHashMap.replace(color, index);
-            }
+
+        if (GameManager.coverHashMap.get(color) == null) {
+            GameManager.coverHashMap.put(color, index);
+        } else {
+            GameManager.coverHashMap.replace(color, index);
         }
+
         imageView.setFitWidth(100);
         imageView.setFitHeight(100);
         imageView.setClip(clip);
