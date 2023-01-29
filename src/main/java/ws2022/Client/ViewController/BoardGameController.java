@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.GameManager;
+import ws2022.Middleware.API;
 import ws2022.Server.Client;
 
 import java.io.FileNotFoundException;
@@ -361,7 +362,8 @@ public class BoardGameController {
         player2Score.setText("" + GameManager.PLAYER2.getScore());
         if (!GameManager.isOnline)
             status.setText("Please choose picture to place " + GameManager.COLOR + " cover");
-        GameManager.isChangeDisc = true;
+        if (GameManager.isPlayer1Turn)
+            GameManager.isChangeDisc = true;
 
     }
 
@@ -377,13 +379,17 @@ public class BoardGameController {
         }
         soundc.click();
         GameManager.isChangeDisc = false;
-        deleteCover();
         Node sourceComponent = (Node) event.getSource();
         Coordinate coord = (Coordinate) sourceComponent.getUserData();
+        bgc.createRollDiceBtn();
+        if (GameManager.isOnline) {
+            GameManager.client.sendMessage(coord.toString(), API.Type.CHOOSE_COVER);
+            return;
+        }
+        deleteCover();
         String coverImage = "/ws2022/assets/Covers/" + GameManager.COLOR + ".png";
         putCover(coverImage, coord, GameManager.COLOR);
         setTurn(GameManager.isPlayer1Turn);
-        bgc.createRollDiceBtn();
     }
 
     public void alertCover(MouseEvent event) {

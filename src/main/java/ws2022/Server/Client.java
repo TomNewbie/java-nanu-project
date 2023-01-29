@@ -65,10 +65,57 @@ public class Client {
             case POP_UP:
                 onReceivePopUp(s);
                 break;
-            // case GUESS_PICTURE:
-            // break;
+            case CHOOSE_COVER:
+                onReceiveChooseCover(s);
+                break;
+            case END_GAME:
+                onReceiveEndGame(s);
+                // case GUESS_PICTURE:
+                // break;
         }
         System.out.println("hehe handle message");
+    }
+
+    public void onReceiveEndGame(String s) {
+        updateScore(s);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                SceneController sc = SceneController.getInstance();
+                try {
+                    sc.loadSceneByStage(GameManager.stage, "Leaderboard");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // TODO: handle exception
+                }
+            }
+        });
+    }
+
+    public void onReceiveChooseCover(String s) {
+        String[] splStrings = s.split(";");
+        int column = Integer.parseInt(splStrings[1]);
+        int row = Integer.parseInt(splStrings[2]);
+        GameManager.COLOR = splStrings[3];
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                BoardGameController bgc = BoardGameController.getInstance();
+                String coverImage = "/ws2022/assets/Covers/" + GameManager.COLOR + ".png";
+                try {
+                    if (GameManager.isPlayer1Turn) {
+                        bgc.message.setVisible(false);
+                    } else {
+                        bgc.message.setText("Waiting player " + GameManager.PLAYER2.getName() + " roll dice");
+                    }
+                    bgc.deleteCover();
+                    bgc.putCover(coverImage, new Coordinate(column, row), GameManager.COLOR);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // TODO: handle exception
+                }
+            }
+        });
     }
 
     public void onReceiveAnswer(String s) throws IOException {
@@ -76,8 +123,6 @@ public class Client {
         String[] splString = s.split(";");
         String status = splString[1];
         String answer = splString[2];
-        GameManager.answer = splString[3];
-        GameManager.imageString = splString[4];
         SceneController sc = SceneController.getInstance();
         BoardGameController bgc = BoardGameController.getInstance();
         Platform.runLater(new Runnable() {
@@ -95,6 +140,8 @@ public class Client {
                                             + GameManager.COLOR + " got Right answer");
                         }
                     } else {
+                        GameManager.answer = splString[3];
+                        GameManager.imageString = splString[4];
                         if (GameManager.isPlayer1Turn) {
                             SoundController sound = new SoundController();
                             sound.wrongAnswer();
@@ -146,6 +193,8 @@ public class Client {
                         updateScore(s);
                         bgc.update();
                         if (GameManager.isPlayer1Turn) {
+                            bgc.removeGuessPictureBtn();
+                            bgc.message.setVisible(true);
                             bgc.message.setText(
                                     "Please choose picture to place " + GameManager.COLOR + " cover");
                         } else {
@@ -164,7 +213,7 @@ public class Client {
 
     public void updateScore(String s) {
         String[] splStrings = s.split(";");
-        if (GameManager.PLAYER1.equals(splStrings[2])) {
+        if (GameManager.PLAYER1.getName().equals(splStrings[2])) {
             GameManager.PLAYER1.addScore(Integer.parseInt(splStrings[3]));
             GameManager.PLAYER2.addScore(Integer.parseInt(splStrings[5]));
         } else {

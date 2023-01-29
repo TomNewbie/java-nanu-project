@@ -75,6 +75,9 @@ public class ClientHandler implements Runnable {
             case POP_UP:
                 handlePopUp(s);
                 break;
+            case CHOOSE_COVER:
+                handleChooseCover(s);
+                break;
             // case SET_COLOR:
             // handleSetColor(s);
             // case END_GAME:
@@ -84,6 +87,18 @@ public class ClientHandler implements Runnable {
                 // error handling here
         }
         System.out.println("handle Message");
+    }
+
+    public void handleChooseCover(String s) {
+        String[] splString = s.split(";");
+        String message = API.Type.CHOOSE_COVER.toString();
+        String column = splString[2];
+        String row = splString[3];
+        String color = GameManager.COLOR;
+        int index = Coordinate.convertToIndex(new Coordinate(Integer.parseInt(row), Integer.parseInt(column)));
+        GameManager.coverHashMap.put(color, index);
+        message = message + ";" + column + ";" + row + ";" + color;
+        broadcastMessage(message);
     }
 
     public void handleRolldice() {
@@ -99,18 +114,22 @@ public class ClientHandler implements Runnable {
         String message = API.Type.POP_UP.toString() + ";" + status;
         if (status.equals("right")) {
             boolean isGameOver = GameManager.updateGameOnline();
+            String scoreInfo = GameManager.PLAYER1.getName() + ";" + GameManager.PLAYER1.getScore() + ";"
+                    + GameManager.PLAYER2.getName() + ";" + GameManager.PLAYER2.getScore();
             if (isGameOver) {
-                handleEndGame();
+                handleEndGame(scoreInfo);
+                return;
             } else {
-                message = message + GameManager.PLAYER1.getName() + ";" + GameManager.PLAYER1.getScore() + ";"
-                        + GameManager.PLAYER2.getName() + ";" + GameManager.PLAYER2.getScore();
+                message = message + ";" + scoreInfo;
             }
         }
         broadcastMessage(message);
     }
 
-    public void handleEndGame() {
-        System.out.println("hehehehe");
+    public void handleEndGame(String s) {
+        String message = API.Type.END_GAME.toString() + ";somebsmes;" + s;
+        System.out.println(message);
+        broadcastMessage(message);
     }
 
     public void handleAnswer(String s) {
