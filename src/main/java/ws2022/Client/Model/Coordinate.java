@@ -17,6 +17,10 @@ public class Coordinate {
         return row;
     }
 
+    public String toString() {
+        return getColumn() + ";" + getRow();
+    }
+
     public static Coordinate convertToCoordinate(int index) {
         int count = 0;
         for (int y = 0; y < 7; y++) {

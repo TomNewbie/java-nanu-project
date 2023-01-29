@@ -72,8 +72,11 @@ public class ClientHandler implements Runnable {
             case ANSWER:
                 handleAnswer(s);
                 break;
-            case STATUS:
-                handleStatus(s);
+            case POP_UP:
+                handlePopUp(s);
+                break;
+            case CHOOSE_COVER:
+                handleChooseCover(s);
                 break;
             // case SET_COLOR:
             // handleSetColor(s);
@@ -86,6 +89,18 @@ public class ClientHandler implements Runnable {
         System.out.println("handle Message");
     }
 
+    public void handleChooseCover(String s) {
+        String[] splString = s.split(";");
+        String message = API.Type.CHOOSE_COVER.toString();
+        String column = splString[2];
+        String row = splString[3];
+        String color = GameManager.COLOR;
+        int index = Coordinate.convertToIndex(new Coordinate(Integer.parseInt(row), Integer.parseInt(column)));
+        GameManager.coverHashMap.put(color, index);
+        message = message + ";" + column + ";" + row + ";" + color;
+        broadcastMessage(message);
+    }
+
     public void handleRolldice() {
         String msgClient = API.Type.ROLL_DICE + ";";
         String result = Dice.rollDice();
@@ -94,11 +109,27 @@ public class ClientHandler implements Runnable {
         broadcastMessage(msgClient);
     }
 
-    public void handleStatus(String s) {
+    public void handlePopUp(String s) {
         String status = s.split(";")[2];
-        if (status.equals("wrong")) {
-            broadcastMessage(s);
+        String message = API.Type.POP_UP.toString() + ";" + status;
+        if (status.equals("right")) {
+            boolean isGameOver = GameManager.updateGameOnline();
+            String scoreInfo = GameManager.PLAYER1.getName() + ";" + GameManager.PLAYER1.getScore() + ";"
+                    + GameManager.PLAYER2.getName() + ";" + GameManager.PLAYER2.getScore();
+            if (isGameOver) {
+                handleEndGame(scoreInfo);
+                return;
+            } else {
+                message = message + ";" + scoreInfo;
+            }
         }
+        broadcastMessage(message);
+    }
+
+    public void handleEndGame(String s) {
+        String message = API.Type.END_GAME.toString() + ";somebsmes;" + s;
+        System.out.println(message);
+        broadcastMessage(message);
     }
 
     public void handleAnswer(String s) {

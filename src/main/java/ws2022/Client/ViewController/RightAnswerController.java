@@ -20,10 +20,12 @@ public class RightAnswerController {
         soundc.click();
         Stage mystage = (Stage) pane.getScene().getWindow();
         mystage.close();
-        if (!GameManager.isOnline) {
-            GameManager.addScore();
-            GameManager.updateGame(GameManager.stage);
+        if (GameManager.isOnline) {
+            GameManager.client.closePopUp("right");
+            return;
         }
+        GameManager.addScore();
+        GameManager.updateGame(GameManager.stage);
 
     }
 }
