@@ -4,34 +4,37 @@ import java.util.Random;
 
 public class Dice {
     private static String color;
+    public static int numDice = 2;
 
     static public String rollDice() {
         Random rand = new Random();
-        int number = rand.nextInt(6);
+        int number = rand.nextInt(numDice + 1);
+        System.out.println(number);
         switch (number) {
-            case 0:
+            case 1:
                 color = "red";
                 break;
-            case 1:
+            case 2:
                 color = "green";
                 break;
-            case 2:
+            case 3:
                 color = "blue";
                 break;
-            case 3:
+            case 4:
                 color = "yellow";
                 break;
-            case 4:
+            case 5:
                 color = "orange";
                 break;
-            case 5:
-                color = "red"; // sua lai joker sau
+            case 0:
+                color = "joker";
                 break;
             default:
                 color = "";
                 break;
 
         }
+        System.out.println(color);
         return color;
     }
 }

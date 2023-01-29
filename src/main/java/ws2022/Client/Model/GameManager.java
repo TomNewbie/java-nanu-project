@@ -32,7 +32,15 @@ public class GameManager {
     public static boolean isOnline = false;
     public static String imageString;
     public static String answer;
-    public static String[] colorImage = { "blue", "green", "orange", "red", "yellow" };
+    public static String[] colorImage = { "red", "green", "blue", "yellow", "orange" };
+
+    public static String[] imageArray() {
+        String[] result = new String[5];
+        for (int i = 0; i < Dice.numDice; i++) {
+            result[i] = colorImage[i];
+        }
+        return result;
+    }
 
     public static String getCardImage() {
         if (GameManager.isOnline) {
@@ -107,7 +115,7 @@ public class GameManager {
     public static Coordinate[] setUpCover() {
         Coordinate[] coordinates = new Coordinate[5];
         int count = 0;
-        while (count < 5) {
+        while (count < Dice.numDice) {
             Random random = new Random();
             int indexList = random.nextInt(totalDisc);
             if (GameManager.myList.get(indexList).checkCover())

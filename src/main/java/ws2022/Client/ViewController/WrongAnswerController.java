@@ -46,7 +46,6 @@ public class WrongAnswerController {
     }
 
     public void closePopUp(ActionEvent event) throws IOException {
-
         soundc.click();
         Stage mystage = (Stage) pane.getScene().getWindow();
         mystage.close();
