@@ -35,7 +35,7 @@ public class GameManager {
     public static String[] colorImage = { "red", "green", "blue", "yellow", "orange" };
 
     public static String[] imageArray() {
-        String[] result = new String[5];
+        String[] result = new String[Dice.numDice];
         for (int i = 0; i < Dice.numDice; i++) {
             result[i] = colorImage[i];
         }
