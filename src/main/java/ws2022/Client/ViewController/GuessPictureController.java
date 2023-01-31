@@ -3,6 +3,7 @@ package ws2022.Client.ViewController;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.text.Text;
@@ -30,12 +31,16 @@ public class GuessPictureController {
     public void clickSubmit(ActionEvent event) throws IOException {
         soundc.click();
         String myChoice = comboBox.getValue();
+        SceneController sc = SceneController.getInstance();
+        if (myChoice == null) {
+            sc.showAlertMessage(Alert.AlertType.ERROR, "Missing input", "Please choose a value!!");
+            return;
+        }
         if (GameManager.isOnline) {
             GameManager.client.sendAnswer(myChoice);
             return;
         }
         String answer = GameManager.getAnswer();
-        SceneController sc = SceneController.getInstance();
         if (myChoice.equals(answer)) {
             soundc.correctAnswer();
             sc.createScene(event, "RightAnswer");

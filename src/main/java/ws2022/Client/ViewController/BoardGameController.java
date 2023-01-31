@@ -176,21 +176,18 @@ public class BoardGameController {
             System.out.println("there is something wrong with putCover");
             return;
         }
-        if (!GameManager.isOnline) {
-            if (GameManager.coverHashMap.get(color) == null) {
-                GameManager.coverHashMap.put(color, index);
-            } else {
-                GameManager.coverHashMap.replace(color, index);
-            }
+
+        if (GameManager.coverHashMap.get(color) == null) {
+            GameManager.coverHashMap.put(color, index);
+        } else {
+            GameManager.coverHashMap.replace(color, index);
         }
+
         imageView.setFitWidth(100);
         imageView.setFitHeight(100);
         imageView.setClip(clip);
         imageView.setOnMouseClicked(event -> alertCover(event));
         hashMapImageView.put(color, imageView);
-        System.out.println("put cover");
-        System.out.println("x, y" + x + " ," + y);
-        System.out.println("index: " + index);
         boardgame.add(imageView, x, y);
     }
 
@@ -210,7 +207,7 @@ public class BoardGameController {
             boardgame.getChildren().remove(myButton);
             createRollDiceBtn();
         }
-        for (int count = 0; count < 5; count++) {
+        for (int count = 0; count < Dice.numDice; count++) {
             String selectedImage = "/ws2022/assets/Covers/" + GameManager.colorImage[count] + ".png";
             putCover(selectedImage, coverCoords[count], GameManager.colorImage[count]);
         }
@@ -360,10 +357,11 @@ public class BoardGameController {
     public void update() {
         player1Score.setText("" + GameManager.PLAYER1.getScore());
         player2Score.setText("" + GameManager.PLAYER2.getScore());
-        if (!GameManager.isOnline)
+        if (!GameManager.isOnline || GameManager.isPlayer1Turn) {
             status.setText("Please choose picture to place " + GameManager.COLOR + " cover");
-        if (GameManager.isPlayer1Turn)
             GameManager.isChangeDisc = true;
+        }
+        // if (GameManager.isPlayer1Turn)
 
     }
 

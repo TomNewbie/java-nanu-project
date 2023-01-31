@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.Random;
 import javafx.scene.control.Alert;
 
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.stage.Stage;
 import ws2022.Client.ViewController.BoardGameController;
 import ws2022.Client.ViewController.SceneController;
@@ -34,7 +32,15 @@ public class GameManager {
     public static boolean isOnline = false;
     public static String imageString;
     public static String answer;
-    public static String[] colorImage = { "blue", "green", "orange", "red", "yellow" };
+    public static String[] colorImage = { "red", "green", "blue", "yellow", "orange" };
+
+    public static String[] imageArray() {
+        String[] result = new String[5];
+        for (int i = 0; i < Dice.numDice; i++) {
+            result[i] = colorImage[i];
+        }
+        return result;
+    }
 
     public static String getCardImage() {
         if (GameManager.isOnline) {
@@ -101,7 +107,6 @@ public class GameManager {
     }
 
     public static void startGame() {
-
         GenerateData.generateDisc(myList);
         Collections.shuffle(myList);
         pictureName = getArrayValue();
@@ -110,7 +115,7 @@ public class GameManager {
     public static Coordinate[] setUpCover() {
         Coordinate[] coordinates = new Coordinate[5];
         int count = 0;
-        while (count < 5) {
+        while (count < Dice.numDice) {
             Random random = new Random();
             int indexList = random.nextInt(totalDisc);
             if (GameManager.myList.get(indexList).checkCover())
@@ -129,21 +134,27 @@ public class GameManager {
         return Coordinate.convertToCoordinate(GameManager.coverHashMap.get(GameManager.COLOR));
     }
 
-    public static void validateValue(String name, String age) {
+    public static boolean validateValue(String name, String age) {
         if (name.isEmpty()) {
             sc.showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
                     "Please enter your name");
-            return;
+            return false;
         }
         if (age == null) {
             sc.showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
                     "Please enter your age");
-            return;
+            return false;
         }
         if (!age.matches("\\d+")) {
             sc.showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
                     "Please enter your age again!");
-            return;
+            return false;
         }
+        if (Integer.parseInt(age) > 100) {
+            sc.showAlertMessage(Alert.AlertType.ERROR, "Wrong logic!",
+                    "Please another age! Why you are so old?");
+            return false;
+        }
+        return true;
     }
 }
