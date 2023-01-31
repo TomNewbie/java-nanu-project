@@ -20,7 +20,7 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <ComboBox layoutX="698.0" layoutY="357.0" prefHeight="40.0" prefWidth="273.0" />
+      <ComboBox layoutX="698.0" layoutY="357.0" prefHeight="40.0" prefWidth="273.0" promptText="Select your picture theme" />
       <Label layoutX="562.0" layoutY="66.0" text="Setting">
          <font>
             <Font size="48.0" />
@@ -30,11 +30,11 @@
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Label layoutX="292.0" layoutY="501.0" text="Select your difficulty">
+      <Label layoutX="292.0" layoutY="501.0" text="Difficulty level">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <ComboBox fx:id="difficulty" layoutX="698.0" layoutY="507.0" onAction="#setDifficulty" prefHeight="40.0" prefWidth="273.0" />
+      <ComboBox fx:id="difficulty" layoutX="698.0" layoutY="507.0" onAction="#setDifficulty" prefHeight="40.0" prefWidth="273.0" promptText="Select your difficulty" />
    </children>
 </Pane>

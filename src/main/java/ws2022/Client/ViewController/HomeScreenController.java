@@ -27,7 +27,7 @@ public class HomeScreenController {
         // sc.enterProfile1(event);
         soundc.click();
         GameManager.isOnline = true;
-        sc.enterProfileOnline(event);
+        sc.chooseRole(event);
     }
 
     public void quit(ActionEvent event) throws IOException {
