@@ -22,6 +22,7 @@ public class App extends Application {
         System.out.println("jee");
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setTitle("Nanu");
         GameManager.stage = stage;
         stage.setScene(scene);
         stage.show();

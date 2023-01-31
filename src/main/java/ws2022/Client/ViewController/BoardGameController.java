@@ -24,11 +24,11 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import ws2022.Client.Client;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.GameManager;
 import ws2022.Middleware.API;
-import ws2022.Server.Client;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -287,7 +287,7 @@ public class BoardGameController {
                 Stage popupwindow = new Stage();
                 this.popUpStage = popupwindow;
                 popupwindow.initModality(Modality.APPLICATION_MODAL);
-                popupwindow.setTitle("This is a pop up window");
+                popupwindow.setTitle("Choose your option");
 
                 popupwindow.setY(GameManager.stage.getY() + GameManager.stage.getHeight() / 3.5);
                 popupwindow.setX(GameManager.stage.getX() + GameManager.stage.getWidth() / 7.75);
@@ -331,7 +331,7 @@ public class BoardGameController {
             try {
                 Stage popupwindow = new Stage();
                 popupwindow.initModality(Modality.APPLICATION_MODAL);
-                popupwindow.setTitle("This is a pop up window");
+                popupwindow.setTitle("Choose your option");
                 FXMLLoader loader = new FXMLLoader(
                         this.getClass().getResource("/ws2022/fxml/WhichColor.fxml"));
                 Parent popUp = loader.load();

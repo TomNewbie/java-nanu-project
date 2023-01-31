@@ -8,10 +8,10 @@ import java.util.Random;
 import javafx.scene.control.Alert;
 
 import javafx.stage.Stage;
+import ws2022.Client.Client;
 import ws2022.Client.ViewController.BoardGameController;
 import ws2022.Client.ViewController.SceneController;
 import ws2022.Client.utils.GenerateData;
-import ws2022.Server.Client;
 
 public class GameManager {
     // public static
