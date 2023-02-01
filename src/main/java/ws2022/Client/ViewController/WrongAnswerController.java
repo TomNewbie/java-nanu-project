@@ -33,7 +33,7 @@ public class WrongAnswerController {
     public void initialize() throws FileNotFoundException {
 
         coverText.setText("The image under " + GameManager.COLOR + " cover is:");
-        String selectedImage = "/ws2022/assets/FootballTheme/"
+        String selectedImage = "/ws2022/assets/" + GameManager.theme + "/"
                 +
                 GameManager.getCardImage();
         Image image = new Image(this.getClass()
