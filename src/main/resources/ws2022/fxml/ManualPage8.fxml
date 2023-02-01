@@ -16,9 +16,9 @@
             <Image url="@../assets/ManualPageImage/LeatherBoard.PNG" />
          </image>
       </ImageView>
-      <Text fill="#d71f1f" layoutX="221.0" layoutY="559.0" strokeType="OUTSIDE" strokeWidth="0.0" text="At the end of the game, a leaderboard will show who has won and who is on which rank." wrappingWidth="569.57421875">
+      <Text fill="#d71f1f" layoutX="199.0" layoutY="568.0" strokeType="OUTSIDE" strokeWidth="0.0" text="At the end of the game, a leaderboard will show who has won and who is on which rank." wrappingWidth="569.57421875">
          <font>
-            <Font name="System Bold" size="19.0" />
+            <Font name="System Bold" size="34.0" />
          </font>
       </Text>
    </children>

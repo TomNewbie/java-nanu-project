@@ -16,9 +16,9 @@
       </ImageView>
       <Button layoutX="53.0" layoutY="32.0" mnemonicParsing="false" onAction="#switchtomanualpage1" prefHeight="52.0" prefWidth="103.0" text="Back" />
       <Button layoutX="866.0" layoutY="32.0" mnemonicParsing="false" onAction="#switchtomanualpage3" prefHeight="52.0" prefWidth="103.0" text="Next" />
-      <Text fill="#d71f1f" layoutX="176.0" layoutY="576.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter name and birthday of player 2">
+      <Text fill="#d71f1f" layoutX="120.0" layoutY="576.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter name and birthday of player 2">
          <font>
-            <Font name="System Bold" size="31.0" />
+            <Font name="System Bold" size="33.0" />
          </font>
       </Text>
    </children>

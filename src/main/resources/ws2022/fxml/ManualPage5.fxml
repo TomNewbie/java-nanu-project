@@ -16,9 +16,9 @@
       </ImageView>
       <Button layoutX="52.0" layoutY="35.0" mnemonicParsing="false" onAction="#switchtomanualpage4" prefHeight="56.0" prefWidth="102.0" text="Back" />
       <Button layoutX="854.0" layoutY="51.0" mnemonicParsing="false" onAction="#switchtomanualpage6" prefHeight="56.0" prefWidth="110.0" text="Next" />
-      <Text fill="#d71f1f" layoutX="154.0" layoutY="523.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If your answer was right, you will get one point and the picture will disappear from the gameboard" wrappingWidth="620.1366729736328">
+      <Text fill="#d71f1f" layoutX="154.0" layoutY="557.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If your answer was right, you will get one point and the picture will disappear from the gameboard" wrappingWidth="620.1366729736328">
          <font>
-            <Font name="System Bold" size="19.0" />
+            <Font name="System Bold" size="35.0" />
          </font>
       </Text>
    </children>
