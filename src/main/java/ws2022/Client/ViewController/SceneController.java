@@ -85,6 +85,14 @@ public class SceneController {
         stage.show();
     }
 
+    public void serverSetting(ActionEvent event) throws IOException {
+        createScene(event, "ServerSetting");
+    }
+
+    public void chooseRole(ActionEvent event) throws IOException {
+        createScene(event, "ChooseRole");
+    }
+
     public void enterProfile1(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/fxml/EnterProfile.fxml"));
         root = loader.load();

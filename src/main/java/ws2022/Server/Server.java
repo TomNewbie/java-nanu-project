@@ -41,8 +41,8 @@ public class Server {
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        System.out.print("Your IPv4 address: ");
+    public static void execute() throws IOException {
+        // System.out.print("Your IPv4 address: ");
         // Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
         System.out.println(Inet4Address.getLocalHost().getHostAddress());
         ServerSocket serverSocket = new ServerSocket(1809);

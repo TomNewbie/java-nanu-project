@@ -1,34 +1,41 @@
 package ws2022.Client.utils;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import ws2022.Client.Model.Disc;
+import ws2022.Client.Model.GameManager;
 
 public class GenerateData {
-    // Add value flag ngay tren array nay
+    public static String[] Images;
+    public static String[] Values = new String[24];
 
-    public static String[] flagValue = { "Argentina", "Australia", "Belgium", "Brazil",
-            "Cameroon", "Canada", "CostaRica",
-            "Croatia", "Denmark", "Ecuador", "England", "France", "Germany", "Ghana",
-            "Iran", "Japan", "Korea",
-            "Mexico", "Netherland", "Poland", "Portugal", "Qatar", "SaudiArabia",
-            "Senegal", "Serbia", "Spain",
-            "Switzerland", "Tunisia", "Uruguay", "USA", "Wales" };
+    public static void generateDataForFolder() {
 
-    // Add name file flag tuong ung tren array nay trong ws2022/Client/assets
-    public static String[] flagFileName = { "Argentina.png", "Australia.png", "Belgium.png", "Brazil.png",
-            "Cameroon.png", "Canada.png", "CostaRica.png",
-            "Croatia.png", "Denmark.png", "Ecuador.png", "England.png", "France.png", "Germany.png", "ghana.png",
-            "Iran.png", "Japan.png", "Korea.png",
-            "Mexico.png", "Netherland.png", "Poland.png", "Portugal.png", "Qatar.png", "SaudiArabia.png",
-            "Senegal.png", "Serbia.png", "Spain.png",
-            "Switzerland.png", "Tunisia.png", "Uruguay.png", "USA.png", "Wales.png" };
+        // Creates a new File instance by converting the given pathname string
+        // into an abstract pathname
+        File f = new File(
+                "C:\\Users\\lhkim\\Documents\\GitHub\\java-nanu-project\\src\\main\\resources\\ws2022\\assets\\Theme\\"
+                        + GameManager.theme);
+
+        // Populates the array with names of files and directories
+        Images = f.list();
+        for (int i = 0; i < Values.length; i++) {
+            String temp = Images[i].substring(0, Images[i].length() - 4); // remove .jpg, .png
+            String[] temp1 = temp.split("(?=\\p{Lu})"); // split when uppercase to array
+            temp = Arrays.toString(temp1); // array concat to string
+            Values[i] = temp.replaceAll("[^a-zA-Z0-9\\s+]", ""); // remove all special character except blank space
+        }
+    }
 
     public static void generateDisc(ArrayList<Disc> discArray) {
-        for (int i = 0; i < flagValue.length; i++) {
-            discArray.add(new Disc(flagFileName[i], flagValue[i]));
+        generateDataForFolder();
+        for (int i = 0; i < Values.length; i++) {
+            discArray.add(new Disc(Images[i], Values[i]));
         }
+        System.out.println(Values.length);
     }
 
 }
