@@ -18,12 +18,12 @@ Nanu Game Team
 
 ## Table of contents
 
-* Introduction
+- Introduction
   - [Introduction of the game](#Introduction-of-the-game)
   - [Set up and Concepts to play](#Set-up-and-Concepts-to-play)
-* [Using Nanu](#Using-Nanu)
+- [Using Nanu](#Using-Nanu)
 
-* Repository materials
+- Repository materials
   - [Folder stucture](#Folder-stucture)
   - [Convention](#Convention)
   - [Build maven](#Build-maven)
@@ -36,9 +36,9 @@ Nanu Game Team
   - [LaTeX Documentation](#LaTeX-Documentation)
   - [Figma GUI Design](#Figma-GUI-Design)
   - [Flow Chart](#Flow-Chart)
-* How to play the game
+- How to play the game
 
-* [Authors](#Authors)
+- [Authors](#Authors)
 
 ## Introduction
 
@@ -48,7 +48,7 @@ Children learn through play. Games and toys help to develop important cognitive,
 
 The goal is to collect the most discs by remembering the images under the covers. The discs are 1 5/8” in diameter and the plastic covers are just a little bit bigger so they can fit over the top of them. Each disc has one ordinary item pictured on it such as tree, rooster, ball, cat, cherries and sail boat and each disc has a different image. The covers are about 7/16” deep and are hollow so that they fit over the top of the disc without anything showing. The cover colors are red, blue, green, yellow and orange. The die has a different color on five of the sides, to match the colors of the covers, and the sixth side has a picture of a joker. The game will over when a player has the most discs.
 
-###  Set up and Concepts to play
+### Set up and Concepts to play
 
 Place the 24 discs, picture side up, in a grid shape on the table top. Place the five covers over five discs. As you place each cover say something like “The tree is under the orange disc”. All players pay attention to this part and watch and listen to remember which pictures are
 where.
@@ -57,44 +57,30 @@ The first player throws the die. The color he gets will indicate the color of co
 
 ## Using Nanu
 
-There is documentation for the Nanu Game [here](http://projects.csail.mit.edu/jeeves/doc/jeeveslib.html). We have a [Quick Introduction to Jeeves](https://github.com/jeanqasaur/jeeves/wiki/A-Quick-Introduction-to-Jeeves). (Happy to take suggestions on how to make it more useful!)
+There is documentation for the Nanu Game [here](latex link).
 
-You may also find it helpful to read our tests in ```test``` and ```test/gallery```.
-
-## Repository materials
-
-### Folder stucture:
+## Folder stucture:
 
 <img width="202" alt="Folder structure" src="https://user-images.githubusercontent.com/101057915/215150670-6f53a55f-c46d-42be-8cb3-308b5645a7b0.png">
 
-* .vscode: 
-Workspace settings as well as debugging and task configurations are stored at the root in a .vscode folder.
-* src/main: main folder, this is the part where we put all our code.
-* java/ws2022: This folder contains 3 more subfolders: client, middleware, and server and one file app.java.
-* Client: this folder contains the code for control the logic (offline game) and also the code for the client side (online game).
-* Model: contains class structure of the game, directly manages data, logic, and rules of the application.
-* View: contains the GUI of the game.
-* Controller: contains of java file controlling fxml file.
-* Middleware: the API is the translation message between the client and server (online game).
-* Server: it contains the logic for set up the server to connect between multiple machines (online game)
-* resources/ws2022: This folder keeps all the resources, e.g. sound, image for our games. In this folder, there are 3 subfolders: assets (keeps the image), sound (keeps sound files for sound effect), fxml (keeps all the file with the extension .fxml for the UI)
-* target: The target folder is the maven default output folder. When a project is build or packaged, all the content of the sources, resources and web files will be put inside of it, it will be used for construct the artifacts and for run tests.
-* .classpath: The .classpath maintains the project's source and target references for Java compilation and compressed file or project dependencies.
-* .gitignore: When working with github to share our code, we don’t want to push some unnecessary files to our repository, e.g. .class, .vscode so we add some patterns to this file so github will ignore these files.
-* pom.xml: The pom.xml file contains information of project and configuration information for the maven to build the project such as dependencies, build directory, source directory, test source directory, plugin, goals etc.
-* readme.md: The What, Why, and How of the project are addressed in the readme.md file. Visitors to the repository will see the README automatically from GitHub.
+- .vscode:
+  Workspace settings as well as debugging and task configurations are stored at the root in a .vscode folder.
+- src/main: main folder, this is the part where we put all our code.
+- java/ws2022: This folder contains 3 more subfolders: client, middleware, and server and one file app.java.
+- Client: this folder contains the code for control the logic (offline game) and also the code for the client side (online game).
+- Model: contains class structure of the game, directly manages data, logic, and rules of the application.
+- View: contains the GUI of the game.
+- Controller: contains of java file controlling fxml file.
+- Middleware: the API is the translation message between the client and server (online game).
+- Server: it contains the logic for set up the server to connect between multiple machines (online game)
+- resources/ws2022: This folder keeps all the resources, e.g. sound, image for our games. In this folder, there are 3 subfolders: assets (keeps the image), sound (keeps sound files for sound effect), fxml (keeps all the file with the extension .fxml for the UI)
+- target: The target folder is the maven default output folder. When a project is build or packaged, all the content of the sources, resources and web files will be put inside of it, it will be used for construct the artifacts and for run tests.
+- .classpath: The .classpath maintains the project's source and target references for Java compilation and compressed file or project dependencies.
+- .gitignore: When working with github to share our code, we don’t want to push some unnecessary files to our repository, e.g. .class, .vscode so we add some patterns to this file so github will ignore these files.
+- pom.xml: The pom.xml file contains information of project and configuration information for the maven to build the project such as dependencies, build directory, source directory, test source directory, plugin, goals etc.
+- readme.md: The What, Why, and How of the project are addressed in the readme.md file. Visitors to the repository will see the README automatically from GitHub.
 
-### Convention:
-
-naming will be **camelCase**
-
-_variable_ start with low character. Ex: `player1`, `playerController`
-
-_function_ start with Capital letter. Ex: `DrawCard()`, `StartGame()`
-
-_class_ always start with Capital letter. Ex: `Controller`, `Card`
-
-### Maven:
+## Maven:
 
 #### Build maven:
 
@@ -110,9 +96,10 @@ The _build file_ will be in the _target folder_
 To clean the target file
 
 > **Note:**
-> * Currently maven is not neccessary yet, if you want to find out you can check it
-> 
-> * If you can not run the file by button you can run it manually
+>
+> - Currently maven is not neccessary yet, if you want to find out you can check it
+>
+> - If you can not run the file by button you can run it manually
 
 ### Command to run file:
 
@@ -125,15 +112,6 @@ Controller has package **_ws2022.client.controller_** (the package that you writ
 **java** is command to run java
 
 **-cp** specify the #classpath
-
-### Cover color code
-
-- Dice.color = 0 `#FF0000` (red)
-- Dice.color = 1 `#00FF00` (green)
-- Dice.color = 2 `#0000FF` (blue)
-- Dice.color = 3 `#FFFF00` (yellow)
-- Dice.color = 4 `#FFA500` (orange)
-- Dice.color = 5 => joker
 
 ### Resolution
 
@@ -158,8 +136,9 @@ https://www.figma.com/file/GRC56e384dnW1vtGOBuxu2/nanu?t=3MCzRTGohLyGowFa-0
 ## How to play the game
 
 ## Authors
-* [Tho Phan Chi](https://github.com/TomNewbie)
-* [Thanh Le Hoang Kim](https://github.com/Kimthanh11)
-* [Ferid Gökkaya](https://github.com/ferid99)
-* [Kim Tran Hoang](https://github.com/HoangKim1504)
-* [Ngoc Pham Nhu](https://github.com/PhamNhuNgoc)
+
+- [Tho Phan Chi](https://github.com/TomNewbie)
+- [Thanh Le Hoang Kim](https://github.com/Kimthanh11)
+- [Ferid Gökkaya](https://github.com/ferid99)
+- [Kim Tran Hoang](https://github.com/HoangKim1504)
+- [Ngoc Pham Nhu](https://github.com/PhamNhuNgoc)
