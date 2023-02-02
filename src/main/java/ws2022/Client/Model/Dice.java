@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Dice {
     private static String color;
-    public static int numDice = 2;
+    public static int numDice = 1;
 
     static public String rollDice() {
         Random rand = new Random();
@@ -27,7 +27,7 @@ public class Dice {
                 color = "orange";
                 break;
             case 0:
-                color = "joker";
+                color = "red";
                 break;
             default:
                 color = "";

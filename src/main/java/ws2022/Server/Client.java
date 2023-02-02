@@ -10,6 +10,7 @@ import java.net.Socket;
 import ws2022.Client.Model.GameManager;
 import javafx.application.Platform;
 import ws2022.Client.Model.Coordinate;
+import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.Disc;
 import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
@@ -97,6 +98,7 @@ public class Client {
         int column = Integer.parseInt(splStrings[1]);
         int row = Integer.parseInt(splStrings[2]);
         GameManager.COLOR = splStrings[3];
+        System.out.println("onReceiveChooseCover");
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -130,6 +132,7 @@ public class Client {
             public void run() {
                 try {
                     if (status.equals("right")) {
+                        GameManager.answer = answer;
                         if (GameManager.isPlayer1Turn) {
                             SoundController sound = new SoundController();
                             sound.correctAnswer();
@@ -257,24 +260,6 @@ public class Client {
         sendMessage(s, API.Type.POP_UP);
     }
 
-    // public void sendMessage() {
-    // try {
-    // bufferedWriter.write(GameManager.PLAYER1.getName() + ";" +
-    // GameManager.PLAYER1.getAge());
-    // bufferedWriter.newLine();
-    // bufferedWriter.flush();
-    // Scanner scanner = new Scanner(System.in);
-    // while (socket.isConnected()) {
-    // String messageToSend = scanner.nextLine();
-    // bufferedWriter.write(GameManager.PLAYER1.getName() + ": " + messageToSend);
-    // bufferedWriter.newLine();
-    // bufferedWriter.flush();
-    // }
-    // } catch (IOException e) {
-    // closeEverything(socket, bufferedReader, bufferedWriter);
-    // // TODO: handle exception
-    // }
-    // }
     public void setUpGame(String s) {
         String splString[] = s.split(";");
         System.out.println(splString.length);
@@ -325,13 +310,13 @@ public class Client {
         String[] splString = s.split(";");
         int count = 0;
         for (int i = 2; i < splString.length - 1; i = i + 2) {
-            if (count > 4) {
+            if (count >= Dice.numDice) {
                 break;
             }
             result[count] = new Coordinate(Integer.parseInt(splString[i]), Integer.parseInt(splString[i + 1]));
             count++;
         }
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < Dice.numDice; i++) {
             System.out.println(result[i].getRow());
         }
         return result;
@@ -388,18 +373,6 @@ public class Client {
             // TODO: handle exception
         }
     }
-
-    // public static void main(String[] args) throws IOException {
-    // Scanner scanner = new Scanner(System.in);
-    // System.out.println("Enter your username for the group chat: ");
-    // String username = scanner.nextLine();
-    // System.out.println("Please enter the server IP add");
-    // String ipv4 = scanner.nextLine();
-    // Socket socket = new Socket(ipv4, 8080);
-    // Client client = new Client(socket, username);
-    // client.listenForMessage();
-    // client.sendMessage();
-    // }
 
     public static void connectServer(String username, String age, String ipv4) throws IOException {
         // Scanner scanner = new Scanner(System.in);

@@ -90,12 +90,14 @@ public class ClientHandler implements Runnable {
     }
 
     public void handleChooseCover(String s) {
+        System.out.println("handleChooseCover");
+
         String[] splString = s.split(";");
         String message = API.Type.CHOOSE_COVER.toString();
         String column = splString[2];
         String row = splString[3];
         String color = GameManager.COLOR;
-        int index = Coordinate.convertToIndex(new Coordinate(Integer.parseInt(row), Integer.parseInt(column)));
+        int index = Coordinate.convertToIndex(new Coordinate(Integer.parseInt(column), Integer.parseInt(row)));
         GameManager.coverHashMap.put(color, index);
         message = message + ";" + column + ";" + row + ";" + color;
         broadcastMessage(message);
@@ -192,7 +194,7 @@ public class ClientHandler implements Runnable {
         Coordinate[] result = GameManager.setUpCover();
         Helper.generateCoverHashMap(result);
         String msgClient = API.Type.DATA.toString() + ";" + "cover;";
-        for (int i = 0; i < result.length; i++) {
+        for (int i = 0; i < Dice.numDice; i++) {
             msgClient = msgClient + result[i].getColumn() + ";";
             msgClient = msgClient + result[i].getRow() + ";";
         }

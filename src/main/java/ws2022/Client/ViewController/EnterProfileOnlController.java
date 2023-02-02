@@ -52,7 +52,8 @@ public class EnterProfileOnlController {
         String name = nameTF.getText();
         String age = ageTF.getText();
         String ipv4 = IPserver.getText();
-        GameManager.validateValue(name, age);
+        if (!GameManager.validateValue(name, age))
+            return;
         GameManager.PLAYER1 = new Player(name, Integer.parseInt(age));
         GameManager.client = new Client(ipv4);
         GameManager.client.listenForMessage();

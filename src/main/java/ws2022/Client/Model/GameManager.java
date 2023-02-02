@@ -100,7 +100,7 @@ public class GameManager {
     public static boolean updateGameOnline() {
         totalDisc--;
         addScore();
-        if (totalDisc > 22) {
+        if (totalDisc > 10) {
             return false;
         }
         return true;
