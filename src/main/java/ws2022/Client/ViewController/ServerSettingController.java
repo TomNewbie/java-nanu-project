@@ -21,17 +21,19 @@ public class ServerSettingController {
     @FXML
     Label ipLabel;
     SceneController sc = SceneController.getInstance();
+    SoundController soundc = new SoundController();
 
     @FXML
     public void initialize() throws IOException {
         Integer number[] = { 1, 2, 3, 4, 5 };
         difficulty.getItems().addAll(number);
         // Server.execute();
-        ipLabel.setText("Your IP number is: " +
+        ipLabel.setText("Your IP address is: " +
                 Inet4Address.getLocalHost().getHostAddress());
     }
 
     public void returnHome(ActionEvent event) throws IOException {
+        soundc.click();
         sc.homeScreen(event);
     }
 
