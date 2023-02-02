@@ -28,7 +28,7 @@ public class GameManager {
     public static boolean isCorrect;
     public static boolean isPlayer1Turn;
     private static SceneController sc = SceneController.getInstance();
-    public static String theme = "Football";
+    public static String theme = "Classic";
     // for online
     public static boolean isOnline = false;
     public static String imageString;

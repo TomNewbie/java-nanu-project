@@ -101,6 +101,7 @@ public class BoardGameController {
                 imageView.setUserData(new Coordinate(x, y)); // index data
                 hashMapPicture.put(GameManager.myList.get(index).getValue(), imageView);
                 boardgame.add(imageView, x, y);
+                System.out.println(GameManager.myList.get(index).getImage());
                 index++;
             }
         }

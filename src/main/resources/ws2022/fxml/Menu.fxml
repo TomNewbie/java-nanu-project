@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -20,7 +21,7 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <ComboBox fx:id="theme" layoutX="698.0" layoutY="357.0" prefHeight="40.0" prefWidth="273.0" promptText="Select your picture theme" />
+      <ComboBox fx:id="theme" layoutX="698.0" layoutY="357.0" onAction="#setTheme" prefHeight="40.0" prefWidth="273.0" promptText="Select your picture theme" />
       <Label layoutX="562.0" layoutY="66.0" text="Setting">
          <font>
             <Font size="48.0" />
@@ -36,5 +37,6 @@
          </font>
       </Label>
       <ComboBox fx:id="difficulty" layoutX="698.0" layoutY="507.0" onAction="#setDifficulty" prefHeight="40.0" prefWidth="273.0" promptText="Select your difficulty" />
+      <ImageView fx:id="dice" fitHeight="150.0" fitWidth="200.0" layoutX="802.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>
