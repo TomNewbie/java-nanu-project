@@ -4,6 +4,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.ManualPageController">
    <children>
@@ -13,5 +15,10 @@
          </image></ImageView>
       <Button fx:id="BackButton2" layoutX="52.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchtomanualpage2" prefHeight="52.0" prefWidth="120.0" text="Back" />
       <Button fx:id="NextButton4" layoutX="846.0" layoutY="37.0" mnemonicParsing="false" onAction="#switchtomanualpage4" prefHeight="52.0" prefWidth="114.0" text="Next" />
+      <Text fill="#d71f1f" layoutX="112.0" layoutY="544.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press &quot;Roll the dice&quot;. After pressed the color which you have rolled will appear" wrappingWidth="709.6380615234375">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

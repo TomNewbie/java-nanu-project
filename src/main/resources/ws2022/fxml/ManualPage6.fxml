@@ -4,6 +4,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.ManualPageController">
    <children>
@@ -14,5 +16,10 @@
             <Image url="@../assets/ManualPageImage/Joker.PNG" />
          </image>
       </ImageView>
+      <Text fill="#d71f1f" layoutX="195.0" layoutY="562.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If you a joker, you can choose any color you want">
+         <font>
+            <Font name="System Bold" size="34.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

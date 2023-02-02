@@ -1,4 +1,4 @@
-package ws2022.Server;
+package ws2022.Client;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,7 +15,6 @@ import ws2022.Client.Model.Disc;
 import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
 import ws2022.Client.ViewController.BoardGameController;
-import ws2022.Client.ViewController.BoardGameOnlController;
 import ws2022.Client.ViewController.EnterProfileOnlController;
 import ws2022.Client.ViewController.SceneController;
 import ws2022.Client.ViewController.SoundController;

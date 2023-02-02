@@ -31,7 +31,7 @@ public class ManualPageController {
     
    }
    public void switchtomanualpage2(ActionEvent event)throws IOException{
-      Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/ManualpagePane2.fxml"));
+      Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/ManualPage2.fxml"));
       stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
       scene = new Scene(root);
       scene.getStylesheets()
@@ -44,7 +44,7 @@ public class ManualPageController {
    }
    public void switchtomanualpage3(ActionEvent event) throws IOException {
      
-      Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/ManPage3.fxml"));
+      Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/ManualPage3.fxml"));
       stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
       scene = new Scene(root);
       scene.getStylesheets()
@@ -70,7 +70,7 @@ public class ManualPageController {
 }
 public void switchtomanualpage5(ActionEvent event) throws IOException {
      
-   Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/test.fxml"));
+   Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/ManualPage5.fxml"));
    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
    scene = new Scene(root);
    scene.getStylesheets()
@@ -109,7 +109,7 @@ public void switchtomanualpage7(ActionEvent event) throws IOException {
 }
 public void switchtomanualpage8(ActionEvent event) throws IOException {
      
-   Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/ManualPane8.fxml"));
+   Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/ManualPage8.fxml"));
    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
    scene = new Scene(root);
    scene.getStylesheets()

@@ -4,6 +4,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.ManualPageController">
    <children>
@@ -14,5 +16,10 @@
       </ImageView>
       <Button fx:id="BackButton3" layoutX="72.0" layoutY="32.0" mnemonicParsing="false" onAction="#switchtomanualpage3" prefHeight="47.0" prefWidth="94.0" text="Back" />
       <Button fx:id="NextButton4" layoutX="833.0" layoutY="34.0" mnemonicParsing="false" onAction="#switchtomanualpage5" prefHeight="47.0" prefWidth="112.0" text="Next" />
+      <Text fill="#d71f1f" layoutX="148.0" layoutY="606.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select which picture you want to cover">
+         <font>
+            <Font name="System Bold" size="34.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

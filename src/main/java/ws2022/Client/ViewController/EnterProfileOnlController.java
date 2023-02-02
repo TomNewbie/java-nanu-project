@@ -8,10 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import ws2022.Client.Client;
 import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
 import ws2022.Middleware.API.Type;
-import ws2022.Server.Client;
 
 public class EnterProfileOnlController {
     private static EnterProfileOnlController epoc;
