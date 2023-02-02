@@ -28,6 +28,7 @@ public class GameManager {
     public static boolean isCorrect;
     public static boolean isPlayer1Turn;
     private static SceneController sc = SceneController.getInstance();
+    public static String theme = "Classic";
     // for online
     public static boolean isOnline = false;
     public static String imageString;
@@ -35,7 +36,7 @@ public class GameManager {
     public static String[] colorImage = { "red", "green", "blue", "yellow", "orange" };
 
     public static String[] imageArray() {
-        String[] result = new String[5];
+        String[] result = new String[Dice.numDice];
         for (int i = 0; i < Dice.numDice; i++) {
             result[i] = colorImage[i];
         }

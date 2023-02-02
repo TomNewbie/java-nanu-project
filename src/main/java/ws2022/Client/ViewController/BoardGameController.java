@@ -85,7 +85,7 @@ public class BoardGameController {
             for (int x = 0; x < 7; x++) {
                 if (x != 0 && y != 0 && x != 6 && y != 6)
                     continue;
-                String selectedImage = "/ws2022/assets/FootballTheme/"
+                String selectedImage = "/ws2022/assets/Theme/" + GameManager.theme + "/"
                         + GameManager.myList.get(index).getImage();
                 Image image = new Image(this.getClass()
                         .getResource(selectedImage)
@@ -101,6 +101,7 @@ public class BoardGameController {
                 imageView.setUserData(new Coordinate(x, y)); // index data
                 hashMapPicture.put(GameManager.myList.get(index).getValue(), imageView);
                 boardgame.add(imageView, x, y);
+                System.out.println(GameManager.myList.get(index).getImage());
                 index++;
             }
         }
