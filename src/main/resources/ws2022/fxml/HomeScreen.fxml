@@ -7,9 +7,9 @@
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.HomeScreenController">
    <children>
-      <Label layoutX="488.0" layoutY="89.0" text="NANU">
+      <Label layoutX="490.0" layoutY="48.0" text="NANU" textFill="#000000a8">
          <font>
-            <Font size="53.0" />
+            <Font name="System Bold Italic" size="81.0" />
          </font>
       </Label>
       <Button fx:id="playOffline" layoutX="431.0" layoutY="230.0" mnemonicParsing="false" onAction="#playOffline" prefHeight="80.0" prefWidth="330.0" styleClass="bigBtn" text="Play Offline" />
