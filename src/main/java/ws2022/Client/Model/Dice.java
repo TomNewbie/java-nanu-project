@@ -27,7 +27,7 @@ public class Dice {
                 color = "orange";
                 break;
             case 0:
-                color = "red";
+                color = "joker";
                 break;
             default:
                 color = "";

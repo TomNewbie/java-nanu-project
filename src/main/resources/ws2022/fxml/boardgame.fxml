@@ -40,12 +40,12 @@
             <ImageView fx:id="dice" fitHeight="84.0" fitWidth="88.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
-      <Text fx:id="player1" layoutX="878.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1">
+      <Text fx:id="player1" layoutX="852.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" wrappingWidth="185.3984375">
          <font>
             <Font size="28.0" />
          </font>
       </Text>
-      <Text fx:id="player2" fill="RED" layoutX="878.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" wrappingWidth="113.25244140625">
+      <Text fx:id="player2" fill="RED" layoutX="851.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" wrappingWidth="185.3984375">
          <font>
             <Font size="28.0" />
          </font>
@@ -55,7 +55,7 @@
             <Font size="28.0" />
          </font>
       </Text>
-      <Text fx:id="player2Score" fill="RED" layoutX="1067.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score">
+      <Text fx:id="player2Score" fill="RED" layoutX="1067.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score">
          <font>
             <Font size="28.0" />
          </font>

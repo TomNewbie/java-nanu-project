@@ -17,7 +17,7 @@ public class GenerateData {
         // Creates a new File instance by converting the given pathname string
         // into an abstract pathname
         File f = new File(
-                "C:\\Users\\lhkim\\Documents\\GitHub\\java-nanu-project\\src\\main\\resources\\ws2022\\assets\\Theme\\"
+                "D:\\coding_Shit\\Project\\java-nanu-project\\src\\main\\resources\\ws2022\\assets\\Theme\\"
                         + GameManager.theme);
 
         // Populates the array with names of files and directories

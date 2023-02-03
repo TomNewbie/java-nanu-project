@@ -8,11 +8,15 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.Disc;
 import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
+import ws2022.Client.ViewController.SceneController;
 import ws2022.Middleware.API;
 import ws2022.Middleware.API.Type;
 
@@ -57,6 +61,20 @@ public class ClientHandler implements Runnable {
                 // TODO: handle exception
             }
         }
+        closeEverything(socket, bufferedReader, bufferedWriter);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    SceneController sc = SceneController.getInstance();
+                    sc.showAlertMessage(Alert.AlertType.WARNING, "Connection fail", "Player " +
+                            (clientNumber + 1) + " has disconnected");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // TODO: handle exception
+                }
+            }
+        });
     }
 
     public void handleMessage(String s) throws IOException {
@@ -78,15 +96,39 @@ public class ClientHandler implements Runnable {
             case CHOOSE_COVER:
                 handleChooseCover(s);
                 break;
-            // case SET_COLOR:
-            // handleSetColor(s);
-            // case END_GAME:
-            // handleEndGame(s);
+            case SET_COLOR:
+                handleSetColor(s);
+            case CLOSE_CONNECTION:
+                handleCloseConnection();
+                break;
             default:
                 System.out.println("Unspecify type");
                 // error handling here
         }
         System.out.println("handle Message");
+    }
+
+    public void handleSetColor(String s) {
+        String color = s.split(";")[2];
+        if (!GameManager.COLOR.equals("joker")) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        SceneController sc = SceneController.getInstance();
+                        sc.showAlertMessage(Alert.AlertType.WARNING, "Cheating", "Player " +
+                                (clientNumber + 1) + " try to cheat!");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        // TODO: handle exception
+                    }
+                }
+            });
+            return;
+        }
+        GameManager.COLOR = color;
+        String message = API.Type.ROLL_DICE.toString() + ";" + color;
+        broadcastMessage(message);
     }
 
     public void handleChooseCover(String s) {
@@ -158,7 +200,7 @@ public class ClientHandler implements Runnable {
             GameManager.PLAYER1 = new Player(splStrings[1], Integer.parseInt(splStrings[2]));
             String msg = Type.ENTER_PROFILE.toString();
             unicastMessage(msg, 0);
-            System.out.println("helo");
+            System.out.println(msg);
             return;
         }
         GameManager.PLAYER2 = new Player(splStrings[1], Integer.parseInt(splStrings[2]));
@@ -188,6 +230,10 @@ public class ClientHandler implements Runnable {
             closeEverything(socket, bufferedReader, bufferedWriter);
             e.printStackTrace();
         }
+    }
+
+    public void handleCloseConnection() {
+        closeEverything(socket, bufferedReader, bufferedWriter);
     }
 
     public void generateCover() {

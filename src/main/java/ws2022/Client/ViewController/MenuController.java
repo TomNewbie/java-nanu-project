@@ -60,7 +60,7 @@ public class MenuController {
         // Creates a new File instance by converting the given pathname string
         // into an abstract pathname
         File f = new File(
-                "C:\\Users\\lhkim\\Documents\\GitHub\\java-nanu-project\\src\\main\\resources\\ws2022\\assets\\Theme");
+                "D:\\coding_Shit\\Project\\java-nanu-project\\src\\main\\resources\\ws2022\\assets\\Theme");
 
         // Populates the array with names of files and directories
         pathnames = f.list();

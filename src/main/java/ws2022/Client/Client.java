@@ -70,8 +70,9 @@ public class Client {
                 break;
             case END_GAME:
                 onReceiveEndGame(s);
-                // case GUESS_PICTURE:
-                // break;
+                break;
+            default:
+                System.out.println("Unspecify type");
         }
         System.out.println("hehe handle message");
     }
@@ -336,8 +337,13 @@ public class Client {
         }
     }
 
+    public void chooseColor(String color) {
+        sendMessage(color, API.Type.SET_COLOR);
+    }
+
     public void listenForMessage() {
-        new Thread(new Runnable() {
+
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 String msgFromServer;
@@ -353,7 +359,15 @@ public class Client {
                     }
                 }
             }
-        }).start();
+        });
+        t.setDaemon(true);
+        t.start();
+    }
+
+    public void close() {
+        sendMessage("", API.Type.CLOSE_CONNECTION);
+        ;
+        closeEverything(socket, bufferedReader, bufferedWriter);
     }
 
     public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter) {

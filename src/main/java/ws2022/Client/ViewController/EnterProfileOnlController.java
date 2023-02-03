@@ -43,9 +43,12 @@ public class EnterProfileOnlController {
         status.setText("Connect successfully! Please wait player 2 enter the game!");
     }
 
-    public void home(ActionEvent event) throws IOException {
+    public void returnBtn(ActionEvent event) throws IOException {
+        if (GameManager.client != null) {
+            GameManager.client.close();
+        }
         SceneController sc = SceneController.getInstance();
-        sc.homeScreen(event);
+        sc.chooseRole(event);
     }
 
     public void enterOnlineGame(ActionEvent event) throws IOException, InterruptedException {

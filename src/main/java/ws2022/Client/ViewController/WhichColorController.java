@@ -35,9 +35,13 @@ public class WhichColorController {
             sc.showAlertMessage(Alert.AlertType.ERROR, "Missing input", "Please choose a value!!");
             return;
         }
-        GameManager.COLOR = myChoice;
+        if (GameManager.isOnline) {
+            GameManager.client.chooseColor(myChoice);
+            return;
+        }
         Stage popupwindow = (Stage) mypane.getScene().getWindow();
         popupwindow.close();
+        GameManager.COLOR = myChoice;
         BoardGameController bgc = BoardGameController.getInstance();
         bgc.getNormalColor();
     }

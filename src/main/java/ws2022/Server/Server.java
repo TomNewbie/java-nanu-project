@@ -6,20 +6,16 @@ import java.net.Inet6Address;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import ws2022.Client.Model.GameManager;
-
 public class Server {
     private ServerSocket serverSocket;
 
-    Server(ServerSocket serverSocket) {
+    public Server(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
     }
 
     public void startServer() {
         try {
-            int count = 0;
             while (!serverSocket.isClosed()) {
-                count++;
                 Socket socket = serverSocket.accept();
                 ClientHandler clientHandler = new ClientHandler(socket);
                 Thread thread = new Thread(clientHandler);
@@ -34,6 +30,9 @@ public class Server {
         try {
             if (serverSocket != null) {
                 serverSocket.close();
+                System.out.print("close server");
+            } else {
+                System.out.println("no serversocet");
             }
         } catch (IOException e) {
             // TODO: handle exception
@@ -41,13 +40,13 @@ public class Server {
         }
     }
 
-    public static void execute() throws IOException {
+    public static Server execute() throws IOException {
         // System.out.print("Your IPv4 address: ");
         // Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
         System.out.println(Inet4Address.getLocalHost().getHostAddress());
         ServerSocket serverSocket = new ServerSocket(1809);
         Server server = new Server(serverSocket);
-        GameManager.startGame();
         server.startServer();
+        return server;
     }
 }
