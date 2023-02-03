@@ -19,7 +19,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/HomeScreen.fxml"));
-        System.out.println("jee");
+        System.out.println("START!");
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Nanu");
