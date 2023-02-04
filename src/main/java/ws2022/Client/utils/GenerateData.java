@@ -1,6 +1,8 @@
 package ws2022.Client.utils;
 
 import java.io.File;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,14 +16,9 @@ public class GenerateData {
 
     public static void generateDataForFolder() {
 
-        // Creates a new File instance by converting the given pathname string
-        // into an abstract pathname
-        File f = new File(
-                "C:\\Users\\lhkim\\Documents\\GitHub\\java-nanu-project\\src\\main\\resources\\ws2022\\assets\\Theme\\"
-                        + GameManager.theme);
+        File directory = new File("target/classes/ws2022/assets/Theme/" + GameManager.theme);
+        Images = directory.list();
 
-        // Populates the array with names of files and directories
-        Images = f.list();
         for (int i = 0; i < Values.length; i++) {
             String temp = Images[i].substring(0, Images[i].length() - 4); // remove .jpg, .png
             String[] temp1 = temp.split("(?=\\p{Lu})"); // split when uppercase to array
@@ -35,7 +32,6 @@ public class GenerateData {
         for (int i = 0; i < Values.length; i++) {
             discArray.add(new Disc(Images[i], Values[i]));
         }
-        System.out.println(Values.length);
     }
 
 }

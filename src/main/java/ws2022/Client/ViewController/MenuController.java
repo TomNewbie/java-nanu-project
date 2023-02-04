@@ -56,18 +56,9 @@ public class MenuController {
 
         // Creates an array in which we will store the names of files and directories
         String[] pathnames;
+        File directory = new File("target/classes/ws2022/assets/Theme");
+        pathnames = directory.list();
 
-        // Creates a new File instance by converting the given pathname string
-        // into an abstract pathname
-        File f = new File(
-                "C:\\Users\\lhkim\\Documents\\GitHub\\java-nanu-project\\src\\main\\resources\\ws2022\\assets\\Theme");
-
-        // Populates the array with names of files and directories
-        pathnames = f.list();
-
-        for (String pathname : pathnames) {
-            System.out.println(pathname);
-        }
         theme.getItems().addAll(pathnames);
     }
 
