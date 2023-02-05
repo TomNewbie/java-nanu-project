@@ -34,9 +34,17 @@
 }
 
 /* Choice Box - Ngoc*/
-.choicebox{
+.combo-box{
   -fx-background-color: rgba(249, 164, 164, 0.6);
   -fx-background-radius: 20px;
   -fx-padding: 0.0 10.0 0.0 0.0;
 }
  
+.text-field {
+  -fx-background-radius: 20px;
+  -fx-pref-width: 300px;
+  -fx-pref-height: 50px;
+}
+
+.container{
+}
