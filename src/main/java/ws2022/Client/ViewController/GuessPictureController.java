@@ -22,9 +22,9 @@ public class GuessPictureController {
     SoundController soundc = new SoundController();
 
     public void display() throws IOException {
-        cover.setText("What is the image under " + GameManager.COLOR + " cover ?");
+        cover.setText("What is the image under " + GameManager.gameLogic.COLOR + " cover ?");
 
-        comboBox.getItems().addAll(GameManager.pictureName);
+        comboBox.getItems().addAll(GameManager.gameLogic.pictureName);
         comboBox.setVisibleRowCount(7);
     }
 

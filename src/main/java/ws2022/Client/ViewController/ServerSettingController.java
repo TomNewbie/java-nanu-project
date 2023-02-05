@@ -40,8 +40,8 @@ public class ServerSettingController {
     public void initialize() throws IOException {
         Integer number[] = { 1, 2, 3, 4, 5 };
         difficulty.getItems().addAll(number);
-        setUpServer();
         GameManager.startGame();
+        setUpServer();
         ipLabel.setText("Your IP address is: " + Inet4Address.getLocalHost().getHostAddress());
 
     }

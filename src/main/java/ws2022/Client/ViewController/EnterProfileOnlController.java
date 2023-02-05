@@ -55,12 +55,13 @@ public class EnterProfileOnlController {
         String name = nameTF.getText();
         String age = ageTF.getText();
         String ipv4 = IPserver.getText();
-        if (!GameManager.validateValue(name, age))
+        if (!GameManager.playerManager.validateValue(name, age))
             return;
-        GameManager.PLAYER1 = new Player(name, Integer.parseInt(age));
+        GameManager.playerManager.PLAYER1 = new Player(name, Integer.parseInt(age));
         GameManager.client = new Client(ipv4);
+        GameManager.isOnline = true;
         GameManager.client.listenForMessage();
-        GameManager.client.sendMessage(GameManager.PLAYER1.getAge() + "", Type.ENTER_PROFILE);
+        GameManager.client.sendMessage(GameManager.playerManager.PLAYER1.getAge() + "", Type.ENTER_PROFILE);
         pane.getChildren().remove(okButton);
     }
 }

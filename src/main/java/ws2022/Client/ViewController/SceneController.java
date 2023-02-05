@@ -99,10 +99,10 @@ public class SceneController {
     public void enterProfile1(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/fxml/EnterProfile.fxml"));
         root = loader.load();
-        if (GameManager.PLAYER1 != null) {
+        if (GameManager.playerManager.PLAYER1 != null) {
             EnterProfileController epc = loader.getController();
-            epc.displayProfile(GameManager.PLAYER1.getName(),
-                    GameManager.PLAYER1.getAge());
+            epc.displayProfile(GameManager.playerManager.PLAYER1.getName(),
+                    GameManager.playerManager.PLAYER1.getAge());
         }
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

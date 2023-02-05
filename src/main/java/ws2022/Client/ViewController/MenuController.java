@@ -80,7 +80,7 @@ public class MenuController {
     @FXML
     public void setTheme() {
         String myTheme = theme.getValue();
-        GameManager.theme = myTheme;
+        GameManager.gameLogic.theme = myTheme;
     }
 
 }

@@ -85,8 +85,8 @@ public class BoardGameController {
             for (int x = 0; x < 7; x++) {
                 if (x != 0 && y != 0 && x != 6 && y != 6)
                     continue;
-                String selectedImage = "/ws2022/assets/Theme/" + GameManager.theme + "/"
-                        + GameManager.myList.get(index).getImage();
+                String selectedImage = "/ws2022/assets/Theme/" + GameManager.gameLogic.theme + "/"
+                        + GameManager.gameLogic.myList.get(index).getImage();
                 Image image = new Image(this.getClass()
                         .getResource(selectedImage)
                         .toExternalForm());
@@ -99,16 +99,16 @@ public class BoardGameController {
                 imageView.setClip(clip);
                 imageView.setOnMouseClicked(event -> changeDisc(event));
                 imageView.setUserData(new Coordinate(x, y)); // index data
-                hashMapPicture.put(GameManager.myList.get(index).getValue(), imageView);
+                hashMapPicture.put(GameManager.gameLogic.myList.get(index).getValue(), imageView);
                 boardgame.add(imageView, x, y);
-                System.out.println(GameManager.myList.get(index).getImage());
+                System.out.println(GameManager.gameLogic.myList.get(index).getImage());
                 index++;
             }
         }
-        player1.setText(GameManager.PLAYER1.getName());
-        player1Score.setText("" + GameManager.PLAYER1.getScore());
-        player2.setText(GameManager.PLAYER2.getName());
-        player2Score.setText("" + GameManager.PLAYER1.getScore());
+        player1.setText(GameManager.playerManager.PLAYER1.getName());
+        player1Score.setText("" + GameManager.playerManager.PLAYER1.getScore());
+        player2.setText(GameManager.playerManager.PLAYER2.getName());
+        player2Score.setText("" + GameManager.playerManager.PLAYER1.getScore());
         if (GameManager.isOnline) {
             countdown.setText("00:" + seconds);
             countdownTimer();
@@ -120,14 +120,14 @@ public class BoardGameController {
         if (message != null)
             message.setVisible(false);
         if (isPlayer1Turn) {
-            status.setText("Player " + GameManager.PLAYER1.getName() + " turn: ");
+            status.setText("Player " + GameManager.playerManager.PLAYER1.getName() + " turn: ");
             return;
         }
         // Player 2 turn
-        status.setText("Player " + GameManager.PLAYER2.getName() + " turn: ");
+        status.setText("Player " + GameManager.playerManager.PLAYER2.getName() + " turn: ");
         if (GameManager.isOnline) {
             message.setVisible(true);
-            message.setText("Waiting player " + GameManager.PLAYER2.getName() + " to roll dice");
+            message.setText("Waiting player " + GameManager.playerManager.PLAYER2.getName() + " to roll dice");
         }
     }
 
@@ -178,10 +178,10 @@ public class BoardGameController {
             return;
         }
 
-        if (GameManager.coverHashMap.get(color) == null) {
-            GameManager.coverHashMap.put(color, index);
+        if (GameManager.gameLogic.coverHashMap.get(color) == null) {
+            GameManager.gameLogic.coverHashMap.put(color, index);
         } else {
-            GameManager.coverHashMap.replace(color, index);
+            GameManager.gameLogic.coverHashMap.replace(color, index);
         }
 
         imageView.setFitWidth(100);
@@ -194,7 +194,7 @@ public class BoardGameController {
 
     public void deleteCover() {
         // deleteCover by coordinate
-        boardgame.getChildren().remove(hashMapImageView.get(GameManager.COLOR));
+        boardgame.getChildren().remove(hashMapImageView.get(GameManager.gameLogic.COLOR));
         boardgame.getChildren().remove(hashMapPicture.get(GameManager.getAnswer()));
     }
 
@@ -203,17 +203,17 @@ public class BoardGameController {
     public void clickRememberAll() throws IOException {
         if (!GameManager.isOnline) {
             soundc.click();
-            coverCoords = GameManager.setUpCover();
-            GameManager.getFirstTurn();
+            coverCoords = GameManager.gameLogic.setUpCover();
+            GameManager.playerManager.getFirstTurn();
             boardgame.getChildren().remove(myButton);
             createRollDiceBtn();
         }
         for (int count = 0; count < Dice.numDice; count++) {
-            String selectedImage = "/ws2022/assets/Covers/" + GameManager.colorImage[count] + ".png";
-            putCover(selectedImage, coverCoords[count], GameManager.colorImage[count]);
+            String selectedImage = "/ws2022/assets/Covers/" + GameManager.gameLogic.colorImage[count] + ".png";
+            putCover(selectedImage, coverCoords[count], GameManager.gameLogic.colorImage[count]);
         }
-        setTurn(GameManager.isPlayer1Turn);
-        if (GameManager.isPlayer1Turn && GameManager.isOnline) {
+        setTurn(GameManager.playerManager.checkIsPlayer1Turn());
+        if (GameManager.playerManager.checkIsPlayer1Turn() && GameManager.isOnline) {
             createRollDiceBtn();
         }
     }
@@ -253,9 +253,9 @@ public class BoardGameController {
     public void clickRollDice() throws IOException {
         soundc.click();
         if (!GameManager.isOnline) {
-            GameManager.COLOR = Dice.rollDice();
+            GameManager.gameLogic.COLOR = Dice.rollDice();
         }
-        if (GameManager.COLOR.equals("joker")) {
+        if (GameManager.gameLogic.COLOR.equals("joker")) {
             soundc.joker();
             getJoker();
         } else {
@@ -266,7 +266,7 @@ public class BoardGameController {
 
     public void getNormalColor() {
         // display cover has been generated by roll dice
-        String coverImage = "/ws2022/assets/Covers/" + GameManager.COLOR + ".png";
+        String coverImage = "/ws2022/assets/Covers/" + GameManager.gameLogic.COLOR + ".png";
         Image cover = new Image(this.getClass()
                 .getResource(coverImage)
                 .toExternalForm());
@@ -356,11 +356,11 @@ public class BoardGameController {
     }
 
     public void update() {
-        player1Score.setText("" + GameManager.PLAYER1.getScore());
-        player2Score.setText("" + GameManager.PLAYER2.getScore());
-        if (!GameManager.isOnline || GameManager.isPlayer1Turn) {
-            status.setText("Please choose picture to place " + GameManager.COLOR + " cover");
-            GameManager.isChangeDisc = true;
+        player1Score.setText("" + GameManager.playerManager.PLAYER1.getScore());
+        player2Score.setText("" + GameManager.playerManager.PLAYER2.getScore());
+        if (!GameManager.isOnline || GameManager.playerManager.checkIsPlayer1Turn()) {
+            status.setText("Please choose picture to place " + GameManager.gameLogic.COLOR + " cover");
+            GameManager.gameLogic.isChangeDisc = true;
         }
         // if (GameManager.isPlayer1Turn)
 
@@ -373,11 +373,11 @@ public class BoardGameController {
     // show disc value when click on disc
 
     public void changeDisc(MouseEvent event) {
-        if (!GameManager.isChangeDisc) {
+        if (!GameManager.gameLogic.isChangeDisc) {
             return;
         }
         soundc.click();
-        GameManager.isChangeDisc = false;
+        GameManager.gameLogic.isChangeDisc = false;
         Node sourceComponent = (Node) event.getSource();
         Coordinate coord = (Coordinate) sourceComponent.getUserData();
         bgc.createRollDiceBtn();
@@ -386,13 +386,13 @@ public class BoardGameController {
             return;
         }
         deleteCover();
-        String coverImage = "/ws2022/assets/Covers/" + GameManager.COLOR + ".png";
-        putCover(coverImage, coord, GameManager.COLOR);
-        setTurn(GameManager.isPlayer1Turn);
+        String coverImage = "/ws2022/assets/Covers/" + GameManager.gameLogic.COLOR + ".png";
+        putCover(coverImage, coord, GameManager.gameLogic.COLOR);
+        setTurn(GameManager.playerManager.checkIsPlayer1Turn());
     }
 
     public void alertCover(MouseEvent event) {
-        if (!GameManager.isChangeDisc) {
+        if (!GameManager.gameLogic.isChangeDisc) {
             return;
         }
         sc.showAlertMessage(AlertType.ERROR, "Error",

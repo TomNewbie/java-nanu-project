@@ -8,12 +8,12 @@ public class Helper {
     public static void generateCoverHashMap(Coordinate[] coords) {
         for (int i = 0; i < Dice.numDice; i++) {
             int index = Coordinate.convertToIndex(coords[i]);
-            GameManager.coverHashMap.put(GameManager.colorImage[i], index);
+            GameManager.gameLogic.coverHashMap.put(GameManager.gameLogic.colorImage[i], index);
         }
     }
 
     public static void updateCoverHashMap(Coordinate coord) {
         int index = Coordinate.convertToIndex(coord);
-        GameManager.coverHashMap.remove(GameManager.COLOR, index);
+        GameManager.gameLogic.coverHashMap.remove(GameManager.gameLogic.COLOR, index);
     }
 }

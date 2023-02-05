@@ -3,7 +3,6 @@ package ws2022.Client.utils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 import ws2022.Client.Model.Disc;
 import ws2022.Client.Model.GameManager;
@@ -18,7 +17,7 @@ public class GenerateData {
         // into an abstract pathname
         File f = new File(
                 "D:\\coding_Shit\\Project\\java-nanu-project\\src\\main\\resources\\ws2022\\assets\\Theme\\"
-                        + GameManager.theme);
+                        + GameManager.gameLogic.theme);
 
         // Populates the array with names of files and directories
         Images = f.list();

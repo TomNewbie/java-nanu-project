@@ -24,7 +24,7 @@ public class RightAnswerController {
             GameManager.client.closePopUp("right");
             return;
         }
-        GameManager.addScore();
+        GameManager.playerManager.addScore();
         GameManager.updateGame(GameManager.stage);
 
     }
