@@ -5,7 +5,6 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 import ws2022.Client.Model.Disc;
 import ws2022.Client.Model.GameManager;
@@ -16,7 +15,7 @@ public class GenerateData {
 
     public static void generateDataForFolder() {
 
-        File directory = new File("target/classes/ws2022/assets/Theme/" + GameManager.theme);
+        File directory = new File("target/classes/ws2022/assets/Theme/" + GameManager.gameLogic.theme);
         Images = directory.list();
 
         for (int i = 0; i < Values.length; i++) {

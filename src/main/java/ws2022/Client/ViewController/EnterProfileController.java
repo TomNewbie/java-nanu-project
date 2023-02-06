@@ -33,8 +33,8 @@ public class EnterProfileController {
         soundc.click();
         String name = nameTF.getText();
         String age = ageTF.getText();
-        GameManager.validateValue(name, age);
-        GameManager.PLAYER1 = new Player(name, Integer.parseInt(age));
+        GameManager.playerManager.validateValue(name, age);
+        GameManager.playerManager.PLAYER1 = new Player(name, Integer.parseInt(age));
         sceneController.enterProfile2(event, name);
     }
 
@@ -43,14 +43,14 @@ public class EnterProfileController {
         soundc.click();
         String name = nameTF.getText();
         String age = ageTF.getText();
-        if (!GameManager.validateValue(name, age))
+        if (!GameManager.playerManager.validateValue(name, age))
             return;
-        if (GameManager.PLAYER1.getName().equals(name)) {
+        if (GameManager.playerManager.PLAYER1.getName().equals(name)) {
             sceneController.showAlertMessage(Alert.AlertType.ERROR, "Same name!",
                     "You have the same name as the player 1. Please enter another name!");
             return;
         }
-        GameManager.PLAYER2 = new Player(name, Integer.parseInt(age));
+        GameManager.playerManager.PLAYER2 = new Player(name, Integer.parseInt(age));
         GameManager.startGame();
         sceneController.enterGame(event);
     }

@@ -11,7 +11,8 @@ public class API {
         END_GAME,
         UNKNOWN_TYPE,
         POP_UP,
-        CHOOSE_COVER
+        CHOOSE_COVER,
+        CLOSE_CONNECTION
     }
 
     // public static

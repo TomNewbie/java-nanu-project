@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ws2022.Client.Model.GameManager;
+import ws2022.Server.Server;
 
 public class SceneController {
     private Stage stage;
@@ -86,7 +87,9 @@ public class SceneController {
     }
 
     public void serverSetting(ActionEvent event) throws IOException {
-        createScene(event, "ServerSetting");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/fxml/ServerSetting.fxml"));
+        loader.setController(ServerSettingController.getInstance());
+        createScene(event, loader);
     }
 
     public void chooseRole(ActionEvent event) throws IOException {
@@ -96,10 +99,10 @@ public class SceneController {
     public void enterProfile1(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ws2022/fxml/EnterProfile.fxml"));
         root = loader.load();
-        if (GameManager.PLAYER1 != null) {
+        if (GameManager.playerManager.PLAYER1 != null) {
             EnterProfileController epc = loader.getController();
-            epc.displayProfile(GameManager.PLAYER1.getName(),
-                    GameManager.PLAYER1.getAge());
+            epc.displayProfile(GameManager.playerManager.PLAYER1.getName(),
+                    GameManager.playerManager.PLAYER1.getAge());
         }
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

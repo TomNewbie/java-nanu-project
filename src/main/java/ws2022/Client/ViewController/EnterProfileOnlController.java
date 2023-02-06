@@ -43,20 +43,25 @@ public class EnterProfileOnlController {
         status.setText("Connect successfully! Please wait player 2 enter the game!");
     }
 
-    public void home(ActionEvent event) throws IOException {
+    public void returnBtn(ActionEvent event) throws IOException {
+        if (GameManager.client != null) {
+            GameManager.client.close();
+        }
         SceneController sc = SceneController.getInstance();
-        sc.homeScreen(event);
+        sc.chooseRole(event);
     }
 
     public void enterOnlineGame(ActionEvent event) throws IOException, InterruptedException {
         String name = nameTF.getText();
         String age = ageTF.getText();
         String ipv4 = IPserver.getText();
-        GameManager.validateValue(name, age);
-        GameManager.PLAYER1 = new Player(name, Integer.parseInt(age));
+        if (!GameManager.playerManager.validateValue(name, age))
+            return;
+        GameManager.playerManager.PLAYER1 = new Player(name, Integer.parseInt(age));
         GameManager.client = new Client(ipv4);
+        GameManager.isOnline = true;
         GameManager.client.listenForMessage();
-        GameManager.client.sendMessage(GameManager.PLAYER1.getAge() + "", Type.ENTER_PROFILE);
+        GameManager.client.sendMessage(GameManager.playerManager.PLAYER1.getAge() + "", Type.ENTER_PROFILE);
         pane.getChildren().remove(okButton);
     }
 }

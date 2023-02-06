@@ -8,11 +8,15 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.Disc;
 import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
+import ws2022.Client.ViewController.SceneController;
 import ws2022.Middleware.API;
 import ws2022.Middleware.API.Type;
 
@@ -50,6 +54,7 @@ public class ClientHandler implements Runnable {
                     System.out.println(messageFromClient);
                     handleMessage(messageFromClient);
                 }
+                System.out.println(messageFromClient);
             } catch (Exception e) {
                 closeEverything(socket, bufferedReader, bufferedWriter);
                 e.printStackTrace();
@@ -57,13 +62,27 @@ public class ClientHandler implements Runnable {
                 // TODO: handle exception
             }
         }
+        closeEverything(socket, bufferedReader, bufferedWriter);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    SceneController sc = SceneController.getInstance();
+                    sc.showAlertMessage(Alert.AlertType.WARNING, "Connection fail", "Player " +
+                            (clientNumber + 1) + " has disconnected");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // TODO: handle exception
+                }
+            }
+        });
     }
 
     public void handleMessage(String s) throws IOException {
         API.Type type = API.getTypeFromClient(s);
         switch (type) {
             case ENTER_PROFILE:
-                System.out.println("hehe");
+                // System.out.println("hehe");
                 handleEnterProfile(s);
                 break;
             case ROLL_DICE:
@@ -78,25 +97,54 @@ public class ClientHandler implements Runnable {
             case CHOOSE_COVER:
                 handleChooseCover(s);
                 break;
-            // case SET_COLOR:
-            // handleSetColor(s);
-            // case END_GAME:
-            // handleEndGame(s);
+            case SET_COLOR:
+                handleSetColor(s);
+                break;
+            case CLOSE_CONNECTION:
+                handleCloseConnection();
+                break;
             default:
                 System.out.println("Unspecify type");
+
                 // error handling here
         }
+        System.out.println(GameManager.isOnline);
         System.out.println("handle Message");
     }
 
+    public void handleSetColor(String s) {
+        String color = s.split(";")[2];
+        // if (!GameManager.gameLogic.COLOR.equals("joker")) {
+        // Platform.runLater(new Runnable() {
+        // @Override
+        // public void run() {
+        // try {
+        // SceneController sc = SceneController.getInstance();
+        // sc.showAlertMessage(Alert.AlertType.WARNING, "Cheating", "Player " +
+        // (clientNumber + 1) + " try to cheat!");
+        // } catch (Exception e) {
+        // e.printStackTrace();
+        // // TODO: handle exception
+        // }
+        // }
+        // });
+        // return;
+        // }
+        GameManager.gameLogic.COLOR = color;
+        String message = API.Type.ROLL_DICE.toString() + ";" + color;
+        broadcastMessage(message);
+    }
+
     public void handleChooseCover(String s) {
+        System.out.println("handleChooseCover");
+
         String[] splString = s.split(";");
         String message = API.Type.CHOOSE_COVER.toString();
         String column = splString[2];
         String row = splString[3];
-        String color = GameManager.COLOR;
-        int index = Coordinate.convertToIndex(new Coordinate(Integer.parseInt(row), Integer.parseInt(column)));
-        GameManager.coverHashMap.put(color, index);
+        String color = GameManager.gameLogic.COLOR;
+        int index = Coordinate.convertToIndex(new Coordinate(Integer.parseInt(column), Integer.parseInt(row)));
+        GameManager.gameLogic.coverHashMap.put(color, index);
         message = message + ";" + column + ";" + row + ";" + color;
         broadcastMessage(message);
     }
@@ -104,7 +152,7 @@ public class ClientHandler implements Runnable {
     public void handleRolldice() {
         String msgClient = API.Type.ROLL_DICE + ";";
         String result = Dice.rollDice();
-        GameManager.COLOR = result;
+        GameManager.gameLogic.COLOR = result;
         msgClient = msgClient + result;
         broadcastMessage(msgClient);
     }
@@ -114,8 +162,9 @@ public class ClientHandler implements Runnable {
         String message = API.Type.POP_UP.toString() + ";" + status;
         if (status.equals("right")) {
             boolean isGameOver = GameManager.updateGameOnline();
-            String scoreInfo = GameManager.PLAYER1.getName() + ";" + GameManager.PLAYER1.getScore() + ";"
-                    + GameManager.PLAYER2.getName() + ";" + GameManager.PLAYER2.getScore();
+            String scoreInfo = GameManager.playerManager.PLAYER1.getName() + ";"
+                    + GameManager.playerManager.PLAYER1.getScore() + ";"
+                    + GameManager.playerManager.PLAYER2.getName() + ";" + GameManager.playerManager.PLAYER2.getScore();
             if (isGameOver) {
                 handleEndGame(scoreInfo);
                 return;
@@ -140,7 +189,7 @@ public class ClientHandler implements Runnable {
         if (!clientAnswer.equals(serverAnswer)) {
             msgClient = msgClient + "wrong;" + clientAnswer + ";" + serverAnswer + ";" + imageAnswer;
             broadcastMessage(msgClient);
-            GameManager.changeTurn();
+            GameManager.playerManager.changeTurn();
             // change turn
             return;
         }
@@ -151,19 +200,19 @@ public class ClientHandler implements Runnable {
     public void handleEnterProfile(String s) throws NumberFormatException {
         String[] splStrings = s.split(";");
 
-        if (clientHandlers.size() == 1 && GameManager.PLAYER1 == null) {
+        if (clientHandlers.size() == 1 && GameManager.playerManager.PLAYER1 == null) {
             System.out.println("helo");
-            GameManager.PLAYER1 = new Player(splStrings[1], Integer.parseInt(splStrings[2]));
+            GameManager.playerManager.PLAYER1 = new Player(splStrings[1], Integer.parseInt(splStrings[2]));
             String msg = Type.ENTER_PROFILE.toString();
             unicastMessage(msg, 0);
-            System.out.println("helo");
+            System.out.println(msg);
             return;
         }
-        GameManager.PLAYER2 = new Player(splStrings[1], Integer.parseInt(splStrings[2]));
+        GameManager.playerManager.PLAYER2 = new Player(splStrings[1], Integer.parseInt(splStrings[2]));
         String msgToPlayer1 = Type.ENTER_PROFILE.toString() + ";"
-                + GameManager.PLAYER2.getName() + ";" + GameManager.PLAYER2.getAge();
+                + GameManager.playerManager.PLAYER2.getName() + ";" + GameManager.playerManager.PLAYER2.getAge();
         String msgToPlayer2 = Type.ENTER_PROFILE.toString() + ";"
-                + GameManager.PLAYER1.getName() + ";" + GameManager.PLAYER1.getAge();
+                + GameManager.playerManager.PLAYER1.getName() + ";" + GameManager.playerManager.PLAYER1.getAge();
         unicastMessage(msgToPlayer1, 0);
         unicastMessage(msgToPlayer2, 1);
         generateBoardGame();
@@ -188,11 +237,15 @@ public class ClientHandler implements Runnable {
         }
     }
 
+    public void handleCloseConnection() {
+        closeEverything(socket, bufferedReader, bufferedWriter);
+    }
+
     public void generateCover() {
-        Coordinate[] result = GameManager.setUpCover();
+        Coordinate[] result = GameManager.gameLogic.setUpCover();
         Helper.generateCoverHashMap(result);
         String msgClient = API.Type.DATA.toString() + ";" + "cover;";
-        for (int i = 0; i < result.length; i++) {
+        for (int i = 0; i < Dice.numDice; i++) {
             msgClient = msgClient + result[i].getColumn() + ";";
             msgClient = msgClient + result[i].getRow() + ";";
         }
@@ -200,7 +253,6 @@ public class ClientHandler implements Runnable {
     }
 
     public void broadcastMessage(String messageFromClient) {
-        // use when general message like boardgame info, turn
         for (ClientHandler clientHandler : clientHandlers) {
             try {
                 clientHandler.bufferedWriter.write(messageFromClient);
@@ -215,7 +267,7 @@ public class ClientHandler implements Runnable {
 
     public void generateBoardGame() {
         String msgToClient = API.Type.DATA.toString() + ";" + "boardgame;";
-        for (Disc disc : GameManager.myList) {
+        for (Disc disc : GameManager.gameLogic.myList) {
             msgToClient = msgToClient + disc.getValue() + ";";
             msgToClient = msgToClient + disc.getCardImage() + ";";
         }
@@ -228,14 +280,14 @@ public class ClientHandler implements Runnable {
         // if isPlayer1Turn = true -> player 1
         // if isPlayer1Turn = false -> player 2
         if (isStart) {
-            GameManager.getFirstTurn();
+            GameManager.playerManager.getFirstTurn();
         } else {
-            GameManager.changeTurn();
+            GameManager.playerManager.changeTurn();
         }
-        if (GameManager.isPlayer1Turn) {
-            msgToClient = msgToClient + GameManager.PLAYER1.getName();
+        if (GameManager.playerManager.checkIsPlayer1Turn()) {
+            msgToClient = msgToClient + GameManager.playerManager.PLAYER1.getName();
         } else {
-            msgToClient = msgToClient + GameManager.PLAYER2.getName();
+            msgToClient = msgToClient + GameManager.playerManager.PLAYER2.getName();
         }
         broadcastMessage(msgToClient);
     }

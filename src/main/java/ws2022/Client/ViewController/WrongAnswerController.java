@@ -32,8 +32,8 @@ public class WrongAnswerController {
     @FXML
     public void initialize() throws FileNotFoundException {
 
-        coverText.setText("The image under " + GameManager.COLOR + " cover is:");
-        String selectedImage = "/ws2022/assets/Theme/" + GameManager.theme + "/"
+        coverText.setText("The image under " + GameManager.gameLogic.COLOR + " cover is:");
+        String selectedImage = "/ws2022/assets/Theme/" + GameManager.gameLogic.theme + "/"
                 +
                 GameManager.getCardImage();
         Image image = new Image(this.getClass()
@@ -54,9 +54,9 @@ public class WrongAnswerController {
             // handle case nay
             GameManager.client.closePopUp("wrong");
         } else {
-            GameManager.changeTurn();
+            GameManager.playerManager.changeTurn();
             bgc.createRollDiceBtn();
-            bgc.setTurn(GameManager.isPlayer1Turn);
+            bgc.setTurn(GameManager.playerManager.checkIsPlayer1Turn());
         }
     }
 }

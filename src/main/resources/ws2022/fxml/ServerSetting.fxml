@@ -6,34 +6,44 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.ServerSettingController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="515.0" layoutY="66.0" text="Setting">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="HomeButton" layoutX="44.0" layoutY="51.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="60.0" prefWidth="150.0" text="Return home">
+      <Button fx:id="HomeButton" layoutX="44.0" layoutY="51.0" mnemonicParsing="false" onAction="#returnBtn" prefHeight="60.0" prefWidth="150.0" text="Return">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label fx:id="ipLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" layoutY="193.0" prefHeight="53.0" prefWidth="1195.0" text="TEXT" textAlignment="CENTER" wrapText="true">
+      <Label fx:id="ipLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="164.0" prefHeight="53.0" prefWidth="1195.0" text="TEXT" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Label layoutX="302.0" layoutY="360.0" text="Theme">
+      <Label layoutX="314.0" layoutY="407.0" text="Theme">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <ComboBox fx:id="theme" layoutX="708.0" layoutY="367.0" prefHeight="40.0" prefWidth="273.0" promptText="Select your picture theme" />
-      <Label layoutX="302.0" layoutY="511.0" text="Difficulty level">
+      <ComboBox fx:id="theme" layoutX="708.0" layoutY="426.0" prefHeight="40.0" prefWidth="273.0" promptText="Select your picture theme" />
+      <Label layoutX="302.0" layoutY="570.0" text="Difficulty level">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <ComboBox fx:id="difficulty" layoutX="708.0" layoutY="517.0" onAction="#setDifficulty" prefHeight="40.0" prefWidth="273.0" promptText="Select your difficulty" />
+      <ComboBox fx:id="difficulty" layoutX="708.0" layoutY="576.0" onAction="#setDifficulty" prefHeight="40.0" prefWidth="273.0" promptText="Select your difficulty" />
+      <Label fx:id="player1" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="248.0" prefHeight="53.0" prefWidth="1195.0" text="Waiting for player 1" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="player2" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="324.0" prefHeight="53.0" prefWidth="1195.0" text="Waiting for player 2" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
