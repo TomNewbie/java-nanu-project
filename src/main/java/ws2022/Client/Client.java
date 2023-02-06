@@ -12,7 +12,6 @@ import javafx.application.Platform;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.Disc;
-import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
 import ws2022.Client.ViewController.BoardGameController;
 import ws2022.Client.ViewController.EnterProfileOnlController;

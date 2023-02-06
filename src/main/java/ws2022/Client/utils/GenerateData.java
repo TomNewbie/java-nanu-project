@@ -1,8 +1,6 @@
 package ws2022.Client.utils;
 
 import java.io.File;
-import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 

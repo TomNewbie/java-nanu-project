@@ -1,7 +1,6 @@
 package ws2022.Client.ViewController;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.ServerSocket;
@@ -11,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.text.Text;
 import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.GameManager;
 import ws2022.Server.Server;

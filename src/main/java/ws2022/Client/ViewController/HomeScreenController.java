@@ -40,7 +40,7 @@ public class HomeScreenController {
 
     public void manualPage(ActionEvent event) throws IOException {
         soundc.click();
-        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/ManualPageOff/ManualPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/ManualPage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

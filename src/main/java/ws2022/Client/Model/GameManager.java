@@ -3,9 +3,6 @@ package ws2022.Client.Model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Random;
-import javafx.scene.control.Alert;
 
 import javafx.stage.Stage;
 import ws2022.Client.Client;

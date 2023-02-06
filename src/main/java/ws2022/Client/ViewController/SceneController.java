@@ -12,7 +12,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ws2022.Client.Model.GameManager;
-import ws2022.Server.Server;
 
 public class SceneController {
     private Stage stage;
@@ -68,15 +67,6 @@ public class SceneController {
     public void homeScreen(ActionEvent event) throws IOException {
         createScene(event, "HomeScreen");
     }
-
-    // public void leaderboard(Stage stage) throws IOException {
-    // root =
-    // FXMLLoader.load(getClass().getResource("/ws2022/fxml/Leaderboard.fxml"));
-    // Scene scene = new Scene(root);
-    // stage.setScene(scene);
-    // stage.setScene(scene);
-    // stage.show();
-    // }
 
     public void loadSceneByStage(Stage stage, String name) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/" + name + ".fxml"));
