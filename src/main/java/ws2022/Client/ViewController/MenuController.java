@@ -30,8 +30,8 @@ public class MenuController {
     @FXML
     public void initialize() throws FileNotFoundException {
         Integer number[] = { 1, 2, 3, 4, 5 };
-        soundValue.setValue(SoundController.volume * 100);
         difficulty.getItems().addAll(number);
+        soundValue.setValue(SoundController.volume * 100);
         displayThemes();
         // Image diceImage = new Image(this.getClass()
         // .getResource("/ws2022/assets/Theme/Classic/bird.jpg")

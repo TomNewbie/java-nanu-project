@@ -114,22 +114,6 @@ public class ClientHandler implements Runnable {
 
     public void handleSetColor(String s) {
         String color = s.split(";")[2];
-        // if (!GameManager.gameLogic.COLOR.equals("joker")) {
-        // Platform.runLater(new Runnable() {
-        // @Override
-        // public void run() {
-        // try {
-        // SceneController sc = SceneController.getInstance();
-        // sc.showAlertMessage(Alert.AlertType.WARNING, "Cheating", "Player " +
-        // (clientNumber + 1) + " try to cheat!");
-        // } catch (Exception e) {
-        // e.printStackTrace();
-        // // TODO: handle exception
-        // }
-        // }
-        // });
-        // return;
-        // }
         GameManager.gameLogic.COLOR = color;
         String message = API.Type.ROLL_DICE.toString() + ";" + color;
         broadcastMessage(message);
@@ -200,7 +184,7 @@ public class ClientHandler implements Runnable {
     public void handleEnterProfile(String s) throws NumberFormatException {
         String[] splStrings = s.split(";");
 
-        if (clientHandlers.size() == 1 && GameManager.playerManager.PLAYER1 == null) {
+        if (clientHandlers.size() == 1 || GameManager.playerManager.PLAYER1 == null) {
             System.out.println("helo");
             GameManager.playerManager.PLAYER1 = new Player(splStrings[1], Integer.parseInt(splStrings[2]));
             String msg = Type.ENTER_PROFILE.toString();

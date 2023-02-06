@@ -18,7 +18,6 @@ public class GameManager {
     public static PlayerManager playerManager = new PlayerManager();
     public static GameLogic gameLogic = new GameLogic();
     public static Client client;
-
     public static Stage stage;
 
     private static SceneController sc = SceneController.getInstance();

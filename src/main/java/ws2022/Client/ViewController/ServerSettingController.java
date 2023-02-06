@@ -1,5 +1,6 @@
 package ws2022.Client.ViewController;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.Inet4Address;
@@ -19,6 +20,8 @@ import ws2022.Server.ServerThread;
 public class ServerSettingController {
     @FXML
     Button HomeButton;
+    @FXML
+    ComboBox<String> theme = new ComboBox<>();
     @FXML
     ComboBox<Integer> difficulty = new ComboBox<>();
     @FXML
@@ -42,8 +45,19 @@ public class ServerSettingController {
         difficulty.getItems().addAll(number);
         GameManager.startGame();
         setUpServer();
+        displayThemes();
         ipLabel.setText("Your IP address is: " + Inet4Address.getLocalHost().getHostAddress());
 
+    }
+
+    public void displayThemes() {
+
+        // Creates an array in which we will store the names of files and directories
+        String[] pathnames;
+        File directory = new File("target/classes/ws2022/assets/Theme");
+        pathnames = directory.list();
+
+        theme.getItems().addAll(pathnames);
     }
 
     public void setUpServer() throws IOException {
