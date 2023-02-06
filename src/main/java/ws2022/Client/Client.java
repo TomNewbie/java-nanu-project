@@ -238,7 +238,7 @@ public class Client {
                 }
             }
         });
-
+        return;
     }
 
     public void requestDice() {
@@ -326,6 +326,7 @@ public class Client {
     }
 
     public void chooseColor(String color) {
+        // GameManager.gameLogic.COLOR = color;
         sendMessage(color, API.Type.SET_COLOR);
     }
 
@@ -338,7 +339,7 @@ public class Client {
                 while (socket.isConnected()) {
                     try {
                         msgFromServer = bufferedReader.readLine();
-                        System.out.println(msgFromServer);
+                        // System.out.println(msgFromServer);
                         if (msgFromServer != null)
                             handleMessage(msgFromServer);
                     } catch (Exception e) {
@@ -375,5 +376,4 @@ public class Client {
             // TODO: handle exception
         }
     }
-
 }

@@ -99,6 +99,7 @@ public class ClientHandler implements Runnable {
                 break;
             case SET_COLOR:
                 handleSetColor(s);
+                break;
             case CLOSE_CONNECTION:
                 handleCloseConnection();
                 break;
@@ -252,7 +253,6 @@ public class ClientHandler implements Runnable {
     }
 
     public void broadcastMessage(String messageFromClient) {
-        // use when general message like boardgame info, turn
         for (ClientHandler clientHandler : clientHandlers) {
             try {
                 clientHandler.bufferedWriter.write(messageFromClient);
