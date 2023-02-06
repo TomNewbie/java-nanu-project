@@ -1,7 +1,5 @@
 package ws2022.Server;
 
-import java.net.ServerSocket;
-
 public class ServerThread implements Runnable {
 
     public synchronized void requestStop() {
