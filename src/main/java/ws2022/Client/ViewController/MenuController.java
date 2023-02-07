@@ -33,12 +33,6 @@ public class MenuController {
         difficulty.getItems().addAll(number);
         soundValue.setValue(SoundController.volume * 100);
         displayThemes();
-        // Image diceImage = new Image(this.getClass()
-        // .getResource("/ws2022/assets/Theme/Classic/bird.jpg")
-        // .toExternalForm());
-        // dice.setImage(diceImage);
-        // dice.setFitWidth(100);
-        // dice.setFitHeight(100);
     }
 
     public void returnHome(ActionEvent event) throws IOException {

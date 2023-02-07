@@ -51,7 +51,6 @@ public class WrongAnswerController {
         mystage.close();
         BoardGameController bgc = BoardGameController.getInstance();
         if (GameManager.isOnline) {
-            // handle case nay
             GameManager.client.closePopUp("wrong");
         } else {
             GameManager.playerManager.changeTurn();
