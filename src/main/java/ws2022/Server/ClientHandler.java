@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.Disc;
