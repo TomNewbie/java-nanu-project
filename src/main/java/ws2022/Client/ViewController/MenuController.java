@@ -41,6 +41,8 @@ public class MenuController {
         difficulty.getItems().addAll(number);
         soundValue.setValue(SoundController.volume * 100);
         displayThemes();
+        theme.setPromptText(GameManager.gameLogic.theme);
+        difficulty.setPromptText(Dice.numDice + "");
     }
 
     public void returnHome(ActionEvent event) throws IOException {
