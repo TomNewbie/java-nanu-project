@@ -104,7 +104,6 @@ public class ClientHandler implements Runnable {
                 break;
             default:
                 System.out.println("Unspecify type");
-
                 // error handling here
         }
         System.out.println(GameManager.isOnline);
@@ -250,10 +249,14 @@ public class ClientHandler implements Runnable {
 
     public void generateBoardGame() {
         String msgToClient = API.Type.DATA.toString() + ";" + "boardgame;";
+        msgToClient = msgToClient + Dice.numDice + ";";
+        msgToClient = msgToClient + GameManager.gameLogic.theme + ";";
+        msgToClient = msgToClient + GameManager.countDownTimer + ";";
         for (Disc disc : GameManager.gameLogic.myList) {
             msgToClient = msgToClient + disc.getValue() + ";";
             msgToClient = msgToClient + disc.getCardImage() + ";";
         }
+        System.out.println(msgToClient);
         broadcastMessage(msgToClient);
     }
 
@@ -281,6 +284,10 @@ public class ClientHandler implements Runnable {
     }
 
     public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter) {
+        if (clientNumber == 0)
+            GameManager.playerManager.PLAYER1 = null;
+        else
+            GameManager.playerManager.PLAYER2 = null;
         removeClientHandler();
         try {
             if (socket != null) {

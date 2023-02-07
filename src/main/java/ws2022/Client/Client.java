@@ -254,8 +254,11 @@ public class Client {
 
     public void setUpGame(String s) {
         String splString[] = s.split(";");
+        Dice.numDice = Integer.parseInt(splString[2]);
+        GameManager.gameLogic.theme = splString[3];
+        GameManager.countDownTimer = Integer.parseInt(splString[4]);
         System.out.println(splString.length);
-        for (int i = 2; i < splString.length - 1; i = i + 2) {
+        for (int i = 5; i < splString.length - 1; i = i + 2) {
             GameManager.gameLogic.myList.add(new Disc(splString[i + 1], splString[i]));
         }
         GameManager.gameLogic.pictureName = GameManager.getArrayValue();

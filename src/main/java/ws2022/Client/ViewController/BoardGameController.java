@@ -81,7 +81,6 @@ public class BoardGameController {
     private HashMap<String, ImageView> hashMapImageView = new HashMap<>();
     private HashMap<String, ImageView> hashMapPicture = new HashMap<>();
     SoundController soundc = new SoundController();
-    private Integer seconds = 2;
     public Coordinate[] coverCoords = new Coordinate[5];
     @FXML
     Label countdown; // for online
@@ -125,7 +124,7 @@ public class BoardGameController {
         player2.setText(GameManager.playerManager.PLAYER2.getName());
         player2Score.setText("" + GameManager.playerManager.PLAYER1.getScore());
         if (GameManager.isOnline) {
-            countdown.setText("00:" + seconds);
+            countdown.setText("00:" + GameManager.countDownTimer);
             countdownTimer();
         }
     }
@@ -155,7 +154,8 @@ public class BoardGameController {
     /**
      * Starts a countdown timer and displays it in the countdown field.
      *
-     * The timer counts down from a given time (in seconds) and stops at 0.
+     * The timer counts down from a given time (in GameManager.countDownTimer) and
+     * stops at 0.
      * When the timer reaches 0, the `clickRememberAll` method is called.
      */
     public void countdownTimer() {
@@ -171,9 +171,9 @@ public class BoardGameController {
             @Override
             public void handle(ActionEvent event) {
                 // TODO Auto-generated method stub
-                seconds--;
-                countdown.setText("00:" + dFormat.format(seconds));
-                if (seconds <= 0) {
+                GameManager.countDownTimer--;
+                countdown.setText("00:" + dFormat.format(GameManager.countDownTimer));
+                if (GameManager.countDownTimer <= 0) {
                     time.stop();
                     countdown.setVisible(false);
                     try {

@@ -11,7 +11,12 @@
 
 <Pane prefHeight="700.0" prefWidth="1200.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.LeaderboardController">
    <children>
-      <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="304.0" layoutY="277.0" prefHeight="191.0" prefWidth="618.0">
+      <Label fx:id="status" alignment="CENTER" layoutX="328.0" layoutY="161.0" prefHeight="64.0" prefWidth="571.0" text="Leaderboard">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="305.0" layoutY="294.0" prefHeight="191.0" prefWidth="618.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -68,15 +73,10 @@
             </Text>
          </children>
       </GridPane>
-      <Button fx:id="againBtn" layoutX="524.0" layoutY="546.0" mnemonicParsing="false" onAction="#clickAgainButton" prefHeight="49.0" prefWidth="189.0" text="Play again" />
+      <Button fx:id="againBtn" layoutX="519.0" layoutY="596.0" mnemonicParsing="false" onAction="#clickAgainButton" prefHeight="49.0" prefWidth="189.0" text="Play again" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="541.0" layoutY="72.0" text="Result">
          <font>
             <Font name="System Bold" size="50.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="518.0" layoutY="155.0" text="Leaderboard">
-         <font>
-            <Font size="40.0" />
          </font>
       </Label>
       <Button fx:id="returnBtn" layoutX="17.0" layoutY="17.0" mnemonicParsing="false" onAction="#clickReturnButton" prefHeight="45.0" prefWidth="91.0" text="Return" />

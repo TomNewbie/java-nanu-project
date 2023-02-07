@@ -15,6 +15,7 @@ import ws2022.Client.utils.GenerateData;
  * <p>
  * This class contains all states, logic, and data of the application.
  * <p>
+ * 
  * @author
  */
 public class GameManager {
@@ -29,6 +30,7 @@ public class GameManager {
     public static boolean isOnline = false;
     public static String imageString;
     public static String answer;
+    public static int countDownTimer;
 
     public static String getCardImage() {
         if (GameManager.isOnline) {
@@ -54,7 +56,7 @@ public class GameManager {
 
     public static void updateGame(Stage stage) throws IOException {
         gameLogic.totalDisc--;
-        if (gameLogic.totalDisc > 4) {
+        if (gameLogic.totalDisc > 15) {
             BoardGameController bgc = BoardGameController.getInstance();
             gameLogic.pictureName.remove(GameManager.getAnswer());
             bgc.removeGuessPictureBtn();
@@ -69,7 +71,7 @@ public class GameManager {
     public static boolean updateGameOnline() {
         gameLogic.totalDisc--;
         playerManager.addScore();
-        if (gameLogic.totalDisc > 10) {
+        if (gameLogic.totalDisc > 20) {
             return false;
         }
         return true;

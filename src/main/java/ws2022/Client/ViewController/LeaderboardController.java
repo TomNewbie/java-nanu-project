@@ -6,7 +6,7 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import ws2022.Client.Model.GameManager;
@@ -26,15 +26,30 @@ public class LeaderboardController {
     public Text name_2;
     @FXML
     public Text point_2;
+    @FXML
+    public Label status;
     SoundController soundc = new SoundController();
 
     public void initialize() throws FileNotFoundException {
-        soundc.victory();
+        boolean isPlayer1Win = GameManager.playerManager.PLAYER1.getScore() >= GameManager.playerManager.PLAYER2
+                .getScore();
+        if (GameManager.isOnline) {
+            returnBtn.setVisible(false);
+            againBtn.setText("Main Menu");
+            if (isPlayer1Win) {
+                soundc.victory();
+                status.setText("You are the winner!");
+            } else {
+                soundc.lose();
+                status.setText("You lose :( ");
+            }
+        } else
+            soundc.victory();
         String winnerName = "";
         String loserName = "";
         int winnerScore = 0;
         int loserScore = 0;
-        if (GameManager.playerManager.PLAYER1.getScore() >= GameManager.playerManager.PLAYER2.getScore()) {
+        if (isPlayer1Win) {
             winnerName = GameManager.playerManager.PLAYER1.getName();
             winnerScore = GameManager.playerManager.PLAYER1.getScore();
             loserName = GameManager.playerManager.PLAYER2.getName();
@@ -60,6 +75,11 @@ public class LeaderboardController {
     public void clickAgainButton(ActionEvent event) throws IOException {
         soundc.click();
         SceneController sc = SceneController.getInstance();
+        if (GameManager.isOnline) {
+            GameManager.client.close();
+            sc.createScene(event, "HomeScreen");
+            return;
+        }
         sc.createScene(event, "EnterProfile");
     }
 }

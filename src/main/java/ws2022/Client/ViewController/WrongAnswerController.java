@@ -31,7 +31,6 @@ public class WrongAnswerController {
 
     @FXML
     public void initialize() throws FileNotFoundException {
-
         coverText.setText("The image under " + GameManager.gameLogic.COLOR + " cover is:");
         String selectedImage = "/ws2022/assets/Theme/" + GameManager.gameLogic.theme + "/"
                 +

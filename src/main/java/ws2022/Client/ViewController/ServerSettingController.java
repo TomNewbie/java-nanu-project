@@ -4,12 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.ServerSocket;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.GameManager;
 import ws2022.Server.Server;
@@ -33,9 +36,13 @@ public class ServerSettingController {
     @FXML
     ComboBox<String> theme = new ComboBox<>();
     @FXML
+    ComboBox<Integer> timer = new ComboBox<>();
+    @FXML
     ComboBox<Integer> difficulty = new ComboBox<>();
     @FXML
     Label ipLabel;
+    @FXML
+    Button settingBtn;
     SceneController sc = SceneController.getInstance();
     SoundController soundc = new SoundController();
     ServerThread st;
@@ -60,12 +67,14 @@ public class ServerSettingController {
     @FXML
     public void initialize() throws IOException {
         Integer number[] = { 1, 2, 3, 4, 5 };
+        timer.getItems().addAll(Arrays.asList(number)
+                .stream()
+                .map(hehe -> hehe * 5)
+                .collect(Collectors.toList()));
         difficulty.getItems().addAll(number);
-        GameManager.startGame();
         setUpServer();
         displayThemes();
-        ipLabel.setText("Your IP address is: " + Inet4Address.getLocalHost().getHostAddress());
-
+        ipLabel.setVisible(false);
     }
 
     /**
@@ -81,6 +90,11 @@ public class ServerSettingController {
         pathnames = directory.list();
 
         theme.getItems().addAll(pathnames);
+    }
+
+    public void setTimer() {
+        int myChoice = timer.getValue();
+        GameManager.countDownTimer = myChoice;
     }
 
     /**
@@ -108,6 +122,28 @@ public class ServerSettingController {
     public void setDifficulty() {
         Integer myChoice = difficulty.getValue();
         Dice.numDice = myChoice;
+    }
+
+    public void setTheme() {
+        String myChoice = theme.getValue();
+        GameManager.gameLogic.theme = myChoice;
+    }
+
+    public void saveSetting() {
+        if (difficulty.getValue() == null || theme.getValue() == null || timer.getValue() == null) {
+            sc.showAlertMessage(AlertType.ERROR, "Missing input", "Please choose all input in Choice Box");
+            return;
+        }
+        settingBtn.setVisible(false);
+        GameManager.startGame();
+        try {
+            ipLabel.setText("Save succesfully! Your IP address is: " + Inet4Address.getLocalHost().getHostAddress());
+            ipLabel.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // TODO: handle exception
+        }
+
     }
 
 }
