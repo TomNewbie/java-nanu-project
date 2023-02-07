@@ -20,7 +20,6 @@ import ws2022.Client.Model.GameManager;
  * combo boxes to select game difficulty and theme, and buttons to navigate to
  * different parts of the game.
  * 
- * @author Tho Phan Chi
  */
 public class MenuController {
     @FXML

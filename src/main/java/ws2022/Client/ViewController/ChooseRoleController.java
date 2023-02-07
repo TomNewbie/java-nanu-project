@@ -17,7 +17,6 @@ import javafx.scene.control.Button;
  * The class also has two instance variables, sc and soundc, for accessing the
  * SceneController and SoundController instances, respectively.
  * 
- * @author Tho Phan Chi
  * 
  */
 public class ChooseRoleController {

@@ -17,7 +17,6 @@ import ws2022.Client.Model.GameManager;
  * It provides methods to close the right answer pop-up window and perform
  * actions when the next button is clicked.
  * 
- * @author Tho Phan Chi
  */
 public class RightAnswerController {
     @FXML

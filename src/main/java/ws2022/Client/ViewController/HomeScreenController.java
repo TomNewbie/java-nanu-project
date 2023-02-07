@@ -23,7 +23,6 @@ import javafx.stage.Stage;
  * The class also has two instance variables, sc and soundc, for accessing the
  * SceneController and SoundController instances, respectively.
  * 
- * @author Tho Phan Chi
  * 
  */
 public class HomeScreenController {
