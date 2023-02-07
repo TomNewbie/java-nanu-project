@@ -7,7 +7,9 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
+/*
+ *In this class the several sounds which are  at "/ws2022/sound/" will be associate to the methods joker, lose victory and so on.
+ */
 public class SoundController implements Initializable {
     public static double volume = 100;
 

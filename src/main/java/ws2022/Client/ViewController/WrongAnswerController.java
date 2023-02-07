@@ -13,7 +13,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ws2022.Client.Model.GameManager;
-
+/*
+ * This methods manages the window when the user inputs a wrong value.
+ * There will be given some methods like initialize() : shows what is behind the cover and closePopUp: what happens
+ * when the window will be closed and the next players turn comes
+ */
 public class WrongAnswerController {
     @FXML
     private Button nextBtn;

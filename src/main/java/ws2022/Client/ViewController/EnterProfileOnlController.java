@@ -13,7 +13,12 @@ import ws2022.Client.Client;
 import ws2022.Client.Model.GameManager;
 import ws2022.Client.Model.Player;
 import ws2022.Middleware.API.Type;
-
+   //Define class
+   /*
+    * This class is responsible for managing the data of the players at the online game.
+    * It tells the user whether the connection of the online game is successful or whether the 
+    *connection has failed. This class also manages the data of the players like IP-Adress, name and age.
+    */
 public class EnterProfileOnlController {
     private static EnterProfileOnlController epoc;
 
@@ -33,14 +38,14 @@ public class EnterProfileOnlController {
     @FXML
     private AnchorPane pane;
     SoundController soundc = new SoundController();
-
+   // method for instance
     public static EnterProfileOnlController getInstance() {
         if (epoc == null) {
             epoc = new EnterProfileOnlController();
         }
         return epoc;
     }
-
+  
     public void statusSuccess() {
         status.setText("Connect successfully! Please wait player 2 enter the game!");
     }
@@ -57,7 +62,7 @@ public class EnterProfileOnlController {
         SceneController sc = SceneController.getInstance();
         sc.chooseRole(event);
     }
-
+    
     public void enterOnlineGame(ActionEvent event) throws IOException, InterruptedException {
         soundc.click();
         String name = nameTF.getText();

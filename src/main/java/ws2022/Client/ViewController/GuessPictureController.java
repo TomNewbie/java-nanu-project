@@ -9,6 +9,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.text.Text;
 import ws2022.Client.Model.GameManager;
 
+/*
+ * This class manages the putting answer when playing the game nanu.
+ * It manages what happens when the user misses to select a value,asks for a value and says if it is wrong or true.
+ */
 public class GuessPictureController {
 
     @FXML
@@ -20,14 +24,14 @@ public class GuessPictureController {
     @FXML
     private Button submit;
     SoundController soundc = new SoundController();
-
+     //shows the list of the pictures at the game, ans to select the valie which is asked for
     public void display() throws IOException {
         cover.setText("What is the image under " + GameManager.gameLogic.COLOR + " cover ?");
 
         comboBox.getItems().addAll(GameManager.gameLogic.pictureName);
         comboBox.setVisibleRowCount(7);
     }
-
+    //some sound and shows an alert if value was not chosen
     public void clickSubmit(ActionEvent event) throws IOException {
         soundc.click();
         String myChoice = comboBox.getValue();

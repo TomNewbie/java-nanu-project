@@ -10,7 +10,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ws2022.Client.Model.GameManager;
-
+/*
+ * This class manages what to do when a color appears 
+ */
 public class WhichColorController {
 
     @FXML
