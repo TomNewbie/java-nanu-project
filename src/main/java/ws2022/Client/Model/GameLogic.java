@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+/**
+ * 
+ */
 public class GameLogic {
     public ArrayList<Disc> myList = new ArrayList<>();
     public ArrayList<String> pictureName = new ArrayList<>();

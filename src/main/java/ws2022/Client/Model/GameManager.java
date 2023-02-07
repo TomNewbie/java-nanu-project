@@ -10,6 +10,13 @@ import ws2022.Client.ViewController.BoardGameController;
 import ws2022.Client.ViewController.SceneController;
 import ws2022.Client.utils.GenerateData;
 
+/**
+ * The Game Manager is the main class of the game
+ * <p>
+ * This class contains all states, logic, and data of the application.
+ * <p>
+ * @author
+ */
 public class GameManager {
 
     public static PlayerManager playerManager = new PlayerManager();

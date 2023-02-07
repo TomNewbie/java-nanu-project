@@ -2,6 +2,17 @@ package ws2022.Client.Model;
 
 import java.util.Random;
 
+/**
+ * Create a dice for playing game
+ * <p>
+ * The Dice class has the method rollDice() returns a random string of five different color,
+ * which is a simulation of rolling a dice.
+ * <p>
+ * @author 
+ * @return a random dice's color or joker image
+ * @see color
+ */
+
 public class Dice {
     private static String color;
     public static int numDice = 2;
