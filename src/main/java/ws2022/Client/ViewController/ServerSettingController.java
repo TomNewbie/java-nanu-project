@@ -15,6 +15,18 @@ import ws2022.Client.Model.GameManager;
 import ws2022.Server.Server;
 import ws2022.Server.ServerThread;
 
+/**
+ * 
+ * The ServerSettingController class is responsible for handling the server-side
+ * settings of the game.
+ * It contains various UI components such as the Home button, theme combobox,
+ * difficulty combobox, and IP label.
+ * The class provides simple functionality for setting up the server and
+ * displaying themes.
+ * It also allows the server to set the game difficulty and return to the home
+ * screen.
+ * 
+ */
 public class ServerSettingController {
     @FXML
     Button HomeButton;
@@ -37,6 +49,14 @@ public class ServerSettingController {
         return ssc;
     }
 
+    /**
+     * 
+     * The initialize method is called automatically when the FXML file is loaded.
+     * It sets up the difficulty combobox, starts the game, sets up the server,
+     * displays the themes, and sets the IP label text.
+     * 
+     * @throws IOException If an input or output exception occurs.
+     */
     @FXML
     public void initialize() throws IOException {
         Integer number[] = { 1, 2, 3, 4, 5 };
@@ -48,6 +68,11 @@ public class ServerSettingController {
 
     }
 
+    /**
+     * 
+     * The displayThemes method lists all the available themes in the theme
+     * combobox.
+     */
     public void displayThemes() {
 
         // Creates an array in which we will store the names of files and directories
@@ -58,6 +83,12 @@ public class ServerSettingController {
         theme.getItems().addAll(pathnames);
     }
 
+    /**
+     * 
+     * The setUpServer method sets up the server.
+     * 
+     * @throws IOException If an input or output exception occurs.
+     */
     public void setUpServer() throws IOException {
         ServerSocket serverSocket = new ServerSocket(1809);
         Server server = new Server(serverSocket);

@@ -15,7 +15,6 @@ public class API {
         CLOSE_CONNECTION
     }
 
-    // public static
     public static Type getType(String typeName) {
         Type result = Type.UNKNOWN_TYPE;
         try {

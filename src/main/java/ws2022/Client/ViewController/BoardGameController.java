@@ -33,6 +33,16 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 
+/**
+ * BoardGameController is the main class for handling the board game UI.
+ * It has several private instance variables and public instance variables to
+ * represent the various components of the game UI.
+ * 
+ * The class has a private constructor to ensure only one instance of the class
+ * can exist at any time, and a public static method to retrieve the instance.
+ * 
+ * 
+ */
 public class BoardGameController {
     private static BoardGameController bgc = new BoardGameController();
     public Stage popUpStage;
