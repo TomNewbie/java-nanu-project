@@ -9,6 +9,7 @@ import java.net.Socket;
 
 import ws2022.Client.Model.GameManager;
 import javafx.application.Platform;
+import javafx.scene.control.Alert.AlertType;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.Disc;
@@ -24,14 +25,27 @@ public class Client {
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
 
-    public Client(String ipv4) {
+    public Client(String ipv4) throws Exception {
         try {
             this.socket = new Socket(ipv4, 1809);
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         } catch (Exception e) {
-            // TODO: handle exception
+            // SceneController sc = SceneController.getInstance();
+            // Platform.runLater(new Runnable() {
+            // @Override
+            // public void run() {
+            // try {
+            // sc.showAlertMessage(AlertType.ERROR, "Fail to connect", "The server IP
+            // address not found!");
+            // } catch (Exception e) {
+            // e.printStackTrace();
+            // // TODO: handle exception
+            // }
+            // }
+            // });
             closeEverything(socket, bufferedReader, bufferedWriter);
+            throw new Exception();
         }
     }
 
@@ -39,7 +53,7 @@ public class Client {
         String[] data = s.split(";");
         if (data.length == 1) {
             EnterProfileOnlController epoc = EnterProfileOnlController.getInstance();
-            epoc.setStatus();
+            epoc.statusSuccess();
             return;
         }
         // else this will sent the name and age of second player

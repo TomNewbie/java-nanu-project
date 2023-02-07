@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import ws2022.Client.Client;
@@ -31,6 +32,7 @@ public class EnterProfileOnlController {
     private Button okButton;
     @FXML
     private AnchorPane pane;
+    SoundController soundc = new SoundController();
 
     public static EnterProfileOnlController getInstance() {
         if (epoc == null) {
@@ -39,11 +41,16 @@ public class EnterProfileOnlController {
         return epoc;
     }
 
-    public void setStatus() {
+    public void statusSuccess() {
         status.setText("Connect successfully! Please wait player 2 enter the game!");
     }
 
+    public void statusFail() {
+        status.setText("Connect fail!");
+    }
+
     public void returnBtn(ActionEvent event) throws IOException {
+        soundc.click();
         if (GameManager.client != null) {
             GameManager.client.close();
         }
@@ -52,13 +59,22 @@ public class EnterProfileOnlController {
     }
 
     public void enterOnlineGame(ActionEvent event) throws IOException, InterruptedException {
+        soundc.click();
         String name = nameTF.getText();
         String age = ageTF.getText();
         String ipv4 = IPserver.getText();
         if (!GameManager.playerManager.validateValue(name, age))
             return;
         GameManager.playerManager.PLAYER1 = new Player(name, Integer.parseInt(age));
-        GameManager.client = new Client(ipv4);
+        try {
+            GameManager.client = new Client(ipv4);
+        } catch (Exception e) {
+            SceneController sc = SceneController.getInstance();
+            sc.showAlertMessage(AlertType.ERROR, "Connection Failure", "IPv4 Address of the server not found!!");
+            statusFail();
+            return;
+            // TODO: handle exception
+        }
         GameManager.isOnline = true;
         GameManager.client.listenForMessage();
         GameManager.client.sendMessage(GameManager.playerManager.PLAYER1.getAge() + "", Type.ENTER_PROFILE);
