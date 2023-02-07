@@ -9,7 +9,6 @@ import java.net.Socket;
 
 import ws2022.Client.Model.GameManager;
 import javafx.application.Platform;
-import javafx.scene.control.Alert.AlertType;
 import ws2022.Client.Model.Coordinate;
 import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.Disc;
@@ -20,35 +19,51 @@ import ws2022.Client.ViewController.SceneController;
 import ws2022.Client.ViewController.SoundController;
 import ws2022.Middleware.API;
 
+/**
+ * 
+ * Class Client is responsible for maintaining the connection between the client
+ * and the server.
+ * The class uses socket, BufferedReader, and BufferedWriter to connect to the
+ * server, read and write data to it.
+ * It receives messages from the server and calls the appropriate function to
+ * handle each message.
+ * The class implements functions to handle different messages such as enter
+ * profile, roll dice, and end game.
+ * It uses GameManager, BoardGameController, SceneController and other classes
+ * to update the state of the game and show the appropriate scene.
+ */
+
 public class Client {
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
 
+    /**
+     * This code is a Java constructor for a client socket that attempts to connect
+     * to a server at the specified IPv4 address and port number (1809). If the
+     * connection is unsuccessful, it closes any related resources and throws an
+     * exception, potentially displaying an error message to the user.
+     * 
+     * @param ipv4
+     * @throws Exception
+     */
     public Client(String ipv4) throws Exception {
         try {
             this.socket = new Socket(ipv4, 1809);
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         } catch (Exception e) {
-            // SceneController sc = SceneController.getInstance();
-            // Platform.runLater(new Runnable() {
-            // @Override
-            // public void run() {
-            // try {
-            // sc.showAlertMessage(AlertType.ERROR, "Fail to connect", "The server IP
-            // address not found!");
-            // } catch (Exception e) {
-            // e.printStackTrace();
-            // // TODO: handle exception
-            // }
-            // }
-            // });
             closeEverything(socket, bufferedReader, bufferedWriter);
             throw new Exception();
         }
     }
 
+    /**
+     * This method takes the data that the player inputs to generate two players
+     * 
+     * @param s
+     * @throws IOException
+     */
     private void onReceiveEnterProfile(String s) throws IOException {
         String[] data = s.split(";");
         if (data.length == 1) {
@@ -60,6 +75,13 @@ public class Client {
         GameManager.playerManager.PLAYER2 = new Player(data[1], Integer.parseInt(data[2]));
     }
 
+    /**
+     * This methods receive the message from the client to call the corresponding
+     * methods
+     * 
+     * @param s
+     * @throws IOException
+     */
     private void handleMessage(String s) throws IOException {
         API.Type type = API.getTypeFromClient(s);
         switch (type) {
@@ -90,6 +112,12 @@ public class Client {
         System.out.println("hehe handle message");
     }
 
+    /**
+     * This method is called at the end of the game. It will create the leaderboard
+     * scene
+     * 
+     * @param s
+     */
     public void onReceiveEndGame(String s) {
         updateScore(s);
         Platform.runLater(new Runnable() {
@@ -106,6 +134,13 @@ public class Client {
         });
     }
 
+    /**
+     * This method updates the game board by setting the cover image and deleting
+     * previous cover images, and also updates the message displayed to the players
+     * based on whose turn it is
+     * 
+     * @param s
+     */
     public void onReceiveChooseCover(String s) {
         String[] splStrings = s.split(";");
         int column = Integer.parseInt(splStrings[1]);
@@ -134,6 +169,14 @@ public class Client {
         });
     }
 
+    /**
+     * This function is handling the answer of a player in the game and updates the
+     * UI accordingly by setting the message based on whether the answer was right
+     * or wrong, playing sounds, and showing pop-up scenes.
+     * 
+     * @param s
+     * @throws IOException
+     */
     public void onReceiveAnswer(String s) throws IOException {
         // suy nghĩ thêm cái này
         String[] splString = s.split(";");
@@ -179,6 +222,14 @@ public class Client {
 
     }
 
+    /**
+     * This function updates the game status based on the value of the status
+     * string, either by changing the turn, removing or creating buttons, or
+     * updating the scores, and updating the GUI with relevant messages and changes.
+     * 
+     * @param s
+     * @throws IOException
+     */
     public void onReceivePopUp(String s) throws IOException {
         String[] splString = s.split(";");
         String status = splString[1];
@@ -220,6 +271,12 @@ public class Client {
         });
     }
 
+    /**
+     * This function updates the scores of the two players based on the data
+     * received from a string input.
+     * 
+     * @param s
+     */
     public void updateScore(String s) {
         String[] splStrings = s.split(";");
         if (GameManager.playerManager.PLAYER1.getName().equals(splStrings[2])) {
@@ -231,6 +288,14 @@ public class Client {
         }
     }
 
+    /**
+     * The method updates the game state by handling the result of a dice roll and
+     * updating the game display accordingly, based on the current player's turn and
+     * the result of the dice roll.
+     * 
+     * @param s
+     * @throws IOException
+     */
     public void onReceiveRollDice(String s) throws IOException {
         String result = s.split(";")[1];
         // if player 2 turn print message that player 2 get
@@ -254,18 +319,41 @@ public class Client {
         return;
     }
 
+    /**
+     * The method "requestDice" sends a message with type "ROLL_DICE" to the server.
+     */
     public void requestDice() {
         sendMessage("", API.Type.ROLL_DICE);
     }
 
+    /**
+     * The method sendAnswer sends a message containing the answer argument and the
+     * API.Type.ANSWER type to the server.
+     * 
+     * @param answer
+     */
     public void sendAnswer(String answer) {
         sendMessage(answer, API.Type.ANSWER);
     }
 
+    /**
+     * The method "closePopUp" sends a message with the given string "s" to API with
+     * type "POP_UP".
+     * 
+     * @param s
+     */
     public void closePopUp(String s) {
         sendMessage(s, API.Type.POP_UP);
     }
 
+    /**
+     * 
+     * The method sets up the game by parsing the received string, initializing the
+     * number of dice, theme, countdown timer, and list of Discs, then loads the
+     * game screen.
+     * 
+     * @param s the received string from the server
+     */
     public void setUpGame(String s) {
         String splString[] = s.split(";");
         Dice.numDice = Integer.parseInt(splString[2]);
@@ -291,6 +379,15 @@ public class Client {
         });
     }
 
+    /**
+     * This method processes data received from a network connection.
+     * It splits the received data into different parts, and based on the second
+     * part (type), it either sets up a game, changes the turn, or updates the cover
+     * coordinates.
+     * 
+     * @param s the data received from the network connection
+     */
+
     public void onReceiveData(String s) {
         String type = s.split(";")[1];
         System.out.println(s);
@@ -309,6 +406,14 @@ public class Client {
 
     }
 
+    /**
+     * 
+     * This method is used to get the Coordinate array from the given string.
+     * 
+     * @param s The input string that contains the coordinate data separated by ";".
+     * @return result The Coordinate array that contains the coordinates obtained
+     *         from the input string.
+     */
     public Coordinate[] getCoord(String s) {
         Coordinate[] result = new Coordinate[5];
         String[] splString = s.split(";");
@@ -326,6 +431,14 @@ public class Client {
         return result;
     }
 
+    /**
+     * 
+     * Sends a message to the server.
+     * 
+     * @param s    String to be sent as the message.
+     * @param type The type of message being sent, as defined in the API.Type
+     *             enumeration.
+     */
     public void sendMessage(String s, API.Type type) {
         try {
             String sendMessage = type.toString() + ";"
@@ -341,11 +454,27 @@ public class Client {
         }
     }
 
+    /**
+     * 
+     * The chooseColor method is used to send a message to the server, indicating
+     * the color choice made by the player.
+     * 
+     * @param color a string representing the chosen color.
+     */
     public void chooseColor(String color) {
-        // GameManager.gameLogic.COLOR = color;
         sendMessage(color, API.Type.SET_COLOR);
     }
 
+    /**
+     * 
+     * Method to listen for incoming messages from the server.
+     * The method starts a new thread that continually listens for incoming
+     * messages.
+     * If a message is received, it is passed to the handleMessage method for
+     * processing.
+     * If an exception occurs, the method closes the socket, bufferedReader, and
+     * bufferedWriter.
+     */
     public void listenForMessage() {
 
         Thread t = new Thread(new Runnable() {
@@ -370,12 +499,26 @@ public class Client {
         t.start();
     }
 
+    /**
+     * 
+     * Closes the connection with the server by sending a "CLOSE_CONNECTION"
+     * message,
+     * and then closes the socket, buffered reader, and buffered writer objects.
+     */
     public void close() {
         sendMessage("", API.Type.CLOSE_CONNECTION);
         ;
         closeEverything(socket, bufferedReader, bufferedWriter);
     }
 
+    /**
+     * 
+     * This method closes the given socket and buffered reader/writer.
+     * 
+     * @param socket         The socket to be closed
+     * @param bufferedReader The buffered reader to be closed
+     * @param bufferedWriter The buffered writer to be closed
+     */
     public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter) {
         try {
             if (socket != null) {

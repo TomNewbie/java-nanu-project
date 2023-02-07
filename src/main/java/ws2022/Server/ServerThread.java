@@ -1,5 +1,12 @@
 package ws2022.Server;
 
+/**
+ * 
+ * The ServerThread class implements the Runnable interface and allows the
+ * Server to run on a separate thread.
+ * 
+ * @author [Author Name]
+ */
 public class ServerThread implements Runnable {
 
     public synchronized void requestStop() {
