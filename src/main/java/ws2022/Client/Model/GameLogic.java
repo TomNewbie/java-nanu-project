@@ -5,8 +5,13 @@ import java.util.HashMap;
 import java.util.Random;
 
 /**
- * 
+ * This class is designed to make the game run logically.
+ * <p>
+ * It contains methods for setting up the board game, covers and card images, 
+ * as well as methods for the game processes logically.
+ * @author
  */
+
 public class GameLogic {
     public ArrayList<Disc> myList = new ArrayList<>();
     public ArrayList<String> pictureName = new ArrayList<>();
