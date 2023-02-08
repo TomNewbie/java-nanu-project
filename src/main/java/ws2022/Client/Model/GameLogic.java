@@ -9,7 +9,8 @@ import java.util.Random;
  * <p>
  * It contains methods for setting up the board game, covers and card images, 
  * as well as methods for the game processes logically.
- * @author
+ * 
+ * @since 08/02/2023
  */
 
 public class GameLogic {

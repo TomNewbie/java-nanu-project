@@ -1,17 +1,18 @@
 package ws2022.Client.Model;
+
 /**
- * The Coordinate class represents the gridpane cell in our main board game. 
- * It has properties col and row to navigate the cell, also the methods like 
- * convertToCoordinate() to convert from the one-dimensional array (myList array) 
- * to the index col, row in the board game, or the method converToIndex() to 
- * convert index in a matrix to index in one-dimensional array.
+ * /**
+ * Coordinate class represents a coordinate in a 2D grid.
  * <p>
- * @author
+ * The grid consists of 7 rows and 7 columns with indices ranging from 0 to 6.
+ * 
+ * @since 08/02/2023
  */
+
 public class Coordinate {
     private int col;
     private int row;
-
+    
     public Coordinate(int x, int y) {
         this.col = x;
         this.row = y;

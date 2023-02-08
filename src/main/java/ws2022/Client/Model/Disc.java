@@ -5,11 +5,11 @@ import java.util.ArrayList;
 /**
  * Create dics on the board game
  * <p>
- * This class represents the disc of the game which can add pictures,
- * check if the disc has cover or not, to determine to put cover or move on to another picture
- * and remove the value in Guess Picture choice box.
+ * The Disc class represents a game disc, with a value and a corresponding image.
  * <p>
- * @author
+ * It has properties to check if the disc has a cover, is selected as a guess, and to get the image and value.
+ * 
+ * @since 08/02/2023
  */
 
 public class Disc {

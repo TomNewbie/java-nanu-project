@@ -7,8 +7,8 @@ import java.util.Random;
  * <p>
  * The Dice class has the method rollDice() returns a random string of five different color,
  * which is a simulation of rolling a dice.
- * <p>
- * @author 
+ * 
+ * @since 08/02/2023
  * @return a random dice's color or joker image
  * @see color
  */
