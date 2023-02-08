@@ -19,13 +19,46 @@ import ws2022.Client.ViewController.SceneController;
 import ws2022.Middleware.API;
 import ws2022.Middleware.API.Type;
 
+/**
+ * 
+ * The ClientHandler class implements the Runnable interface to handle
+ * communication between the server and a client.
+ * 
+ * @author
+ * 
+ * @version 1.0
+ * 
+ */
 public class ClientHandler implements Runnable {
+    /*
+     * A list of all the client handlers to keep track of all the connected clients.
+     */
     public static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
+    /**
+     * A socket to communicate with the client.
+     */
     private Socket socket;
+    /**
+     * A reader to read the incoming messages from the client.
+     */
     private BufferedReader bufferedReader;
+    /**
+     * A writer to write the outgoing messages to the client.
+     */
     private BufferedWriter bufferedWriter;
+    /**
+     * The client number to keep track of each individual client.
+     */
     private int clientNumber;
 
+    /**
+     * 
+     * Constructor to initialize the socket, reader and writer for the client
+     * handler.
+     * 
+     * @param socket The socket for the client.
+     * @throws IOException
+     */
     public ClientHandler(Socket socket) {
         try {
             this.socket = socket;
@@ -43,6 +76,15 @@ public class ClientHandler implements Runnable {
         }
     }
 
+    /**
+     * 
+     * Overrides the run method of the Runnable interface to receive incoming
+     * messages from the client and handle them.
+     * If the socket is connected, read incoming messages from the client and handle
+     * them.
+     * If the socket is not connected, close the socket, reader and writer, and
+     * display an alert message in the GUI.
+     */
     @Override
     public void run() {
         String messageFromClient;
@@ -77,6 +119,13 @@ public class ClientHandler implements Runnable {
         });
     }
 
+    /**
+     * 
+     * Handles the incoming messages from the client.
+     * 
+     * @param s The message received from the client.
+     * @throws IOException If there is an error in writing to the socket.
+     */
     public void handleMessage(String s) throws IOException {
         API.Type type = API.getTypeFromClient(s);
         switch (type) {
@@ -110,6 +159,15 @@ public class ClientHandler implements Runnable {
         System.out.println("handle Message");
     }
 
+    /**
+     * 
+     * This method processes the request to set color, updates the game state
+     * accordingly and
+     * broadcasts the updated information to all clients.
+     * 
+     * @param s the input string containing information about the request to set
+     *          color
+     */
     public void handleSetColor(String s) {
         String color = s.split(";")[2];
         GameManager.gameLogic.COLOR = color;
@@ -117,6 +175,16 @@ public class ClientHandler implements Runnable {
         broadcastMessage(message);
     }
 
+    /**
+     * 
+     * This method processes the request to choose cover, updates the game state
+     * accordingly and
+     * 
+     * broadcasts the updated information to all clients.
+     * 
+     * @param s the input string containing information about the request to choose
+     *          cover
+     */
     public void handleChooseCover(String s) {
         System.out.println("handleChooseCover");
 
@@ -131,6 +199,12 @@ public class ClientHandler implements Runnable {
         broadcastMessage(message);
     }
 
+    /**
+     * 
+     * This method processes the request to roll dice, updates the game state
+     * accordingly and
+     * broadcasts the updated information to all clients.
+     */
     public void handleRolldice() {
         String msgClient = API.Type.ROLL_DICE + ";";
         String result = Dice.rollDice();
@@ -139,6 +213,14 @@ public class ClientHandler implements Runnable {
         broadcastMessage(msgClient);
     }
 
+    /**
+     * 
+     * This method processes the request to pop up, updates the game state
+     * accordingly and
+     * broadcasts the updated information to all clients.
+     * 
+     * @param s the input string containing information about the request to pop up
+     */
     public void handlePopUp(String s) {
         String status = s.split(";")[2];
         String message = API.Type.POP_UP.toString() + ";" + status;
@@ -157,12 +239,24 @@ public class ClientHandler implements Runnable {
         broadcastMessage(message);
     }
 
+    /**
+     * 
+     * handleEndGame is a method that handles the end of the game.
+     * 
+     * @param s a string argument that is processed.
+     */
     public void handleEndGame(String s) {
         String message = API.Type.END_GAME.toString() + ";somebsmes;" + s;
         System.out.println(message);
         broadcastMessage(message);
     }
 
+    /**
+     * 
+     * handleAnswer is a method that handles the answer from the client.
+     * 
+     * @param s a string argument that is processed.
+     */
     public void handleAnswer(String s) {
         String clientAnswer = s.split(";")[2];
         String serverAnswer = GameManager.getAnswer();
@@ -179,6 +273,15 @@ public class ClientHandler implements Runnable {
         broadcastMessage(msgClient);
     }
 
+    /**
+     * 
+     * handleEnterProfile is a method that handles the profile of a player entering
+     * the game.
+     * 
+     * @param s a string argument that is processed.
+     * @throws NumberFormatException if the age in the entered profile cannot be
+     *                               parsed to an integer.
+     */
     public void handleEnterProfile(String s) throws NumberFormatException {
         String[] splStrings = s.split(";");
 
@@ -202,10 +305,21 @@ public class ClientHandler implements Runnable {
         announceTurn(true);
     }
 
+    /**
+     * 
+     * handleTurn is a method that handles a change in turn.
+     */
     public void handleTurn() {
         announceTurn(false);
     }
 
+    /**
+     * 
+     * unicastMessage is a method that sends a message to a specific machine.
+     * 
+     * @param messageFromClient the message to be sent.
+     * @param clientNumber      the index of the client to receive the message.
+     */
     public void unicastMessage(String messageFromClient, int clientNumber) {
         // send message to specific machine
         System.out.println("messageFromClient");
@@ -219,10 +333,18 @@ public class ClientHandler implements Runnable {
         }
     }
 
+    /**
+     * 
+     * handleCloseConnection is a method that closes the connection.
+     */
     public void handleCloseConnection() {
         closeEverything(socket, bufferedReader, bufferedWriter);
     }
 
+    /**
+     * 
+     * generateCover is a method that generates the cover for the game.
+     */
     public void generateCover() {
         Coordinate[] result = GameManager.gameLogic.setUpCover();
         Helper.generateCoverHashMap(result);
@@ -234,6 +356,12 @@ public class ClientHandler implements Runnable {
         broadcastMessage(msgClient);
     }
 
+    /**
+     * 
+     * broadcastMessage is a method that sends a message to all clients.
+     * 
+     * @param messageFromClient the message to be sent.
+     */
     public void broadcastMessage(String messageFromClient) {
         for (ClientHandler clientHandler : clientHandlers) {
             try {
@@ -246,6 +374,11 @@ public class ClientHandler implements Runnable {
             }
         }
     }
+
+    /**
+     * 
+     * generateBoardGame is a method that generates the board game.
+     */
 
     public void generateBoardGame() {
         String msgToClient = API.Type.DATA.toString() + ";" + "boardgame;";
@@ -260,6 +393,12 @@ public class ClientHandler implements Runnable {
         broadcastMessage(msgToClient);
     }
 
+    /**
+     * 
+     * announceTurn is a method that announces the current turn.
+     * 
+     * @param isStart a boolean argument indicating if it is the start of the game.
+     */
     public void announceTurn(boolean isStart) {
         String msgToClient = API.Type.DATA.toString() + ";turn;";
         // set isPlayer1Turn
@@ -278,11 +417,28 @@ public class ClientHandler implements Runnable {
         broadcastMessage(msgToClient);
     }
 
+    /**
+     * 
+     * This method removes the current client handler from the list of client
+     * handlers.
+     * It also broadcasts a message indicating that the client has left the chat.
+     */
     public void removeClientHandler() {
         clientHandlers.remove(this);
         broadcastMessage("SERVER: client num" + clientNumber + " has left the chat!");
     }
 
+    /**
+     * 
+     * This method closes the socket, buffered reader and buffered writer and
+     * removes the current client handler.
+     * It also sets the Player1 or Player2 in the PlayerManager to null, depending
+     * on the client number.
+     * 
+     * @param socket         the socket to be closed.
+     * @param bufferedReader the buffered reader to be closed.
+     * @param bufferedWriter the buffered writer to be closed.
+     */
     public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter) {
         if (clientNumber == 0)
             GameManager.playerManager.PLAYER1 = null;

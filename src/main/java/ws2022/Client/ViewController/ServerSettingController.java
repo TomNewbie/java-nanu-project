@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.text.Text;
 import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.GameManager;
 import ws2022.Server.Server;
@@ -139,6 +140,9 @@ public class ServerSettingController {
         try {
             ipLabel.setText("Save succesfully! Your IP address is: " + Inet4Address.getLocalHost().getHostAddress());
             ipLabel.setVisible(true);
+            timer.setDisable(true);
+            theme.setDisable(true);
+            difficulty.setDisable(true);
         } catch (Exception e) {
             e.printStackTrace();
             // TODO: handle exception

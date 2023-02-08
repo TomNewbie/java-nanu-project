@@ -3,6 +3,19 @@ package ws2022.Client.Model;
 import javafx.scene.control.Alert;
 import ws2022.Client.ViewController.SceneController;
 
+/**
+ *  PlayerManager is a class that manages the players in a game.
+ * <p>
+ *  The class has two players: PLAYER1 and PLAYER2. 
+ * It also has a variable isPlayer1Turn which controls which player has the first turn. 
+ * Finally, it has three methods: addScore to add score for the player who has right guess;
+ * getFirstTurn to decide which player has first turn depend on their age; 
+ * changeTurn to give turn for the other player when the current one guesses wrong.
+ * <p>
+ * 
+ * @author
+ */
+
 public class PlayerManager {
     public Player PLAYER1;
     public Player PLAYER2;
