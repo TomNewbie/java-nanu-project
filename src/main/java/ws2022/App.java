@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import ws2022.Client.Model.GameManager;
 
@@ -27,6 +28,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/HomeScreen.fxml"));
         System.out.println("Starting...");
+      
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Nanu");
