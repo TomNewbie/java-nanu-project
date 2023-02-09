@@ -11,7 +11,8 @@ import ws2022.Client.ViewController.SceneController;
 import ws2022.Client.utils.GenerateData;
 
 /**
- * The GameManager class is responsible for managing game states and data between different classes.
+ * The GameManager class is responsible for managing game states and data
+ * between different classes.
  * <p>
  * It is contains all states, logic, and data of the application.
  * 

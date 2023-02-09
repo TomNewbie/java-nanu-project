@@ -26,10 +26,12 @@ public class ManualOnlineController {
     SoundController soundc = new SoundController();
     SceneController sc = SceneController.getInstance();
 
-    String images[] = { "chooseRole.jpg", "serverInput.jpg", "serverSuccessful.jpg", "clientInput.jpg",
+    String images[] = { "turnOffFireWall.jpg", "chooseRole.jpg", "serverInput.jpg", "serverSuccessful.jpg",
+            "clientInput.jpg",
             "clientSuccessful.jpg" };
     String labels[] = {
-            "First, you have to choose to be the server (to control the game) or the client (to play the game).",
+            "This version can only works in private network. You also need to turn off the firewall in order to be discoverable in the network",
+            "Second, after clicking play online, you have to choose to be the server (to control the game) or the client (to play the game).",
             "For server: You have to set up the game. You can choose the theme, the difficulty and the remember time. Then you click on save.",
             "After saving the setting, you will have the IP address.",
             "For client: You have to enter your name and age, the the address on the server and click Enter Game.",
@@ -53,7 +55,7 @@ public class ManualOnlineController {
     }
 
     public void displayImage(Integer count) {
-        if (count == 4) {
+        if (count == 5) {
             nextBtn.setText("End");
         } else {
             nextBtn.setText("Next");
@@ -80,7 +82,7 @@ public class ManualOnlineController {
     @FXML
     public void handleNext(ActionEvent event) throws IOException {
         soundc.click();
-        if (count == 4) {
+        if (count == 5) {
             returnManual(event);
         } else {
             count++;
