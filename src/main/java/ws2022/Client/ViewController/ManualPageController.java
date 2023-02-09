@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Node;
+
 /*
  * The following class ManualPageController manages the several
  * FXML Files. The stages will have the FXML-File path which is in "main\resources\ws2022\fxml"
@@ -20,9 +21,14 @@ public class ManualPageController {
       SoundController soundc = new SoundController();
       SceneController sc = SceneController.getInstance();
 
-      public void returnHome(ActionEvent event) throws IOException {
+      public void returnManual(ActionEvent event) throws IOException {
             soundc.click();
-            sc.homeScreen(event);
+            Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/ManualOptions.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setScene(scene);
+            stage.show();
       }
 
       public void switchtomanualpage1(ActionEvent event) throws IOException {

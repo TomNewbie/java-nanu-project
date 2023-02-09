@@ -8,10 +8,13 @@ import ws2022.Client.Model.Disc;
 import ws2022.Client.Model.GameManager;
 
 /**
- *  GenerateData is a utility class that generates data for a theme in a game.
+ * GenerateData is a utility class that generates data for a theme in a game.
  * <p>
- *  It has two method, one is generateDataForFolder(), which generates an array of images from a given folder. The data in the array can then be used to generate game disc cards.
- *  The other method, generateDisc(), generates a list of disc cards using the image and value data generated in the generateDataForFolder() method.
+ * It has two method, one is generateDataForFolder(), which generates an array
+ * of images from a given folder. The data in the array can then be used to
+ * generate game disc cards.
+ * The other method, generateDisc(), generates a list of disc cards using the
+ * image and value data generated in the generateDataForFolder() method.
  * <p>
  * 
  * @author
@@ -22,7 +25,6 @@ public class GenerateData {
     public static String[] Values = new String[24];
 
     public static void generateDataForFolder() {
-
         File directory = new File("target/classes/ws2022/assets/Theme/" + GameManager.gameLogic.theme);
         Images = directory.list();
 

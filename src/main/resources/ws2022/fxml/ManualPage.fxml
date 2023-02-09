@@ -9,7 +9,7 @@
 
 <Pane fx:id="ManualPagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ws2022.Client.ViewController.ManualPageController">
    <children>
-      <Button layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="53.0" prefWidth="132.0" text="Back" />
+      <Button layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#returnManual" prefHeight="53.0" prefWidth="132.0" text="Back" />
       <ImageView fitHeight="429.0" fitWidth="695.0" layoutX="120.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/ManualPageImage/EnterPlayer1.PNG" />
