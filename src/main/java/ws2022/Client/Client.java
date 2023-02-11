@@ -125,7 +125,7 @@ public class Client {
             public void run() {
                 SceneController sc = SceneController.getInstance();
                 try {
-                    sc.loadSceneByStage(GameManager.stage, "Leaderboard");
+                    sc.loadSceneByStage(GameManager.stage, "LeaderBoard");
                 } catch (Exception e) {
                     e.printStackTrace();
                     // TODO: handle exception
