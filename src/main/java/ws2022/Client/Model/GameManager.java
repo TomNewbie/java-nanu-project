@@ -32,10 +32,14 @@ public class GameManager {
     public static int countDownTimer;
 
     /**
+     * Returns the card image as a string.
      * 
-     * Gets the image string for a card in the game.
+     * If the game is not online, the method prints "game is not online" and returns
+     * the value of the static field `imageString`.
+     * If the game is online, the method prints the result of calling
+     * `gameLogic.getCardImage()` and returns the same value.
      * 
-     * @return the image string for the card in the game
+     * @return the card image as a string
      */
     public static String getCardImage() {
         if (GameManager.isOnline) {
@@ -82,7 +86,7 @@ public class GameManager {
      */
     public static void updateGame(Stage stage) throws IOException {
         gameLogic.totalDisc--;
-        if (gameLogic.totalDisc >= Dice.numDice) {
+        if (gameLogic.totalDisc > Dice.numDice) {
             BoardGameController bgc = BoardGameController.getInstance();
             gameLogic.pictureName.remove(GameManager.getAnswer());
             bgc.removeGuessPictureBtn();
@@ -90,7 +94,7 @@ public class GameManager {
             return;
         } else {
             // create leaderboard here
-            sc.loadSceneByStage(stage, "Leaderboard");
+            sc.loadSceneByStage(stage, "LeaderBoard");
         }
     }
 
@@ -104,7 +108,7 @@ public class GameManager {
     public static boolean updateGameOnline() {
         gameLogic.totalDisc--;
         playerManager.addScore();
-        if (gameLogic.totalDisc > 20) {
+        if (gameLogic.totalDisc > Dice.numDice) {
             return false;
         }
         return true;
