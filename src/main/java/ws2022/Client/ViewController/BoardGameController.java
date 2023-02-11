@@ -272,7 +272,7 @@ public class BoardGameController {
     public void createRollDiceBtn() {
         dice.setVisible(true);
         Image diceImage = new Image(this.getClass()
-                .getResource("/ws2022/assets/Dice/dice.png")
+                .getResource("/ws2022/assets/Dice/Dice.png")
                 .toExternalForm());
         dice.setImage(diceImage);
         dice.setFitWidth(100);
@@ -360,7 +360,7 @@ public class BoardGameController {
                 popupwindow.setY(GameManager.stage.getY() + GameManager.stage.getHeight() / 3.5);
                 popupwindow.setX(GameManager.stage.getX() + GameManager.stage.getWidth() / 7.75);
                 FXMLLoader loader = new FXMLLoader(
-                        this.getClass().getResource("/ws2022/fxml/guessPicture.fxml"));
+                        this.getClass().getResource("/ws2022/fxml/GuessPicture.fxml"));
                 Parent popUp = loader.load();
                 GuessPictureController gpc = loader.getController();
                 gpc.display();
