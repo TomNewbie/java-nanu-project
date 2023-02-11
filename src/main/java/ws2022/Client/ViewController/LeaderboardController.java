@@ -10,9 +10,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import ws2022.Client.Model.GameManager;
-/*This class manages what happens at the end of the game
+
+/**
+ * This class manages what happens at the end of the game
+ * 
  * It manages the Leaderboard.
- * The methods contain the function which what text will shown to the user when the game is over. Also the return and again buttun will be managed
+ * 
+ * The methods contain the function which what text will shown
+ * to the user when the game is over. Also the return and again buttun will be
+ * managed
  */
 public class LeaderboardController {
     @FXML

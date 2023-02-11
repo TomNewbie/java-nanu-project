@@ -14,16 +14,17 @@ import javafx.stage.Stage;
 import ws2022.Client.Model.GameManager;
 
 /**
- * 
  * SceneController is a singleton class responsible for controlling and managing
  * the scenes in the JavaFX application.
+ *
  * The SceneController class contains a Stage, a Scene and a Parent object for
  * representing the current stage, scene, and root of the application.
- * It also contains a private constructor to ensure only one instance of the
- * class is created.
- * The class provides methods to switch between different scenes in the
- * application.
- * 
+ *
+ * It also contains a private constructor to ensure only one instance of
+ * the class is created.
+ *
+ * The class provides methods to switch between different scenes
+ * in the application.
  */
 public class SceneController {
     private Stage stage;

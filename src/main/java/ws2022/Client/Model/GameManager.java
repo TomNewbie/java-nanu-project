@@ -13,10 +13,8 @@ import ws2022.Client.utils.GenerateData;
 /**
  * The GameManager class is responsible for managing game states and data
  * between different classes.
- * <p>
- * It is contains all states, logic, and data of the application.
  * 
- * @since 08/02/2023
+ * It is contains all states, logic, and data of the application.
  */
 
 public class GameManager {
@@ -52,12 +50,25 @@ public class GameManager {
         return gameLogic.getCardImage();
     }
 
+    /**
+     * 
+     * Gets the list of values in the game, sorted in ascending order.
+     * 
+     * @return the list of values in the game, sorted in ascending order
+     */
     public static ArrayList<String> getArrayValue() {
         ArrayList<String> result = Disc.convertToValue(gameLogic.myList);
         Collections.sort(result);
         return result;
     }
 
+    /**
+     * This method retrieves the answer of the current game. If the game is online,
+     * it returns the answer, otherwise it returns the result of
+     * {@link GameLogic#getAnswer()}
+     * 
+     * @return the answer of the current game
+     */
     public static String getAnswer() {
         if (GameManager.isOnline) {
             return answer;
@@ -65,6 +76,14 @@ public class GameManager {
         return gameLogic.getAnswer();
     }
 
+    /**
+     * This method updates the current game. If the total number of discs is greater
+     * than or equal to the number of dices, it removes the guess picture button and
+     * updates the game, otherwise it loads the leaderboard scene.
+     * 
+     * @param stage the stage on which the game is currently being played
+     * @throws IOException if the leaderboard scene could not be loaded
+     */
     public static void updateGame(Stage stage) throws IOException {
         gameLogic.totalDisc--;
         if (gameLogic.totalDisc > Dice.numDice) {
@@ -79,6 +98,13 @@ public class GameManager {
         }
     }
 
+    /**
+     * 
+     * This method updates the online game information when the game is ongoing.
+     * It reduces the totalDisc by 1 and adds score to the player.
+     * 
+     * @return false if the totalDisc is not greater than 20, true otherwise.
+     */
     public static boolean updateGameOnline() {
         gameLogic.totalDisc--;
         playerManager.addScore();
@@ -88,6 +114,13 @@ public class GameManager {
         return true;
     }
 
+    /**
+     * This method starts the game in online mode. It generates the discs
+     * information
+     * and shuffles them to create randomness in the game. It also sets the
+     * pictureName
+     * field with the sorted array of the discs information.
+     */
     public static void startGame() {
         GenerateData.generateDisc(gameLogic.myList);
         Collections.shuffle(gameLogic.myList);

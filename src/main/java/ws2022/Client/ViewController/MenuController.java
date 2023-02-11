@@ -1,6 +1,5 @@
 package ws2022.Client.ViewController;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -14,12 +13,11 @@ import ws2022.Client.Model.Dice;
 import ws2022.Client.Model.GameManager;
 
 /**
- * 
  * The MenuController class provides functionality for the menu screen in a
- * game. It has sliders to adjust sound volume,
- * combo boxes to select game difficulty and theme, and buttons to navigate to
- * different parts of the game.
- * 
+ * game.
+ *
+ * It has sliders to adjust sound volume, combo boxes to select game difficulty
+ * and theme, and buttons to navigate to different parts of the game.
  */
 public class MenuController {
     @FXML

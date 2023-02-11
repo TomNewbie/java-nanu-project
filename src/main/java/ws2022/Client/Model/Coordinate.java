@@ -1,35 +1,61 @@
 package ws2022.Client.Model;
 
 /**
- * /**
  * Coordinate class represents a coordinate in a 2D grid.
- * <p>
- * The grid consists of 7 rows and 7 columns with indices ranging from 0 to 6.
  * 
- * @since 08/02/2023
+ * The grid consists of 7 rows and 7 columns with indices ranging from 0 to 6.
  */
 
 public class Coordinate {
+    /** The column of the coordinate in the grid */
     private int col;
+    /** The row of the coordinate in the grid */
     private int row;
-    
+
+    /**
+     * Constructs a new Coordinate object with the given column and row values.
+     * 
+     * @param x The column of the coordinate in the grid.
+     * @param y The row of the coordinate in the grid.
+     */
     public Coordinate(int x, int y) {
         this.col = x;
         this.row = y;
     }
 
+    /**
+     * Returns the column of the coordinate.
+     * 
+     * @return The column of the coordinate.
+     */
     public int getColumn() {
         return col;
     }
 
+    /**
+     * Returns the row of the coordinate.
+     * 
+     * @return The row of the coordinate.
+     */
     public int getRow() {
         return row;
     }
 
+    /**
+     * Returns a string representation of the coordinate in the format "column;row".
+     * 
+     * @return A string representation of the coordinate.
+     */
     public String toString() {
         return getColumn() + ";" + getRow();
     }
 
+    /**
+     * Converts the given index to a Coordinate object.
+     * 
+     * @param index The index to be converted.
+     * @return The Coordinate object that corresponds to the given index.
+     */
     public static Coordinate convertToCoordinate(int index) {
         int count = 0;
         for (int y = 0; y < 7; y++) {
@@ -44,6 +70,12 @@ public class Coordinate {
         return new Coordinate(-1, -1); // there is something wrong with index
     }
 
+    /**
+     * Converts the given Coordinate object to an index.
+     * 
+     * @param coord The Coordinate object to be converted.
+     * @return The index that corresponds to the given Coordinate object.
+     */
     public static int convertToIndex(Coordinate coord) {
         int x = coord.getColumn();
         int y = coord.getRow();

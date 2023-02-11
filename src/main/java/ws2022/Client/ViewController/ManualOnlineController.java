@@ -16,12 +16,11 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 
 /**
- * The ManualOnlineController class is a JavaFX controller class for the manual
- * online scene.
- * It contains the logic for handling button events, displaying images and text,
- * and navigating
- * between pages of the manual.
- *
+ * The ManualOnlineController class is a JavaFX controller class for
+ * the manual online scene.
+ * 
+ * It contains the logic for handling button events, displaying images
+ * and text, and navigating between pages of the manual.
  */
 public class ManualOnlineController {
     @FXML

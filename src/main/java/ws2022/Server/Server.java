@@ -10,9 +10,6 @@ import java.net.Socket;
  * This class represents a server that listens to incoming client connections
  * and starts a new thread for each connected client.
  * 
- * @author
- * 
- * @version 1.0
  * 
  */
 public class Server {

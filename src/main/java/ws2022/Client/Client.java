@@ -20,15 +20,18 @@ import ws2022.Client.ViewController.SoundController;
 import ws2022.Middleware.API;
 
 /**
- * 
  * Class Client is responsible for maintaining the connection between the client
  * and the server.
+ * 
  * The class uses socket, BufferedReader, and BufferedWriter to connect to the
  * server, read and write data to it.
+ * 
  * It receives messages from the server and calls the appropriate function to
  * handle each message.
+ * 
  * The class implements functions to handle different messages such as enter
  * profile, roll dice, and end game.
+ * 
  * It uses GameManager, BoardGameController, SceneController and other classes
  * to update the state of the game and show the appropriate scene.
  */
@@ -113,8 +116,8 @@ public class Client {
     }
 
     /**
-     * This method is called at the end of the game. It will create the leaderboard
-     * scene
+     * This method is called at the end of the game. It will create
+     * the leaderboard scene
      * 
      * @param s
      */

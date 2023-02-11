@@ -15,10 +15,9 @@ import java.io.IOException;
  * the main class for the application.
  * 
  * It sets up the primary stage and scene of the application using JavaFX FXML,
- * loads the HomeScreen.fxml file,
- * and sets the stage's title to "Nanu". It also sets the stage in the
- * GameManager class for further use.
+ * loads the HomeScreen.fxml file, and sets the stage's title to "Nanu".
  * 
+ * It also sets the stage in the GameManager class for further use.
  */
 public class App extends Application {
 
@@ -28,7 +27,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/HomeScreen.fxml"));
         System.out.println("Starting...");
-      
+
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Nanu");
