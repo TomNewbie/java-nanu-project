@@ -40,8 +40,6 @@ import java.util.HashMap;
  * 
  * The class has a private constructor to ensure only one instance of the class
  * can exist at any time, and a public static method to retrieve the instance.
- * 
- * 
  */
 public class BoardGameController {
     private static BoardGameController bgc = new BoardGameController();

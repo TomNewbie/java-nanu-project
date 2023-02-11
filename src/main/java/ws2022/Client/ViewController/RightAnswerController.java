@@ -10,14 +10,13 @@ import javafx.stage.Stage;
 import ws2022.Client.Model.GameManager;
 
 /**
- * 
  * The class RightAnswerController is a JavaFX controller class that is used to
  * control the right answer pop-up window.
  * 
  * It provides methods to close the right answer pop-up window and perform
  * actions when the next button is clicked.
- * 
  */
+
 public class RightAnswerController {
     @FXML
     private Button nextBtn;

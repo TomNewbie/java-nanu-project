@@ -10,8 +10,9 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 
 /*
- * The following class ManualPageController manages the several
- * FXML Files. The stages will have the FXML-File path which is in "main\resources\ws2022\fxml"
+ * The following class ManualPageController manages the several FXML Files. 
+ *
+ * The stages will have the FXML-File path which is in "main\resources\ws2022\fxml"
  */
 public class ManualPageController {
       // private Stage stage;

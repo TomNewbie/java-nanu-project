@@ -7,13 +7,10 @@ import java.util.GregorianCalendar;
 
 /**
  * CalculateAge is the class calculates the age of the players.
- * <p>
- *  The class one method: getAge(LocalDate birthday) to calculate the player's age by take the current year minus the player's born year.
- * <p>
- * 
- * @author
+ *
+ * The class one method: getAge(LocalDate birthday) to calculate the player's
+ * age by take the current year minus the player's born year.
  */
-
 
 public class CalculateAge {
     public static int getAge(LocalDate birthday) {

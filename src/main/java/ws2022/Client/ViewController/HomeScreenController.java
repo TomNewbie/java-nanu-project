@@ -12,18 +12,18 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
- * HomeScreenController class is responsible for handling the home screen of the
- * application.
+ * HomeScreenController class is responsible for handling
+ * the home screen of the application.
+ *
  * It has four buttons to represent the user's choices: play offline, play
  * online, quit, and manual.
  * 
  * The class has four methods, playOffline(), playOnline(), quit(), and
- * manualPage(),
- * to handle the button events and navigate to the corresponding screens.
- * The class also has two instance variables, sc and soundc, for accessing the
- * SceneController and SoundController instances, respectively.
- * 
- * 
+ * manualPage(), to handle the button events and navigate to the corresponding
+ * screens.
+ *
+ * The class also has two instance variables, sc and soundc, for accessing
+ * the SceneController and SoundController instances, respectively.
  */
 public class HomeScreenController {
     @FXML

@@ -20,39 +20,37 @@ import ws2022.Middleware.API;
 import ws2022.Middleware.API.Type;
 
 /**
- * 
  * The ClientHandler class implements the Runnable interface to handle
  * communication between the server and a client.
- * 
- * @author
- * 
- * @version 1.0
- * 
  */
 public class ClientHandler implements Runnable {
-    /*
+
+    /**
      * A list of all the client handlers to keep track of all the connected clients.
      */
     public static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
+
     /**
      * A socket to communicate with the client.
      */
     private Socket socket;
+
     /**
      * A reader to read the incoming messages from the client.
      */
     private BufferedReader bufferedReader;
+
     /**
      * A writer to write the outgoing messages to the client.
      */
     private BufferedWriter bufferedWriter;
+
     /**
      * The client number to keep track of each individual client.
      */
     private int clientNumber;
 
     /**
-     * 
      * Constructor to initialize the socket, reader and writer for the client
      * handler.
      * 
@@ -77,11 +75,12 @@ public class ClientHandler implements Runnable {
     }
 
     /**
-     * 
      * Overrides the run method of the Runnable interface to receive incoming
      * messages from the client and handle them.
+     * 
      * If the socket is connected, read incoming messages from the client and handle
      * them.
+     * 
      * If the socket is not connected, close the socket, reader and writer, and
      * display an alert message in the GUI.
      */
@@ -120,7 +119,6 @@ public class ClientHandler implements Runnable {
     }
 
     /**
-     * 
      * Handles the incoming messages from the client.
      * 
      * @param s The message received from the client.
@@ -160,10 +158,8 @@ public class ClientHandler implements Runnable {
     }
 
     /**
-     * 
      * This method processes the request to set color, updates the game state
-     * accordingly and
-     * broadcasts the updated information to all clients.
+     * accordingly and broadcasts the updated information to all clients.
      * 
      * @param s the input string containing information about the request to set
      *          color
@@ -176,11 +172,8 @@ public class ClientHandler implements Runnable {
     }
 
     /**
-     * 
      * This method processes the request to choose cover, updates the game state
-     * accordingly and
-     * 
-     * broadcasts the updated information to all clients.
+     * accordingly and broadcasts the updated information to all clients.
      * 
      * @param s the input string containing information about the request to choose
      *          cover
@@ -200,10 +193,8 @@ public class ClientHandler implements Runnable {
     }
 
     /**
-     * 
      * This method processes the request to roll dice, updates the game state
-     * accordingly and
-     * broadcasts the updated information to all clients.
+     * accordingly and broadcasts the updated information to all clients.
      */
     public void handleRolldice() {
         String msgClient = API.Type.ROLL_DICE + ";";
@@ -214,10 +205,8 @@ public class ClientHandler implements Runnable {
     }
 
     /**
-     * 
      * This method processes the request to pop up, updates the game state
-     * accordingly and
-     * broadcasts the updated information to all clients.
+     * accordingly and broadcasts the updated information to all clients.
      * 
      * @param s the input string containing information about the request to pop up
      */

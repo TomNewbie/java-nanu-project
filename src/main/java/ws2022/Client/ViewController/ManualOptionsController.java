@@ -12,13 +12,10 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
- * 
  * Class ManualOptionsController handles the event for manual options scene.
  * 
  * It provides the functionalities for returning to home screen, navigating to
  * the offline manual and online manual.
- * 
- * 
  */
 public class ManualOptionsController {
     @FXML

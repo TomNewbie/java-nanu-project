@@ -20,17 +20,19 @@ import ws2022.Server.Server;
 import ws2022.Server.ServerThread;
 
 /**
- * 
  * The ServerSettingController class is responsible for handling the server-side
  * settings of the game.
+ *
  * It contains various UI components such as the Home button, theme combobox,
  * difficulty combobox, and IP label.
+ * 
  * The class provides simple functionality for setting up the server and
  * displaying themes.
- * It also allows the server to set the game difficulty and return to the home
- * screen.
  * 
+ * It also allows the server to set the game difficulty and
+ * return to the home screen.
  */
+
 public class ServerSettingController {
     @FXML
     Button HomeButton;
