@@ -15,6 +15,14 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
+/**
+ * The ManualOnlineController class is a JavaFX controller class for the manual
+ * online scene.
+ * It contains the logic for handling button events, displaying images and text,
+ * and navigating
+ * between pages of the manual.
+ *
+ */
 public class ManualOnlineController {
     @FXML
     public ImageView imageView;
@@ -40,6 +48,12 @@ public class ManualOnlineController {
     Stage stage;
     Scene scene;
 
+    /**
+     * Returns to the manual options scene.
+     *
+     * @param event the ActionEvent triggering the method
+     * @throws IOException if there is an error loading the FXML file
+     */
     public void returnManual(ActionEvent event) throws IOException {
         soundc.click();
         Parent root = FXMLLoader.load(getClass().getResource("/ws2022/fxml/ManualOptions.fxml"));
@@ -54,6 +68,14 @@ public class ManualOnlineController {
         displayImage(0);
     }
 
+    /**
+     * 
+     * displayImage is a method that displays the image and its corresponding label
+     * for the manual online game.
+     * 
+     * @param count - an integer value that specifies the index of the image and
+     *              label to be displayed
+     */
     public void displayImage(Integer count) {
         if (count == 5) {
             nextBtn.setText("End");
@@ -68,6 +90,18 @@ public class ManualOnlineController {
         label.setText(labels[count]);
     }
 
+    /**
+     * 
+     * The handleReturn method is an event handler for the "return" button.
+     * When the button is clicked, it calls the soundc.click() method to play a
+     * sound effect.
+     * If the current count is 0, then it calls the returnManual method to return to
+     * the manual options.
+     * Otherwise, it decrements the count and calls the displayImage method with the
+     * updated count.
+     * 
+     * @throws IOException if an I/O error occurs
+     */
     @FXML
     public void handleReturn(ActionEvent event) throws IOException {
         soundc.click();
@@ -78,6 +112,19 @@ public class ManualOnlineController {
             displayImage(count);
         }
     }
+
+    /**
+     * The handleNext method is an event handler for the "next" button.
+     * When the button is clicked, it calls the soundc.click() method to play a
+     * sound effect.
+     * If the current count is 5, then it calls the returnManual method to return to
+     * the manual options.
+     * Otherwise, it increments the count and calls the displayImage method with the
+     * updated count.
+     * 
+     * @param event the event that triggered the method call
+     * @throws IOException if an I/O error occurs
+     */
 
     @FXML
     public void handleNext(ActionEvent event) throws IOException {

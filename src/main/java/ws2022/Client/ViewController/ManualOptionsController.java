@@ -11,6 +11,15 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * Class ManualOptionsController handles the event for manual options scene.
+ * 
+ * It provides the functionalities for returning to home screen, navigating to
+ * the offline manual and online manual.
+ * 
+ * 
+ */
 public class ManualOptionsController {
     @FXML
     public Button onlineBtn;
@@ -26,6 +35,15 @@ public class ManualOptionsController {
         sc.homeScreen(event);
     }
 
+    /**
+     * 
+     * The method navigates to the offline manual screen by loading the FXML file
+     * and setting the scene.
+     * It also plays a click sound before navigating to the offline manual screen.
+     * 
+     * @param event the event that triggers this method
+     * @throws IOException if the FXML file for offline manual screen is not found
+     */
     @FXML
     public void goToOffline(ActionEvent event) throws IOException {
         soundc.click();
@@ -37,6 +55,15 @@ public class ManualOptionsController {
         stage.show();
     }
 
+    /**
+     * 
+     * The method navigates to the online manual screen by loading the FXML file and
+     * setting the scene.
+     * It also plays a click sound before navigating to the online manual screen.
+     * 
+     * @param event the event that triggers this method
+     * @throws IOException if the FXML file for online manual screen is not found
+     */
     @FXML
     public void goToOnline(ActionEvent event) throws IOException {
         soundc.click();
