@@ -67,7 +67,7 @@ public class GameManager {
 
     public static void updateGame(Stage stage) throws IOException {
         gameLogic.totalDisc--;
-        if (gameLogic.totalDisc >= Dice.numDice) {
+        if (gameLogic.totalDisc > Dice.numDice) {
             BoardGameController bgc = BoardGameController.getInstance();
             gameLogic.pictureName.remove(GameManager.getAnswer());
             bgc.removeGuessPictureBtn();
@@ -82,7 +82,7 @@ public class GameManager {
     public static boolean updateGameOnline() {
         gameLogic.totalDisc--;
         playerManager.addScore();
-        if (gameLogic.totalDisc >= Dice.numDice) {
+        if (gameLogic.totalDisc > Dice.numDice) {
             return false;
         }
         return true;
