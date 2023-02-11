@@ -65,14 +65,14 @@ public class GameManager {
             return;
         } else {
             // create leaderboard here
-            sc.loadSceneByStage(stage, "Leaderboard");
+            sc.loadSceneByStage(stage, "LeaderBoard");
         }
     }
 
     public static boolean updateGameOnline() {
         gameLogic.totalDisc--;
         playerManager.addScore();
-        if (gameLogic.totalDisc > 20) {
+        if (gameLogic.totalDisc >= Dice.numDice) {
             return false;
         }
         return true;
