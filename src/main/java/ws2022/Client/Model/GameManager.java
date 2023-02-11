@@ -33,6 +33,16 @@ public class GameManager {
     public static String answer;
     public static int countDownTimer;
 
+    /**
+     * Returns the card image as a string.
+     * 
+     * If the game is not online, the method prints "game is not online" and returns
+     * the value of the static field `imageString`.
+     * If the game is online, the method prints the result of calling
+     * `gameLogic.getCardImage()` and returns the same value.
+     * 
+     * @return the card image as a string
+     */
     public static String getCardImage() {
         if (GameManager.isOnline) {
             System.out.println("game is not online");
