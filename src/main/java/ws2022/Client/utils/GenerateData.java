@@ -23,17 +23,110 @@ import ws2022.Client.Model.GameManager;
 public class GenerateData {
     public static String[] Images;
     public static String[] Values = new String[24];
+    public static String[] FootballImages = { "Argentina.png", "Australia.png", "Belgium.png", "Brazil.png",
+            "Cameroon.png", "Canada.png", "CostaRica.png", "Croatia.png", "Denmark.png", "Ecuador.png", "England.png",
+            "France.png", "Germany.png", "ghana.png", "Iran.png", "Japan.png", "Korea.png", "Mexico.png",
+            "Netherland.png", "Poland.png", "Portugal.png", "Qatar.png", "SaudiArabia.png", "Senegal.png" };
+    public static String[] FootballValues = {
+            "Argentina",
+            "Australia",
+            "Belgium",
+            "Brazil",
+            "Cameroon",
+            "Canada",
+            "Costa Rica",
+            "Croatia",
+            "Denmark",
+            "Ecuador",
+            "England",
+            "France",
+            "Germany",
+            "Ghana",
+            "Iran",
+            "Japan",
+            "Korea",
+            "Mexico",
+            "Netherland",
+            "Poland",
+            "Portugal",
+            "Qatar",
+            "Saudi Arabia",
+            "Senegal",
+    };
+    public static String[] ClassicValues = {
+            "astronaut",
+            "balloon",
+            "bike",
+            "cherry",
+            "crown",
+            "cup",
+            "dog",
+            "drum",
+            "earth",
+            "fish",
+            "hourse",
+            "mill",
+            "minion",
+            "newcar",
+            "pen",
+            "phone",
+            "plane",
+            "radio",
+            "robot",
+            "rubber Duck",
+            "schnecke",
+            "snake",
+            "spongebob",
+            "star",
+    };
+    public static String[] ClassicImages = {
+            "astronaut.jpg",
+            "balloon.jpg",
+            "bike.png",
+            "cherry.jpg",
+            "crown.jpg",
+            "cup.jpg",
+            "dog.jpg",
+            "drum.jpg",
+            "earth.jpg",
+            "fish.jpg",
+            "hourse.jpg",
+            "mill.jpg",
+            "minion.jpg",
+            "newcar.jpg",
+            "pen.jpg",
+            "phone.jpg",
+            "plane.jpg",
+            "radio.jpg",
+            "robot.jpg",
+            "rubberDuck.jpg",
+            "schnecke.jpg",
+            "snake.jpg",
+            "spongebob.jpg",
+            "star.jpg",
+    };
 
     public static void generateDataForFolder() {
-        File directory = new File("target/classes/ws2022/assets/Theme/" + GameManager.gameLogic.theme);
-        Images = directory.list();
+        // File directory = new File("target/classes/ws2022/assets/Theme/" +
+        // GameManager.gameLogic.theme);
+        // Images = directory.list();
 
-        for (int i = 0; i < Values.length; i++) {
-            String temp = Images[i].substring(0, Images[i].length() - 4); // remove .jpg, .png
-            String[] temp1 = temp.split("(?=\\p{Lu})"); // split when uppercase to array
-            temp = Arrays.toString(temp1); // array concat to string
-            Values[i] = temp.replaceAll("[^a-zA-Z0-9\\s+]", ""); // remove all special character except blank space
+        // for (int i = 0; i < Values.length; i++) {
+        // String temp = Images[i].substring(0, Images[i].length() - 4); // remove .jpg,
+        // .png
+        // String[] temp1 = temp.split("(?=\\p{Lu})"); // split when uppercase to array
+        // temp = Arrays.toString(temp1); // array concat to string
+        // Values[i] = temp.replaceAll("[^a-zA-Z0-9\\s+]", ""); // remove all special
+        // character except blank space
+        // }
+        if (GameManager.gameLogic.theme == "Football") {
+            Images = FootballImages;
+            Values = FootballValues;
+        } else if (GameManager.gameLogic.theme == "Classic") {
+            Images = ClassicImages;
+            Values = ClassicValues;
         }
+
     }
 
     public static void generateDisc(ArrayList<Disc> discArray) {

@@ -59,11 +59,11 @@ public class MenuController {
     public void displayThemes() {
 
         // Creates an array in which we will store the names of files and directories
-        String[] pathnames;
-        File directory = new File("target/classes/ws2022/assets/Theme");
-        pathnames = directory.list();
+        String[] themes = { "Classic", "Football" };
+        // File directory = new File("target/classes/ws2022/assets/Theme");
+        // pathnames = directory.list();
 
-        theme.getItems().addAll(pathnames);
+        theme.getItems().addAll(themes);
     }
 
     @FXML

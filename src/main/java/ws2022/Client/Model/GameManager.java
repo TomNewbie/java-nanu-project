@@ -57,7 +57,7 @@ public class GameManager {
 
     public static void updateGame(Stage stage) throws IOException {
         gameLogic.totalDisc--;
-        if (gameLogic.totalDisc > 15) {
+        if (gameLogic.totalDisc >= Dice.numDice) {
             BoardGameController bgc = BoardGameController.getInstance();
             gameLogic.pictureName.remove(GameManager.getAnswer());
             bgc.removeGuessPictureBtn();
