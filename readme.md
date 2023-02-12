@@ -25,7 +25,7 @@ In this repository, we created the java game based on the original nanu game. We
 
 ## How to play the game
 
-You have to install Java Maven before. After cloning this repository, you can enter the file App.java, then click on Run to play the game. This game can only be played on Window.
+To play the game you need to install JDK to run the Java Program. The JAR file can be found in [Here](https://github.com/TomNewbie/java-nanu-project/blob/main/java-nanu-project-1.0-SNAPSHOT.jar)
 
 ## Additional documents
 
